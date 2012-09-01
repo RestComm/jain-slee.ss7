@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE event-jar PUBLIC "-//Sun Microsystems, Inc.//DTD JAIN SLEE Event 1.1//EN" "http://java.sun.com/dtd/slee-event-jar_1_1.dtd">
+
+
+
+<event-jar>
+
+	<library-ref>
+		<library-name>library-cap</library-name>
+		<library-vendor>library-cap</library-vendor>
+		<library-version>2.0</library-version>
+	</library-ref>
+
+	<!-- Dialog Events -->
+	<event-definition>
+		<event-type-name>ss7.cap.DIALOG_DELIMITER</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.DialogDelimiter</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.DIALOG_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.DialogRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.DIALOG_ACCEPT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.DialogAccept</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.DIALOG_USERABORT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.DialogUserAbort</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.DIALOG_PROVIDERABORT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.DialogProviderAbort</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.DIALOG_CLOSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.DialogClose</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.DIALOG_NOTICE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.DialogNotice</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.DIALOG_TIMEOUT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.DialogTimeout</event-class-name>
+	</event-definition>
+	
+	<event-definition>
+		<event-type-name>ss7.cap.DIALOG_RELEASE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.DialogRelease</event-class-name>
+	</event-definition>	
+
+	<!-- Service Specific -->
+	
+	<!-- CircuitSwitchedCall Service -->
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.INITIAL_DP_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitialDPRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.ACTIVITY_TEST_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ActivityTestRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.ACTIVITY_TEST_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ActivityTestResponse</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.APPLY_CHARGING_REPORT_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ApplyChargingReportRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.APPLY_CHARGING_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ApplyChargingRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.ASSIST_REQUEST_INSTRUCTIONS_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.AssistRequestInstructionsRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.CALL_INFORMATION_REPORT_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallInformationReportRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.CALL_INFORMATION_REQUEST_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallInformationRequestRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.CANCEL_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CancelRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.CONNECT_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.CONNECT_TO_RESOURCE_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectToResourceRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.CONTINUE_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ContinueRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.DISCONNECT_FORWARD_CONNECTION_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectForwardConnectionRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.ESTABLISH_TEMPORARY_CONNECTION_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.EstablishTemporaryConnectionRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.EVENT_REPORT_BCSM_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.EventReportBCSMRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.FURNISH_CHARGING_INFORMATION_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.FurnishChargingInformationRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.PLAY_ANNOUNCEMENT_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PlayAnnouncementRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.RELEASE_CALL_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ReleaseCallRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.PROMPT_AND_COLLECT_USER_INFORMATION_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PromptAndCollectUserInformationRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.PROMPT_AND_COLLECT_USER_INFORMATION_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PromptAndCollectUserInformationResponse</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.REQUEST_REPORT_BCSM_EVENT_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.RequestReportBCSMEventRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.RESET_TIMER_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ResetTimerRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.SEND_CHARGING_INFORMATION_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SendChargingInformationRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.service.circuitSwitchedCall.SPECIALIZED_RESOURCE_REPORT_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SpecializedResourceReportRequest</event-class-name>
+	</event-definition>
+					
+
+	<!-- Component events -->
+	<event-definition>
+		<event-type-name>ss7.cap.INVOKE_TIMEOUT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.InvokeTimeout</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.ERROR_COMPONENT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.ErrorComponent</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.PROVIDER_ERROR_COMPONENT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.ProviderErrorComponent</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.cap.REJECT_COMPONENT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.cap.events.RejectComponent</event-class-name>
+	</event-definition>
+</event-jar>
+
+

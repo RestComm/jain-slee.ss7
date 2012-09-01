@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE resource-adaptor-type-jar PUBLIC "-//Sun Microsystems, Inc.//DTD JAIN SLEE Resource Adaptor Type 1.1//EN" "http://java.sun.com/dtd/slee-resource-adaptor-type-jar_1_1.dtd">
+
+<resource-adaptor-type-jar>
+	<description />
+	<resource-adaptor-type>
+		<description>CAP Resource Adaptor Type</description>
+		<resource-adaptor-type-name>
+			CAPResourceAdaptorType
+		</resource-adaptor-type-name>
+		<resource-adaptor-type-vendor>
+			org.mobicents
+		</resource-adaptor-type-vendor>
+		<resource-adaptor-type-version>
+			2.0
+		</resource-adaptor-type-version>
+
+		<library-ref>
+			<library-name>library-cap</library-name>
+			<library-vendor>library-cap</library-vendor>
+			<library-version>2.0</library-version>
+		</library-ref>
+
+		<resource-adaptor-type-classes>
+			<activity-type>
+				<activity-type-name>
+					org.mobicents.protocols.ss7.cap.api.CAPDialog
+				</activity-type-name>
+			</activity-type>
+			<activity-context-interface-factory-interface>
+				<activity-context-interface-factory-interface-name>
+					org.mobicents.slee.resource.cap.CAPContextInterfaceFactory
+				</activity-context-interface-factory-interface-name>
+			</activity-context-interface-factory-interface>
+			<resource-adaptor-interface>
+				<resource-adaptor-interface-name>
+					org.mobicents.protocols.ss7.cap.api.CAPProvider
+				</resource-adaptor-interface-name>
+			</resource-adaptor-interface>
+		</resource-adaptor-type-classes>
+
+
+		<!-- Dialog Events -->
+		<event-type-ref>
+			<event-type-name>ss7.cap.DIALOG_DELIMITER</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.DIALOG_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.DIALOG_ACCEPT</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.DIALOG_USERABORT</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.DIALOG_PROVIDERABORT</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.DIALOG_CLOSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.DIALOG_NOTICE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.DIALOG_TIMEOUT</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.DIALOG_RELEASE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+
+		<!-- Service Specific -->
+	
+		<!-- CircuitSwitchedCall Service -->
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.INITIAL_DP_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.ACTIVITY_TEST_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.ACTIVITY_TEST_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.APPLY_CHARGING_REPORT_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.APPLY_CHARGING_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.ASSIST_REQUEST_INSTRUCTIONS_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.CALL_INFORMATION_REPORT_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.CALL_INFORMATION_REQUEST_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.CANCEL_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.CONNECT_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.CONNECT_TO_RESOURCE_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.CONTINUE_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.DISCONNECT_FORWARD_CONNECTION_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.ESTABLISH_TEMPORARY_CONNECTION_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.EVENT_REPORT_BCSM_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.FURNISH_CHARGING_INFORMATION_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.PLAY_ANNOUNCEMENT_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.RELEASE_CALL_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.PROMPT_AND_COLLECT_USER_INFORMATION_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.PROMPT_AND_COLLECT_USER_INFORMATION_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.REQUEST_REPORT_BCSM_EVENT_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.RESET_TIMER_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.SEND_CHARGING_INFORMATION_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.service.circuitSwitchedCall.SPECIALIZED_RESOURCE_REPORT_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<!-- Component stuff -->
+		<event-type-ref>
+			<event-type-name>ss7.cap.INVOKE_TIMEOUT</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.ERROR_COMPONENT</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.PROVIDER_ERROR_COMPONENT</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.cap.REJECT_COMPONENT</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+	</resource-adaptor-type>
+</resource-adaptor-type-jar>

@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.mobicents.servers.jainslee.ss7</groupId>
+		<artifactId>mobicents-slee-ss7</artifactId>
+		<version>2.8.0-SNAPSHOT</version>
+		<relativePath>../..</relativePath>
+	</parent>
+
+	<artifactId>mobicents-slee-ra-cap</artifactId>
+	<groupId>org.mobicents.resources</groupId>
+
+	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
+
+	<modules>
+		<module>library</module>
+		<module>events</module>
+		<module>ratype</module>
+		<module>ra</module>
+		<module>du</module>
+	</modules>
+
+	<properties>
+		<docs.profile>mobicents</docs.profile>
+		<docs.ra.name>CAP</docs.ra.name>
+		<docs.ra.dirname>CAP</docs.ra.dirname>
+		<docs.bookid>CAP</docs.bookid>
+
+		<ss7.version>2.0.0-SNAPSHOT</ss7.version>
+		<asn.version>2.0.0-SNAPSHOT</asn.version>
+		<stream.version>1.0.0.CR1</stream.version>
+
+		<javolution.version>5.5.1</javolution.version>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<modules>
+				<module>docs</module>
+				<module>release</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>maven-release</id>
+			<modules>
+				<module>docs</module>
+				<module>release</module>
+			</modules>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<groupId>org.mobicents.tools</groupId>
+				<inherited>false</inherited>
+				<executions />
+				<configuration>
+					<excludePoms />
+					<classpathExcludes>
+						<exclude>xml-apis:xml-apis</exclude>
+						<exclude>jtidy:jtidy</exclude>
+					</classpathExcludes>
+					<resolveTransitiveDependencies>true</resolveTransitiveDependencies>
+					<eclipseProjectName>mobicents-slee-ra-cap</eclipseProjectName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
