@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE event-jar PUBLIC "-//Sun Microsystems, Inc.//DTD JAIN SLEE Event 1.1//EN" "http://java.sun.com/dtd/slee-event-jar_1_1.dtd">
+
+
+
+<event-jar>
+
+	<library-ref>
+		<library-name>library-tcap</library-name>
+		<library-vendor>library-tcap</library-vendor>
+		<library-version>2.0</library-version>
+	</library-ref>
+
+	<!-- Dialog Events -->
+	<event-definition>
+		<event-type-name>ss7.tcap.DIALOG_UNI</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.tcap.DIALOG_BEGIN</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.tcap.DIALOG_CONTINUE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.tcap.DIALOG_END</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.tcap.DIALOG_USERABORT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.tcap.DIALOG_PROVIDERABORT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.tcap.DIALOG_NOTICE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.tcap.DIALOG_RELEASED</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.tcap.DIALOG_TIMEOUT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+	</event-definition>
+
+	<!-- Component Events -->
+</event-jar>
+
+
