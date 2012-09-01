@@ -27,135 +27,196 @@ import org.mobicents.protocols.ss7.map.api.MAPDialogListener;
 import org.mobicents.protocols.ss7.map.api.MAPParameterFactory;
 import org.mobicents.protocols.ss7.map.api.MAPProvider;
 import org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessageFactory;
+import org.mobicents.protocols.ss7.map.api.service.callhandling.MAPServiceCallHandling;
 import org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsm;
+import org.mobicents.protocols.ss7.map.api.service.mobility.MAPServiceMobility;
+import org.mobicents.protocols.ss7.map.api.service.oam.MAPServiceOam;
+import org.mobicents.protocols.ss7.map.api.service.pdpContextActivation.MAPServicePdpContextActivation;
 import org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSms;
 import org.mobicents.protocols.ss7.map.api.service.supplementary.MAPServiceSupplementary;
-import org.mobicents.slee.resource.map.MAPDialogActivityHandle;
 import org.mobicents.slee.resource.map.MAPResourceAdaptor;
+import org.mobicents.slee.resource.map.service.callhandling.wrappers.MAPServiceCallHandlingWrapper;
+import org.mobicents.slee.resource.map.service.lsm.wrappers.MAPServiceLsmWrapper;
+import org.mobicents.slee.resource.map.service.mobility.wrappers.MAPServiceMobilityWrapper;
+import org.mobicents.slee.resource.map.service.oam.wrappers.MAPServiceOamWrapper;
+import org.mobicents.slee.resource.map.service.pdpContextActivation.wrappers.MAPServicePdpContextActivationWrapper;
+import org.mobicents.slee.resource.map.service.sms.wrappers.MAPServiceSmsWrapper;
+import org.mobicents.slee.resource.map.service.supplementary.wrappers.MAPServiceSupplementaryWrapper;
 
 /**
  * @author baranowb
- *
+ * @author amit bhayani
+ * 
  */
 public class MAPProviderWrapper implements MAPProvider {
 
-	////////////////////////////////
+	// //////////////////////////////
 	// Wrappers for MAP specifics //
-	////////////////////////////////
-	protected MAPProvider wrappedProvider;
-	protected MAPServiceSupplementaryWrapper wrappedUSSD;  //we could implement it all in one class, but....
-	protected MAPServiceLsmWrapper wrappedLSM;
-	protected MAPServiceSmsWrapper wrappedSMS;
+	// //////////////////////////////
+	private MAPProvider wrappedProvider;
+	private MAPServiceMobilityWrapper wrappedMAPServiceMobility;
+	private MAPServiceCallHandlingWrapper wrappedMAPServiceCallHandling;
+	private MAPServiceOamWrapper wrappedMAPServiceOam;
+	private MAPServicePdpContextActivationWrapper wrappedMAPServicePdpContextActivation;
+	private MAPServiceSupplementaryWrapper wrappedUSSD;
+	private MAPServiceSmsWrapper wrappedSMS;
+	private MAPServiceLsmWrapper wrappedLSM;
 	
-	protected MAPResourceAdaptor ra;
-	
-	
-	
+	private final MAPResourceAdaptor ra;
+
 	/**
 	 * @param wrappedProvider
 	 * @param ra
 	 */
 	public MAPProviderWrapper(MAPResourceAdaptor ra) {
 		super();
-		
+
 		this.ra = ra;
-		
-		//now create service wrappers
-		
+
+		// now create service wrappers
+
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.map.api.MAPProvider#addMAPDialogListener(org.mobicents.protocols.ss7.map.api.MAPDialogListener)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mobicents.protocols.ss7.map.api.MAPProvider#addMAPDialogListener(
+	 * org.mobicents.protocols.ss7.map.api.MAPDialogListener)
 	 */
-	@Override
 	public void addMAPDialogListener(MAPDialogListener mapdialoglistener) {
 		throw new UnsupportedOperationException();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.map.api.MAPProvider#removeMAPDialogListener(org.mobicents.protocols.ss7.map.api.MAPDialogListener)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mobicents.protocols.ss7.map.api.MAPProvider#removeMAPDialogListener
+	 * (org.mobicents.protocols.ss7.map.api.MAPDialogListener)
 	 */
-	@Override
 	public void removeMAPDialogListener(MAPDialogListener mapdialoglistener) {
-		throw new UnsupportedOperationException(); 
+		throw new UnsupportedOperationException();
 
 	}
 
-	@Override
 	public MAPParameterFactory getMAPParameterFactory() {
-		if(this.wrappedProvider == null)
-		{
+		if (this.wrappedProvider == null) {
 			throw new IllegalStateException("RA is has not been activated.");
 		}
 		return this.wrappedProvider.getMAPParameterFactory();
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPErrorMessageFactory()
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPErrorMessageFactory
+	 * ()
 	 */
-	@Override
 	public MAPErrorMessageFactory getMAPErrorMessageFactory() {
-		if(this.wrappedProvider == null)
-		{
+		if (this.wrappedProvider == null) {
 			throw new IllegalStateException("RA is has not been activated.");
 		}
 		return this.wrappedProvider.getMAPErrorMessageFactory();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPDialog(java.lang.Long)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPDialog(java.lang
+	 * .Long)
 	 */
-	@Override
-	public MAPDialog getMAPDialog(Long long1) {
-		if(this.wrappedProvider == null)
-		{
+	public MAPDialog getMAPDialog(Long dialogId) {
+		if (this.wrappedProvider == null) {
 			throw new IllegalStateException("RA is has not been activated.");
 		}
-		MAPDialogActivityHandle ah = new MAPDialogActivityHandle(long1);
-		return (MAPDialog) this.ra.getActivity(ah);
+
+		MAPDialog wrappedDialog = this.wrappedProvider.getMAPDialog(dialogId); 
+		return (MAPDialogWrapper)wrappedDialog.getUserObject();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPServiceSupplementary()
+	public MAPServiceMobility getMAPServiceMobility() {
+		if (this.wrappedProvider == null) {
+			throw new IllegalStateException("RA is has not been activated.");
+		}
+		return this.wrappedMAPServiceMobility;
+	}
+
+	public MAPServiceCallHandling getMAPServiceCallHandling() {
+		if (this.wrappedProvider == null) {
+			throw new IllegalStateException("RA is has not been activated.");
+		}
+		return this.wrappedMAPServiceCallHandling;
+	}
+
+	public MAPServiceOam getMAPServiceOam() {
+		if (this.wrappedProvider == null) {
+			throw new IllegalStateException("RA is has not been activated.");
+		}
+		return this.wrappedMAPServiceOam;
+	}
+
+	public MAPServicePdpContextActivation getMAPServicePdpContextActivation() {
+		if (this.wrappedProvider == null) {
+			throw new IllegalStateException("RA is has not been activated.");
+		}
+		return this.wrappedMAPServicePdpContextActivation;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPServiceSupplementary
+	 * ()
 	 */
-	@Override
 	public MAPServiceSupplementary getMAPServiceSupplementary() {
-		if(this.wrappedProvider == null)
-		{
+		if (this.wrappedProvider == null) {
 			throw new IllegalStateException("RA is has not been activated.");
 		}
 		return this.wrappedUSSD;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPServiceSms()
 	 */
-	@Override
 	public MAPServiceSms getMAPServiceSms() {
-		if(this.wrappedProvider == null)
-		{
+		if (this.wrappedProvider == null) {
 			throw new IllegalStateException("RA is has not been activated.");
 		}
 		return this.wrappedSMS;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPServiceLsm()
 	 */
-	@Override
 	public MAPServiceLsm getMAPServiceLsm() {
-		if(this.wrappedProvider == null)
-		{
+		if (this.wrappedProvider == null) {
 			throw new IllegalStateException("RA is has not been activated.");
 		}
-		return this.wrappedLSM; 
+		return this.wrappedLSM;
 	}
 
 	public void setWrappedProvider(MAPProvider wrappedProvider) {
 		this.wrappedProvider = wrappedProvider;
-		this.wrappedUSSD = new MAPServiceSupplementaryWrapper(this,wrappedProvider.getMAPServiceSupplementary());
-		this.wrappedLSM = new MAPServiceLsmWrapper(this,wrappedProvider.getMAPServiceLsm());
-		this.wrappedSMS = new MAPServiceSmsWrapper(this,wrappedProvider.getMAPServiceSms());
+
+		this.wrappedMAPServiceMobility = new MAPServiceMobilityWrapper(this, wrappedProvider.getMAPServiceMobility());
+		this.wrappedMAPServiceCallHandling = new MAPServiceCallHandlingWrapper(this, wrappedProvider.getMAPServiceCallHandling());
+		this.wrappedMAPServiceOam = new MAPServiceOamWrapper(this, wrappedProvider.getMAPServiceOam());
+		this.wrappedMAPServicePdpContextActivation = new MAPServicePdpContextActivationWrapper(this, wrappedProvider.getMAPServicePdpContextActivation());
+		this.wrappedUSSD = new MAPServiceSupplementaryWrapper(this, wrappedProvider.getMAPServiceSupplementary());
+		this.wrappedLSM = new MAPServiceLsmWrapper(this, wrappedProvider.getMAPServiceLsm());
+		this.wrappedSMS = new MAPServiceSmsWrapper(this, wrappedProvider.getMAPServiceSms());
+	}
+
+	public MAPResourceAdaptor getRa() {
+		return ra;
 	}
 
 }

@@ -75,185 +75,275 @@
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.mobicents.slee.resource.map.events.DialogTimeout</event-class-name>
 	</event-definition>
+	
+	<event-definition>
+		<event-type-name>ss7.map.DIALOG_RELEASE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.map.events.DialogRelease</event-class-name>
+	</event-definition>	
 
 	<!-- Service Specific -->
+	
+	<!-- Mobility - Location Management Service -->
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_LOCATION_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationRequest</event-class-name>
+	</event-definition>
 
-	<!-- USSD -->
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_LOCATION_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationResponse</event-class-name>
+	</event-definition>
+	
+	<!-- Mobility - Handover services -->
+	
+	<!-- Mobility - Authentication management -->
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.authentication.SEND_AUTHENTICATION_INFO_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.authentication.SendAuthenticationInfoRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.authentication.SEND_AUTHENTICATION_INFO_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.authentication.SendAuthenticationInfoResponse</event-class-name>
+	</event-definition>	
+	
+	<!-- Mobility - IMEI management -->
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.imei.CHECK_IMEI_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiRequest</event-class-name>
+	</event-definition>
+						
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.imei.CHECK_IMEI_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiResponse</event-class-name>
+	</event-definition>
+
+	<!-- Mobility - Subscriber management -->
+
+	<!-- Mobility - Fault recovery management -->
+
+	<!-- Mobility - Subscriber Information services -->
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_INTERROGATION_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest</event-class-name>
+	</event-definition>
+	
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_INTERROGATION_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationResponse</event-class-name>
+	</event-definition>		
+
+	<!-- OAM -->
+
+	<!-- Call Handling -->
+	<event-definition>
+		<event-type-name>ss7.map.service.callhandling.SEND_ROUTING_INFORMATION_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.callhandling.SendRoutingInformationRequest</event-class-name>
+	</event-definition>
+									
+	<event-definition>
+		<event-type-name>ss7.map.service.callhandling.SEND_ROUTING_INFORMATION_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.callhandling.SendRoutingInformationResponse</event-class-name>
+	</event-definition>
+	
+	<!-- Suplementary -->
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.UNSTRUCTURED_SS_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSRequestIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.UNSTRUCTURED_SS_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSResponseIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.PROCESS_UNSTRUCTURED_SS_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.ProcessUnstructuredSSRequestIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.ProcessUnstructuredSSRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.PROCESS_UNSTRUCTURED_SS_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.ProcessUnstructuredSSResponseIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.ProcessUnstructuredSSResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.UNSTRUCTURED_SS_NOTIFY_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSNotifyRequestIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSNotifyRequest</event-class-name>
 	</event-definition>
 	
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.UNSTRUCTURED_SS_NOTIFY_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSNotifyResponseIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSNotifyResponse</event-class-name>
 	</event-definition>	
 
-	<!-- LSM -->
-	<event-definition>
-		<event-type-name>ss7.map.service.lsm.PROVIDE_SUBSCRIBER_LOCATION_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.ProvideSubscriberLocationRequestIndication</event-class-name>
-	</event-definition>
-	<event-definition>
-		<event-type-name>ss7.map.service.lsm.PROVIDE_SUBSCRIBER_LOCATION_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.ProvideSubscriberLocationResponseIndication</event-class-name>
-	</event-definition>
-	<event-definition>
-		<event-type-name>ss7.map.service.lsm.SEND_ROUTING_INFO_FOR_LCS_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.SendRoutingInfoForLCSRequestIndication</event-class-name>
-	</event-definition>
-	<event-definition>
-		<event-type-name>ss7.map.service.lsm.SEND_ROUTING_INFO_FOR_LCS_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.SendRoutingInfoForLCSResponseIndication</event-class-name>
-	</event-definition>
-	<event-definition>
-		<event-type-name>ss7.map.service.lsm.SUBSCRIBER_LOCATION_REPORT_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.SubscriberLocationReportRequestIndication</event-class-name>
-	</event-definition>
-	<event-definition>
-		<event-type-name>ss7.map.service.lsm.SUBSCRIBER_LOCATION_REPORT_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.SubscriberLocationReportResponseIndication</event-class-name>
-	</event-definition>
-
 	<!-- SMS -->
-
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.FORWARD_SHORT_MESSAGE_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.ForwardShortMessageRequestIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.ForwardShortMessageRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.FORWARD_SHORT_MESSAGE_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.ForwardShortMessageResponseIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.ForwardShortMessageResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.MO_FORWARD_SHORT_MESSAGE_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.MoForwardShortMessageRequestIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.MoForwardShortMessageRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.MO_FORWARD_SHORT_MESSAGE_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.MoForwardShortMessageResponseIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.MoForwardShortMessageResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.MT_FORWARD_SHORT_MESSAGE_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.MtForwardShortMessageRequestIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.MtForwardShortMessageRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.MT_FORWARD_SHORT_MESSAGE_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.MtForwardShortMessageResponseIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.MtForwardShortMessageResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.SEND_ROUTING_INFO_FOR_SM_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.SendRoutingInfoForSMRequestIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.SendRoutingInfoForSMRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.SEND_ROUTING_INFO_FOR_SM_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.SendRoutingInfoForSMResponseIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.SendRoutingInfoForSMResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.REPORT_SM_DELIVERY_STATUS_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.ReportSMDeliveryStatusRequestIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.ReportSMDeliveryStatusRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.REPORT_SM_DELIVERY_STATUS_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.ReportSMDeliveryStatusResponseIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.ReportSMDeliveryStatusResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.INFORM_SERVICE_CENTER_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.InformServiceCentreRequestIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.InformServiceCentreRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.ALERT_SERVICE_CENTER_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.AlertServiceCentreRequestIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.AlertServiceCentreRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.ALERT_SERVICE_CENTER_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.AlertServiceCentreResponseIndication</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.AlertServiceCentreResponse</event-class-name>
+	</event-definition>
+
+	<!-- Network-Requested PDP Context Activation services -->
+	
+	<!-- LSM -->
+	<event-definition>
+		<event-type-name>ss7.map.service.lsm.PROVIDE_SUBSCRIBER_LOCATION_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.ProvideSubscriberLocationRequest</event-class-name>
+	</event-definition>
+	<event-definition>
+		<event-type-name>ss7.map.service.lsm.PROVIDE_SUBSCRIBER_LOCATION_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.ProvideSubscriberLocationResponse</event-class-name>
+	</event-definition>
+	<event-definition>
+		<event-type-name>ss7.map.service.lsm.SEND_ROUTING_INFO_FOR_LCS_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.SendRoutingInfoForLCSRequest</event-class-name>
+	</event-definition>
+	<event-definition>
+		<event-type-name>ss7.map.service.lsm.SEND_ROUTING_INFO_FOR_LCS_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.SendRoutingInfoForLCSResponse</event-class-name>
+	</event-definition>
+	<event-definition>
+		<event-type-name>ss7.map.service.lsm.SUBSCRIBER_LOCATION_REPORT_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.SubscriberLocationReportRequest</event-class-name>
+	</event-definition>
+	<event-definition>
+		<event-type-name>ss7.map.service.lsm.SUBSCRIBER_LOCATION_REPORT_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.lsm.SubscriberLocationReportResponse</event-class-name>
 	</event-definition>
 
 	<!-- Component events -->
-
 	<event-definition>
 		<event-type-name>ss7.map.INVOKE_TIMEOUT</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>

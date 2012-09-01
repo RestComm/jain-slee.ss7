@@ -39,6 +39,8 @@
 			</resource-adaptor-interface>
 		</resource-adaptor-type-classes>
 
+
+		<!-- Dialog Events -->
 		<event-type-ref>
 			<event-type-name>ss7.map.DIALOG_DELIMITER</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
@@ -87,6 +89,94 @@
 			<event-type-version>1.0</event-type-version>
 		</event-type-ref>
 
+		<event-type-ref>
+			<event-type-name>ss7.map.DIALOG_TIMEOUT</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.map.DIALOG_RELEASE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+
+		<!-- Service Specific -->
+	
+		<!-- Mobility - Location Management Service -->
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_LOCATION_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_LOCATION_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<!-- Mobility - Handover services -->
+
+		<!-- Mobility - Authentication management -->
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.authentication.SEND_AUTHENTICATION_INFO_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+		
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.authentication.SEND_AUTHENTICATION_INFO_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>	
+													
+		<!-- Mobility - IMEI management -->
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.imei.CHECK_IMEI_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+		
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.imei.CHECK_IMEI_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>	
+
+		<!-- Mobility - Subscriber management -->
+
+		<!-- Mobility - Fault recovery management -->
+
+		<!-- Mobility - Subscriber Information services -->
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_INTERROGATION_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_INTERROGATION_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>			
+
+		<!-- OAM -->
+
+		<!-- Call Handling -->
+		<event-type-ref>
+			<event-type-name>ss7.map.service.callhandling.SEND_ROUTING_INFORMATION_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.map.service.callhandling.SEND_ROUTING_INFORMATION_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>			
+		
 		<!-- SERVICE: suplementary -->
 		<event-type-ref>
 			<event-type-name>ss7.map.service.suplementary.UNSTRUCTURED_SS_REQUEST</event-type-name>
@@ -120,45 +210,6 @@
 
 		<event-type-ref>
 			<event-type-name>ss7.map.service.suplementary.UNSTRUCTURED_SS_NOTIFY_RESPONSE</event-type-name>
-			<event-type-vendor>org.mobicents</event-type-vendor>
-			<event-type-version>1.0</event-type-version>
-		</event-type-ref>
-
-
-		<!-- SERVICE: lsm -->
-
-		<event-type-ref>
-			<event-type-name>ss7.map.service.lsm.PROVIDE_SUBSCRIBER_LOCATION_REQUEST</event-type-name>
-			<event-type-vendor>org.mobicents</event-type-vendor>
-			<event-type-version>1.0</event-type-version>
-		</event-type-ref>
-
-		<event-type-ref>
-			<event-type-name>ss7.map.service.lsm.PROVIDE_SUBSCRIBER_LOCATION_RESPONSE</event-type-name>
-			<event-type-vendor>org.mobicents</event-type-vendor>
-			<event-type-version>1.0</event-type-version>
-		</event-type-ref>
-
-		<event-type-ref>
-			<event-type-name>ss7.map.service.lsm.SEND_ROUTING_INFO_FOR_LCS_REQUEST</event-type-name>
-			<event-type-vendor>org.mobicents</event-type-vendor>
-			<event-type-version>1.0</event-type-version>
-		</event-type-ref>
-
-		<event-type-ref>
-			<event-type-name>ss7.map.service.lsm.SEND_ROUTING_INFO_FOR_LCS_RESPONSE</event-type-name>
-			<event-type-vendor>org.mobicents</event-type-vendor>
-			<event-type-version>1.0</event-type-version>
-		</event-type-ref>
-
-		<event-type-ref>
-			<event-type-name>ss7.map.service.lsm.SUBSCRIBER_LOCATION_REPORT_REQUEST</event-type-name>
-			<event-type-vendor>org.mobicents</event-type-vendor>
-			<event-type-version>1.0</event-type-version>
-		</event-type-ref>
-
-		<event-type-ref>
-			<event-type-name>ss7.map.service.lsm.SUBSCRIBER_LOCATION_REPORT_RESPONSE</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
 		</event-type-ref>
@@ -242,14 +293,46 @@
 			<event-type-version>1.0</event-type-version>
 		</event-type-ref>
 
-
-		<!-- Dialog stuff -->
+		<!-- Network-Requested PDP Context Activation services -->
+				
+		<!-- SERVICE: lsm -->
 		<event-type-ref>
-			<event-type-name>ss7.map.DIALOG_TIMEOUT</event-type-name>
+			<event-type-name>ss7.map.service.lsm.PROVIDE_SUBSCRIBER_LOCATION_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
 		</event-type-ref>
 
+		<event-type-ref>
+			<event-type-name>ss7.map.service.lsm.PROVIDE_SUBSCRIBER_LOCATION_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.map.service.lsm.SEND_ROUTING_INFO_FOR_LCS_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.map.service.lsm.SEND_ROUTING_INFO_FOR_LCS_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.map.service.lsm.SUBSCRIBER_LOCATION_REPORT_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.map.service.lsm.SUBSCRIBER_LOCATION_REPORT_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<!-- Component stuff -->
 		<event-type-ref>
 			<event-type-name>ss7.map.INVOKE_TIMEOUT</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>

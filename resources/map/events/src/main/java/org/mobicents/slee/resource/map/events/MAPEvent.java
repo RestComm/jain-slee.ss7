@@ -25,30 +25,42 @@
  */
 package org.mobicents.slee.resource.map.events;
 
+import org.mobicents.protocols.ss7.map.api.MAPDialog;
+import org.mobicents.protocols.ss7.map.api.MAPMessage;
 
 /**
  * @author amit bhayani
  * 
  */
-public abstract class MAPEvent<T> {
-	protected final T mAPDialog;
+public abstract class MAPEvent<T extends MAPMessage> {
+	protected final MAPDialog mapDialogWrapper;
 	private final String eventTypeName;
+	protected final T wrappedEvent;
 
-	public MAPEvent(T mAPDialog, String eventTypeName) {
-		this.mAPDialog = mAPDialog;
+	public MAPEvent(MAPDialog mAPDialog, String eventTypeName, T wrappedEvent) {
+		this.mapDialogWrapper = mAPDialog;
 		this.eventTypeName = eventTypeName;
+		this.wrappedEvent = wrappedEvent;
 	}
 
-	public T getMAPDialog() {
-		return mAPDialog;
+	public MAPDialog getMAPDialog() {
+		return mapDialogWrapper;
 	}
 
 	public String getEventTypeName() {
 		return eventTypeName;
 	}
 
+	public void setMAPDialog(MAPDialog arg0) {
+		throw new UnsupportedOperationException();
+	}
+	
+	public T getWrappedEvent(){
+		return this.wrappedEvent;
+	}
+
 	@Override
 	public String toString() {
-		return "MAPEvent [MAPDialog=" + mAPDialog + "]";
+		return "MAPEvent [MAPDialog=" + mapDialogWrapper + "]";
 	}
 }
