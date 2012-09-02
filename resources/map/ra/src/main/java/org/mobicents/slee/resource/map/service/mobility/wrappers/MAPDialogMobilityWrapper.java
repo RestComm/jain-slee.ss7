@@ -1,3 +1,24 @@
+/*
+ * TeleStax, Open Source Cloud Communications  Copyright 2012. 
+ * and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+ */
 package org.mobicents.slee.resource.map.service.mobility.wrappers;
 
 import org.mobicents.protocols.ss7.map.api.MAPException;
@@ -89,7 +110,8 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	}
 
 	@Override
-	public void addAnyTimeInterrogationResponse(long invokeId, SubscriberInfo subscriberInfo, MAPExtensionContainer extensionContainer) throws MAPException {
+	public void addAnyTimeInterrogationResponse(long invokeId, SubscriberInfo subscriberInfo,
+			MAPExtensionContainer extensionContainer) throws MAPException {
 		this.addAnyTimeInterrogationResponse(invokeId, subscriberInfo, extensionContainer);
 	}
 
@@ -124,21 +146,34 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	}
 
 	@Override
-	public Long addCheckImeiRequest(IMEI imei, RequestedEquipmentInfo requestedEquipmentInfo, MAPExtensionContainer extensionContainer)
-			throws MAPException {
+	public Long addCheckImeiRequest(IMEI imei, RequestedEquipmentInfo requestedEquipmentInfo,
+			MAPExtensionContainer extensionContainer) throws MAPException {
 		return this.wrappedDialog.addCheckImeiRequest(imei, requestedEquipmentInfo, extensionContainer);
 	}
 
 	@Override
-	public Long addCheckImeiRequest(long customInvokeTimeout, IMEI imei, RequestedEquipmentInfo requestedEquipmentInfo, MAPExtensionContainer extensionContainer)
-			throws MAPException {
-		return this.wrappedDialog.addCheckImeiRequest(customInvokeTimeout, imei, requestedEquipmentInfo, extensionContainer);
+	public Long addCheckImeiRequest(long customInvokeTimeout, IMEI imei, RequestedEquipmentInfo requestedEquipmentInfo,
+			MAPExtensionContainer extensionContainer) throws MAPException {
+		return this.wrappedDialog.addCheckImeiRequest(customInvokeTimeout, imei, requestedEquipmentInfo,
+				extensionContainer);
 	}
 
 	@Override
-	public void addCheckImeiResponse(long invokeId, EquipmentStatus equipmentStatus, UESBIIu bmuef, MAPExtensionContainer extensionContainer)
-			throws MAPException {
+	public void addCheckImeiResponse(long invokeId, EquipmentStatus equipmentStatus, UESBIIu bmuef,
+			MAPExtensionContainer extensionContainer) throws MAPException {
 		this.wrappedDialog.addCheckImeiResponse(invokeId, equipmentStatus, bmuef, extensionContainer);
+	}
+
+	@Override
+	public Long addCheckImeiRequest_Huawei(IMEI arg0, RequestedEquipmentInfo arg1, MAPExtensionContainer arg2, IMSI arg3)
+			throws MAPException {
+		return this.wrappedDialog.addCheckImeiRequest(arg0, arg1, arg2);
+	}
+
+	@Override
+	public Long addCheckImeiRequest_Huawei(long arg0, IMEI arg1, RequestedEquipmentInfo arg2,
+			MAPExtensionContainer arg3, IMSI arg4) throws MAPException {
+		return this.wrappedDialog.addCheckImeiRequest_Huawei(arg0, arg1, arg2, arg3, arg4);
 	}
 
 }
