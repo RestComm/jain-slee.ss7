@@ -37,12 +37,12 @@ public class SpecializedResourceReportRequestWrapper extends CircuitSwitchedCall
 		super(capDialog, EVENT_TYPE_NAME, req);
 	}
 
-	public boolean IsAllAnnouncementsComplete() {
-		return this.wrappedEvent.IsAllAnnouncementsComplete();
+	public boolean getAllAnnouncementsComplete() {
+		return this.wrappedEvent.getAllAnnouncementsComplete();
 	}
 
-	public boolean IsFirstAnnouncementStarted() {
-		return this.wrappedEvent.IsFirstAnnouncementStarted();
+	public boolean getFirstAnnouncementStarted() {
+		return this.wrappedEvent.getFirstAnnouncementStarted();
 	}
 
 	@Override

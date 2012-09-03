@@ -31,6 +31,7 @@ import org.mobicents.protocols.ss7.cap.api.dialog.CAPGprsReferenceNumber;
 import org.mobicents.protocols.ss7.cap.api.dialog.CAPUserAbortReason;
 import org.mobicents.protocols.ss7.cap.api.errors.CAPErrorMessage;
 import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
+import org.mobicents.protocols.ss7.tcap.api.MessageType;
 import org.mobicents.protocols.ss7.tcap.asn.comp.Invoke;
 import org.mobicents.protocols.ss7.tcap.asn.comp.Problem;
 import org.mobicents.protocols.ss7.tcap.asn.comp.ReturnResultLast;
@@ -69,10 +70,6 @@ public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog
 
 	public boolean cancelInvocation(Long arg0) throws CAPException {
 		return this.wrappedDialog.cancelInvocation(arg0);
-	}
-
-	public void close(boolean arg0) throws CAPException {
-		this.wrappedDialog.close(arg0);
 	}
 
 	public CAPApplicationContext getApplicationContext() {
@@ -125,6 +122,31 @@ public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog
 
 	public void send() throws CAPException {
 		this.wrappedDialog.send();
+	}
+
+	@Override
+	public void sendDelayed() throws CAPException {
+		this.wrappedDialog.sendDelayed();
+	}
+
+	public void close(boolean arg0) throws CAPException {
+		this.wrappedDialog.close(arg0);
+	}
+
+	public void closeDelayed(boolean arg0) throws CAPException {
+		this.wrappedDialog.closeDelayed(arg0);
+	}
+
+	public CAPGprsReferenceNumber getGprsReferenceNumber() {
+		return this.wrappedDialog.getGprsReferenceNumber();
+	}
+
+	public CAPGprsReferenceNumber getReceivedGprsReferenceNumber() {
+		return this.wrappedDialog.getReceivedGprsReferenceNumber();
+	}
+
+	public MessageType getTCAPMessageType() {
+		return this.wrappedDialog.getTCAPMessageType();
 	}
 
 	public void sendErrorComponent(Long arg0, CAPErrorMessage arg1) throws CAPException {

@@ -108,6 +108,13 @@ public class MAPProviderWrapper implements MAPProvider {
 		return this.wrappedProvider.getMAPParameterFactory();
 	}
 
+	public MAPSmsTpduParameterFactory getMAPSmsTpduParameterFactory() {
+		if (this.wrappedProvider == null) {
+			throw new IllegalStateException("RA is has not been activated.");
+		}
+		return this.wrappedProvider.getMAPSmsTpduParameterFactory();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -218,11 +225,6 @@ public class MAPProviderWrapper implements MAPProvider {
 
 	public MAPResourceAdaptor getRa() {
 		return ra;
-	}
-
-	@Override
-	public MAPSmsTpduParameterFactory getMAPSmsTpduParameterFactory() {
-		return this.wrappedProvider.getMAPSmsTpduParameterFactory();
 	}
 
 }

@@ -12,6 +12,7 @@ import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
+import org.mobicents.protocols.ss7.tcap.api.MessageType;
 import org.mobicents.protocols.ss7.tcap.asn.comp.Invoke;
 import org.mobicents.protocols.ss7.tcap.asn.comp.Problem;
 import org.mobicents.protocols.ss7.tcap.asn.comp.ReturnResult;
@@ -61,6 +62,30 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 
 	public void close(boolean arg0) throws MAPException {
 		this.wrappedDialog.close(arg0);
+	}
+
+	public void closeDelayed(boolean prearrangedEnd) throws MAPException {
+		this.wrappedDialog.closeDelayed(prearrangedEnd);
+	}
+
+	@Override
+	public MessageType getTCAPMessageType() {
+		return this.wrappedDialog.getTCAPMessageType();
+	}
+
+	@Override
+	public AddressString getReceivedOrigReference() {
+		return this.wrappedDialog.getReceivedOrigReference();
+	}
+
+	@Override
+	public AddressString getReceivedDestReference() {
+		return this.wrappedDialog.getReceivedDestReference();
+	}
+
+	@Override
+	public MAPExtensionContainer getReceivedExtensionContainer() {
+		return this.wrappedDialog.getReceivedExtensionContainer();
 	}
 
 	public MAPApplicationContext getApplicationContext() {
@@ -122,6 +147,10 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 
 	public void send() throws MAPException {
 		this.wrappedDialog.send();
+	}
+
+	public void sendDelayed() throws MAPException {
+		this.wrappedDialog.sendDelayed();
 	}
 
 	public void sendErrorComponent(Long arg0, MAPErrorMessage arg1) throws MAPException {

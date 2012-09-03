@@ -30,6 +30,9 @@ import org.mobicents.protocols.ss7.cap.api.errors.CAPErrorMessageFactory;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CAPServiceCircuitSwitchedCall;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.CAPServiceGprs;
 import org.mobicents.protocols.ss7.cap.api.service.sms.CAPServiceSms;
+import org.mobicents.protocols.ss7.inap.api.INAPParameterFactory;
+import org.mobicents.protocols.ss7.isup.ISUPParameterFactory;
+import org.mobicents.protocols.ss7.map.api.MAPParameterFactory;
 import org.mobicents.slee.resource.cap.CAPDialogActivityHandle;
 import org.mobicents.slee.resource.cap.CAPResourceAdaptor;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.CAPServiceCircuitSwitchedCallWrapper;
@@ -77,6 +80,27 @@ public class CAPProviderWrapper implements CAPProvider {
 			throw new IllegalStateException("RA is has not been activated.");
 		}
 		return this.wrappedProvider.getCAPParameterFactory();
+	}
+
+	public INAPParameterFactory getINAPParameterFactory() {
+		if (this.wrappedProvider == null) {
+			throw new IllegalStateException("RA is has not been activated.");
+		}
+		return this.wrappedProvider.getINAPParameterFactory();
+	}
+
+	public ISUPParameterFactory getISUPParameterFactory() {
+		if (this.wrappedProvider == null) {
+			throw new IllegalStateException("RA is has not been activated.");
+		}
+		return this.wrappedProvider.getISUPParameterFactory();
+	}
+
+	public MAPParameterFactory getMAPParameterFactory() {
+		if (this.wrappedProvider == null) {
+			throw new IllegalStateException("RA is has not been activated.");
+		}
+		return this.wrappedProvider.getMAPParameterFactory();
 	}
 
 	public CAPErrorMessageFactory getCAPErrorMessageFactory() {
