@@ -39,7 +39,10 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.imei.EquipmentStatus
 import org.mobicents.protocols.ss7.map.api.service.mobility.imei.RequestedEquipmentInfo;
 import org.mobicents.protocols.ss7.map.api.service.mobility.imei.UESBIIu;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.ADDInfo;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.CancellationType;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.IMSIWithLMSI;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.PagingArea;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.TypeOfUpdate;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.VLRCapability;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.RequestedInfo;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.SubscriberInfo;
@@ -174,6 +177,27 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	public Long addCheckImeiRequest_Huawei(long arg0, IMEI arg1, RequestedEquipmentInfo arg2,
 			MAPExtensionContainer arg3, IMSI arg4) throws MAPException {
 		return this.wrappedDialog.addCheckImeiRequest_Huawei(arg0, arg1, arg2, arg3, arg4);
+	}
+
+	@Override
+	public Long addCancelLocationRequest(int customInvokeTimeout, IMSI imsi, IMSIWithLMSI imsiWithLmsi, CancellationType cancellationType,
+			MAPExtensionContainer extensionContainer, TypeOfUpdate typeOfUpdate, boolean mtrfSupportedAndAuthorized, boolean mtrfSupportedAndNotAuthorized,
+			ISDNAddressString newMSCNumber, ISDNAddressString newVLRNumber, LMSI newLmsi) throws MAPException {
+		return this.wrappedDialog.addCancelLocationRequest(customInvokeTimeout, imsi, imsiWithLmsi, cancellationType, extensionContainer, typeOfUpdate,
+				mtrfSupportedAndAuthorized, mtrfSupportedAndNotAuthorized, newMSCNumber, newVLRNumber, newLmsi);
+	}
+
+	@Override
+	public Long addCancelLocationRequest(IMSI imsi, IMSIWithLMSI imsiWithLmsi, CancellationType cancellationType, MAPExtensionContainer extensionContainer,
+			TypeOfUpdate typeOfUpdate, boolean mtrfSupportedAndAuthorized, boolean mtrfSupportedAndNotAuthorized, ISDNAddressString newMSCNumber,
+			ISDNAddressString newVLRNumber, LMSI newLmsi) throws MAPException {
+		return this.wrappedDialog.addCancelLocationRequest(imsi, imsiWithLmsi, cancellationType, extensionContainer, typeOfUpdate,
+				mtrfSupportedAndAuthorized, mtrfSupportedAndNotAuthorized, newMSCNumber, newVLRNumber, newLmsi);
+	}
+
+	@Override
+	public void addCancelLocationResponse(long invokeId, MAPExtensionContainer extensionContainer) throws MAPException {
+		this.wrappedDialog.addCancelLocationResponse(invokeId, extensionContainer);
 	}
 
 }

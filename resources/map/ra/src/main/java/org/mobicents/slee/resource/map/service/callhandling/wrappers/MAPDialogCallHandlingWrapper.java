@@ -30,6 +30,7 @@ import org.mobicents.protocols.ss7.map.api.primitives.ExtExternalSignalInfo;
 import org.mobicents.protocols.ss7.map.api.primitives.ExternalSignalInfo;
 import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.mobicents.protocols.ss7.map.api.primitives.LMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.map.api.primitives.NAEAPreferredCI;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.AllowedServices;
@@ -45,6 +46,7 @@ import org.mobicents.protocols.ss7.map.api.service.callhandling.RoutingInfo;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.SuppressMTSS;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.UnavailabilityCause;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.ISTSupportIndicator;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.PagingArea;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.NumberPortabilityStatus;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.SubscriberInfo;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.ExtBasicServiceCode;
@@ -119,6 +121,40 @@ public class MAPDialogCallHandlingWrapper extends MAPDialogWrapper<MAPDialogCall
 				subscriberInfo, ssList, basicService, forwardingInterrogationRequired, vmscAddress, extensionContainer, naeaPreferredCI, ccbsIndicators,
 				msisdn, nrPortabilityStatus, istAlertTimer, supportedCamelPhases, offeredCamel4CSIs, routingInfo2, ssList2, basicService2, allowedServices,
 				unavailabilityCause, releaseResourcesSupported, gsmBearerCapability);
+	}
+
+	@Override
+	public Long addProvideRoamingNumberRequest(IMSI imsi, ISDNAddressString mscNumber, ISDNAddressString msisdn, LMSI lmsi,
+			ExternalSignalInfo gsmBearerCapability, ExternalSignalInfo networkSignalInfo, boolean suppressionOfAnnouncement, ISDNAddressString gmscAddress,
+			CallReferenceNumber callReferenceNumber, boolean orInterrogation, MAPExtensionContainer extensionContainer, AlertingPattern alertingPattern,
+			boolean ccbsCall, SupportedCamelPhases supportedCamelPhasesInInterrogatingNode, ExtExternalSignalInfo additionalSignalInfo,
+			boolean orNotSupportedInGMSC, boolean prePagingSupported, boolean longFTNSupported, boolean suppressVtCsi,
+			OfferedCamel4CSIs offeredCamel4CSIsInInterrogatingNode, boolean mtRoamingRetrySupported, PagingArea pagingArea, EMLPPPriority callPriority,
+			boolean mtrfIndicator, ISDNAddressString oldMSCNumber) throws MAPException {
+		return this.wrappedDialog.addProvideRoamingNumberRequest(imsi, mscNumber, msisdn, lmsi, gsmBearerCapability, networkSignalInfo,
+				suppressionOfAnnouncement, gmscAddress, callReferenceNumber, orInterrogation, extensionContainer, alertingPattern, ccbsCall,
+				supportedCamelPhasesInInterrogatingNode, additionalSignalInfo, orNotSupportedInGMSC, prePagingSupported, longFTNSupported, suppressVtCsi,
+				offeredCamel4CSIsInInterrogatingNode, mtRoamingRetrySupported, pagingArea, callPriority, mtrfIndicator, oldMSCNumber);
+	}
+
+	@Override
+	public Long addProvideRoamingNumberRequest(int customInvokeTimeout, IMSI imsi, ISDNAddressString mscNumber, ISDNAddressString msisdn, LMSI lmsi,
+			ExternalSignalInfo gsmBearerCapability, ExternalSignalInfo networkSignalInfo, boolean suppressionOfAnnouncement, ISDNAddressString gmscAddress,
+			CallReferenceNumber callReferenceNumber, boolean orInterrogation, MAPExtensionContainer extensionContainer, AlertingPattern alertingPattern,
+			boolean ccbsCall, SupportedCamelPhases supportedCamelPhasesInInterrogatingNode, ExtExternalSignalInfo additionalSignalInfo,
+			boolean orNotSupportedInGMSC, boolean prePagingSupported, boolean longFTNSupported, boolean suppressVtCsi,
+			OfferedCamel4CSIs offeredCamel4CSIsInInterrogatingNode, boolean mtRoamingRetrySupported, PagingArea pagingArea, EMLPPPriority callPriority,
+			boolean mtrfIndicator, ISDNAddressString oldMSCNumber) throws MAPException {
+		return this.wrappedDialog.addProvideRoamingNumberRequest(customInvokeTimeout, imsi, mscNumber, msisdn, lmsi, gsmBearerCapability, networkSignalInfo,
+				suppressionOfAnnouncement, gmscAddress, callReferenceNumber, orInterrogation, extensionContainer, alertingPattern, ccbsCall,
+				supportedCamelPhasesInInterrogatingNode, additionalSignalInfo, orNotSupportedInGMSC, prePagingSupported, longFTNSupported, suppressVtCsi,
+				offeredCamel4CSIsInInterrogatingNode, mtRoamingRetrySupported, pagingArea, callPriority, mtrfIndicator, oldMSCNumber);
+	}
+
+	@Override
+	public void addProvideRoamingNumberResponse(long invokeId, ISDNAddressString roamingNumber, MAPExtensionContainer extensionContainer,
+			boolean releaseResourcesSupported, ISDNAddressString vmscAddress) throws MAPException {
+		this.wrappedDialog.addProvideRoamingNumberResponse(invokeId, roamingNumber, extensionContainer, releaseResourcesSupported, vmscAddress);
 	}
 
 }

@@ -117,6 +117,18 @@
 			<event-type-version>1.0</event-type-version>
 		</event-type-ref>
 
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.locationManagement.CANCEL_LOCATION_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.locationManagement.CANCEL_LOCATION_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
 		<!-- Mobility - Handover services -->
 
 		<!-- Mobility - Authentication management -->
@@ -173,6 +185,18 @@
 
 		<event-type-ref>
 			<event-type-name>ss7.map.service.callhandling.SEND_ROUTING_INFORMATION_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>			
+
+		<event-type-ref>
+			<event-type-name>ss7.map.service.callhandling.PROVIDE_ROAMING_NUMBER_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+
+		<event-type-ref>
+			<event-type-name>ss7.map.service.callhandling.PROVIDE_ROAMING_NUMBER_RESPONSE</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
 		</event-type-ref>			

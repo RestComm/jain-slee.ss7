@@ -64,6 +64,8 @@ import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.MAPDialogCallHandling;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.MAPServiceCallHandlingListener;
+import org.mobicents.protocols.ss7.map.api.service.callhandling.ProvideRoamingNumberRequest;
+import org.mobicents.protocols.ss7.map.api.service.callhandling.ProvideRoamingNumberResponse;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.SendRoutingInformationRequest;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.SendRoutingInformationResponse;
 import org.mobicents.protocols.ss7.map.api.service.lsm.MAPDialogLsm;
@@ -80,6 +82,8 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.SendA
 import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.SendAuthenticationInfoResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest;
@@ -129,6 +133,8 @@ import org.mobicents.slee.resource.map.events.MAPEvent;
 import org.mobicents.slee.resource.map.events.ProviderErrorComponent;
 import org.mobicents.slee.resource.map.events.RejectComponent;
 import org.mobicents.slee.resource.map.service.callhandling.wrappers.MAPDialogCallHandlingWrapper;
+import org.mobicents.slee.resource.map.service.callhandling.wrappers.ProvideRoamingNumberRequestWrapper;
+import org.mobicents.slee.resource.map.service.callhandling.wrappers.ProvideRoamingNumberResponseWrapper;
 import org.mobicents.slee.resource.map.service.callhandling.wrappers.SendRoutingInformationRequestWrapper;
 import org.mobicents.slee.resource.map.service.callhandling.wrappers.SendRoutingInformationResponseWrapper;
 import org.mobicents.slee.resource.map.service.lsm.wrappers.MAPDialogLsmWrapper;
@@ -142,6 +148,8 @@ import org.mobicents.slee.resource.map.service.mobility.authentication.wrappers.
 import org.mobicents.slee.resource.map.service.mobility.authentication.wrappers.SendAuthenticationInfoResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.imei.wrappers.CheckImeiRequestWrapper;
 import org.mobicents.slee.resource.map.service.mobility.imei.wrappers.CheckImeiResponseWrapper;
+import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.CancelLocationRequestWrapper;
+import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.CancelLocationResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.UpdateLocationRequestWrapper;
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.UpdateLocationResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.subscriberInformation.wrappers.AnyTimeInterrogationRequestWrapper;
@@ -816,6 +824,20 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
+	@Override
+	public void onCancelLocationRequest(CancelLocationRequest ind) {
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+		CancelLocationRequestWrapper event = new CancelLocationRequestWrapper(mapDialogMobilityWrapper, ind);
+		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+	}
+
+	@Override
+	public void onCancelLocationResponse(CancelLocationResponse ind) {
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+		CancelLocationResponseWrapper event = new CancelLocationResponseWrapper(mapDialogMobilityWrapper, ind);
+		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+	}
+
 	// --- Handover services
 
 	// -- Authentication management services
@@ -890,6 +912,20 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 	public void onSendRoutingInformationResponse(SendRoutingInformationResponse ind) {
 		MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper) ind.getMAPDialog().getUserObject();
 		SendRoutingInformationResponseWrapper event = new SendRoutingInformationResponseWrapper(mapDialogCallHandlingWrapper, ind);
+		onEvent(event.getEventTypeName(), mapDialogCallHandlingWrapper, event);
+	}
+
+	@Override
+	public void onProvideRoamingNumberRequest(ProvideRoamingNumberRequest ind) {
+		MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper) ind.getMAPDialog().getUserObject();
+		ProvideRoamingNumberRequestWrapper event = new ProvideRoamingNumberRequestWrapper(mapDialogCallHandlingWrapper, ind);
+		onEvent(event.getEventTypeName(), mapDialogCallHandlingWrapper, event);
+	}
+
+	@Override
+	public void onProvideRoamingNumberResponse(ProvideRoamingNumberResponse ind) {
+		MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper) ind.getMAPDialog().getUserObject();
+		ProvideRoamingNumberResponseWrapper event = new ProvideRoamingNumberResponseWrapper(mapDialogCallHandlingWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogCallHandlingWrapper, event);
 	}
 
