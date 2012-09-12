@@ -20,10 +20,8 @@
 		<THIS.ISSUE_TRACKER_URL>
 			https://telestax.zendesk.com/home
 		</THIS.ISSUE_TRACKER_URL>
-		<THIS.RELEASE_SOURCE_CODE_URL>?</THIS.RELEASE_SOURCE_CODE_URL>
-		<THIS.TRUNK_SOURCE_CODE_URL>
-			NOT AVAILABLE
-		</THIS.TRUNK_SOURCE_CODE_URL>
+		<THIS.PACKAGE_NAME>ss7</THIS.PACKAGE_NAME>
+		<THIS.SOURCE_CODE_URL>NOT AVAILABLE</THIS.SOURCE_CODE_URL>
 		<author.email.eduardo>
 			abhayani (at) redhat.com
 		</author.email.eduardo>
