@@ -23,3 +23,9 @@ target
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# SLEE
+resources/jcc/docs/sources-mobicents/src/
+resources/jcc/docs/sources-telscale/src/
+resources/map/docs/sources-mobicents/src/
+resources/map/docs/sources-telscale/src/
