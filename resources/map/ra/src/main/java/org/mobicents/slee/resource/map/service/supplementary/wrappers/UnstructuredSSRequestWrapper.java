@@ -22,6 +22,7 @@
 
 package org.mobicents.slee.resource.map.service.supplementary.wrappers;
 
+import org.mobicents.protocols.ss7.map.api.datacoding.CBSDataCodingScheme;
 import org.mobicents.protocols.ss7.map.api.primitives.AlertingPattern;
 import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.USSDString;
@@ -56,8 +57,8 @@ public class UnstructuredSSRequestWrapper extends SupplementaryMessageWrapper<Un
 		return this.wrappedEvent.getMSISDNAddressString();
 	}
 
-	public byte getUSSDDataCodingScheme() {
-		return this.wrappedEvent.getUSSDDataCodingScheme();
+	public CBSDataCodingScheme getDataCodingScheme() {
+		return this.wrappedEvent.getDataCodingScheme();
 	}
 
 	public USSDString getUSSDString() {

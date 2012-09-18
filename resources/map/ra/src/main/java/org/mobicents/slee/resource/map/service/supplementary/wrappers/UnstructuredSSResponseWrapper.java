@@ -22,6 +22,7 @@
 
 package org.mobicents.slee.resource.map.service.supplementary.wrappers;
 
+import org.mobicents.protocols.ss7.map.api.datacoding.CBSDataCodingScheme;
 import org.mobicents.protocols.ss7.map.api.primitives.USSDString;
 import org.mobicents.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary;
 import org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSResponse;
@@ -50,8 +51,8 @@ public class UnstructuredSSResponseWrapper extends SupplementaryMessageWrapper<U
 		return this.wrappedEvent.getMAPDialog();
 	}
 
-	public byte getUSSDDataCodingScheme() {
-		return this.wrappedEvent.getUSSDDataCodingScheme();
+	public CBSDataCodingScheme getDataCodingScheme() {
+		return this.wrappedEvent.getDataCodingScheme();
 	}
 
 	public USSDString getUSSDString() {
