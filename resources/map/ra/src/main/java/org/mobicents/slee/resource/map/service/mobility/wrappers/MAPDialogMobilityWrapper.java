@@ -168,9 +168,10 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	}
 
 	@Override
-	public Long addCheckImeiRequest_Huawei(IMEI arg0, RequestedEquipmentInfo arg1, MAPExtensionContainer arg2, IMSI arg3)
+	public Long addCheckImeiRequest_Huawei(IMEI imei, RequestedEquipmentInfo requestedEquipmentInfo, 
+			MAPExtensionContainer extensionContainer, IMSI imsi)
 			throws MAPException {
-		return this.wrappedDialog.addCheckImeiRequest_Huawei(arg0, arg1, arg2, arg3);
+		return this.wrappedDialog.addCheckImeiRequest_Huawei(imei, requestedEquipmentInfo, extensionContainer, imsi);
 	}
 
 	@Override
