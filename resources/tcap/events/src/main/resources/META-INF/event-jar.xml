@@ -76,6 +76,42 @@
 	</event-definition>
 
 	<!-- Component Events -->
+	<event-definition>
+		<event-type-name>ss7.tcap.COMPONENT_INVOKE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.tcap.events.InvokeEvent</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.tcap.COMPONENT_REJECT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.tcap.events.RejectEvent</event-class-name>
+	</event-definition>
+	
+	<event-definition>
+		<event-type-name>ss7.tcap.COMPONENT_RETURNRESULT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.tcap.events.ReturnResultEvent</event-class-name>
+	</event-definition>
+	
+	<event-definition>
+		<event-type-name>ss7.tcap.COMPONENT_RETURNRESULT_LAST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.tcap.events.ReturnResultLastEvent</event-class-name>
+	</event-definition>
+	
+	<event-definition>
+		<event-type-name>ss7.tcap.COMPONENT_RETURNERROR</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.tcap.events.ReturnErrorEvent</event-class-name>
+	</event-definition>				
+	
+		
 </event-jar>
 
 

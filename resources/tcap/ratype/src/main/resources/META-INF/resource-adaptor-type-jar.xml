@@ -94,5 +94,36 @@
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
 		</event-type-ref>
+		
+		<!-- Component Events -->
+		<event-type-ref>
+			<event-type-name>ss7.tcap.COMPONENT_INVOKE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+	
+		<event-type-ref>
+			<event-type-name>ss7.tcap.COMPONENT_REJECT</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+		
+		<event-type-ref>
+			<event-type-name>ss7.tcap.COMPONENT_RETURNRESULT</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+		
+		<event-type-ref>
+			<event-type-name>ss7.tcap.COMPONENT_RETURNRESULT_LAST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+		
+		<event-type-ref>
+			<event-type-name>ss7.tcap.COMPONENT_RETURNERROR</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>					
 	</resource-adaptor-type>
 </resource-adaptor-type-jar>
