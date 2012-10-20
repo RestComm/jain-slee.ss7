@@ -5,6 +5,7 @@ import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.TeleserviceCode;
 import org.mobicents.protocols.ss7.map.api.service.sms.LocationInfoWithLMSI;
 import org.mobicents.protocols.ss7.map.api.service.sms.MAPDialogSms;
 import org.mobicents.protocols.ss7.map.api.service.sms.MWStatus;
@@ -114,19 +115,23 @@ public class MAPDialogSmsWrapper extends MAPDialogWrapper<MAPDialogSms> implemen
 		this.wrappedDialog.addReportSMDeliveryStatusResponse(arg0, arg1, arg2);
 	}
 
-	public Long addSendRoutingInfoForSMRequest(ISDNAddressString arg0, boolean arg1, AddressString arg2,
-			MAPExtensionContainer arg3, boolean arg4, SM_RP_MTI arg5, SM_RP_SMEA arg6) throws MAPException {
-		return this.wrappedDialog.addSendRoutingInfoForSMRequest(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+	public Long addSendRoutingInfoForSMRequest(ISDNAddressString msisdn, boolean sm_RP_PRI, AddressString serviceCentreAddress,
+			MAPExtensionContainer extensionContainer, boolean gprsSupportIndicator, SM_RP_MTI sM_RP_MTI, SM_RP_SMEA sM_RP_SMEA, TeleserviceCode teleservice)
+			throws MAPException {
+		return this.wrappedDialog.addSendRoutingInfoForSMRequest(msisdn, sm_RP_PRI, serviceCentreAddress, extensionContainer, gprsSupportIndicator, sM_RP_MTI,
+				sM_RP_SMEA, teleservice);
 	}
 
-	public Long addSendRoutingInfoForSMRequest(int arg0, ISDNAddressString arg1, boolean arg2, AddressString arg3,
-			MAPExtensionContainer arg4, boolean arg5, SM_RP_MTI arg6, SM_RP_SMEA arg7) throws MAPException {
-		return this.wrappedDialog.addSendRoutingInfoForSMRequest(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+	public Long addSendRoutingInfoForSMRequest(int customInvokeTimeout, ISDNAddressString msisdn, boolean sm_RP_PRI, AddressString serviceCentreAddress,
+			MAPExtensionContainer extensionContainer, boolean gprsSupportIndicator, SM_RP_MTI sM_RP_MTI, SM_RP_SMEA sM_RP_SMEA, TeleserviceCode teleservice)
+			throws MAPException {
+		return this.wrappedDialog.addSendRoutingInfoForSMRequest(customInvokeTimeout, msisdn, sm_RP_PRI, serviceCentreAddress, extensionContainer,
+				gprsSupportIndicator, sM_RP_MTI, sM_RP_SMEA, teleservice);
 	}
 
-	public void addSendRoutingInfoForSMResponse(long arg0, IMSI arg1, LocationInfoWithLMSI arg2,
-			MAPExtensionContainer arg3) throws MAPException {
-		this.wrappedDialog.addSendRoutingInfoForSMResponse(arg0, arg1, arg2, arg3);
+	public void addSendRoutingInfoForSMResponse(long invokeId, IMSI imsi, LocationInfoWithLMSI locationInfoWithLMSI, MAPExtensionContainer extensionContainer,
+			Boolean mwdSet) throws MAPException {
+		this.wrappedDialog.addSendRoutingInfoForSMResponse(invokeId, imsi, locationInfoWithLMSI, extensionContainer, mwdSet);
 	}
 
 	@Override
