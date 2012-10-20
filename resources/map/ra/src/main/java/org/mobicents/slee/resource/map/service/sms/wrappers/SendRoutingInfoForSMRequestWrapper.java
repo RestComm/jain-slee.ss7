@@ -3,6 +3,7 @@ package org.mobicents.slee.resource.map.service.sms.wrappers;
 import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.TeleserviceCode;
 import org.mobicents.protocols.ss7.map.api.service.sms.SM_RP_MTI;
 import org.mobicents.protocols.ss7.map.api.service.sms.SM_RP_SMEA;
 import org.mobicents.protocols.ss7.map.api.service.sms.SendRoutingInfoForSMRequest;
@@ -48,7 +49,11 @@ public class SendRoutingInfoForSMRequestWrapper extends SmsMessageWrapper<SendRo
 	public boolean getSm_RP_PRI() {
 		return this.wrappedEvent.getSm_RP_PRI();
 	}
-	
+
+	public TeleserviceCode getTeleservice() {
+		return this.wrappedEvent.getTeleservice();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 

@@ -31,6 +31,10 @@ public class SendRoutingInfoForSMResponseWrapper extends SmsMessageWrapper<SendR
 		return this.wrappedEvent.getLocationInfoWithLMSI();
 	}
 
+	public Boolean getMwdSet() {
+		return this.wrappedEvent.getMwdSet();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
