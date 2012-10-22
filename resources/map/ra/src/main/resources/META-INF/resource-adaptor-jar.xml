@@ -33,7 +33,6 @@
 		<config-property>
 			<config-property-name>mapJndi</config-property-name>
 			<config-property-type>java.lang.String</config-property-type>
-			<config-property-value>java:/mobicents/ss7/map</config-property-value>
 		</config-property>
 		<config-property>
 			<description>Controls how many times dialog can timeout. '-1' -
