@@ -40,6 +40,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 		this.activityHandle = activityHandle;
 		this.ra = ra;
 		this.wrappedDialog = wrappedDialog;
+		this.activityHandle.setActivity(this);
 	}
 
 	/*
