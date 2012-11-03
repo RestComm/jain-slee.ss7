@@ -114,7 +114,8 @@ public class TCAPProviderWrapper implements TCAPProvider {
 		} catch (Exception e) {
 			throw new TCAPException(e);
 		}
-
+		
+		wrappedDialog.setUserObject(dialogWrapper);
 		return dialogWrapper;
 	}
 
@@ -131,7 +132,19 @@ public class TCAPProviderWrapper implements TCAPProvider {
 		if (this.wrappedProvider == null) {
 			throw new IllegalStateException("RA is has not been activated.");
 		}
-		return this.wrappedProvider.getNewUnstructuredDialog(localAddress, remoteAddress);
+		Dialog wrappedDialog = this.wrappedProvider.getNewUnstructuredDialog(localAddress, remoteAddress);
+		
+		TCAPDialogActivityHandle activityHanlde = new TCAPDialogActivityHandle(wrappedDialog.getDialogId());
+		TCAPDialogWrapper dialogWrapper = new TCAPDialogWrapper(activityHanlde, this.ra, wrappedDialog);
+
+		try {
+			this.ra.startSuspendedActivity(dialogWrapper);
+		} catch (Exception e) {
+			throw new TCAPException(e);
+		}
+		
+		wrappedDialog.setUserObject(dialogWrapper);
+		return dialogWrapper;
 	}
 
 	/*
