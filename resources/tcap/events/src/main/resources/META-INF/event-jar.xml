@@ -82,6 +82,13 @@
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.mobicents.slee.resource.tcap.events.InvokeEvent</event-class-name>
 	</event-definition>
+	
+	<event-definition>
+		<event-type-name>ss7.tcap.COMPONENT_INVOKE_TIMEOUT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.slee.resource.tcap.events.InvokeEvent</event-class-name>
+	</event-definition>	
 
 	<event-definition>
 		<event-type-name>ss7.tcap.COMPONENT_REJECT</event-type-name>
