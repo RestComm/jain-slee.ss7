@@ -88,6 +88,8 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.U
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataResponse;
 import org.mobicents.protocols.ss7.map.api.service.oam.MAPDialogOam;
 import org.mobicents.protocols.ss7.map.api.service.oam.MAPServiceOamListener;
 import org.mobicents.protocols.ss7.map.api.service.pdpContextActivation.MAPDialogPdpContextActivation;
@@ -154,6 +156,8 @@ import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrapp
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.UpdateLocationResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.subscriberInformation.wrappers.AnyTimeInterrogationRequestWrapper;
 import org.mobicents.slee.resource.map.service.mobility.subscriberInformation.wrappers.AnyTimeInterrogationResponseWrapper;
+import org.mobicents.slee.resource.map.service.mobility.subscriberManagement.wrappers.InsertSubscriberDataRequestWrapper;
+import org.mobicents.slee.resource.map.service.mobility.subscriberManagement.wrappers.InsertSubscriberDataResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.wrappers.MAPDialogMobilityWrapper;
 import org.mobicents.slee.resource.map.service.oam.wrappers.MAPDialogOamWrapper;
 import org.mobicents.slee.resource.map.service.pdpContextActivation.wrappers.MAPDialogPdpContextActivationWrapper;
@@ -870,7 +874,20 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
-	// --- Subscriber management services
+	// -- Subscriber Management services
+	@Override
+	public void onInsertSubscriberDataRequest(InsertSubscriberDataRequest ind) {
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+		InsertSubscriberDataRequestWrapper event = new InsertSubscriberDataRequestWrapper(mapDialogMobilityWrapper, ind);
+		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+	}
+
+	@Override
+	public void onInsertSubscriberDataResponse(InsertSubscriberDataResponse ind) {
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+		InsertSubscriberDataResponseWrapper event = new InsertSubscriberDataResponseWrapper(mapDialogMobilityWrapper, ind);
+		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+	}
 
 	// --- Fault recovery services
 
@@ -890,7 +907,6 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 				anyTimeInterrogationResponse);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
-
 	
 	// ///////////////
 	// SERVICE : OAM

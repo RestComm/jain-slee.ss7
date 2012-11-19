@@ -138,7 +138,7 @@
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiRequest</event-class-name>
 	</event-definition>
-						
+
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.imei.CHECK_IMEI_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
@@ -147,6 +147,19 @@
 	</event-definition>
 
 	<!-- Mobility - Subscriber management -->
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.subscribermanagement.INSERT_SUBSCRIBER_DATA_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.subscribermanagement.INSERT_SUBSCRIBER_DATA_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataResponse</event-class-name>
+	</event-definition>
 
 	<!-- Mobility - Fault recovery management -->
 
