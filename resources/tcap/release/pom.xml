@@ -2,12 +2,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>mobicents-slee-ra-map</artifactId>
+		<artifactId>mobicents-slee-ra-tcap</artifactId>
 		<groupId>org.mobicents.resources</groupId>
 		<version>2.8.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>mobicents-slee-ra-map-release</artifactId>
+	<artifactId>mobicents-slee-ra-tcap-release</artifactId>
 
 	<packaging>pom</packaging>
 

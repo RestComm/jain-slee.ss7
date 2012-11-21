@@ -29,9 +29,9 @@
 		<docs.ra.dirname>CAP</docs.ra.dirname>
 		<docs.bookid>CAP</docs.bookid>
 
-		<ss7.version>2.0.0-SNAPSHOT</ss7.version>
-		<asn.version>2.0.0-SNAPSHOT</asn.version>
-		<stream.version>1.0.0.CR1</stream.version>
+		<ss7.version>2.0.0.BETA3</ss7.version>
+		<asn.version>2.0.1.FINAL</asn.version>
+		<stream.version>1.0.0.FINAL</stream.version>
 
 		<javolution.version>5.5.1</javolution.version>
 	</properties>
@@ -40,14 +40,18 @@
 		<profile>
 			<id>release</id>
 			<modules>
+				<!--
 				<module>docs</module>
+				-->
 				<module>release</module>
 			</modules>
 		</profile>
 		<profile>
 			<id>maven-release</id>
 			<modules>
+				<!--
 				<module>docs</module>
+				-->
 				<module>release</module>
 			</modules>
 		</profile>

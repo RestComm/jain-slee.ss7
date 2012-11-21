@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents</groupId>
 		<artifactId>mobicents-parent</artifactId>
-		<version>2.25-SNAPSHOT</version>
+		<version>2.24</version>
 	</parent>
 	
 	<groupId>org.mobicents.servers.jainslee.ss7</groupId>
@@ -25,9 +25,9 @@
 			<id>maven-release</id>
 			<modules>
 				<module>resources/map</module>
-				<!--
 				<module>resources/jcc</module>
-				-->
+				<module>resources/cap</module>
+				<module>resources/tcap</module>
 			</modules>
 			<build>
 				<plugins>
@@ -37,6 +37,7 @@
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<preparationGoals>clean install</preparationGoals>
+						<autoVersionSubmodules>true</autoVersionSubmodules> 
 					</configuration>
 					</plugin>
 				</plugins>
@@ -49,7 +50,48 @@
 				<module>resources/map</module>				
 			</modules>
 		</profile>
+                <profile>
+                      <id>release-sign-artifacts</id>
+                      <activation>
+                        <property>
+                          <name>performRelease</name>
+                          <value>true</value>
+                        </property>
+                      </activation>
+                      <build>
+                        <plugins>
+                          <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-gpg-plugin</artifactId>
+                            <executions>
+                              <execution>
+                                <id>sign-artifacts</id>
+                                <phase>install</phase>
+                                <goals>
+                                  <goal>sign</goal>
+                                </goals>
+                              </execution>
+                            </executions>
+                          </plugin>
+                        <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.1.2</version>
+                        <executions>
+                                <execution>
+                                        <id>attach-sources</id>
+                                        <phase>verify</phase>
+                                        <goals>
+                                                <goal>jar</goal>
+                                        </goals>
+                                </execution>
+                        </executions>
+                        </plugin>
+                        </plugins>
+                      </build>
+               </profile>
 	</profiles>	
+
 	
 	<!-- dupe info from parent, but it's only way to retrieve the parent without checkout -->
 

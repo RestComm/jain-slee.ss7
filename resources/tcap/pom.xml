@@ -28,9 +28,9 @@
 		<docs.ra.dirname>TCAP</docs.ra.dirname>
 		<docs.bookid>TCAP</docs.bookid>
 		
-		<ss7.version>2.0.0-SNAPSHOT</ss7.version>
-		<asn.version>2.0.0-SNAPSHOT</asn.version>
-		<stream.version>1.0.0.CR1</stream.version>
+		<ss7.version>2.0.0.BETA3</ss7.version>
+		<asn.version>2.0.1.FINAL</asn.version>
+		<stream.version>1.0.0.FINAL</stream.version>
 		
 		<javolution.version>5.5.1</javolution.version>
 	</properties>
@@ -39,38 +39,23 @@
 		<profile>
 			<id>release</id>
 			<modules>
+				<!--
 				<module>docs</module>
+				-->
 				<module>release</module>
 			</modules>
 		</profile>
 		<profile>
 			<id>maven-release</id>
 			<modules>
+				<!--
 				<module>docs</module>
+				-->
 				<module>release</module>
 			</modules>
-			<build>
-				<plugins>
-					<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-release-plugin</artifactId>
-					<configuration>
-						<autoVersionSubmodules>true</autoVersionSubmodules>
-						<tagBase>https://mobicents.googlecode.com/svn/tags/servers/jain-slee/2.x.y/resources/tcap</tagBase>
-						<branchBase>https://mobicents.googlecode.com/svn/branches/servers/jain-slee/2.x.y/resources/tcap</branchBase>
-						<preparationGoals>clean install</preparationGoals>
-					</configuration>
-					</plugin>
-				</plugins>
-			</build>		
 		</profile>
 	</profiles>
 
-	<scm>
-		<connection>scm:svn:https://mobicents.googlecode.com/svn/trunk/servers/jain-slee/resources/tcap</connection>
-		<developerConnection>scm:svn:https://mobicents.googlecode.com/svn/trunk/servers/jain-slee/resources/tcap</developerConnection>
-		<url>http://mobicents.googlecode.com/svn/trunk/servers/jain-slee/resources/tcap</url>
-	</scm>
 	
 <build>
 		<plugins>

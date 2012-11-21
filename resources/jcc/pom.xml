@@ -26,12 +26,12 @@
 		<docs.ra.dirname>jcc</docs.ra.dirname>
 		<docs.bookid>JCC</docs.bookid>
 		<docs.profile>mobicents</docs.profile>
-		<tcap.version>1.0.0.FINAL</tcap.version>
-		<sccp.version>1.0.0.FINAL</sccp.version>
-		<asn.version>1.0.0.FINAL</asn.version>
-		<mtp.version>1.0.0.FINAL</mtp.version>
+		<tcap.version>2.0.0.BETA3</tcap.version>
+		<sccp.version>2.0.0.BETA3</sccp.version>
+		<asn.version>2.0.1.FINAL</asn.version>
+		<mtp.version>2.0.0.BETA3</mtp.version>
 		<stream.version>1.0.0.FINAL</stream.version>
-		<m3ua.version>1.0.0.FINAL</m3ua.version>
+		<m3ua.version>2.0.0.BETA3</m3ua.version>
 		<version.jcc>1.1</version.jcc>
 		<version.concurrent>1.3.4</version.concurrent>
 		<!-- <version.junit>3.8.2</version.junit> <version.log4j>1.2.14</version.log4j> 
