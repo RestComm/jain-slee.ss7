@@ -25,7 +25,6 @@
 			<id>maven-release</id>
 			<modules>
 				<module>resources/map</module>
-				<module>resources/jcc</module>
 				<module>resources/cap</module>
 				<module>resources/tcap</module>
 			</modules>
