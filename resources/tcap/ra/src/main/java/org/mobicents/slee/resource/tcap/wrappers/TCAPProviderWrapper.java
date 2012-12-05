@@ -163,4 +163,9 @@ public class TCAPProviderWrapper implements TCAPProvider {
 		this.wrappedProvider = wrappedProvider;
 	}
 
+	@Override
+	public boolean getPreviewMode() {
+		return this.wrappedProvider.getPreviewMode();
+	}
+
 }

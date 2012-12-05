@@ -373,4 +373,9 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 		return ra;
 	}
 
+	@Override
+	public boolean getPreviewMode() {
+		return this.wrappedDialog.getPreviewMode();
+	}
+
 }
