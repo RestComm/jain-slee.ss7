@@ -176,8 +176,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 */
 	@Override
 	public TRPseudoState getState() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.wrappedDialog.getState();
 	}
 
 	/*

@@ -35,6 +35,7 @@ public interface TCAPEvent {
 	public static final String EVENT_TYPE_NAME_DIALOG_NOTICE = "ss7.tcap.DIALOG_NOTICE";
 	public static final String EVENT_TYPE_NAME_DIALOG_RELEASED = "ss7.tcap.DIALOG_RELEASED";
 	public static final String EVENT_TYPE_NAME_DIALOG_TIMEOUT = "ss7.tcap.DIALOG_TIMEOUT";
+	public static final String EVENT_TYPE_NAME_DIALOG_DELIMITER = "ss7.tcap.DIALOG_DELIMITER";
 
 	public static final String EVENT_TYPE_NAME_COMPONENT_INVOKE_TIMEOUT = "ss7.tcap.COMPONENT_INVOKE_TIMEOUT";
 

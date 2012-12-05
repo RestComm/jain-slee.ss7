@@ -1,6 +1,6 @@
 /*
- * JBoss, Home of Professional Open Source
- * Copyright 2011, Red Hat, Inc. and individual contributors
+ * TeleStax, Open Source Cloud Communications  Copyright 2012.
+ * and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -66,12 +66,14 @@ import org.mobicents.protocols.ss7.tcap.asn.comp.ReturnResult;
 import org.mobicents.protocols.ss7.tcap.asn.comp.ReturnResultLast;
 import org.mobicents.slee.resource.tcap.events.TCAPEvent;
 import org.mobicents.slee.resource.tcap.wrappers.InvokeEventImpl;
+import org.mobicents.slee.resource.tcap.wrappers.ProviderAbortEventImpl;
 import org.mobicents.slee.resource.tcap.wrappers.RejectEventImpl;
 import org.mobicents.slee.resource.tcap.wrappers.ReturnErrorEventImpl;
 import org.mobicents.slee.resource.tcap.wrappers.ReturnResultEventImpl;
 import org.mobicents.slee.resource.tcap.wrappers.ReturnResultLastEventImpl;
 import org.mobicents.slee.resource.tcap.wrappers.TCAPDialogWrapper;
 import org.mobicents.slee.resource.tcap.wrappers.TCAPProviderWrapper;
+import org.mobicents.slee.resource.tcap.wrappers.UserAbortEventImpl;
 
 /**
  * 
@@ -476,7 +478,9 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	public void onTCPAbort(TCPAbortIndication tcPAbortIndication) {
 		Dialog wrappedDialog = tcPAbortIndication.getDialog();
 		TCAPDialogWrapper tcapDialogWrapper = (TCAPDialogWrapper) wrappedDialog.getUserObject();
-		this.onEvent(TCAPEvent.EVENT_TYPE_NAME_DIALOG_PROVIDERABORT, tcapDialogWrapper, tcapDialogWrapper);
+		ProviderAbortEventImpl providerAbortEvent = new ProviderAbortEventImpl(tcapDialogWrapper, tcPAbortIndication);
+		this.onEvent(TCAPEvent.EVENT_TYPE_NAME_DIALOG_PROVIDERABORT, tcapDialogWrapper, providerAbortEvent);
+//		this.onEvent(TCAPEvent.EVENT_TYPE_NAME_DIALOG_PROVIDERABORT, tcapDialogWrapper, tcapDialogWrapper);
 	}
 
 	/*
@@ -528,7 +532,9 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	public void onTCUserAbort(TCUserAbortIndication tcUserAbortIndication) {
 		Dialog wrappedDialog = tcUserAbortIndication.getDialog();
 		TCAPDialogWrapper tcapDialogWrapper = (TCAPDialogWrapper) wrappedDialog.getUserObject();
-		this.onEvent(TCAPEvent.EVENT_TYPE_NAME_DIALOG_USERABORT, tcapDialogWrapper, tcapDialogWrapper);
+		UserAbortEventImpl userAbortEvent = new UserAbortEventImpl(tcapDialogWrapper, tcUserAbortIndication);
+		this.onEvent(TCAPEvent.EVENT_TYPE_NAME_DIALOG_USERABORT, tcapDialogWrapper, userAbortEvent);
+//		this.onEvent(TCAPEvent.EVENT_TYPE_NAME_DIALOG_USERABORT, tcapDialogWrapper, tcapDialogWrapper);
 	}
 
 	/*
@@ -610,5 +616,8 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 				}
 			}
 		}
+
+		// sending DIALOG_DELIMITER message after delivering all components
+		this.onEvent(TCAPEvent.EVENT_TYPE_NAME_DIALOG_DELIMITER, dialogWrapper, dialogWrapper);
 	}
 }

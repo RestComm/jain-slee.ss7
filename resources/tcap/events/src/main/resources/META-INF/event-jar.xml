@@ -44,14 +44,14 @@
 		<event-type-name>ss7.tcap.DIALOG_USERABORT</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_PROVIDERABORT</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication</event-class-name>
 	</event-definition>
 
 	<event-definition>
@@ -70,6 +70,13 @@
 
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_TIMEOUT</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.tcap.DIALOG_DELIMITER</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
