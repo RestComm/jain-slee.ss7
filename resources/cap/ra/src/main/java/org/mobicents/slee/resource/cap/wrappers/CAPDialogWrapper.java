@@ -76,8 +76,12 @@ public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog
 		return this.wrappedDialog.getApplicationContext();
 	}
 
-	public Long getDialogId() {
-		return this.wrappedDialog.getDialogId();
+	public Long getLocalDialogId() {
+		return this.wrappedDialog.getLocalDialogId();
+	}
+	
+	public Long getRemoteDialogId() {
+		return this.wrappedDialog.getRemoteDialogId();
 	}
 
 	public int getMaxUserDataLength() {

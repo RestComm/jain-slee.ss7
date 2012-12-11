@@ -416,7 +416,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 
 		if (this.tracer.isFineEnabled()) {
 			this.tracer
-					.fine(String.format("Firing %s for DialogId=%d", eventName, dw.getWrappedDialog().getDialogId()));
+					.fine(String.format("Firing %s for DialogId=%d", eventName, dw.getWrappedDialog().getLocalDialogId()));
 		}
 
 		this.fireEvent(eventName, dw.getActivityHandle(), event);
@@ -476,10 +476,10 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		try {
 
 			if (this.tracer.isFineEnabled()) {
-				this.tracer.fine(String.format("Received onDialogRequest id=%d ", capDialog.getDialogId()));
+				this.tracer.fine(String.format("Received onDialogRequest id=%d ", capDialog.getLocalDialogId()));
 			}
 
-			CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getDialogId());
+			CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getLocalDialogId());
 			CAPDialogWrapper capDialogWrapper = null;
 
 			if (capDialog instanceof CAPDialogCircuitSwitchedCall) {
@@ -489,7 +489,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 			} else if (capDialog instanceof CAPDialogSms) {
 				capDialogWrapper = new CAPDialogSmsWrapper((CAPDialogSms) capDialog, activityHandle, this);
 			} else {
-				this.tracer.severe(String.format("Received onDialogRequest id=%d for unknown CAPDialog class=%s", capDialog.getDialogId(),
+				this.tracer.severe(String.format("Received onDialogRequest id=%d for unknown CAPDialog class=%s", capDialog.getLocalDialogId(),
 						capDialog.getClass().getName()));
 				return;
 			}
@@ -530,7 +530,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		// TODO: done like that, since we want to process dialog callbacks
 		// before we fire event.
 		if (this.tracer.isFineEnabled()) {
-			this.tracer.fine(String.format("Rx : onDialogTimeout for DialogId=%d", capDialog.getDialogId()));
+			this.tracer.fine(String.format("Rx : onDialogTimeout for DialogId=%d", capDialog.getLocalDialogId()));
 		}
 
 		CAPDialogWrapper capDialogWrapper = (CAPDialogWrapper) capDialog.getUserObject();

@@ -73,7 +73,7 @@ public class CAPServiceSmsWrapper implements CAPServiceSms {
 
 	public CAPDialogSms createNewDialog(CAPApplicationContext appCntx, SccpAddress origAddress, SccpAddress destAddress) throws CAPException {
 		CAPDialogSms capDialog = this.wrappedSms.createNewDialog(appCntx, origAddress, destAddress);
-		CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getDialogId());
+		CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getLocalDialogId());
 
 		CAPDialogSmsWrapper dw = new CAPDialogSmsWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
 		capDialog.setUserObject(dw);

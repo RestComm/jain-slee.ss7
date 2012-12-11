@@ -132,7 +132,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 
 		MAPDialogSupplementary mapDialog = this.wrappedUSSD.createNewDialog(mapapplicationcontext, sccpaddress,
 				addressstring, sccpaddress1, addressstring1);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getDialogId());
+		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
 		MAPDialogSupplementaryWrapper dw = new MAPDialogSupplementaryWrapper(mapDialog, activityHandle,
 				this.mapProviderWrapper.getRa());
 		mapDialog.setUserObject(dw);

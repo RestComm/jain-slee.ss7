@@ -507,7 +507,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 		if (mapDialogActHndl == null) {
 			if (this.tracer.isWarningEnabled()) {
 				this.tracer.warning("Activity ended but no MAPDialogActivityHandle found for Dialog ID, ignoring "
-						+ mapDialog.getDialogId());
+						+ mapDialog.getLocalDialogId());
 			}
 		} else {
 			try {
@@ -519,7 +519,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 			}
 			this.sleeEndpoint.endActivity(mapDialogActHndl);
 			if (tracer.isFineEnabled())
-				this.tracer.fine("Activity marked to be ended:" + mapDialog.getDialogId());
+				this.tracer.fine("Activity marked to be ended:" + mapDialog.getLocalDialogId());
 		}
 	}
 
@@ -571,7 +571,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 
 		if (this.tracer.isFineEnabled()) {
 			this.tracer
-					.fine(String.format("Firing %s for DialogId=%d", eventName, dw.getWrappedDialog().getDialogId()));
+					.fine(String.format("Firing %s for DialogId=%d", eventName, dw.getWrappedDialog().getLocalDialogId()));
 		}
 
 		this.fireEvent(eventName, dw.getActivityHandle(), event, flags);
@@ -658,10 +658,10 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 		try {
 
 			if (this.tracer.isFineEnabled()) {
-				this.tracer.fine(String.format("Received onDialogRequest id=%d ", mapDialog.getDialogId()));
+				this.tracer.fine(String.format("Received onDialogRequest id=%d ", mapDialog.getLocalDialogId()));
 			}
 
-			MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getDialogId());
+			MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
 			MAPDialogWrapper mapDialogWrapper = null;
 			
 			if (mapDialog instanceof MAPDialogMobility) {
@@ -679,7 +679,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 			} else if (mapDialog instanceof MAPDialogLsm) {
 				mapDialogWrapper = new MAPDialogLsmWrapper((MAPDialogLsm) mapDialog, activityHandle, this);
 			} else {
-				this.tracer.severe(String.format("Received onDialogRequest id=%d for unknown MAPDialog class=%s", mapDialog.getDialogId(),
+				this.tracer.severe(String.format("Received onDialogRequest id=%d for unknown MAPDialog class=%s", mapDialog.getLocalDialogId(),
 						mapDialog.getClass().getName()));
 				return;
 			}
@@ -753,7 +753,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 		// TODO: done like that, since we want to process dialog callbacks
 		// before we fire event.
 		if (this.tracer.isFineEnabled()) {
-			this.tracer.fine(String.format("Rx : onDialogTimeout for DialogId=%d", mapDialog.getDialogId()));
+			this.tracer.fine(String.format("Rx : onDialogTimeout for DialogId=%d", mapDialog.getLocalDialogId()));
 		}
 
 //		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();

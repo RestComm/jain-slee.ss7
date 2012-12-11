@@ -112,7 +112,7 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 			SccpAddress sccpaddress1, AddressString addressstring1) throws MAPException {
 
 		MAPDialogLsm mapDialogLsm = this.wrappedLSM.createNewDialog(mapapplicationcontext, sccpaddress, addressstring, sccpaddress1, addressstring1);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialogLsm.getDialogId());
+		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialogLsm.getLocalDialogId());
 		MAPDialogLsmWrapper dw = new MAPDialogLsmWrapper(mapDialogLsm, activityHandle, this.mapProviderWrapper.getRa());
 		mapDialogLsm.setUserObject(dw);
 		

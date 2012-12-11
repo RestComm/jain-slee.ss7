@@ -59,7 +59,7 @@ public class MAPServiceMobilityWrapper implements MAPServiceMobility {
 			AddressString addressstring, SccpAddress sccpaddress1, AddressString addressstring1) throws MAPException {
 		MAPDialogMobility mapDialog = this.wrappedMobility.createNewDialog(mapapplicationcontext, sccpaddress,
 				addressstring, sccpaddress1, addressstring1);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getDialogId());
+		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
 		MAPDialogMobilityWrapper dw = new MAPDialogMobilityWrapper(mapDialog, activityHandle,
 				this.mapProviderWrapper.getRa());
 		mapDialog.setUserObject(dw);

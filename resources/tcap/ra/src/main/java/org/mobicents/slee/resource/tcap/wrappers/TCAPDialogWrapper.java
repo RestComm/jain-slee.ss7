@@ -120,10 +120,15 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * @see org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog#getDialogId()
 	 */
 	@Override
-	public Long getDialogId() {
-		return this.wrappedDialog.getDialogId();
+	public Long getLocalDialogId() {
+		return this.wrappedDialog.getLocalDialogId();
 	}
 
+	@Override
+	public Long getRemoteDialogId() {
+		return this.wrappedDialog.getRemoteDialogId();
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 

@@ -126,7 +126,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 			AddressString addressstring, SccpAddress sccpaddress1, AddressString addressstring1) throws MAPException {
 		MAPDialogSms mapDialog = this.wrappedSMS.createNewDialog(mapapplicationcontext, sccpaddress, addressstring,
 				sccpaddress1, addressstring1);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getDialogId());
+		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
 
 		MAPDialogSmsWrapper dw = new MAPDialogSmsWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
 		mapDialog.setUserObject(dw);

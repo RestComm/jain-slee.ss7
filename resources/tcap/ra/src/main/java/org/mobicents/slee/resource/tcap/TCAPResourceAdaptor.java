@@ -379,7 +379,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 		}
 
 		if (this.tracer.isFineEnabled()) {
-			this.tracer.fine(String.format("Firing %s for DialogId=%d", eventName, dw.getWrappedDialog().getDialogId()));
+			this.tracer.fine(String.format("Firing %s for DialogId=%d", eventName, dw.getWrappedDialog().getLocalDialogId()));
 		}
 
 		this.fireEvent(eventName, dw.getActivityHandle(), event, flags);
@@ -404,7 +404,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	public void onTCBegin(TCBeginIndication tcBeginIndication) {
 		try {
 			Dialog wrappedDialog = tcBeginIndication.getDialog();
-			TCAPDialogActivityHandle activityHandle = new TCAPDialogActivityHandle(wrappedDialog.getDialogId());
+			TCAPDialogActivityHandle activityHandle = new TCAPDialogActivityHandle(wrappedDialog.getLocalDialogId());
 			TCAPDialogWrapper tcapDialogWrapper = new TCAPDialogWrapper(activityHandle, this, wrappedDialog);
 
 			wrappedDialog.setUserObject(tcapDialogWrapper);
@@ -497,7 +497,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 		Dialog wrappedDialog = tcUniIndication.getDialog();
 
 		try {
-			activityHandle = new TCAPDialogActivityHandle(wrappedDialog.getDialogId());
+			activityHandle = new TCAPDialogActivityHandle(wrappedDialog.getLocalDialogId());
 			TCAPDialogWrapper tcapDialogWrapper = new TCAPDialogWrapper(activityHandle, this, wrappedDialog);
 
 			wrappedDialog.setUserObject(tcapDialogWrapper);
@@ -547,7 +547,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	@Override
 	public void onDialogTimeout(Dialog dialog) {
 		if (this.tracer.isFineEnabled()) {
-			this.tracer.fine(String.format("Rx : onDialogTimeout for DialogId=%d", dialog.getDialogId()));
+			this.tracer.fine(String.format("Rx : onDialogTimeout for DialogId=%d", dialog.getLocalDialogId()));
 		}
 
 		dialog.keepAlive();

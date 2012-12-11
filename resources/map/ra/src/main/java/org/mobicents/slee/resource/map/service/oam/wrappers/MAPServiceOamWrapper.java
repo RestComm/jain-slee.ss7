@@ -80,7 +80,7 @@ public class MAPServiceOamWrapper implements MAPServiceOam {
 	public MAPDialogOam createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
 			AddressString destReference) throws MAPException {
 		MAPDialogOam mapDialog = this.wrappedOam.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getDialogId());
+		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
 		MAPDialogOamWrapper dw = new MAPDialogOamWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
 		mapDialog.setUserObject(dw);
 

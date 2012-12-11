@@ -74,7 +74,7 @@ public class CAPServiceCircuitSwitchedCallWrapper implements CAPServiceCircuitSw
 
 	public CAPDialogCircuitSwitchedCall createNewDialog(CAPApplicationContext appCntx, SccpAddress origAddress, SccpAddress destAddress) throws CAPException {
 		CAPDialogCircuitSwitchedCall capDialog = this.wrappedCircuitSwitchedCall.createNewDialog(appCntx, origAddress, destAddress);
-		CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getDialogId());
+		CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getLocalDialogId());
 
 		CAPDialogCircuitSwitchedCallWrapper dw = new CAPDialogCircuitSwitchedCallWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
 		capDialog.setUserObject(dw);

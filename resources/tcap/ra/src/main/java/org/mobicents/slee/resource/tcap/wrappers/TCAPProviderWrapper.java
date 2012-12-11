@@ -106,7 +106,7 @@ public class TCAPProviderWrapper implements TCAPProvider {
 		}
 		Dialog wrappedDialog = this.wrappedProvider.getNewDialog(localAddress, remoteAddress);
 
-		TCAPDialogActivityHandle activityHanlde = new TCAPDialogActivityHandle(wrappedDialog.getDialogId());
+		TCAPDialogActivityHandle activityHanlde = new TCAPDialogActivityHandle(wrappedDialog.getLocalDialogId());
 		TCAPDialogWrapper dialogWrapper = new TCAPDialogWrapper(activityHanlde, this.ra, wrappedDialog);
 
 		try {
@@ -134,7 +134,7 @@ public class TCAPProviderWrapper implements TCAPProvider {
 		}
 		Dialog wrappedDialog = this.wrappedProvider.getNewUnstructuredDialog(localAddress, remoteAddress);
 		
-		TCAPDialogActivityHandle activityHanlde = new TCAPDialogActivityHandle(wrappedDialog.getDialogId());
+		TCAPDialogActivityHandle activityHanlde = new TCAPDialogActivityHandle(wrappedDialog.getLocalDialogId());
 		TCAPDialogWrapper dialogWrapper = new TCAPDialogWrapper(activityHanlde, this.ra, wrappedDialog);
 
 		try {

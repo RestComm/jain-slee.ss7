@@ -79,7 +79,7 @@ public class MAPServicePdpContextActivationWrapper implements MAPServicePdpConte
 	public MAPDialogPdpContextActivation createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference,
 			SccpAddress destAddress, AddressString destReference) throws MAPException {
 		MAPDialogPdpContextActivation mapDialog = this.wrappedPdpContextActivation.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getDialogId());
+		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
 		MAPDialogPdpContextActivationWrapper dw = new MAPDialogPdpContextActivationWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
 		mapDialog.setUserObject(dw);
 

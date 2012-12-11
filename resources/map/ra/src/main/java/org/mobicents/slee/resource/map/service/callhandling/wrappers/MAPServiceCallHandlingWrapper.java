@@ -76,7 +76,7 @@ public class MAPServiceCallHandlingWrapper implements MAPServiceCallHandling {
 	public MAPDialogCallHandling createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
 			AddressString destReference) throws MAPException {
 		MAPDialogCallHandling mapDialog = this.wrappedCallHandling.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getDialogId());
+		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
 		MAPDialogCallHandlingWrapper dw = new MAPDialogCallHandlingWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
 		mapDialog.setUserObject(dw);
 
