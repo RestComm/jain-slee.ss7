@@ -136,4 +136,14 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 		this.wrappedComponent.setTimeout(timeout);
 	}
 
+	@Override
+	public Invoke getLinkedInvoke() {
+		return this.wrappedComponent.getLinkedInvoke();
+	}
+
+	@Override
+	public void setLinkedInvoke(Invoke val) {
+		this.wrappedComponent.setLinkedInvoke(val);
+	}
+
 }

@@ -347,24 +347,24 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 	}
 
 	@Override
-	public Long addSpecializedResourceReportRequest_CapV23() throws CAPException {
-		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV23();
+	public Long addSpecializedResourceReportRequest_CapV23(Long linkedId) throws CAPException {
+		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV23(linkedId);
 	}
 
 	@Override
-	public Long addSpecializedResourceReportRequest_CapV4(boolean isAllAnnouncementsComplete, boolean isFirstAnnouncementStarted) throws CAPException {
-		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV4(isAllAnnouncementsComplete, isFirstAnnouncementStarted);
+	public Long addSpecializedResourceReportRequest_CapV4(Long linkedId, boolean isAllAnnouncementsComplete, boolean isFirstAnnouncementStarted) throws CAPException {
+		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV4(linkedId, isAllAnnouncementsComplete, isFirstAnnouncementStarted);
 	}
 
 	@Override
-	public Long addSpecializedResourceReportRequest_CapV23(int customInvokeTimeout) throws CAPException {
-		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV23(customInvokeTimeout);
+	public Long addSpecializedResourceReportRequest_CapV23(Long linkedId, int customInvokeTimeout) throws CAPException {
+		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV23(linkedId, customInvokeTimeout);
 	}
 
 	@Override
-	public Long addSpecializedResourceReportRequest_CapV4(int customInvokeTimeout, boolean isAllAnnouncementsComplete, boolean isFirstAnnouncementStarted)
+	public Long addSpecializedResourceReportRequest_CapV4(Long linkedId, int customInvokeTimeout, boolean isAllAnnouncementsComplete, boolean isFirstAnnouncementStarted)
 			throws CAPException {
-		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV4(customInvokeTimeout, isAllAnnouncementsComplete, isFirstAnnouncementStarted);
+		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV4(linkedId, customInvokeTimeout, isAllAnnouncementsComplete, isFirstAnnouncementStarted);
 	}
 
 	@Override

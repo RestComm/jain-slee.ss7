@@ -23,6 +23,7 @@
 package org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers;
 
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SpecializedResourceReportRequest;
+import org.mobicents.protocols.ss7.tcap.asn.comp.Invoke;
 
 /**
  * 
@@ -43,6 +44,26 @@ public class SpecializedResourceReportRequestWrapper extends CircuitSwitchedCall
 
 	public boolean getFirstAnnouncementStarted() {
 		return this.wrappedEvent.getFirstAnnouncementStarted();
+	}
+
+	@Override
+	public Long getLinkedId() {
+		return this.wrappedEvent.getLinkedId();
+	}
+
+	@Override
+	public Invoke getLinkedInvoke() {
+		return this.wrappedEvent.getLinkedInvoke();
+	}
+
+	@Override
+	public void setLinkedId(Long val) {
+		this.wrappedEvent.setLinkedId(val);
+	}
+
+	@Override
+	public void setLinkedInvoke(Invoke val) {
+		this.wrappedEvent.setLinkedInvoke(val);
 	}
 
 	@Override
