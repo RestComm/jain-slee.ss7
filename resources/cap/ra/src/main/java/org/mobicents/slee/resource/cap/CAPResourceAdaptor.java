@@ -50,7 +50,6 @@ import org.mobicents.protocols.ss7.cap.api.CAPDialog;
 import org.mobicents.protocols.ss7.cap.api.CAPDialogListener;
 import org.mobicents.protocols.ss7.cap.api.CAPMessage;
 import org.mobicents.protocols.ss7.cap.api.CAPProvider;
-import org.mobicents.protocols.ss7.cap.api.dialog.CAPComponentErrorReason;
 import org.mobicents.protocols.ss7.cap.api.dialog.CAPDialogState;
 import org.mobicents.protocols.ss7.cap.api.dialog.CAPGeneralAbortReason;
 import org.mobicents.protocols.ss7.cap.api.dialog.CAPGprsReferenceNumber;
@@ -101,7 +100,6 @@ import org.mobicents.slee.resource.cap.events.DialogTimeout;
 import org.mobicents.slee.resource.cap.events.DialogUserAbort;
 import org.mobicents.slee.resource.cap.events.ErrorComponent;
 import org.mobicents.slee.resource.cap.events.InvokeTimeout;
-import org.mobicents.slee.resource.cap.events.ProviderErrorComponent;
 import org.mobicents.slee.resource.cap.events.RejectComponent;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.ActivityTestRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.ActivityTestResponseWrapper;
@@ -549,9 +547,9 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		onEvent(errorComponent.getEventTypeName(), capDialogWrapper, errorComponent);
 	}
 
-	public void onRejectComponent(CAPDialog capDialog, Long invokeId, Problem problem) {
+	public void onRejectComponent(CAPDialog capDialog, Long invokeId, Problem problem, boolean isLocalOriginated) {
 		CAPDialogWrapper capDialogWrapper = (CAPDialogWrapper) capDialog.getUserObject();
-		RejectComponent rejectComponent = new RejectComponent(capDialogWrapper, invokeId, problem);
+		RejectComponent rejectComponent = new RejectComponent(capDialogWrapper, invokeId, problem, isLocalOriginated);
 		onEvent(rejectComponent.getEventTypeName(), capDialogWrapper, rejectComponent);
 	}
 
@@ -559,13 +557,6 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		CAPDialogWrapper capDialogWrapper = (CAPDialogWrapper) capDialog.getUserObject();
 		InvokeTimeout invokeTimeout = new InvokeTimeout(capDialogWrapper, invokeId);
 		onEvent(invokeTimeout.getEventTypeName(), capDialogWrapper, invokeTimeout);
-	}
-
-	public void onProviderErrorComponent(CAPDialog capDialog, Long invokeId, CAPComponentErrorReason providerError) {
-		CAPDialogWrapper capDialogWrapper = (CAPDialogWrapper) capDialog.getUserObject();
-		ProviderErrorComponent providerErrorComponent = new ProviderErrorComponent(capDialogWrapper, invokeId,
-				providerError);
-		onEvent(providerErrorComponent.getEventTypeName(), capDialogWrapper, providerErrorComponent);
 	}
 
 	public void onCAPMessage(CAPMessage capMessage) {

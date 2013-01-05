@@ -1,6 +1,6 @@
 /*
- * JBoss, Home of Professional Open Source
- * Copyright 2011, Red Hat, Inc. and individual contributors
+ * TeleStax, Open Source Cloud Communications  
+ * Copyright 2012, Telestax Inc and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -20,13 +20,9 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-/**
- * 
- */
 package org.mobicents.slee.resource.map.events;
 
 import org.mobicents.protocols.ss7.map.api.MAPDialog;
-import org.mobicents.protocols.ss7.map.api.dialog.MAPProviderError;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPRefuseReason;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.tcap.asn.ApplicationContextName;
@@ -40,29 +36,22 @@ public class DialogReject extends MAPEvent {
 	private static final String EVENT_TYPE_NAME = "ss7.map.DIALOG_REJECT";
 
 	private final MAPRefuseReason refuseReason;
-	private final MAPProviderError providerError;
 	private final ApplicationContextName alternativeApplicationContext;
 	private final MAPExtensionContainer extensionContainer;
 
 	/**
 	 * @param mapDialogWrapper
 	 */
-	public DialogReject(MAPDialog mapDialogWrapper, MAPRefuseReason refuseReason,
-			MAPProviderError providerError, ApplicationContextName alternativeApplicationContext,
+	public DialogReject(MAPDialog mapDialogWrapper, MAPRefuseReason refuseReason, ApplicationContextName alternativeApplicationContext,
 			MAPExtensionContainer extensionContainer) {
 		super(mapDialogWrapper, EVENT_TYPE_NAME, null);
 		this.refuseReason = refuseReason;
-		this.providerError = providerError;
 		this.alternativeApplicationContext = alternativeApplicationContext;
 		this.extensionContainer = extensionContainer;
 	}
 
 	public MAPRefuseReason getRefuseReason() {
 		return refuseReason;
-	}
-
-	public MAPProviderError getProviderError() {
-		return providerError;
 	}
 
 	public ApplicationContextName getAlternativeApplicationContext() {
@@ -75,8 +64,7 @@ public class DialogReject extends MAPEvent {
 
 	@Override
 	public String toString() {
-		return "DialogReject [refuseReason=" + refuseReason + ", providerError=" + providerError
-				+ ", alternativeApplicationContext=" + alternativeApplicationContext + ", extensionContainer="
+		return "DialogReject [refuseReason=" + refuseReason + ", alternativeApplicationContext=" + alternativeApplicationContext + ", extensionContainer="
 				+ extensionContainer + ", " + this.mapDialogWrapper + "]";
 	}
 

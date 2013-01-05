@@ -181,6 +181,21 @@ public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public void processInvokeWithoutAnswer(Long invokeId) {
+		this.wrappedDialog.processInvokeWithoutAnswer(invokeId);
+	}
+
+	@Override
+	public void setLocalAddress(SccpAddress address) {
+		this.wrappedDialog.setLocalAddress(address);
+	}
+
+	@Override
+	public void setRemoteAddress(SccpAddress address) {
+		this.wrappedDialog.setRemoteAddress(address);
+	}
+
 	public CAPDialogActivityHandle getActivityHandle() {
 		return activityHandle;
 	}

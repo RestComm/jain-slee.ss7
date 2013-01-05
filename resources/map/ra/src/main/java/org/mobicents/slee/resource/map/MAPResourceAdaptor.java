@@ -1,6 +1,6 @@
 /*
- * JBoss, Home of Professional Open Source
- * Copyright 2011, Red Hat, Inc. and individual contributors
+ * TeleStax, Open Source Cloud Communications  
+ * Copyright 2012, Telestax Inc and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -55,7 +55,6 @@ import org.mobicents.protocols.ss7.map.api.dialog.MAPAbortProviderReason;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPAbortSource;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPDialogState;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPNoticeProblemDiagnostic;
-import org.mobicents.protocols.ss7.map.api.dialog.MAPProviderError;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPRefuseReason;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPUserAbortChoice;
 import org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessage;
@@ -132,7 +131,6 @@ import org.mobicents.slee.resource.map.events.DialogUserAbort;
 import org.mobicents.slee.resource.map.events.ErrorComponent;
 import org.mobicents.slee.resource.map.events.InvokeTimeout;
 import org.mobicents.slee.resource.map.events.MAPEvent;
-import org.mobicents.slee.resource.map.events.ProviderErrorComponent;
 import org.mobicents.slee.resource.map.events.RejectComponent;
 import org.mobicents.slee.resource.map.service.callhandling.wrappers.MAPDialogCallHandlingWrapper;
 import org.mobicents.slee.resource.map.service.callhandling.wrappers.ProvideRoamingNumberRequestWrapper;
@@ -641,11 +639,10 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 	/**
 	 * {@inheritDoc}
 	 */
-	public void onDialogReject(MAPDialog mapDialog, MAPRefuseReason refuseReason, MAPProviderError providerError,
-			ApplicationContextName alternativeApplicationContext, MAPExtensionContainer extensionContainer) {
+	public void onDialogReject(MAPDialog mapDialog, MAPRefuseReason refuseReason, ApplicationContextName alternativeApplicationContext,
+			MAPExtensionContainer extensionContainer) {
 		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
-		DialogReject dialogReject = new DialogReject(mapDialogWrapper, refuseReason, providerError,
-				alternativeApplicationContext, extensionContainer);
+		DialogReject dialogReject = new DialogReject(mapDialogWrapper, refuseReason, alternativeApplicationContext, extensionContainer);
 		MAPDialogActivityHandle handle = onEvent(dialogReject.getEventTypeName(), mapDialogWrapper, dialogReject);
 
 		// End Activity
@@ -794,19 +791,9 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 	/**
 	 * {@inheritDoc}
 	 */
-	public void onProviderErrorComponent(MAPDialog mapDialog, Long invokeId, MAPProviderError mapProviderError) {
+	public void onRejectComponent(MAPDialog mapDialog, Long invokeId, Problem problem, boolean isLocalOriginated) {
 		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
-		ProviderErrorComponent providerErrorComponent = new ProviderErrorComponent(mapDialogWrapper, invokeId,
-				mapProviderError);
-		onEvent(providerErrorComponent.getEventTypeName(), mapDialogWrapper, providerErrorComponent);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void onRejectComponent(MAPDialog mapDialog, Long invokeId, Problem problem) {
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
-		RejectComponent rejectComponent = new RejectComponent(mapDialogWrapper, invokeId, problem);
+		RejectComponent rejectComponent = new RejectComponent(mapDialogWrapper, invokeId, problem, isLocalOriginated);
 		onEvent(rejectComponent.getEventTypeName(), mapDialogWrapper, rejectComponent);
 	}
 

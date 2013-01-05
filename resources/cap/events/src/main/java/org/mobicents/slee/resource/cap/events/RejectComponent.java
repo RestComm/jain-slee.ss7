@@ -36,24 +36,30 @@ public class RejectComponent extends ComponentEvent {
 	private static final String EVENT_TYPE_NAME = "ss7.cap.REJECT_COMPONENT";
 
 	protected Problem problem;
+	protected boolean isLocalOriginated;
 
 	/**
 	 * @param capDialogWrapper
 	 * @param invokeId
 	 */
-	public RejectComponent(CAPDialog cAPDialog, Long invokeId, Problem problem) {
+	public RejectComponent(CAPDialog cAPDialog, Long invokeId, Problem problem, boolean isLocalOriginated) {
 		super(cAPDialog, invokeId, EVENT_TYPE_NAME);
 		this.problem = problem;
+		this.isLocalOriginated = isLocalOriginated;
 	}
 
 	public Problem getProblem() {
 		return this.problem;
 	}
 
+	public boolean getIsLocalOriginated() {
+		return this.isLocalOriginated;
+	}
+
 	@Override
 	public String toString() {
-		return "RejectComponent [problem=" + problem + ", invokeId=" + invokeId + ", capDialogWrapper="
-				+ capDialogWrapper + "]";
+		return "RejectComponent [problem=" + problem + ", invokeId=" + invokeId + ", capDialogWrapper=" + capDialogWrapper
+				+ (this.isLocalOriginated ? ", localOriginated" : ", remoteOriginated") + "]";
 	}
 
 }

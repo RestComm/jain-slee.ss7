@@ -510,14 +510,16 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 			this.tracer.severe(String.format("Exception when trying to fire event DIALOG_UNI for received TCUniIndication=%s ", tcUniIndication), e);
 		} finally {
 			// End Activity
-			if (activityHandle != null) {
-				try {
-					this.sleeEndpoint.endActivity(activityHandle);
-				} catch (Exception e) {
-					this.tracer.severe(String.format("Exception while trying to end the Activity for Dialog=%s for received TCUniIndication=%s", wrappedDialog,
-							tcUniIndication));
-				}
-			}
+
+			// we do not end activity here because we do it by TCAP stack 
+//			if (activityHandle != null) {
+//				try {
+//					this.sleeEndpoint.endActivity(activityHandle);
+//				} catch (Exception e) {
+//					this.tracer.severe(String.format("Exception while trying to end the Activity for Dialog=%s for received TCUniIndication=%s", wrappedDialog,
+//							tcUniIndication));
+//				}
+//			}
 		}
 	}
 

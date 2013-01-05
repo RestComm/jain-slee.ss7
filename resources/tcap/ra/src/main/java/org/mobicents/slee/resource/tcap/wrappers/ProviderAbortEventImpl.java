@@ -42,9 +42,4 @@ public class ProviderAbortEventImpl extends DialogEventImpl<TCPAbortIndication> 
 		return this.wrappedComponent.getPAbortCause();
 	}
 
-	@Override
-	public boolean isLocalProviderOriginated() {
-		return this.wrappedComponent.isLocalProviderOriginated();
-	}
-
 }
