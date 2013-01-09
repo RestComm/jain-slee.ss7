@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.mobicents.servers.jainslee.ss7</groupId>
+		<artifactId>mobicents-slee-ss7</artifactId>
+		<version>2.8.0-SNAPSHOT</version>
+		<relativePath>../..</relativePath>
+	</parent>
+
+	<artifactId>mobicents-slee-ra-isup</artifactId>
+	<groupId>org.mobicents.resources</groupId>
+
+	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
+	
+
+	<properties>
+		<ss7.version>2.0.0-SNAPSHOT</ss7.version>
+		<stream.version>1.0.0.BETA1</stream.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.mobicents.protocols.ss7.isup</groupId>
+				<artifactId>isup-api</artifactId>
+				<version>${ss7.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mobicents.protocols.ss7.isup</groupId>
+				<artifactId>isup-impl</artifactId>
+				<version>${ss7.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mobicents.protocols.ss7.mtp</groupId>
+				<artifactId>mtp</artifactId>
+				<version>${ss7.version}</version>
+			</dependency>
+			<!-- Dep for M3UA -->
+			<dependency>
+				<groupId>org.mobicents.protocols.stream</groupId>
+				<artifactId>stream</artifactId>
+				<version>${stream.version}</version>
+			</dependency>
+			<dependency>
+				<artifactId>m3ua-api</artifactId>
+				<groupId>org.mobicents.protocols.ss7.m3ua</groupId>
+				<version>${ss7.version}</version>
+			</dependency>
+			<dependency>
+				<artifactId>m3ua-impl</artifactId>
+				<groupId>org.mobicents.protocols.ss7.m3ua</groupId>
+				<version>${ss7.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+	<modules>
+		<module>library</module>
+		<module>events</module>
+		<module>ratype</module>
+		<module>ra</module>
+		<module>du</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+		</profile>
+		<profile>
+			<id>maven-release</id>
+			<modules>
+			</modules>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<groupId>org.mobicents.tools</groupId>
+				<inherited>false</inherited>
+				<executions />
+				<configuration>
+					<excludePoms />
+					<classpathExcludes>
+						<exclude>xml-apis:xml-apis</exclude>
+						<exclude>jtidy:jtidy</exclude>
+					</classpathExcludes>
+					<resolveTransitiveDependencies>true</resolveTransitiveDependencies>
+					<eclipseProjectName>mobicents-slee-ra-isup</eclipseProjectName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
