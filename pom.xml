@@ -27,6 +27,7 @@
 				<module>resources/map</module>
 				<module>resources/cap</module>
 				<module>resources/tcap</module>
+				<module>resources/isup</module>
 			</modules>
 			<build>
 				<plugins>
