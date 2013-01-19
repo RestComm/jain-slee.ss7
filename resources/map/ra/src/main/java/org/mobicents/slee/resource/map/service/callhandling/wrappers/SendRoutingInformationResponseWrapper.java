@@ -50,7 +50,7 @@ import org.mobicents.protocols.ss7.map.api.service.supplementary.SSCode;
  */
 public class SendRoutingInformationResponseWrapper extends CallHandlingMessageWrapper<SendRoutingInformationResponse> implements SendRoutingInformationResponse {
 
-	private static final String EVENT_TYPE_NAME = "ss7.map.service.callhandling.SEND_ROUTING_INFORMATION_REQUEST";
+	private static final String EVENT_TYPE_NAME = "ss7.map.service.callhandling.SEND_ROUTING_INFORMATION_RESPONSE";
 
 	/**
 	 * @param mAPDialog
