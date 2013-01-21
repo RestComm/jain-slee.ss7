@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<section id="ratype_ra_interface">
+
+	<title>Resource Adaptor Interface</title>
+
+	<para>
+		The TCAP Resource Adaptor SBB Interface provides SBBs with
+		access to the TCAP objects required for creating a new, aborting, ending a Dialog and
+		sending Request/Response. It is defined as follows:
+	</para>
+	
+	<programlisting language="java">
+package org.mobicents.protocols.ss7.tcap.api;
+
+import java.io.Serializable;
+
+import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
+import org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog;
+
+public interface TCAPProvider extends Serializable {
+
+	/**
+	 * Create new structured dialog.
+	 * @param localAddress - desired local address
+	 * @param remoteAddress - initial remote address, it can change after first TCContinue. 
+	 * @return
+	 */
+	public Dialog getNewDialog(SccpAddress localAddress, SccpAddress remoteAddress) throws TCAPException;
+	/**
+	 * Create new unstructured dialog.
+	 * @param localAddress
+	 * @param remoteAddress
+	 * @return
+	 * @throws TCAPException
+	 */
+	public Dialog getNewUnstructuredDialog(SccpAddress localAddress, SccpAddress remoteAddress) throws TCAPException;
+
+	///////////////
+	// Factories //
+	///////////////
+	
+	public DialogPrimitiveFactory getDialogPrimitiveFactory();
+	public ComponentPrimitiveFactory getComponentPrimitiveFactory();
+	
+	///////////////
+	// Listeners //
+	///////////////	
+	
+	public void addTCListener(TCListener lst);
+
+	public void removeTCListener(TCListener lst);
+
+	public boolean getPreviewMode();
+}
+	
+	</programlisting>
+	<variablelist>
+		<varlistentry>
+			<term>public void addTCListener(TCListener lst);</term>
+			<listitem>
+				<para>this method is not supported. Call to it causes NotSupportedException to be thrown.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public void removeTCListener(TCListener lst);</term>
+			<listitem>
+				<para>this method is not supported. Call to it causes NotSupportedException to be thrown.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public DialogPrimitiveFactory getDialogPrimitiveFactory();</term>
+			<listitem>
+				<para>retrieves factory for creating Dialog primitives</para>
+			</listitem>
+		</varlistentry>		
+		<varlistentry>
+			<term>public ComponentPrimitiveFactory getComponentPrimitiveFactory();</term>
+			<listitem>
+				<para>retrieves factory for creating components</para>
+			</listitem>
+		</varlistentry>
+		
+		<varlistentry>
+			<term>public Dialog getNewDialog(SccpAddress localAddress, SccpAddress remoteAddress) throws TCAPException;</term>
+			<listitem>
+				<para>Creates new structured Dialog</para>
+			</listitem>
+		</varlistentry>	
+		<varlistentry>
+			<term>public Dialog getNewUnstructuredDialog(SccpAddress localAddress, SccpAddress remoteAddress) throws TCAPException;</term>
+			<listitem>
+				<para>Creates new unstructured dialog</para>
+			</listitem>
+		</varlistentry>				
+		<varlistentry>
+			<term>public boolean getPreviewMode();</term>
+			<listitem>
+				<para>Returns true if this TCAP stack is configured as preview</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+</section>

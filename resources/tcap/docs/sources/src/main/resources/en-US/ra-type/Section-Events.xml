@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<section id="ratype_events">
+	<title>Events</title>
+	<para>
+		Events represent's &THIS.RA;'s messages related to dialog and components.
+		Events are fired on <literal>Dialog</literal>. Below sections detail different type of events, 
+		depending on cause of it being fired into SLEE.
+	</para>
+
+	<section id="ratype_events_component">
+		<title>Component</title>
+		<para>
+			Below events are fired into <acronym>SLEE</acronym> when something happens with components passed in
+			<acronym>&THIS.RA;</acronym> messages.
+		</para>
+		<important>
+			<para>
+				For proper render of this table prefixes, for entries on some columns are omitted. 
+				For prefix values, for each column, please see list below: 
+			</para>
+			<variablelist>
+				<varlistentry>
+					<term>Name</term>
+					<listitem>
+						<para>ss7.tcap.</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>Event Class</term>
+					<listitem>
+						<para>org.mobicents.slee.resource.tcap.events.</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+			<para>Version for all defined events is 1.0</para>
+			<para>Vendor for all defined events is org.mobicents</para>
+			<para>
+				Spaces where introduced in <literal>Name</literal>
+				column values, to correctly render the table. Please remove them when using copy/paste.
+			</para>
+		</important>
+		<table frame="all" pgwide="1">
+			<title>Component events</title>
+			<tgroup colsep="1" 	cols="3">
+				<colspec colnum="1" colname="c0" colwidth="3*" />
+				<colspec colnum="2" colname="c3" colwidth="3*" />
+				<colspec colnum="3" colname="c6" colwidth="3*" />
+				<thead>
+					<row>
+						<entry>Name</entry>
+						<entry>Event Class</entry>
+						<entry>Comments</entry>
+					</row>
+				</thead>
+				<tbody>
+
+					<row>
+						<entry>COMPONENT_INVOKE</entry>
+						<entry>InvokeEvent</entry>
+						<entry>Fired when Invoke is received by underlying TCAP stack</entry>
+					</row>
+
+					<row>
+						<entry>COMPONENT_INVOKE_TIMEOUT</entry>
+						<entry>InvokeEvent</entry>
+						<entry>
+							Fired when locally initiated Invoke does not receive any answer for extended period of time.
+						</entry>
+					</row>
+					<row>
+						<entry>COMPONENT_REJECT</entry>
+						<entry>RejectEvent</entry>
+						<entry>Fired when remote end rejects component for some reason.</entry>
+					</row>
+					<row>
+						<entry>COMPONENT_RETURNRESULT</entry>
+						<entry>ReturnResultEvent</entry>
+						<entry>
+							Fired when remote end responded to invoke sent earlier indicating that there are more response to arrive.
+						</entry>
+					</row>		
+					<row>
+						<entry>COMPONENT_RETURNRESULT_LAST</entry>
+						<entry>ReturnResultLastEvent</entry>
+						<entry>Fired when remote end responded to invoke sent earlier indicating that this is last response.</entry>
+					</row>	
+					<row>
+						<entry>COMPONENT_RETURNERROR</entry>
+						<entry>ReturnErrorEvent</entry>
+						<entry>
+							Fired when remote peer indicates abnormal component. It indicates some protocol error in component sent
+							 from local peer.
+						</entry>
+					</row>														
+				</tbody>
+			</tgroup>
+
+		</table>
+	</section>
+	<section
+		id="ratype_events_dialog">
+		<title>Dialog</title>
+		<!-- Possibly needs to be rephrased? -->
+		<para>
+			Dialog events are fired into <acronym>SLEE</acronym>
+			to indicate basic occurrence of dialog related data.
+		</para>
+		<important>
+			<para>
+				For proper render of this table prefixes, for entries on some columns are omitted. 
+				For prefix values, for each column, please see list below: 
+			</para>
+			<variablelist>
+				<varlistentry>
+					<term>Name</term>
+					<listitem>
+						<para>ss7.tcap.</para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>Event Class</term>
+					<listitem>
+						<para>
+							org.mobicents.protocols.ss7.tcap.api.tc.dialog.
+						</para>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+			<para>Version for all defined events is 1.0</para>
+			<para>Vendor for all defined events is org.mobicents</para>
+			<para>
+				Spaces where introduced in <literal>Name</literal>
+				column values, to correctly render the table. Please remove them when using copy/paste.
+			</para>
+		</important>
+		<table frame="all" pgwide="1">
+			<title>Dialog events</title>
+			<tgroup colsep="1" cols="3">
+				<colspec colnum="1" colname="c0" colwidth="3*" />
+				<colspec colnum="2" colname="c3" colwidth="3*" />
+				<colspec colnum="3" colname="c6" colwidth="3*" />
+				
+				<thead>
+					<row>
+						<entry>Name</entry>
+						<entry>Event Class</entry>
+						<entry>Comments</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry>DIALOG_UNI</entry>
+						<entry>Dialog</entry>
+						<entry>Indicates TCAP stack received uni-direction dialog. Dialog will be released automatically</entry>
+					</row>
+
+					<row>
+						<entry>DIALOG_BEGIN</entry>
+						<entry>Dialog</entry>
+						<entry>Event indicate new Dialog is initiated by peer.</entry>
+					</row>
+
+					<row>
+						<entry>DIALOG_CONTINUE</entry>
+						<entry>Dialog</entry>
+						<entry>Event indicates continuation of existing dialog</entry>
+					</row>
+
+					<row>
+						<entry>DIALOG_END</entry>
+						<entry>Dialog</entry>
+						<entry>Event indicates peer ended dialog</entry>
+					</row>
+					
+					<row>
+						<entry>DIALOG_USERABORT</entry>
+						<entry>events.TCUserAbortIndication</entry>
+						<entry>Peer user aborted dialog</entry>
+					</row>					
+
+					<row>
+						<entry>DIALOG_PROVIDERABORT</entry>
+						<entry>events.TCPAbortIndication</entry>
+						<entry>Either local stack or peer stack aborted dialog</entry>
+					</row>
+					<row>
+						<entry>DIALOG_NOTICE</entry>
+						<entry>Dialog</entry>
+						<entry>
+							Fired when abnormal message is received within dialog. For instance when when duplicated
+							<literal>InvokeID</literal> or wrong operation is received.
+						</entry>
+					</row>
+					<row>
+						<entry>DIALOG_RELEASED</entry>
+						<entry>Dialog</entry>
+						<entry>Fired when Dialog and all the resources related to dialog are released. This is last event on this activity after which activity will end. </entry>
+					</row>	
+					<row>
+						<entry>DIALOG_TIMEOUT</entry>
+						<entry>Dialog</entry>
+						<entry>
+							Fired when dialog is about to timeout. Depending on configuration RA may sustain dialog or let it timeout. This event is fired
+							when there is no activity on dialog for extended period of time.
+						</entry>
+					</row>									
+					<row>
+						<entry>DIALOG_DELIMITER</entry>
+						<entry>Dialog</entry>
+						<entry>Indicates all the component events are fired.</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</section>
+</section>

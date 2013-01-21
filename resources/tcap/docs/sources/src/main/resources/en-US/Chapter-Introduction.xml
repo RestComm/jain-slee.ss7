@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [<!ENTITY % BOOK_ENTITIES SYSTEM "User_Guide.ent">%BOOK_ENTITIES;]>
+
+<chapter id="introduction">
+
+	<title>Introduction to &THIS.PLATFORM; JAIN SLEE &THIS.RA; Resource Adaptor</title>
+
+	<para>
+		The Transaction Capabilities Application Part (TCAP) is defined in ITU-T Recommendations Q.771-Q.775.
+		TCAP allows services at network nodes to communicate with each other using an agreed-upon set of data elements.
+		The primary purpose of TCAP is to facilitate multiple concurrent dialogs between the same sub-systems on the same machines, 
+		using Transaction IDs to differentiate these, similar to the way TCP ports facilitate multiplexing connections between 
+		the same IP addresses on the Internet.
+	</para>
+	
+	<important>
+		<para>For better understanding of TCAP read the specifications defined in <literal>ITU-T Recommendations Q.771-Q.775</literal></para>
+	</important>
+	
+	<para>This resource adaptor provides a TCAP API for JAIN SLEE applications, adapting the TCAP Stack defined in Mobicents jSS7.</para>
+</chapter>
