@@ -17,7 +17,7 @@
 		<THIS.ISSUE_TRACKER_URL>https://telestax.zendesk.com/home</THIS.ISSUE_TRACKER_URL>
 		<THIS.PACKAGE_NAME>ss7</THIS.PACKAGE_NAME>
 		<THIS.SOURCE_CODE_URL>NOT AVAILABLE</THIS.SOURCE_CODE_URL>
-		<author.email.abhayani>abhayani (at) redhat.com</author.email.abhayani>
+		<author.email.abhayani>amit(dot)bhayani (at) telestax.com</author.email.abhayani>
 	</properties>
 	
 	<build>
