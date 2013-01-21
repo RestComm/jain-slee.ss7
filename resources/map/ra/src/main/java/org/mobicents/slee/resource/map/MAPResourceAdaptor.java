@@ -522,9 +522,15 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 	}
 
 	/**
-	 * Private methods
+	 * Filters the even and returns true if the event was fired
+	 * 
+	 * @param eventName
+	 * @param handle
+	 * @param event
+	 * @param flags
+	 * @return
 	 */
-	private void fireEvent(String eventName, ActivityHandle handle, Object event, int flags) {
+	private boolean fireEvent(String eventName, ActivityHandle handle, Object event, int flags) {
 
 		FireableEventType eventID = eventIdCache.getEventId(this.resourceAdaptorContext.getEventLookupFacility(),
 				eventName);
@@ -533,6 +539,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 			if (tracer.isFineEnabled()) {
 				tracer.fine("Event " + (eventID == null ? "null" : eventID.getEventType()) + " filtered");
 			}
+			return false;
 		} else {
 
 			try {
@@ -550,6 +557,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 			} catch (FireEventException e) {
 				this.tracer.severe("Error while firing event", e);
 			}
+			return true;
 		}
 	}
 
@@ -753,18 +761,32 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 			this.tracer.fine(String.format("Rx : onDialogTimeout for DialogId=%d", mapDialog.getLocalDialogId()));
 		}
 
-//		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
-//		DialogTimeout dt = new DialogTimeout(mapDialogWrapper);
-//		onEvent(dt.getEventTypeName(), mapDialogWrapper, dt);
-
-	
 		mapDialog.keepAlive();
-		
+
 		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
-		mapDialogWrapper.startDialogTimeoutProc();
 		DialogTimeout dt = new DialogTimeout(mapDialogWrapper);
-		onEvent(dt.getEventTypeName(), mapDialogWrapper, dt,
+		
+		if (mapDialogWrapper == null) {
+			this.tracer
+					.severe(String.format("Firing %s but MAPDialogWrapper userObject is null", dt.getEventTypeName()));
+			mapDialog.release();
+			return;
+		}
+		
+		mapDialogWrapper.startDialogTimeoutProc();
+		
+		if (this.tracer.isFineEnabled()) {
+			this.tracer.fine(String.format("Firing %s for DialogId=%d", dt.getEventTypeName(), mapDialogWrapper
+					.getWrappedDialog().getLocalDialogId()));
+		}
+
+		boolean fired = fireEvent(dt.getEventTypeName(), mapDialogWrapper.getActivityHandle(), dt,
 				(EventFlags.REQUEST_PROCESSING_SUCCESSFUL_CALLBACK | EventFlags.REQUEST_PROCESSING_FAILED_CALLBACK));
+
+		if (!fired) {
+			// If event filtered out, lets release Dialog
+			mapDialogWrapper.release();
+		}
 	}
 
 	// ///////////////////////
