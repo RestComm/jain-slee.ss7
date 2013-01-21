@@ -41,6 +41,7 @@ import org.mobicents.slee.resource.cap.CAPResourceAdaptor;
 /**
  * 
  * @author sergey vetyutnev
+ * @author amit bhayani
  * 
  */
 public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog {
@@ -48,6 +49,8 @@ public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog
 	protected CAPDialogActivityHandle activityHandle;
 	protected final CAPResourceAdaptor ra;
 	protected T wrappedDialog;
+	
+	private boolean keepedTimeout;
 
 	public CAPDialogWrapper(T wrappedDialog, CAPDialogActivityHandle activityHandle, CAPResourceAdaptor ra) {
 		this.wrappedDialog = wrappedDialog;
@@ -113,9 +116,18 @@ public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog
 	}
 
 	public void keepAlive() {
-		this.wrappedDialog.keepAlive();
+//		this.wrappedDialog.keepAlive();
+		this.keepedTimeout = true;
 	}
 
+	public void startDialogTimeoutProc() {
+		this.keepedTimeout = false;
+	}
+
+	public boolean checkDialogTimeoutProcKeeped() {
+		return this.keepedTimeout;
+	}
+	
 	public void release() {
 		this.wrappedDialog.release();
 	}

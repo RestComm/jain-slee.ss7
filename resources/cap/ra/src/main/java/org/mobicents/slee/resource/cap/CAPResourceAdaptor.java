@@ -131,7 +131,6 @@ import org.mobicents.slee.resource.cap.service.sms.wrappers.CAPDialogSmsWrapper;
 import org.mobicents.slee.resource.cap.wrappers.CAPDialogWrapper;
 import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
 
-
 /**
  * 
  * @author amit bhayani
@@ -139,8 +138,8 @@ import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
  * @author sergey vetyutnev
  * 
  */
-public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, CAPServiceCircuitSwitchedCallListener, CAPServiceGprsListener,
-		CAPServiceSmsListener {
+public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, CAPServiceCircuitSwitchedCallListener,
+		CAPServiceGprsListener, CAPServiceSmsListener {
 	/**
 	 * for all events we are interested in knowing when the event failed to be
 	 * processed
@@ -204,22 +203,45 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 
 	}
 
-	public void eventProcessingFailed(ActivityHandle arg0, FireableEventType arg1, Object arg2, Address arg3,
-			ReceivableService arg4, int arg5, FailureReason arg6) {
-		// TODO Auto-generated method stub
+	public void eventProcessingFailed(ActivityHandle handle, FireableEventType eventType, Object event,
+			Address address, ReceivableService service, int flags, FailureReason reason) {
+		if (tracer.isFineEnabled())
+			tracer.fine("eventProcessingFailed:" + eventType + ":" + handle);
+		// used to inform the resource adaptor object that the specified Event
+		// could not be processed successfully by the SLEE.
 
+		if (eventType.getEventType().getName().equals(DialogTimeout.EVENT_TYPE_NAME)) {
+			CAPDialogActivityHandle dah = (CAPDialogActivityHandle) handle;
+			CAPDialogWrapper dw = dah.getActivity();
+			if (dw != null)
+				releaseDialog(dw);
+		}
 	}
 
-	public void eventProcessingSuccessful(ActivityHandle arg0, FireableEventType arg1, Object arg2, Address arg3,
-			ReceivableService arg4, int arg5) {
-		// TODO Auto-generated method stub
+	public void eventProcessingSuccessful(ActivityHandle handle, FireableEventType eventType, Object event,
+			Address address, ReceivableService service, int flags) {
 
+		if (tracer.isFineEnabled())
+			tracer.fine("eventProcessingSuccessful:" + eventType + ":" + handle);
+		// used to inform the resource adaptor object that the specified Event
+		// was processed successfully by the SLEE.
+
+		if (eventType.getEventType().getName().equals(DialogTimeout.EVENT_TYPE_NAME)) {
+			CAPDialogActivityHandle dah = (CAPDialogActivityHandle) handle;
+			CAPDialogWrapper dw = dah.getActivity();
+			if (dw != null && !dw.checkDialogTimeoutProcKeeped())
+				releaseDialog(dw);
+		}
 	}
 
 	public void eventUnreferenced(ActivityHandle arg0, FireableEventType arg1, Object arg2, Address arg3,
 			ReceivableService arg4, int arg5) {
 		// TODO Auto-generated method stub
 
+	}
+
+	private void releaseDialog(CAPDialogWrapper dw) {
+		dw.release();
 	}
 
 	public Object getActivity(ActivityHandle handle) {
@@ -373,7 +395,17 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 	/**
 	 * Private methods
 	 */
-	private void fireEvent(String eventName, ActivityHandle handle, Object event) {
+
+	/**
+	 * Filters the even and returns true if the event was fired
+	 * 
+	 * @param eventName
+	 * @param handle
+	 * @param event
+	 * @param flags
+	 * @return
+	 */
+	private boolean fireEvent(String eventName, ActivityHandle handle, Object event, int flags) {
 
 		FireableEventType eventID = eventIdCache.getEventId(this.resourceAdaptorContext.getEventLookupFacility(),
 				eventName);
@@ -382,10 +414,11 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 			if (tracer.isFineEnabled()) {
 				tracer.fine("Event " + (eventID == null ? "null" : eventID.getEventType()) + " filtered");
 			}
+			return false;
 		} else {
 
 			try {
-				sleeEndpoint.fireEvent(handle, eventID, event, address, null);
+				sleeEndpoint.fireEvent(handle, eventID, event, address, null, flags);
 			} catch (UnrecognizedActivityHandleException e) {
 				this.tracer.severe("Error while firing event", e);
 			} catch (IllegalEventException e) {
@@ -399,6 +432,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 			} catch (FireEventException e) {
 				this.tracer.severe("Error while firing event", e);
 			}
+			return true;
 		}
 	}
 
@@ -407,17 +441,21 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 	// /////////////////
 
 	private CAPDialogActivityHandle onEvent(String eventName, CAPDialogWrapper dw, CAPEvent event) {
+		return onEvent(eventName, dw, event, EventFlags.NO_FLAGS);
+	}
+
+	private CAPDialogActivityHandle onEvent(String eventName, CAPDialogWrapper dw, CAPEvent event, int flags) {
 		if (dw == null) {
 			this.tracer.severe(String.format("Firing %s but CAPDialogWrapper userObject is null", eventName));
 			return null;
 		}
 
 		if (this.tracer.isFineEnabled()) {
-			this.tracer
-					.fine(String.format("Firing %s for DialogId=%d", eventName, dw.getWrappedDialog().getLocalDialogId()));
+			this.tracer.fine(String.format("Firing %s for DialogId=%d", eventName, dw.getWrappedDialog()
+					.getLocalDialogId()));
 		}
 
-		this.fireEvent(eventName, dw.getActivityHandle(), event);
+		this.fireEvent(eventName, dw.getActivityHandle(), event, flags);
 		return dw.getActivityHandle();
 	}
 
@@ -452,14 +490,16 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 	public void onDialogProviderAbort(CAPDialog capDialog, PAbortCauseType abortCause) {
 		CAPDialogWrapper capDialogWrapper = (CAPDialogWrapper) capDialog.getUserObject();
 		DialogProviderAbort dialogProviderAbort = new DialogProviderAbort(capDialogWrapper, abortCause);
-		CAPDialogActivityHandle handle = onEvent(dialogProviderAbort.getEventTypeName(), capDialogWrapper, dialogProviderAbort);
+		CAPDialogActivityHandle handle = onEvent(dialogProviderAbort.getEventTypeName(), capDialogWrapper,
+				dialogProviderAbort);
 
 		// End Activity
 		// if (handle != null)
 		// this.sleeEndpoint.endActivity(handle);
 	}
 
-	public void onDialogUserAbort(CAPDialog capDialog, CAPGeneralAbortReason generalReason, CAPUserAbortReason userReason) {
+	public void onDialogUserAbort(CAPDialog capDialog, CAPGeneralAbortReason generalReason,
+			CAPUserAbortReason userReason) {
 		CAPDialogWrapper capDialogWrapper = (CAPDialogWrapper) capDialog.getUserObject();
 		DialogUserAbort dialogUserAbort = new DialogUserAbort(capDialogWrapper, generalReason, userReason);
 		CAPDialogActivityHandle handle = onEvent(dialogUserAbort.getEventTypeName(), capDialogWrapper, dialogUserAbort);
@@ -481,21 +521,22 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 			CAPDialogWrapper capDialogWrapper = null;
 
 			if (capDialog instanceof CAPDialogCircuitSwitchedCall) {
-				capDialogWrapper = new CAPDialogCircuitSwitchedCallWrapper((CAPDialogCircuitSwitchedCall) capDialog, activityHandle, this);
+				capDialogWrapper = new CAPDialogCircuitSwitchedCallWrapper((CAPDialogCircuitSwitchedCall) capDialog,
+						activityHandle, this);
 			} else if (capDialog instanceof CAPDialogGprs) {
 				capDialogWrapper = new CAPDialogGprsWrapper((CAPDialogGprs) capDialog, activityHandle, this);
 			} else if (capDialog instanceof CAPDialogSms) {
 				capDialogWrapper = new CAPDialogSmsWrapper((CAPDialogSms) capDialog, activityHandle, this);
 			} else {
-				this.tracer.severe(String.format("Received onDialogRequest id=%d for unknown CAPDialog class=%s", capDialog.getLocalDialogId(),
-						capDialog.getClass().getName()));
+				this.tracer.severe(String.format("Received onDialogRequest id=%d for unknown CAPDialog class=%s",
+						capDialog.getLocalDialogId(), capDialog.getClass().getName()));
 				return;
 			}
 
 			DialogRequest event = new DialogRequest(capDialogWrapper, capGprsReferenceNumber);
 			capDialog.setUserObject(capDialogWrapper);
 			this.startActivity(capDialogWrapper);
-			this.fireEvent(event.getEventTypeName(), capDialogWrapper.getActivityHandle(), event);
+			this.fireEvent(event.getEventTypeName(), capDialogWrapper.getActivityHandle(), event, EventFlags.NO_FLAGS);
 
 		} catch (Exception e) {
 			this.tracer.severe(String.format(
@@ -512,8 +553,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 
 			CAPDialogWrapper capDialogWrapper = (CAPDialogWrapper) capDialog.getUserObject();
 			DialogRelease dialogRelease = new DialogRelease(capDialogWrapper);
-			CAPDialogActivityHandle handle = onEvent(dialogRelease.getEventTypeName(), capDialogWrapper,
-					dialogRelease);
+			CAPDialogActivityHandle handle = onEvent(dialogRelease.getEventTypeName(), capDialogWrapper, dialogRelease);
 
 			// End Activity
 			this.sleeEndpoint.endActivity(handle);
@@ -531,11 +571,34 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 			this.tracer.fine(String.format("Rx : onDialogTimeout for DialogId=%d", capDialog.getLocalDialogId()));
 		}
 
+		capDialog.keepAlive();
+
 		CAPDialogWrapper capDialogWrapper = (CAPDialogWrapper) capDialog.getUserObject();
 		DialogTimeout dt = new DialogTimeout(capDialogWrapper);
-		onEvent(dt.getEventTypeName(), capDialogWrapper, dt);
-	}
 
+		if (capDialogWrapper == null) {
+			this.tracer
+					.severe(String.format("Firing %s but CAPDialogWrapper userObject is null", dt.getEventTypeName()));
+			capDialog.release();
+			return;
+		}
+
+		capDialogWrapper.startDialogTimeoutProc();
+
+		if (this.tracer.isFineEnabled()) {
+			this.tracer.fine(String.format("Firing %s for DialogId=%d", dt.getEventTypeName(), capDialogWrapper
+					.getWrappedDialog().getLocalDialogId()));
+		}
+
+		boolean fired = fireEvent(dt.getEventTypeName(), capDialogWrapper.getActivityHandle(), dt,
+				(EventFlags.REQUEST_PROCESSING_SUCCESSFUL_CALLBACK | EventFlags.REQUEST_PROCESSING_FAILED_CALLBACK));
+
+		if (!fired) {
+			// If event filtered out, lets release Dialog
+			capDialogWrapper.release();
+		}
+
+	}
 
 	// ///////////////////////
 	// Component callbacks //
@@ -563,175 +626,213 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		// TODO Auto-generated method stub
 	}
 
-
 	// ///////////////////////
 	// Service: CircuitSwitchedCall
 	// ///////////////////////
 
 	@Override
 	public void onInitialDPRequest(InitialDPRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
 		InitialDPRequestWrapper event = new InitialDPRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onRequestReportBCSMEventRequest(RequestReportBCSMEventRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		RequestReportBCSMEventRequestWrapper event = new RequestReportBCSMEventRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		RequestReportBCSMEventRequestWrapper event = new RequestReportBCSMEventRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onApplyChargingRequest(ApplyChargingRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
 		ApplyChargingRequestWrapper event = new ApplyChargingRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onEventReportBCSMRequest(EventReportBCSMRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		EventReportBCSMRequestWrapper event = new EventReportBCSMRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		EventReportBCSMRequestWrapper event = new EventReportBCSMRequestWrapper(capDialogCircuitSwitchedCallWrapper,
+				ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onContinueRequest(ContinueRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
 		ContinueRequestWrapper event = new ContinueRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onApplyChargingReportRequest(ApplyChargingReportRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		ApplyChargingReportRequestWrapper event = new ApplyChargingReportRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		ApplyChargingReportRequestWrapper event = new ApplyChargingReportRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onReleaseCallRequest(ReleaseCallRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
 		ReleaseCallRequestWrapper event = new ReleaseCallRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onConnectRequest(ConnectRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
 		ConnectRequestWrapper event = new ConnectRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onCallInformationRequestRequest(CallInformationRequestRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		CallInformationRequestRequestWrapper event = new CallInformationRequestRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		CallInformationRequestRequestWrapper event = new CallInformationRequestRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onCallInformationReportRequest(CallInformationReportRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		CallInformationReportRequestWrapper event = new CallInformationReportRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		CallInformationReportRequestWrapper event = new CallInformationReportRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onActivityTestRequest(ActivityTestRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
 		ActivityTestRequestWrapper event = new ActivityTestRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onActivityTestResponse(ActivityTestResponse ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
 		ActivityTestResponseWrapper event = new ActivityTestResponseWrapper(capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onAssistRequestInstructionsRequest(AssistRequestInstructionsRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		AssistRequestInstructionsRequestWrapper event = new AssistRequestInstructionsRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		AssistRequestInstructionsRequestWrapper event = new AssistRequestInstructionsRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onEstablishTemporaryConnectionRequest(EstablishTemporaryConnectionRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		EstablishTemporaryConnectionRequestWrapper event = new EstablishTemporaryConnectionRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		EstablishTemporaryConnectionRequestWrapper event = new EstablishTemporaryConnectionRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onDisconnectForwardConnectionRequest(DisconnectForwardConnectionRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		DisconnectForwardConnectionRequestWrapper event = new DisconnectForwardConnectionRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		DisconnectForwardConnectionRequestWrapper event = new DisconnectForwardConnectionRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onConnectToResourceRequest(ConnectToResourceRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		ConnectToResourceRequestWrapper event = new ConnectToResourceRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		ConnectToResourceRequestWrapper event = new ConnectToResourceRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onResetTimerRequest(ResetTimerRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
 		ResetTimerRequestWrapper event = new ResetTimerRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onFurnishChargingInformationRequest(FurnishChargingInformationRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		FurnishChargingInformationRequestWrapper event = new FurnishChargingInformationRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		FurnishChargingInformationRequestWrapper event = new FurnishChargingInformationRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onSendChargingInformationRequest(SendChargingInformationRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		SendChargingInformationRequestWrapper event = new SendChargingInformationRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		SendChargingInformationRequestWrapper event = new SendChargingInformationRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onSpecializedResourceReportRequest(SpecializedResourceReportRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		SpecializedResourceReportRequestWrapper event = new SpecializedResourceReportRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		SpecializedResourceReportRequestWrapper event = new SpecializedResourceReportRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onPlayAnnouncementRequest(PlayAnnouncementRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		PlayAnnouncementRequestWrapper event = new PlayAnnouncementRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		PlayAnnouncementRequestWrapper event = new PlayAnnouncementRequestWrapper(capDialogCircuitSwitchedCallWrapper,
+				ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onPromptAndCollectUserInformationRequest(PromptAndCollectUserInformationRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		PromptAndCollectUserInformationRequestWrapper event = new PromptAndCollectUserInformationRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		PromptAndCollectUserInformationRequestWrapper event = new PromptAndCollectUserInformationRequestWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onPromptAndCollectUserInformationResponse(PromptAndCollectUserInformationResponse ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
-		PromptAndCollectUserInformationResponseWrapper event = new PromptAndCollectUserInformationResponseWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
+		PromptAndCollectUserInformationResponseWrapper event = new PromptAndCollectUserInformationResponseWrapper(
+				capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
 	@Override
 	public void onCancelRequest(CancelRequest ind) {
-		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+				.getCAPDialog().getUserObject();
 		CancelRequestWrapper event = new CancelRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
