@@ -16,7 +16,7 @@
 		<THIS.ISSUE_TRACKER_URL>http://code.google.com/p/jain-slee/issues/list</THIS.ISSUE_TRACKER_URL>
 		<THIS.PACKAGE_NAME>ss7</THIS.PACKAGE_NAME>
 		<THIS.SOURCE_CODE_URL>https://code.google.com/p/jain-slee.${THIS.PACKAGE_NAME}/</THIS.SOURCE_CODE_URL>
-		<author.email.abhayani>abhayani (at) redhat.com</author.email.abhayani>		
+		<author.email.abhayani>amit(dot)bhayani (at) gmail.com</author.email.abhayani>		
 	</properties>
 	
 	<build>
