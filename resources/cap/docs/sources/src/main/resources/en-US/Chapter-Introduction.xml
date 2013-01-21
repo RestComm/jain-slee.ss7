@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [<!ENTITY % BOOK_ENTITIES SYSTEM "User_Guide.ent">%BOOK_ENTITIES;]>
+
+<chapter id="introduction">
+
+	<title>Introduction to &THIS.PLATFORM; JAIN SLEE &THIS.RA; Resource Adaptor</title>
+
+	<para>
+		The <acronym>CAMEL</acronym> (Customized Applications for Mobile network Enhanced Logic) Application Part (<acronym>CAP</acronym>) protocol is used by network operators to provide their subscribers 
+		with operator specific services even when roaming outside the HPLMN.
+		<acronym>CAP</acronym> provides services such as prepaid roaming services, fraud control, special numbers 
+		and closed user groups (e.g., office extension numbers that work everywhere).
+		CAP has been defined in four versions (phases), each of which has an accompanying specification that builds upon the previous phase.		 
+		This application layer provides a standardized set of services.
+		<acronym>CAP</acronym> uses the services of the <literal>SS7</literal>
+		network, specifically the Signaling Connection Control Part (<acronym>SCCP</acronym>) 
+		and the Transaction Capabilities Application Part (<acronym>TCAP</acronym>)
+	</para>
+	
+	<important>
+		<para>For better understanding of CA read the specifications defined in <literal>3GPP TS 22.078</literal> (service aspects) and <literal>3GPP TS 23.078</literal> (technical realization).</para>
+	</important>
+	
+	<para>This resource adaptor provides a CAP API for JAIN SLEE applications, adapting the CAP Stack defined in Mobicents jSS7.</para>
+</chapter>
