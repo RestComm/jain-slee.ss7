@@ -31,7 +31,7 @@ import org.mobicents.protocols.ss7.cap.api.CAPDialog;
  */
 public class DialogTimeout extends CAPEvent {
 
-	private static final String EVENT_TYPE_NAME = "ss7.cap.DIALOG_TIMEOUT";
+	public static final String EVENT_TYPE_NAME = "ss7.cap.DIALOG_TIMEOUT";
 
 	/**
 	 * @param capDialogWrapper
