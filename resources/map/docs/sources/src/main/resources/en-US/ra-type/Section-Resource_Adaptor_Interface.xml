@@ -31,11 +31,21 @@ public interface MAPProvider {
 
     public abstract MAPDialog getMAPDialog(Long long1);
 
-    public abstract MAPServiceSupplementary getMAPServiceSupplementary();
+	public MAPSmsTpduParameterFactory getMAPSmsTpduParameterFactory();
 
-    public abstract MAPServiceSms getMAPServiceSms();
+	public MAPServiceMobility getMAPServiceMobility();
 
-    public abstract MAPServiceLsm getMAPServiceLsm();
+	public MAPServiceCallHandling getMAPServiceCallHandling();
+
+	public MAPServiceOam getMAPServiceOam();
+
+	public MAPServicePdpContextActivation getMAPServicePdpContextActivation();
+
+	public MAPServiceSupplementary getMAPServiceSupplementary();
+	
+	public MAPServiceSms getMAPServiceSms();
+	
+	public MAPServiceLsm getMAPServiceLsm();
 
 }
 	
@@ -71,6 +81,52 @@ public interface MAPProvider {
 				<para>retrieves active dialog by its <literal>ID</literal>. </para>
 			</listitem>
 		</varlistentry>
+		
+		<varlistentry>
+			<term>public abstract MAPDialog getMAPSmsTpduParameterFactory();</term>
+			<listitem>
+				<para>retrieves factory for SMS transaction protocol data unit. This is useful for services that are based on SMS.</para>
+			</listitem>
+		</varlistentry>
+		
+		<varlistentry>
+			<term>public abstract MAPServiceMobility getMAPServiceMobility();</term>
+			<listitem>
+				<para>retrieves MAP mobility service. It is used to create mobility dialogs.</para>
+			</listitem>
+		</varlistentry>		
+		
+		<varlistentry>
+			<term>public abstract MAPServiceCallHandling getMAPServiceCallHandling();</term>
+			<listitem>
+				<para>retrieves MAP call handling service. It is used to create call handling dialogs.</para>
+			</listitem>
+		</varlistentry>		
+		
+		<varlistentry>
+			<term>public abstract MAPServiceOam getMAPServiceOam();</term>
+			<listitem>
+				<para>retrieves MAP operations and managemenet service. It is used to create OAM dialogs.</para>
+				<note>
+					<para>
+						This service is not yet implemented
+					</para>
+				</note>
+			</listitem>
+		</varlistentry>				
+		
+		<varlistentry>
+			<term>public abstract MAPServicePdpContextActivation getMAPServicePdpContextActivation()</term>
+			<listitem>
+				<para>retrieves MAP Network-Requested PDP Context Activation services.</para>
+				<note>
+					<para>
+						This service is not yet implemented
+					</para>
+				</note>
+			</listitem>
+		</varlistentry>		
+		
 		<varlistentry>
 			<term>public abstract MAPServiceSupplementary getMAPServiceSupplementary();</term>
 			<listitem>
@@ -92,6 +148,6 @@ public interface MAPProvider {
 		
 	</variablelist>
 	<note>
-		<para>As MAP stack is beeing completed, it will support more services, this list of <literal>getMAPServiceX</literal> will expand to support all implemented services.</para>
+		<para>As MAP stack is being completed, it will support more services, this list of <literal>getMAPServiceX</literal> will expand to support all implemented services.</para>
 	</note>
 </section>
