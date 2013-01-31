@@ -25,7 +25,9 @@ ehthumbs.db
 Thumbs.db
 
 # SLEE
-resources/jcc/docs/sources-mobicents/src/
-resources/jcc/docs/sources-telscale/src/
+${release.dir}
+${env.JBOSS_HOME}
+resources/cap/docs/sources-mobicents/src/
+resources/isup/docs/sources-mobicents/src/
 resources/map/docs/sources-mobicents/src/
-resources/map/docs/sources-telscale/src/
+resources/tcap/docs/sources-mobicents/src/
