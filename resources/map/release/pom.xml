@@ -11,8 +11,6 @@
 
 	<packaging>pom</packaging>
 
-	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
-
 	<profiles>
 		<profile>
 			<id>release</id>

@@ -12,8 +12,6 @@
 
 	<artifactId>mobicents-slee-ra-isup</artifactId>
 	<groupId>org.mobicents.resources</groupId>
-
-	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
 	
 
 	<properties>
@@ -69,10 +67,16 @@
 	<profiles>
 		<profile>
 			<id>release</id>
+			<modules>
+				<module>docs</module>
+				<module>release</module>
+			</modules>
 		</profile>
 		<profile>
 			<id>maven-release</id>
 			<modules>
+				<module>docs</module>
+				<module>release</module>			
 			</modules>
 		</profile>
 	</profiles>

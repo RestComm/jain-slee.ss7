@@ -8,7 +8,6 @@
 	</parent>
 	
 	<artifactId>mobicents-slee-ra-isup-du</artifactId>
-	<name>Mobicents :: Resources :: ${pom.artifactId}</name>	
 	
 	<dependencies>
 		<!-- Library -->

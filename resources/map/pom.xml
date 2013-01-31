@@ -12,8 +12,6 @@
 	<artifactId>mobicents-slee-ra-map</artifactId>
 	<groupId>org.mobicents.resources</groupId>
 
-	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
-
 	<modules>
 		<module>library</module>
 		<module>events</module>
@@ -23,7 +21,6 @@
 	</modules>
 
 	<properties>
-		<docs.profile>mobicents</docs.profile>
 		<docs.ra.name>MAP</docs.ra.name>
 		<docs.ra.dirname>MAP</docs.ra.dirname>
 		<docs.bookid>MAP</docs.bookid>

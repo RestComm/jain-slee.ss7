@@ -8,7 +8,6 @@
 	</parent>
 
 	<artifactId>mobicents-slee-ra-map-ra</artifactId>
-	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
 
 	<dependencies>
 		<dependency>

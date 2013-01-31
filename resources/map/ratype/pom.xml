@@ -8,9 +8,7 @@
 	</parent>
 	
 	<artifactId>mobicents-slee-ra-map-ratype</artifactId>
-	
-	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
-			
+				
 	<dependencies>
 		<dependency>
       		<groupId>javax.slee</groupId>

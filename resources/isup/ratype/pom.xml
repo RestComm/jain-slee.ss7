@@ -8,7 +8,6 @@
 	</parent>
 
 	<artifactId>mobicents-slee-ra-isup-ratype</artifactId>
-	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
 
 	<dependencies>
 		<dependency>
@@ -19,11 +18,6 @@
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>mobicents-slee-ra-isup-events</artifactId>
 			<version>${pom.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mobicents.protocols.ss7.isup</groupId>
-			<artifactId>isup-api</artifactId>
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

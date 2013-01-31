@@ -12,8 +12,6 @@
 	<artifactId>mobicents-slee-ra-tcap</artifactId>
 	<groupId>org.mobicents.resources</groupId>
 	
-	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
-
 	<modules>
 		<module>library</module>
 		<module>events</module>
@@ -23,7 +21,6 @@
 	</modules>
 	
 	<properties>
-		<docs.profile>mobicents</docs.profile>
 		<docs.ra.name>TCAP</docs.ra.name>
 		<docs.ra.dirname>TCAP</docs.ra.dirname>
 		<docs.bookid>TCAP</docs.bookid>
@@ -39,18 +36,14 @@
 		<profile>
 			<id>release</id>
 			<modules>
-				<!--
 				<module>docs</module>
-				-->
 				<module>release</module>
 			</modules>
 		</profile>
 		<profile>
 			<id>maven-release</id>
 			<modules>
-				<!--
 				<module>docs</module>
-				-->
 				<module>release</module>
 			</modules>
 		</profile>

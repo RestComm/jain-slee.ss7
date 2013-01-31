@@ -10,8 +10,6 @@
 
 	<artifactId>mobicents-slee-ra-cap-library</artifactId>
 
-	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
-
 	<dependencies>
 		<dependency>
 			<artifactId>asn</artifactId>

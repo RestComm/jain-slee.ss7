@@ -9,27 +9,12 @@
 	</parent>
 
 	<artifactId>mobicents-slee-ra-isup-ra</artifactId>
-	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
 
 	<dependencies>
-		<dependency>
-			<groupId>javax.slee</groupId>
-			<artifactId>jain-slee</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>mobicents-slee-ra-isup-ratype</artifactId>
 			<version>${pom.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>${pom.groupId}</groupId>
-			<artifactId>mobicents-slee-ra-isup-events</artifactId>
-			<version>${pom.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mobicents.protocols.ss7.isup</groupId>
-			<artifactId>isup-impl</artifactId>
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
