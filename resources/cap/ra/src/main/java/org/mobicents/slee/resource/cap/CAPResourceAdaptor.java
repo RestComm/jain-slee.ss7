@@ -82,8 +82,26 @@ import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.RequestRe
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ResetTimerRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SendChargingInformationRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SpecializedResourceReportRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSResponse;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.ApplyChargingGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.ApplyChargingReportGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.ApplyChargingReportGPRSResponse;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.CAPDialogGprs;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.CAPServiceGprsListener;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.CancelGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.ConnectGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.ContinueGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.EntityReleasedGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.EntityReleasedGPRSResponse;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.EventReportGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.EventReportGPRSResponse;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.FurnishChargingInformationGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.InitialDpGprsRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.ReleaseGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.RequestReportGPRSEventRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.ResetTimerGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.SendChargingInformationGPRSRequest;
 import org.mobicents.protocols.ss7.cap.api.service.sms.CAPDialogSms;
 import org.mobicents.protocols.ss7.cap.api.service.sms.CAPServiceSmsListener;
 import org.mobicents.protocols.ss7.tcap.asn.comp.PAbortCauseType;
@@ -126,7 +144,25 @@ import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.Requ
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.ResetTimerRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.SendChargingInformationRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.SpecializedResourceReportRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.ActivityTestGPRSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.ActivityTestGPRSResponseWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.ApplyChargingGPRSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.ApplyChargingReportGPRSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.ApplyChargingReportGPRSResponseWrapper;
 import org.mobicents.slee.resource.cap.service.gprs.wrappers.CAPDialogGprsWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.CancelGPRSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.ConnectGPRSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.ContinueGPRSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.EntityReleasedGPRSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.EntityReleasedGPRSResponseWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.EventReportGPRSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.EventReportGPRSResponseWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.FurnishChargingInformationGPRSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.InitialDpGprsRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.ReleaseGPRSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.RequestReportGPRSEventRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.ResetTimerGPRSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.gprs.wrappers.SendChargingInformationGPRSRequestWrapper;
 import org.mobicents.slee.resource.cap.service.sms.wrappers.CAPDialogSmsWrapper;
 import org.mobicents.slee.resource.cap.wrappers.CAPDialogWrapper;
 import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
@@ -837,4 +873,159 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
 
+	// ///////////////////////
+	// Service: GPRS
+	// ///////////////////////
+	
+	@Override
+	public void onInitialDpGprsRequest(InitialDpGprsRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		InitialDpGprsRequestWrapper event = new InitialDpGprsRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onRequestReportGPRSEventRequest(
+			RequestReportGPRSEventRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		RequestReportGPRSEventRequestWrapper event = new RequestReportGPRSEventRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onApplyChargingGPRSRequest(ApplyChargingGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		ApplyChargingGPRSRequestWrapper event = new ApplyChargingGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onEntityReleasedGPRSRequest(EntityReleasedGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		EntityReleasedGPRSRequestWrapper event = new EntityReleasedGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onEntityReleasedGPRSResponse(EntityReleasedGPRSResponse ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		EntityReleasedGPRSResponseWrapper event = new EntityReleasedGPRSResponseWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onConnectGPRSRequest(ConnectGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		ConnectGPRSRequestWrapper event = new ConnectGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onContinueGPRSRequest(ContinueGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		ContinueGPRSRequestWrapper event = new ContinueGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onReleaseGPRSRequest(ReleaseGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		ReleaseGPRSRequestWrapper event = new ReleaseGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onResetTimerGPRSRequest(ResetTimerGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		ResetTimerGPRSRequestWrapper event = new ResetTimerGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onFurnishChargingInformationGPRSRequest(
+			FurnishChargingInformationGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		FurnishChargingInformationGPRSRequestWrapper event = new FurnishChargingInformationGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onCancelGPRSRequest(CancelGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		CancelGPRSRequestWrapper event = new CancelGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onSendChargingInformationGPRSRequest(
+			SendChargingInformationGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		SendChargingInformationGPRSRequestWrapper event = new SendChargingInformationGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onApplyChargingReportGPRSRequest(
+			ApplyChargingReportGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		ApplyChargingReportGPRSRequestWrapper event = new ApplyChargingReportGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onApplyChargingReportGPRSResponse(
+			ApplyChargingReportGPRSResponse ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		ApplyChargingReportGPRSResponseWrapper event = new ApplyChargingReportGPRSResponseWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onEventReportGPRSRequest(EventReportGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		EventReportGPRSRequestWrapper event = new EventReportGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onEventReportGPRSResponse(EventReportGPRSResponse ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		EventReportGPRSResponseWrapper event = new EventReportGPRSResponseWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onActivityTestGPRSRequest(ActivityTestGPRSRequest ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		ActivityTestGPRSRequestWrapper event = new ActivityTestGPRSRequestWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+
+	@Override
+	public void onActivityTestGPRSResponse(ActivityTestGPRSResponse ind) {
+		CAPDialogGprsWrapper capDialogGprsWrapper = (CAPDialogGprsWrapper) ind
+				.getCAPDialog().getUserObject();
+		ActivityTestGPRSResponseWrapper event = new ActivityTestGPRSResponseWrapper(capDialogGprsWrapper, ind);
+		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
+	}
+	
+	
+	
 }

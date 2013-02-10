@@ -45,7 +45,7 @@ public class CAPServiceGprsWrapper implements CAPServiceGprs {
 	protected CAPProviderWrapper capProviderWrapper;
 
 	/**
-	 * @param CAPServiceCircuitSwitchedCall
+	 * @param CAPServiceGPRS
 	 */
 	public CAPServiceGprsWrapper(CAPProviderWrapper capProviderWrapper, CAPServiceGprs capServiceGprs) {
 		this.wrappedGprs = capServiceGprs;
