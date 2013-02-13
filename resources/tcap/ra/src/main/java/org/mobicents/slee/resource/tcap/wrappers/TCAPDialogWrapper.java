@@ -242,7 +242,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 
 	@Override
 	public ReentrantLock getDialogLock() {
-		return this.wrappedDialog.getDialogLock();
+		throw new UnsupportedOperationException();
 	}
 
 	/*
