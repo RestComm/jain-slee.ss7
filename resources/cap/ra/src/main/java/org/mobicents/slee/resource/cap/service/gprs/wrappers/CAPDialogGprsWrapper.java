@@ -28,8 +28,6 @@ import org.mobicents.protocols.ss7.cap.api.CAPException;
 import org.mobicents.protocols.ss7.cap.api.primitives.CAPExtensions;
 import org.mobicents.protocols.ss7.cap.api.primitives.TimeAndTimezone;
 import org.mobicents.protocols.ss7.cap.api.primitives.TimerID;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSRequest;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSResponse;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.CAPDialogGprs;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.AccessPointName;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.CAMELFCIGPRSBillingChargingCharacteristics;
@@ -159,7 +157,7 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 	public void addEntityReleasedGPRSResponse(long invokeId)
 			throws CAPException {
 		
-		this.addEntityReleasedGPRSResponse(invokeId);
+		this.wrappedDialog.addEntityReleasedGPRSResponse(invokeId);
 		
 	}
 
@@ -287,7 +285,7 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 	public void addApplyChargingReportGPRSResponse(long invokeId)
 			throws CAPException {
 		
-		this.addApplyChargingReportGPRSResponse(invokeId);
+		this.wrappedDialog.addApplyChargingReportGPRSResponse(invokeId);
 	}
 
 	@Override
@@ -311,7 +309,7 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 	@Override
 	public void addEventReportGPRSResponse(long invokeId) throws CAPException {
 		
-		this.addEventReportGPRSResponse(invokeId);
+		this.wrappedDialog.addEventReportGPRSResponse(invokeId);
 	}
 
 	@Override
@@ -327,7 +325,7 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 
 	@Override
 	public void addActivityTestGPRSResponse(long invokeId) throws CAPException {
-		this.addActivityTestGPRSResponse(invokeId);
+		this.wrappedDialog.addActivityTestGPRSResponse(invokeId);
 	}
 
 
