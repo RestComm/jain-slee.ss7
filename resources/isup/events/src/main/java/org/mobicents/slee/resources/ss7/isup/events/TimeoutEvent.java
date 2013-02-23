@@ -6,12 +6,12 @@ package org.mobicents.slee.resources.ss7.isup.events;
 import java.io.Serializable;
 
 import org.mobicents.protocols.ss7.isup.message.ISUPMessage;
-
+import org.mobicents.protocols.ss7.isup.ISUPTimeout;
 /**
  * @author baranowb
  *
  */
-public class TimeoutEvent implements Serializable {
+public class TimeoutEvent implements Serializable,ISUPTimeout {
 
 	private ISUPMessage message;
 	private int timerID;
