@@ -55,9 +55,7 @@ public class CircuitActivity implements Serializable {
 	
 	public long getTransactionKey()
 	{
-		long currValue=dpc;
-		currValue=(currValue<<14) + (long)cic;
-		return currValue;
+		return CircuitActivity.generateTransactionKey(cic, dpc);
 	}
 	
 	public static long generateTransactionKey(int cic,int dpc)
