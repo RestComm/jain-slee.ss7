@@ -33,9 +33,16 @@ public class CircuitActivity implements Serializable {
 		this.isupProvider=isupProvider;
 	}
 	
-	public void sendMessage(ISUPMessage arg0) throws ParameterException, IOException
+	public void sendMessage(ISUPMessage msg) throws ParameterException, IOException
 	{
-		this.isupProvider.sendMessage(arg0,dpc);
+	    if(msg == null ){
+	        throw new NullPointerException();
+	    }
+
+	    if(msg.getCircuitIdentificationCode() == null || msg.getCircuitIdentificationCode().getCIC() != this.cic){
+	        throw new IllegalArgumentException("Wrong CIC value!");
+	    }
+		this.isupProvider.sendMessage(msg,dpc);
 	}
 	
 	public void cancelTimer(int timerID)
