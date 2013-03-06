@@ -6,16 +6,6 @@
 package org.mobicents.slee.resources.isup.ra;
 
 import java.io.IOException;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
-import java.util.concurrent.Semaphore;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.naming.InitialContext;
@@ -37,17 +27,14 @@ import javax.slee.resource.ResourceAdaptor;
 import javax.slee.resource.ResourceAdaptorContext;
 import javax.slee.resource.SleeEndpoint;
 import javax.slee.resource.StartActivityException;
-import javax.slee.resource.ConfigProperties.Property;
 
+import org.mobicents.protocols.ss7.isup.ISUPEvent;
 import org.mobicents.protocols.ss7.isup.ISUPListener;
 import org.mobicents.protocols.ss7.isup.ISUPMessageFactory;
 import org.mobicents.protocols.ss7.isup.ISUPParameterFactory;
 import org.mobicents.protocols.ss7.isup.ISUPProvider;
-import org.mobicents.protocols.ss7.isup.ISUPStack;
-import org.mobicents.protocols.ss7.isup.ISUPEvent;
 import org.mobicents.protocols.ss7.isup.ISUPTimeoutEvent;
 import org.mobicents.protocols.ss7.isup.ParameterException;
-import org.mobicents.protocols.ss7.isup.impl.ISUPStackImpl;
 import org.mobicents.protocols.ss7.isup.message.AddressCompleteMessage;
 import org.mobicents.protocols.ss7.isup.message.AnswerMessage;
 import org.mobicents.protocols.ss7.isup.message.ApplicationTransportMessage;
@@ -94,10 +81,10 @@ import org.mobicents.protocols.ss7.isup.message.User2UserInformationMessage;
 import org.mobicents.protocols.ss7.isup.message.UserPartAvailableMessage;
 import org.mobicents.protocols.ss7.isup.message.UserPartTestMessage;
 import org.mobicents.protocols.ss7.isup.message.parameter.CauseIndicators;
-import org.mobicents.slee.resources.ss7.isup.events.TimeoutEvent;
 import org.mobicents.slee.resources.ss7.isup.events.BlockedEvent;
-import org.mobicents.slee.resources.ss7.isup.ratype.RAISUPProvider;
+import org.mobicents.slee.resources.ss7.isup.events.TimeoutEvent;
 import org.mobicents.slee.resources.ss7.isup.ratype.CircuitActivity;
+import org.mobicents.slee.resources.ss7.isup.ratype.RAISUPProvider;
 
 
 /**

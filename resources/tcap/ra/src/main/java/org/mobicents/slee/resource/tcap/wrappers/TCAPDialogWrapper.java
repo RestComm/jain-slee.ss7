@@ -22,6 +22,8 @@
 
 package org.mobicents.slee.resource.tcap.wrappers;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
 import org.mobicents.protocols.ss7.tcap.api.TCAPException;
 import org.mobicents.protocols.ss7.tcap.api.TCAPSendException;
@@ -246,6 +248,11 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 */
 	@Override
 	public Object getUserObject() {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public ReentrantLock getDialogLock() {
 		throw new UnsupportedOperationException();
 	}
 
