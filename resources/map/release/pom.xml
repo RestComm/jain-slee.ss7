@@ -4,14 +4,12 @@
 	<parent>
 		<artifactId>mobicents-slee-ra-map</artifactId>
 		<groupId>org.mobicents.resources</groupId>
-		<version>2.0.0.BETA3</version>
+		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mobicents-slee-ra-map-release</artifactId>
 
 	<packaging>pom</packaging>
-
-	<name>Mobicents :: Resources :: ${pom.artifactId}</name>
 
 	<profiles>
 		<profile>

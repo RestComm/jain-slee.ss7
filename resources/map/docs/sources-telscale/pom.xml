@@ -6,18 +6,18 @@
 	<parent>
 		<artifactId>mobicents-slee-ra-map-docs</artifactId>
 		<groupId>org.mobicents.resources</groupId>
-		<version>2.0.0.BETA3</version>
+		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 	
 	<artifactId>mobicents-slee-ra-map-docs-sources-telscale</artifactId>
 			
 	<properties>
 		<THIS.PLATFORM>Telscale</THIS.PLATFORM>
-		<JEE.PLATFORM>JBoss Enterprise Application Platform</JEE.PLATFORM>
 		<THIS.ISSUE_TRACKER_URL>https://telestax.zendesk.com/home</THIS.ISSUE_TRACKER_URL>
 		<THIS.PACKAGE_NAME>ss7</THIS.PACKAGE_NAME>
-		<THIS.SOURCE_CODE_URL>NOT AVAILABLE</THIS.SOURCE_CODE_URL>
-		<author.email.abhayani>abhayani (at) redhat.com</author.email.abhayani>
+		<JEE.PLATFORM>JBoss Application Server</JEE.PLATFORM>
+		<THIS.SOURCE_CODE_URL>https://code.google.com/p/jain-slee.ss7</THIS.SOURCE_CODE_URL>
+		<author.email.abhayani>amit(dot)bhayani (at) telestax.com</author.email.abhayani>
 	</properties>
 	
 	<build>

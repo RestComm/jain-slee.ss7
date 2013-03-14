@@ -4,23 +4,20 @@
 	<parent>
 		<groupId>org.mobicents</groupId>
 		<artifactId>mobicents-parent</artifactId>
-		<version>2.24</version>
+		<version>6.1.2.GA-TelScale</version>
 	</parent>
 	
 	<groupId>org.mobicents.servers.jainslee.ss7</groupId>
 	<artifactId>mobicents-slee-ss7</artifactId>
-	<version>2.0.0.BETA3</version>
+	<version>6.1.2-TelScale-SNAPSHOT</version>
 			
 	<packaging>pom</packaging>
-			
-	<scm>
-		<connection>scm:git:https://code.google.com/p/jain-slee.ss7/</connection>
-		<developerConnection>scm:git:https://code.google.com/p/jain-slee.ss7/</developerConnection>
-		<url>https://code.google.com/p/jain-slee.ss7/</url>
-	</scm>     
-			
-	<profiles>
-		<!-- maven release profile, add all existent modules that build properly, so pom versions are updated and artifacts released -->
+	
+	<modules>
+		<!-- modules are defined on profiles -->
+	</modules>
+		
+	<profiles>		
 		<profile>
 			<id>maven-release</id>
 			<modules>
@@ -36,21 +33,21 @@
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<preparationGoals>clean install</preparationGoals>
-						<autoVersionSubmodules>true</autoVersionSubmodules> 
 					</configuration>
 					</plugin>
 				</plugins>
 			</build>		
 		</profile>
-		<!-- binary release profile, add only modules that are included in the binary -->
 		<profile>
 			<id>release</id>
 			<modules>
-				<module>resources/map</module>				
-			</modules>
+				<module>resources/map</module>
+				<module>resources/cap</module>
+				<module>resources/tcap</module>
+			</modules>			
 		</profile>
-                <profile>
-                      <id>release-sign-artifacts</id>
+		<profile>
+                    <id>release-sign-artifacts</id>
                       <activation>
                         <property>
                           <name>performRelease</name>
@@ -90,25 +87,42 @@
                       </build>
                </profile>
 	</profiles>	
-
+		
+	<scm>
+		<connection>scm:git:https://code.google.com/p/jain-slee.ss7/</connection>
+		<developerConnection>scm:git:https://code.google.com/p/jain-slee.ss7/</developerConnection>
+		<url>https://code.google.com/p/jain-slee.ss7/</url>
+	</scm>     
 	
 	<!-- dupe info from parent, but it's only way to retrieve the parent without checkout -->
 
 	<repositories>
                 <repository>
-                        <id>mobicents-public-repository-group</id>
-                        <name>Mobicents Public Maven Repository Group</name>
-                        <url>https://oss.sonatype.org/content/groups/public</url>
-                        <layout>default</layout>
-                        <releases>
-                                <enabled>true</enabled>
-                                <updatePolicy>never</updatePolicy>
-                        </releases>
-                        <snapshots>
-                                <enabled>true</enabled>
-                                <updatePolicy>never</updatePolicy>
-                        </snapshots>
+                  <id>telscale-releases-repository</id>
+                  <name>TelScale Releases Repository</name>
+                  <url>http://telestax.artifactoryonline.com/telestax/releases</url>
+                  <releases>
+                    <enabled>true</enabled>
+                    <updatePolicy>never</updatePolicy>
+                  </releases>
+                  <snapshots>
+                    <enabled>false</enabled>
+                    <updatePolicy>never</updatePolicy>
+                  </snapshots>                            
                 </repository>
+                <repository>
+                  <id>telscale-snapshots-repository</id>
+                  <name>TelScale Snapshots Repository</name>
+                  <url>http://telestax.artifactoryonline.com/telestax/snapshots</url>
+                  <releases>
+                    <enabled>false</enabled>
+                    <updatePolicy>never</updatePolicy>
+                  </releases>
+                  <snapshots>
+                    <enabled>true</enabled>
+                    <updatePolicy>never</updatePolicy>
+                  </snapshots>                            
+                </repository>                
         </repositories>
 	
 </project>

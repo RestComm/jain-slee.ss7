@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.mobicents.servers.jainslee.ss7</groupId>
 		<artifactId>mobicents-slee-ss7</artifactId>
-		<version>2.0.0.BETA3</version>
+		<version>6.1.2-TelScale-SNAPSHOT</version>
 		<relativePath>../..</relativePath>		
 	</parent>
 	
@@ -23,7 +23,6 @@
 	</modules>
 	
 	<properties>
-		<docs.profile>mobicents</docs.profile>
 		<docs.ra.name>TCAP</docs.ra.name>
 		<docs.ra.dirname>TCAP</docs.ra.dirname>
 		<docs.bookid>TCAP</docs.bookid>
@@ -39,25 +38,21 @@
 		<profile>
 			<id>release</id>
 			<modules>
-				<!--
 				<module>docs</module>
-				-->
 				<module>release</module>
 			</modules>
 		</profile>
 		<profile>
 			<id>maven-release</id>
 			<modules>
-				<!--
 				<module>docs</module>
-				-->
 				<module>release</module>
 			</modules>
 		</profile>
 	</profiles>
 
 	
-<build>
+	<build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>

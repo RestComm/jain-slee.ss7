@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.mobicents.servers.jainslee.ss7</groupId>
 		<artifactId>mobicents-slee-ss7</artifactId>
-		<version>2.0.0.BETA3</version>
+		<version>6.1.2-TelScale-SNAPSHOT</version>
 		<relativePath>../..</relativePath>
 	</parent>
 
@@ -23,7 +23,6 @@
 	</modules>
 
 	<properties>
-		<docs.profile>mobicents</docs.profile>
 		<docs.ra.name>MAP</docs.ra.name>
 		<docs.ra.dirname>MAP</docs.ra.dirname>
 		<docs.bookid>MAP</docs.bookid>
