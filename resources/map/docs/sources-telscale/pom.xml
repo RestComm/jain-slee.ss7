@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>mobicents-slee-ra-map-docs</artifactId>
 		<groupId>org.mobicents.resources</groupId>
-		<version>6.1.2-TelScale-SNAPSHOT</version>
+		<version>6.1.2.GA-TelScale</version>
 	</parent>
 	
 	<artifactId>mobicents-slee-ra-map-docs-sources-telscale</artifactId>

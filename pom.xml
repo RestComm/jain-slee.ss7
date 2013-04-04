@@ -9,7 +9,7 @@
 	
 	<groupId>org.mobicents.servers.jainslee.ss7</groupId>
 	<artifactId>mobicents-slee-ss7</artifactId>
-	<version>6.1.2-TelScale-SNAPSHOT</version>
+	<version>6.1.2.GA-TelScale</version>
 			
 	<packaging>pom</packaging>
 	
