@@ -83,6 +83,10 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiReques
 import org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.SendIdentificationRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.SendIdentificationResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateGprsLocationRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateGprsLocationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest;
@@ -150,6 +154,10 @@ import org.mobicents.slee.resource.map.service.mobility.imei.wrappers.CheckImeiR
 import org.mobicents.slee.resource.map.service.mobility.imei.wrappers.CheckImeiResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.CancelLocationRequestWrapper;
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.CancelLocationResponseWrapper;
+import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.SendIdentificationRequestWrapper;
+import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.SendIdentificationResponseWrapper;
+import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.UpdateGprsLocationRequestWrapper;
+import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.UpdateGprsLocationResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.UpdateLocationRequestWrapper;
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.UpdateLocationResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.subscriberInformation.wrappers.AnyTimeInterrogationRequestWrapper;
@@ -848,6 +856,38 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener,
 	public void onCancelLocationResponse(CancelLocationResponse ind) {
 		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
 		CancelLocationResponseWrapper event = new CancelLocationResponseWrapper(mapDialogMobilityWrapper, ind);
+		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+	}
+
+	@Override
+	public void onSendIdentificationRequest(SendIdentificationRequest ind) {
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
+				.getUserObject();
+		SendIdentificationRequestWrapper event = new SendIdentificationRequestWrapper(mapDialogMobilityWrapper, ind);
+		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+	}
+
+	@Override
+	public void onSendIdentificationResponse(SendIdentificationResponse ind) {
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
+				.getUserObject();
+		SendIdentificationResponseWrapper event = new SendIdentificationResponseWrapper(mapDialogMobilityWrapper, ind);
+		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+	}
+
+	@Override
+	public void onUpdateGprsLocationRequest(UpdateGprsLocationRequest ind) {
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
+				.getUserObject();
+		UpdateGprsLocationRequestWrapper event = new UpdateGprsLocationRequestWrapper(mapDialogMobilityWrapper, ind);
+		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+	}
+
+	@Override
+	public void onUpdateGprsLocationResponse(UpdateGprsLocationResponse ind) {
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
+				.getUserObject();
+		UpdateGprsLocationResponseWrapper event = new UpdateGprsLocationResponseWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
