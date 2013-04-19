@@ -113,6 +113,34 @@
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationResponse</event-class-name>
 	</event-definition>
+	
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_GPRS_LOCATION_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateGprsLocationRequest</event-class-name>
+	</event-definition>	
+	
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_GPRS_LOCATION_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateGprsLocationResponse</event-class-name>
+	</event-definition>	
+	
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.locationManagement.SEND_IDENTIFICATION_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.SendIdentificationRequest</event-class-name>
+	</event-definition>		
+	
+	<event-definition>
+		<event-type-name>ss7.map.service.mobility.locationManagement.SEND_IDENTIFICATION_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.SendIdentificationResponse</event-class-name>
+	</event-definition>			
 
 	<!-- Mobility - Handover services -->
 	
