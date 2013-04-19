@@ -128,6 +128,30 @@
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
 		</event-type-ref>
+		
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_GPRS_LOCATION_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+		
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_GPRS_LOCATION_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+		
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.locationManagement.SEND_IDENTIFICATION_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>
+		
+		<event-type-ref>
+			<event-type-name>ss7.map.service.mobility.locationManagement.SEND_IDENTIFICATION_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>								
 
 		<!-- Mobility - Handover services -->
 
