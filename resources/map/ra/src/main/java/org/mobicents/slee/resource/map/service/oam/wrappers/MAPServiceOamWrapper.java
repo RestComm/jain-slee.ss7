@@ -76,22 +76,29 @@ public class MAPServiceOamWrapper implements MAPServiceOam {
 		throw new UnsupportedOperationException();
 	}
 
-	@Override
-	public MAPDialogOam createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
-			AddressString destReference) throws MAPException {
-		MAPDialogOam mapDialog = this.wrappedOam.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
-		MAPDialogOamWrapper dw = new MAPDialogOamWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
-		mapDialog.setUserObject(dw);
+    @Override
+    public MAPDialogOam createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
+            AddressString destReference, Long localTrId) throws MAPException {
 
-		try {
-			this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
-		} catch (Exception e) {
-			throw new MAPException(e);
-		}
+        MAPDialogOam mapDialog = this.wrappedOam.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
+        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
+        MAPDialogOamWrapper dw = new MAPDialogOamWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
+        mapDialog.setUserObject(dw);
 
-		return dw;
-	}
+        try {
+            this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
+        } catch (Exception e) {
+            throw new MAPException(e);
+        }
+
+        return dw;
+    }
+
+    @Override
+    public MAPDialogOam createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
+            AddressString destReference) throws MAPException {
+        return this.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, null);
+    }
 
 	public void removeMAPServiceListener(MAPServiceOamListener arg0) {
 		throw new UnsupportedOperationException();

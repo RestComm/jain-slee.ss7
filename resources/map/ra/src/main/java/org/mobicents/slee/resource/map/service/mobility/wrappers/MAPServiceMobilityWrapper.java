@@ -55,23 +55,27 @@ public class MAPServiceMobilityWrapper implements MAPServiceMobility {
 
 	}
 
-	public MAPDialogMobility createNewDialog(MAPApplicationContext mapapplicationcontext, SccpAddress sccpaddress,
-			AddressString addressstring, SccpAddress sccpaddress1, AddressString addressstring1) throws MAPException {
-		MAPDialogMobility mapDialog = this.wrappedMobility.createNewDialog(mapapplicationcontext, sccpaddress,
-				addressstring, sccpaddress1, addressstring1);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
-		MAPDialogMobilityWrapper dw = new MAPDialogMobilityWrapper(mapDialog, activityHandle,
-				this.mapProviderWrapper.getRa());
-		mapDialog.setUserObject(dw);
+    public MAPDialogMobility createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
+            AddressString destReference, Long localTrId) throws MAPException {
 
-		try {
-			this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
-		} catch (Exception e) {
-			throw new MAPException(e);
-		}
+        MAPDialogMobility mapDialog = this.wrappedMobility.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
+        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
+        MAPDialogMobilityWrapper dw = new MAPDialogMobilityWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
+        mapDialog.setUserObject(dw);
 
-		return dw;
-	}
+        try {
+            this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
+        } catch (Exception e) {
+            throw new MAPException(e);
+        }
+
+        return dw;
+    }
+
+    public MAPDialogMobility createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
+            AddressString destReference) throws MAPException {
+        return this.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, null);
+    }
 
 	public void removeMAPServiceListener(MAPServiceMobilityListener arg0) {
 		throw new UnsupportedOperationException();

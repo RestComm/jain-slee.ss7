@@ -105,25 +105,27 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsm#createNewDialog(org.mobicents.protocols.ss7.map.api.MAPApplicationContext, org.mobicents.protocols.ss7.sccp.parameter.SccpAddress, org.mobicents.protocols.ss7.map.api.primitives.AddressString, org.mobicents.protocols.ss7.sccp.parameter.SccpAddress, org.mobicents.protocols.ss7.map.api.primitives.AddressString)
-	 */
-	public MAPDialogLsm createNewDialog(MAPApplicationContext mapapplicationcontext, SccpAddress sccpaddress, AddressString addressstring,
-			SccpAddress sccpaddress1, AddressString addressstring1) throws MAPException {
+    public MAPDialogLsm createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
+            AddressString destReference, Long localTrId) throws MAPException {
 
-		MAPDialogLsm mapDialogLsm = this.wrappedLSM.createNewDialog(mapapplicationcontext, sccpaddress, addressstring, sccpaddress1, addressstring1);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialogLsm.getLocalDialogId());
-		MAPDialogLsmWrapper dw = new MAPDialogLsmWrapper(mapDialogLsm, activityHandle, this.mapProviderWrapper.getRa());
-		mapDialogLsm.setUserObject(dw);
-		
-		try {
-			this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
-		} catch (Exception e) {
-			throw new MAPException(e);
-		}
-		
-		return dw;
-	}
+        MAPDialogLsm mapDialogLsm = this.wrappedLSM.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
+        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialogLsm.getLocalDialogId());
+        MAPDialogLsmWrapper dw = new MAPDialogLsmWrapper(mapDialogLsm, activityHandle, this.mapProviderWrapper.getRa());
+        mapDialogLsm.setUserObject(dw);
+        
+        try {
+            this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
+        } catch (Exception e) {
+            throw new MAPException(e);
+        }
+        
+        return dw;
+    }
+
+    public MAPDialogLsm createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
+            AddressString destReference) throws MAPException {
+        return this.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, null);
+    }
 
 	/* (non-Javadoc)
 	 * @see org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsm#removeMAPServiceListener(org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsmListener)

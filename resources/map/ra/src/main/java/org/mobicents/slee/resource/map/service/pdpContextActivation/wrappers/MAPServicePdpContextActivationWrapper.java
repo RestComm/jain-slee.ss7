@@ -76,20 +76,27 @@ public class MAPServicePdpContextActivationWrapper implements MAPServicePdpConte
 		throw new UnsupportedOperationException();
 	}
 
+    public MAPDialogPdpContextActivation createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference,
+            SccpAddress destAddress, AddressString destReference, Long localTrId) throws MAPException {
+
+        MAPDialogPdpContextActivation mapDialog = this.wrappedPdpContextActivation.createNewDialog(appCntx, origAddress, origReference, destAddress,
+                destReference, localTrId);
+        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
+        MAPDialogPdpContextActivationWrapper dw = new MAPDialogPdpContextActivationWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
+        mapDialog.setUserObject(dw);
+
+        try {
+            this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
+        } catch (Exception e) {
+            throw new MAPException(e);
+        }
+
+        return dw;
+    }
+
 	public MAPDialogPdpContextActivation createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference,
 			SccpAddress destAddress, AddressString destReference) throws MAPException {
-		MAPDialogPdpContextActivation mapDialog = this.wrappedPdpContextActivation.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
-		MAPDialogPdpContextActivationWrapper dw = new MAPDialogPdpContextActivationWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
-		mapDialog.setUserObject(dw);
-
-		try {
-			this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
-		} catch (Exception e) {
-			throw new MAPException(e);
-		}
-
-		return dw;
+        return this.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, null);
 	}
 
 	public void removeMAPServiceListener(MAPServicePdpContextActivationListener arg0) {

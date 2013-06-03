@@ -23,6 +23,7 @@
 package org.mobicents.slee.resource.map.service.supplementary.wrappers;
 
 import org.mobicents.protocols.ss7.map.api.MAPApplicationContext;
+import org.mobicents.protocols.ss7.map.api.MAPDialog;
 import org.mobicents.protocols.ss7.map.api.MAPException;
 import org.mobicents.protocols.ss7.map.api.MAPProvider;
 import org.mobicents.protocols.ss7.map.api.dialog.ServingCheckData;
@@ -115,6 +116,25 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 
 	}
 
+    @Override
+    public MAPDialogSupplementary createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
+            AddressString destReference, Long localTrId) throws MAPException {
+
+        MAPDialogSupplementary mapDialog = this.wrappedUSSD.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
+        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
+        MAPDialogSupplementaryWrapper dw = new MAPDialogSupplementaryWrapper(mapDialog, activityHandle,
+                this.mapProviderWrapper.getRa());
+        mapDialog.setUserObject(dw);
+
+        try {
+            this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
+        } catch (Exception e) {
+            throw new MAPException(e);
+        }
+
+        return dw;
+    }
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -127,25 +147,10 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	 * org.mobicents.protocols.ss7.sccp.parameter.SccpAddress,
 	 * org.mobicents.protocols.ss7.map.api.primitives.AddressString)
 	 */
-	public MAPDialogSupplementary createNewDialog(MAPApplicationContext mapapplicationcontext, SccpAddress sccpaddress,
-			AddressString addressstring, SccpAddress sccpaddress1, AddressString addressstring1) throws MAPException {
-
-		MAPDialogSupplementary mapDialog = this.wrappedUSSD.createNewDialog(mapapplicationcontext, sccpaddress,
-				addressstring, sccpaddress1, addressstring1);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
-		MAPDialogSupplementaryWrapper dw = new MAPDialogSupplementaryWrapper(mapDialog, activityHandle,
-				this.mapProviderWrapper.getRa());
-		mapDialog.setUserObject(dw);
-
-		try {
-			this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
-		} catch (Exception e) {
-			throw new MAPException(e);
-		}
-
-		return dw;
-
-	}
+    public MAPDialogSupplementary createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
+            AddressString destReference) throws MAPException {
+        return this.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, null);
+    }
 
 	/*
 	 * (non-Javadoc)

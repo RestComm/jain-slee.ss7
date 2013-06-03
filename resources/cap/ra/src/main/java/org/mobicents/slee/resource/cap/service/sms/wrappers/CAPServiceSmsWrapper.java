@@ -71,20 +71,25 @@ public class CAPServiceSmsWrapper implements CAPServiceSms {
 		return this.wrappedSms.isActivated();
 	}
 
+    public CAPDialogSms createNewDialog(CAPApplicationContext appCntx, SccpAddress origAddress, SccpAddress destAddress, Long localTrId) throws CAPException {
+
+        CAPDialogSms capDialog = this.wrappedSms.createNewDialog(appCntx, origAddress, destAddress, localTrId);
+        CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getLocalDialogId());
+
+        CAPDialogSmsWrapper dw = new CAPDialogSmsWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
+        capDialog.setUserObject(dw);
+
+        try {
+            this.capProviderWrapper.getRa().startSuspendedActivity(dw);
+        } catch (Exception e) {
+            throw new CAPException(e);
+        }
+
+        return dw;
+    }
+
 	public CAPDialogSms createNewDialog(CAPApplicationContext appCntx, SccpAddress origAddress, SccpAddress destAddress) throws CAPException {
-		CAPDialogSms capDialog = this.wrappedSms.createNewDialog(appCntx, origAddress, destAddress);
-		CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getLocalDialogId());
-
-		CAPDialogSmsWrapper dw = new CAPDialogSmsWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
-		capDialog.setUserObject(dw);
-
-		try {
-			this.capProviderWrapper.getRa().startSuspendedActivity(dw);
-		} catch (Exception e) {
-			throw new CAPException(e);
-		}
-
-		return dw;
+        return this.createNewDialog(appCntx, origAddress, destAddress, null);
 	}
 
 	public void addCAPServiceListener(CAPServiceSmsListener capServiceListener) {

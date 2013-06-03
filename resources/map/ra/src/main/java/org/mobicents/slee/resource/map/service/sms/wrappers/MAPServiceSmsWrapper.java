@@ -122,23 +122,28 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	 * org.mobicents.protocols.ss7.sccp.parameter.SccpAddress,
 	 * org.mobicents.protocols.ss7.map.api.primitives.AddressString)
 	 */
-	public MAPDialogSmsWrapper createNewDialog(MAPApplicationContext mapapplicationcontext, SccpAddress sccpaddress,
-			AddressString addressstring, SccpAddress sccpaddress1, AddressString addressstring1) throws MAPException {
-		MAPDialogSms mapDialog = this.wrappedSMS.createNewDialog(mapapplicationcontext, sccpaddress, addressstring,
-				sccpaddress1, addressstring1);
-		MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
-
-		MAPDialogSmsWrapper dw = new MAPDialogSmsWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
-		mapDialog.setUserObject(dw);
-
-		try {
-			this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
-		} catch (Exception e) {
-			throw new MAPException(e);
-		}
-
-		return dw;
+	public MAPDialogSms createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
+            AddressString destReference) throws MAPException {
+        return this.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, null);
 	}
+
+    @Override
+    public MAPDialogSms createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
+            AddressString destReference, Long localTrId) throws MAPException {
+        MAPDialogSms mapDialog = this.wrappedSMS.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
+        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
+
+        MAPDialogSmsWrapper dw = new MAPDialogSmsWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
+        mapDialog.setUserObject(dw);
+
+        try {
+            this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
+        } catch (Exception e) {
+            throw new MAPException(e);
+        }
+
+        return dw;
+    }
 
 	/*
 	 * (non-Javadoc)

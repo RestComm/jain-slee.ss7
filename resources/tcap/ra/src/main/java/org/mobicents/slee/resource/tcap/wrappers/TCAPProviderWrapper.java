@@ -91,20 +91,12 @@ public class TCAPProviderWrapper implements TCAPProvider {
 		return this.wrappedProvider.getDialogPrimitiveFactory();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCAPProvider#getNewDialog(org.mobicents
-	 * .protocols.ss7.sccp.parameter.SccpAddress,
-	 * org.mobicents.protocols.ss7.sccp.parameter.SccpAddress)
-	 */
 	@Override
-	public Dialog getNewDialog(SccpAddress localAddress, SccpAddress remoteAddress) throws TCAPException {
+	public Dialog getNewDialog(SccpAddress localAddress, SccpAddress remoteAddress, Long trId) throws TCAPException {
 		if (this.wrappedProvider == null) {
 			throw new IllegalStateException("RA is has not been activated.");
 		}
-		Dialog wrappedDialog = this.wrappedProvider.getNewDialog(localAddress, remoteAddress);
+		Dialog wrappedDialog = this.wrappedProvider.getNewDialog(localAddress, remoteAddress, trId);
 
 		TCAPDialogActivityHandle activityHanlde = new TCAPDialogActivityHandle(wrappedDialog.getLocalDialogId());
 		TCAPDialogWrapper dialogWrapper = new TCAPDialogWrapper(activityHanlde, this.ra, wrappedDialog);
@@ -118,6 +110,19 @@ public class TCAPProviderWrapper implements TCAPProvider {
 		wrappedDialog.setUserObject(dialogWrapper);
 		return dialogWrapper;
 	}
+
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.mobicents.protocols.ss7.tcap.api.TCAPProvider#getNewDialog(org.mobicents
+     * .protocols.ss7.sccp.parameter.SccpAddress,
+     * org.mobicents.protocols.ss7.sccp.parameter.SccpAddress)
+     */
+    @Override
+    public Dialog getNewDialog(SccpAddress localAddress, SccpAddress remoteAddress) throws TCAPException {
+        return getNewDialog(localAddress, remoteAddress, null);
+    }
 
 	/*
 	 * (non-Javadoc)

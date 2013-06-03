@@ -72,20 +72,27 @@ public class CAPServiceCircuitSwitchedCallWrapper implements CAPServiceCircuitSw
 		return this.wrappedCircuitSwitchedCall.isActivated();
 	}
 
+    @Override
+    public CAPDialogCircuitSwitchedCall createNewDialog(CAPApplicationContext appCntx, SccpAddress origAddress, SccpAddress destAddress, Long localTrId)
+            throws CAPException {
+
+        CAPDialogCircuitSwitchedCall capDialog = this.wrappedCircuitSwitchedCall.createNewDialog(appCntx, origAddress, destAddress, localTrId);
+        CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getLocalDialogId());
+
+        CAPDialogCircuitSwitchedCallWrapper dw = new CAPDialogCircuitSwitchedCallWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
+        capDialog.setUserObject(dw);
+
+        try {
+            this.capProviderWrapper.getRa().startSuspendedActivity(dw);
+        } catch (Exception e) {
+            throw new CAPException(e);
+        }
+
+        return dw;
+    }
+
 	public CAPDialogCircuitSwitchedCall createNewDialog(CAPApplicationContext appCntx, SccpAddress origAddress, SccpAddress destAddress) throws CAPException {
-		CAPDialogCircuitSwitchedCall capDialog = this.wrappedCircuitSwitchedCall.createNewDialog(appCntx, origAddress, destAddress);
-		CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getLocalDialogId());
-
-		CAPDialogCircuitSwitchedCallWrapper dw = new CAPDialogCircuitSwitchedCallWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
-		capDialog.setUserObject(dw);
-
-		try {
-			this.capProviderWrapper.getRa().startSuspendedActivity(dw);
-		} catch (Exception e) {
-			throw new CAPException(e);
-		}
-
-		return dw;
+        return this.createNewDialog(appCntx, origAddress, destAddress, null);
 	}
 
 	public void addCAPServiceListener(CAPServiceCircuitSwitchedCallListener capServiceListener) {
