@@ -20,25 +20,26 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.mobicents.slee.resource.cap.service.gprs.wrappers;
+package org.mobicents.slee.resource.cap.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.sms.ContinueSMSRequest;
 
 /**
  * 
- * @author Lasith Waruna Perera
+ * @author sergey vetyutnev
  * 
  */
-public class ActivityTestGPRSRequestWrapper  extends GprsMessageWrapper<ActivityTestGPRSRequest> implements ActivityTestGPRSRequest {
+public class ContinueSMSRequestWrapper extends SmsMessageWrapper<ContinueSMSRequest> implements ContinueSMSRequest {
 
-	private static final String EVENT_TYPE_NAME = "ss7.cap.service.gprs.ACTIVITY_TEST_GPRS_REQUEST";
+    private static final String EVENT_TYPE_NAME = "ss7.cap.service.sms.CONTINUE_SMS_REQUEST";
 
-	public ActivityTestGPRSRequestWrapper(CAPDialogGprsWrapper capDialog, ActivityTestGPRSRequest req) {
-		super(capDialog, EVENT_TYPE_NAME, req);
-	}
+    public ContinueSMSRequestWrapper(CAPDialogSmsWrapper capDialog, ContinueSMSRequest req) {
+        super(capDialog, EVENT_TYPE_NAME, req);
+    }
 
     @Override
     public String toString() {
-        return "ActivityTestGPRSRequestWrapper [wrapped=" + this.wrappedEvent + "]";
+        return "ContinueSMSRequestWrapper [wrapped=" + this.wrappedEvent + "]";
     }
+
 }

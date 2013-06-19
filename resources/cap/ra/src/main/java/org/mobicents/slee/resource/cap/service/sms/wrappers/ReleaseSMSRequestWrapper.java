@@ -20,25 +20,32 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.mobicents.slee.resource.cap.service.gprs.wrappers;
+package org.mobicents.slee.resource.cap.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.sms.ReleaseSMSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.RPCause;
 
 /**
  * 
- * @author Lasith Waruna Perera
+ * @author sergey vetyutnev
  * 
  */
-public class ActivityTestGPRSRequestWrapper  extends GprsMessageWrapper<ActivityTestGPRSRequest> implements ActivityTestGPRSRequest {
+public class ReleaseSMSRequestWrapper extends SmsMessageWrapper<ReleaseSMSRequest> implements ReleaseSMSRequest {
 
-	private static final String EVENT_TYPE_NAME = "ss7.cap.service.gprs.ACTIVITY_TEST_GPRS_REQUEST";
+    private static final String EVENT_TYPE_NAME = "ss7.cap.service.sms.RELEASE_SMS_REQUEST";
 
-	public ActivityTestGPRSRequestWrapper(CAPDialogGprsWrapper capDialog, ActivityTestGPRSRequest req) {
-		super(capDialog, EVENT_TYPE_NAME, req);
-	}
+    public ReleaseSMSRequestWrapper(CAPDialogSmsWrapper capDialog, ReleaseSMSRequest req) {
+        super(capDialog, EVENT_TYPE_NAME, req);
+    }
+
+    @Override
+    public RPCause getRPCause() {
+        return this.wrappedEvent.getRPCause();
+    }
 
     @Override
     public String toString() {
-        return "ActivityTestGPRSRequestWrapper [wrapped=" + this.wrappedEvent + "]";
+        return "ConnectSMSRequestWrapper [wrapped=" + this.wrappedEvent + "]";
     }
+
 }

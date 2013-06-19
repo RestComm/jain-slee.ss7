@@ -104,6 +104,14 @@ import org.mobicents.protocols.ss7.cap.api.service.gprs.ResetTimerGPRSRequest;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.SendChargingInformationGPRSRequest;
 import org.mobicents.protocols.ss7.cap.api.service.sms.CAPDialogSms;
 import org.mobicents.protocols.ss7.cap.api.service.sms.CAPServiceSmsListener;
+import org.mobicents.protocols.ss7.cap.api.service.sms.ConnectSMSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.sms.ContinueSMSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.sms.EventReportSMSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.sms.FurnishChargingInformationSMSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.sms.InitialDPSMSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.sms.ReleaseSMSRequest;
+import org.mobicents.protocols.ss7.cap.api.service.sms.RequestReportSMSEventRequest;
+import org.mobicents.protocols.ss7.cap.api.service.sms.ResetTimerSMSRequest;
 import org.mobicents.protocols.ss7.tcap.asn.comp.PAbortCauseType;
 import org.mobicents.protocols.ss7.tcap.asn.comp.Problem;
 import org.mobicents.slee.resource.cap.events.CAPEvent;
@@ -164,6 +172,14 @@ import org.mobicents.slee.resource.cap.service.gprs.wrappers.RequestReportGPRSEv
 import org.mobicents.slee.resource.cap.service.gprs.wrappers.ResetTimerGPRSRequestWrapper;
 import org.mobicents.slee.resource.cap.service.gprs.wrappers.SendChargingInformationGPRSRequestWrapper;
 import org.mobicents.slee.resource.cap.service.sms.wrappers.CAPDialogSmsWrapper;
+import org.mobicents.slee.resource.cap.service.sms.wrappers.ConnectSMSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.sms.wrappers.ContinueSMSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.sms.wrappers.EventReportSMSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.sms.wrappers.FurnishChargingInformationSMSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.sms.wrappers.InitialDPSMSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.sms.wrappers.ReleaseSMSRequestWrapper;
+import org.mobicents.slee.resource.cap.service.sms.wrappers.RequestReportSMSEventRequestWrapper;
+import org.mobicents.slee.resource.cap.service.sms.wrappers.ResetTimerSMSRequestWrapper;
 import org.mobicents.slee.resource.cap.wrappers.CAPDialogWrapper;
 import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
 
@@ -1025,7 +1041,66 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		ActivityTestGPRSResponseWrapper event = new ActivityTestGPRSResponseWrapper(capDialogGprsWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogGprsWrapper, event);
 	}
-	
-	
-	
+
+    // ///////////////////////
+    // Service: SMS
+    // ///////////////////////
+    
+
+    @Override
+    public void onConnectSMSRequest(ConnectSMSRequest ind) {
+        CAPDialogSmsWrapper capDialogSmsWrapper = (CAPDialogSmsWrapper) ind.getCAPDialog().getUserObject();
+        ConnectSMSRequestWrapper event = new ConnectSMSRequestWrapper(capDialogSmsWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
+    }
+
+    @Override
+    public void onEventReportSMSRequest(EventReportSMSRequest ind) {
+        CAPDialogSmsWrapper capDialogSmsWrapper = (CAPDialogSmsWrapper) ind.getCAPDialog().getUserObject();
+        EventReportSMSRequestWrapper event = new EventReportSMSRequestWrapper(capDialogSmsWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
+    }
+
+    @Override
+    public void onFurnishChargingInformationSMSRequest(FurnishChargingInformationSMSRequest ind) {
+        CAPDialogSmsWrapper capDialogSmsWrapper = (CAPDialogSmsWrapper) ind.getCAPDialog().getUserObject();
+        FurnishChargingInformationSMSRequestWrapper event = new FurnishChargingInformationSMSRequestWrapper(capDialogSmsWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
+    }
+
+    @Override
+    public void onInitialDPSMSRequest(InitialDPSMSRequest ind) {
+        CAPDialogSmsWrapper capDialogSmsWrapper = (CAPDialogSmsWrapper) ind.getCAPDialog().getUserObject();
+        InitialDPSMSRequestWrapper event = new InitialDPSMSRequestWrapper(capDialogSmsWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
+    }
+
+    @Override
+    public void onReleaseSMSRequest(ReleaseSMSRequest ind) {
+        CAPDialogSmsWrapper capDialogSmsWrapper = (CAPDialogSmsWrapper) ind.getCAPDialog().getUserObject();
+        ReleaseSMSRequestWrapper event = new ReleaseSMSRequestWrapper(capDialogSmsWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
+    }
+
+    @Override
+    public void onRequestReportSMSEventRequest(RequestReportSMSEventRequest ind) {
+        CAPDialogSmsWrapper capDialogSmsWrapper = (CAPDialogSmsWrapper) ind.getCAPDialog().getUserObject();
+        RequestReportSMSEventRequestWrapper event = new RequestReportSMSEventRequestWrapper(capDialogSmsWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
+    }
+
+    @Override
+    public void onResetTimerSMSRequest(ResetTimerSMSRequest ind) {
+        CAPDialogSmsWrapper capDialogSmsWrapper = (CAPDialogSmsWrapper) ind.getCAPDialog().getUserObject();
+        ResetTimerSMSRequestWrapper event = new ResetTimerSMSRequestWrapper(capDialogSmsWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
+    }
+
+    @Override
+    public void onContinueSMSRequest(ContinueSMSRequest ind) {
+        CAPDialogSmsWrapper capDialogSmsWrapper = (CAPDialogSmsWrapper) ind.getCAPDialog().getUserObject();
+        ContinueSMSRequestWrapper event = new ContinueSMSRequestWrapper(capDialogSmsWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
+    }
+
 }

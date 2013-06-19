@@ -374,6 +374,64 @@
 			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.SendChargingInformationGPRSRequest</event-class-name>
 		</event-definition>
 
+    <!-- SMS Service -->
+
+        <event-definition>
+            <event-type-name>ss7.cap.service.sms.CONNECT_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.ConnectSMSRequest</event-class-name>
+        </event-definition>
+
+        <event-definition>
+            <event-type-name>ss7.cap.service.sms.CONTINUE_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.ContinueSMSRequest</event-class-name>
+        </event-definition>
+
+        <event-definition>
+            <event-type-name>ss7.cap.service.sms.EVENT_REPORT_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.EventReportSMSRequest</event-class-name>
+        </event-definition>
+
+        <event-definition>
+            <event-type-name>ss7.cap.service.sms.FURNISH_CHARGING_INFORMATION_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.FurnishChargingInformationSMSRequest</event-class-name>
+        </event-definition>
+
+        <event-definition>
+            <event-type-name>ss7.cap.service.sms.INITIAL_DP_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.InitialDPSMSRequest</event-class-name>
+        </event-definition>
+
+        <event-definition>
+            <event-type-name>ss7.cap.service.sms.RELEASE_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.ReleaseSMSRequest</event-class-name>
+        </event-definition>
+
+        <event-definition>
+            <event-type-name>ss7.cap.service.sms.REQUEST_REPORT_SMS_EVENT_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.RequestReportSMSEventRequest</event-class-name>
+        </event-definition>
+
+        <event-definition>
+            <event-type-name>ss7.cap.service.sms.RESET_TIMER_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.ResetTimerSMSRequest</event-class-name>
+        </event-definition>
+
 	<!-- Component events -->
 	<event-definition>
 		<event-type-name>ss7.cap.INVOKE_TIMEOUT</event-type-name>

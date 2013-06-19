@@ -354,7 +354,60 @@
 		</event-type-ref>
 		
 		<!--  END GPRS SERVICE -->
-		
+
+       
+        <!-- SMS Service -->
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.sms.CONNECT_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.sms.CONTINUE_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.sms.EVENT_REPORT_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.sms.FURNISH_CHARGING_INFORMATION_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.sms.INITIAL_DP_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.sms.RELEASE_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.sms.REQUEST_REPORT_SMS_EVENT_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.sms.RESET_TIMER_SMS_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <!--  END SMS SERVICE -->
+
 
 		<!-- Component stuff -->
 		<event-type-ref>

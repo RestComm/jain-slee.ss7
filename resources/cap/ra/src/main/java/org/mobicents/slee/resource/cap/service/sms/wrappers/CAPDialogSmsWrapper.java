@@ -22,7 +22,33 @@
 
 package org.mobicents.slee.resource.cap.service.sms.wrappers;
 
+import java.util.ArrayList;
+
+import org.mobicents.protocols.ss7.cap.api.CAPException;
+import org.mobicents.protocols.ss7.cap.api.primitives.CAPExtensions;
+import org.mobicents.protocols.ss7.cap.api.primitives.CalledPartyBCDNumber;
+import org.mobicents.protocols.ss7.cap.api.primitives.TimeAndTimezone;
+import org.mobicents.protocols.ss7.cap.api.primitives.TimerID;
 import org.mobicents.protocols.ss7.cap.api.service.sms.CAPDialogSms;
+import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.EventSpecificInformationSMS;
+import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.EventTypeSMS;
+import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.FCIBCCCAMELsequence1SMS;
+import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.RPCause;
+import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.SMSAddressString;
+import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.SMSEvent;
+import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.TPDataCodingScheme;
+import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.TPProtocolIdentifier;
+import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.TPShortMessageSpecificInfo;
+import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.TPValidityPeriod;
+import org.mobicents.protocols.ss7.inap.api.primitives.MiscCallInfo;
+import org.mobicents.protocols.ss7.map.api.primitives.IMEI;
+import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
+import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.mobicents.protocols.ss7.map.api.service.callhandling.CallReferenceNumber;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.GPRSMSClass;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.LocationInformation;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.LocationInformationGPRS;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.MSClassmark2;
 import org.mobicents.slee.resource.cap.CAPDialogActivityHandle;
 import org.mobicents.slee.resource.cap.CAPResourceAdaptor;
 import org.mobicents.slee.resource.cap.wrappers.CAPDialogWrapper;
@@ -43,9 +69,110 @@ public class CAPDialogSmsWrapper extends CAPDialogWrapper<CAPDialogSms> implemen
 		return this.wrappedDialog;
 	}
 
-	@Override
-	public String toString() {
-		return "CAPDialogSmsWrapper [wrappedDialog=" + wrappedDialog + "]";
-	}
+    @Override
+    public Long addConnectSMSRequest(SMSAddressString callingPartysNumber, CalledPartyBCDNumber destinationSubscriberNumber, ISDNAddressString smscAddress,
+            CAPExtensions extensions) throws CAPException {
+        return this.wrappedDialog.addConnectSMSRequest(callingPartysNumber, destinationSubscriberNumber, smscAddress, extensions);
+    }
+
+    @Override
+    public Long addConnectSMSRequest(int customInvokeTimeout, SMSAddressString callingPartysNumber, CalledPartyBCDNumber destinationSubscriberNumber,
+            ISDNAddressString smscAddress, CAPExtensions extensions) throws CAPException {
+        return this.wrappedDialog.addConnectSMSRequest(customInvokeTimeout, callingPartysNumber, destinationSubscriberNumber, smscAddress, extensions);
+    }
+
+    @Override
+    public Long addEventReportSMSRequest(EventTypeSMS eventTypeSMS, EventSpecificInformationSMS eventSpecificInformationSMS, MiscCallInfo miscCallInfo,
+            CAPExtensions extensions) throws CAPException {
+        return this.wrappedDialog.addEventReportSMSRequest(eventTypeSMS, eventSpecificInformationSMS, miscCallInfo, extensions);
+    }
+
+    @Override
+    public Long addEventReportSMSRequest(int customInvokeTimeout, EventTypeSMS eventTypeSMS, EventSpecificInformationSMS eventSpecificInformationSMS,
+            MiscCallInfo miscCallInfo, CAPExtensions extensions) throws CAPException {
+        return this.wrappedDialog.addEventReportSMSRequest(customInvokeTimeout, eventTypeSMS, eventSpecificInformationSMS, miscCallInfo, extensions);
+    }
+
+    @Override
+    public Long addFurnishChargingInformationSMSRequest(FCIBCCCAMELsequence1SMS fciBCCCAMELsequence1) throws CAPException {
+        return this.wrappedDialog.addFurnishChargingInformationSMSRequest(fciBCCCAMELsequence1);
+    }
+
+    @Override
+    public Long addFurnishChargingInformationSMSRequest(int customInvokeTimeout, FCIBCCCAMELsequence1SMS fciBCCCAMELsequence1) throws CAPException {
+        return this.wrappedDialog.addFurnishChargingInformationSMSRequest(customInvokeTimeout, fciBCCCAMELsequence1);
+    }
+
+    @Override
+    public Long addInitialDPSMSRequest(int serviceKey, CalledPartyBCDNumber destinationSubscriberNumber, SMSAddressString callingPartyNumber,
+            EventTypeSMS eventTypeSMS, IMSI imsi, LocationInformation locationInformationMSC, LocationInformationGPRS locationInformationGPRS,
+            ISDNAddressString smscCAddress, TimeAndTimezone timeAndTimezone, TPShortMessageSpecificInfo tPShortMessageSpecificInfo,
+            TPProtocolIdentifier tPProtocolIdentifier, TPDataCodingScheme tPDataCodingScheme, TPValidityPeriod tPValidityPeriod, CAPExtensions extensions,
+            CallReferenceNumber smsReferenceNumber, ISDNAddressString mscAddress, ISDNAddressString sgsnNumber, MSClassmark2 mSClassmark2,
+            GPRSMSClass gprsMSClass, IMEI imei, ISDNAddressString calledPartyNumber) throws CAPException {
+        return this.wrappedDialog.addInitialDPSMSRequest(serviceKey, destinationSubscriberNumber, callingPartyNumber, eventTypeSMS, imsi,
+                locationInformationMSC, locationInformationGPRS, smscCAddress, timeAndTimezone, tPShortMessageSpecificInfo, tPProtocolIdentifier,
+                tPDataCodingScheme, tPValidityPeriod, extensions, smsReferenceNumber, mscAddress, sgsnNumber, mSClassmark2, gprsMSClass, imei,
+                calledPartyNumber);
+    }
+
+    @Override
+    public Long addInitialDPSMSRequest(int customInvokeTimeout, int serviceKey, CalledPartyBCDNumber destinationSubscriberNumber,
+            SMSAddressString callingPartyNumber, EventTypeSMS eventTypeSMS, IMSI imsi, LocationInformation locationInformationMSC,
+            LocationInformationGPRS locationInformationGPRS, ISDNAddressString smscCAddress, TimeAndTimezone timeAndTimezone,
+            TPShortMessageSpecificInfo tPShortMessageSpecificInfo, TPProtocolIdentifier tPProtocolIdentifier, TPDataCodingScheme tPDataCodingScheme,
+            TPValidityPeriod tPValidityPeriod, CAPExtensions extensions, CallReferenceNumber smsReferenceNumber, ISDNAddressString mscAddress,
+            ISDNAddressString sgsnNumber, MSClassmark2 mSClassmark2, GPRSMSClass gprsMSClass, IMEI imei, ISDNAddressString calledPartyNumber)
+            throws CAPException {
+        return this.wrappedDialog.addInitialDPSMSRequest(customInvokeTimeout, serviceKey, destinationSubscriberNumber, callingPartyNumber, eventTypeSMS, imsi,
+                locationInformationMSC, locationInformationGPRS, smscCAddress, timeAndTimezone, tPShortMessageSpecificInfo, tPProtocolIdentifier,
+                tPDataCodingScheme, tPValidityPeriod, extensions, smsReferenceNumber, mscAddress, sgsnNumber, mSClassmark2, gprsMSClass, imei,
+                calledPartyNumber);
+    }
+
+    @Override
+    public Long addReleaseSMSRequest(RPCause rpCause) throws CAPException {
+        return this.wrappedDialog.addReleaseSMSRequest(rpCause);
+    }
+
+    @Override
+    public Long addReleaseSMSRequest(int customInvokeTimeout, RPCause rpCause) throws CAPException {
+        return this.wrappedDialog.addReleaseSMSRequest(customInvokeTimeout, rpCause);
+    }
+
+    @Override
+    public Long addRequestReportSMSEventRequest(ArrayList<SMSEvent> smsEvents, CAPExtensions extensions) throws CAPException {
+        return this.wrappedDialog.addRequestReportSMSEventRequest(smsEvents, extensions);
+    }
+
+    @Override
+    public Long addRequestReportSMSEventRequest(int customInvokeTimeout, ArrayList<SMSEvent> smsEvents, CAPExtensions extensions) throws CAPException {
+        return this.wrappedDialog.addRequestReportSMSEventRequest(customInvokeTimeout, smsEvents, extensions);
+    }
+
+    @Override
+    public Long addResetTimerSMSRequest(TimerID timerID, int timerValue, CAPExtensions extensions) throws CAPException {
+        return this.wrappedDialog.addResetTimerSMSRequest(timerID, timerValue, extensions);
+    }
+
+    @Override
+    public Long addResetTimerSMSRequest(int customInvokeTimeout, TimerID timerID, int timerValue, CAPExtensions extensions) throws CAPException {
+        return this.wrappedDialog.addResetTimerSMSRequest(customInvokeTimeout, timerID, timerValue, extensions);
+    }
+
+    @Override
+    public Long addContinueSMSRequest() throws CAPException {
+        return this.wrappedDialog.addContinueSMSRequest();
+    }
+
+    @Override
+    public Long addContinueSMSRequest(int customInvokeTimeout) throws CAPException {
+        return this.wrappedDialog.addContinueSMSRequest(customInvokeTimeout);
+    }
+
+    @Override
+    public String toString() {
+        return "CAPDialogSmsWrapper [wrappedDialog=" + wrappedDialog + "]";
+    }
 
 }
