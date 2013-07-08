@@ -29,7 +29,7 @@
 		<docs.bookid>MAP</docs.bookid>
 
 		<ss7.version>2.0.0-SNAPSHOT</ss7.version>
-		<asn.version>2.0.1.FINAL</asn.version>
+		<asn.version>2.0.2.FINAL</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
 
 		<javolution.version>5.5.1</javolution.version>
