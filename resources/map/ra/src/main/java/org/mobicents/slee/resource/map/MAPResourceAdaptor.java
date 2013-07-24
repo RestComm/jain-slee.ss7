@@ -83,6 +83,8 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiReques
 import org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.PurgeMSRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.PurgeMSResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.SendIdentificationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.SendIdentificationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateGprsLocationRequest;
@@ -154,6 +156,8 @@ import org.mobicents.slee.resource.map.service.mobility.imei.wrappers.CheckImeiR
 import org.mobicents.slee.resource.map.service.mobility.imei.wrappers.CheckImeiResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.CancelLocationRequestWrapper;
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.CancelLocationResponseWrapper;
+import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.PurgeMSRequestWrapper;
+import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.PurgeMSResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.SendIdentificationRequestWrapper;
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.SendIdentificationResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers.UpdateGprsLocationRequestWrapper;
@@ -884,6 +888,20 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		SendIdentificationResponseWrapper event = new SendIdentificationResponseWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
+
+    @Override
+    public void onPurgeMSRequest(PurgeMSRequest ind) {
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+        PurgeMSRequestWrapper event = new PurgeMSRequestWrapper(mapDialogMobilityWrapper, ind);
+        onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+    }
+
+    @Override
+    public void onPurgeMSResponse(PurgeMSResponse ind) {
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+        PurgeMSResponseWrapper event = new PurgeMSResponseWrapper(mapDialogMobilityWrapper, ind);
+        onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+    }
 
 	@Override
 	public void onUpdateGprsLocationRequest(UpdateGprsLocationRequest ind) {

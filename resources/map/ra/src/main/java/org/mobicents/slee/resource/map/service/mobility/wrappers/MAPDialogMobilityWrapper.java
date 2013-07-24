@@ -345,17 +345,35 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 		this.wrappedDialog.addSendIdentificationResponse(invokeId, imsi, authenticationSetList, currentSecurityContext, extensionContainer);
 	}
 
-	@Override
-	public Long addUpdateGprsLocationRequest(int customInvokeTimeout, IMSI imsi, ISDNAddressString sgsnNumber, GSNAddress sgsnAddress,
-			MAPExtensionContainer extensionContainer, SGSNCapability sgsnCapability, boolean informPreviousNetworkEntity, boolean psLCSNotSupportedByUE,
-			GSNAddress vGmlcAddress, ADDInfo addInfo, EPSInfo epsInfo, boolean servingNodeTypeIndicator, boolean skipSubscriberDataUpdate,
-			UsedRATType usedRATType, boolean gprsSubscriptionDataNotNeeded, boolean nodeTypeIndicator, boolean areaRestricted, boolean ueReachableIndicator,
-			boolean epsSubscriptionDataNotNeeded, UESRVCCCapability uesrvccCapability) throws MAPException {
-		return this.wrappedDialog.addUpdateGprsLocationRequest(customInvokeTimeout, imsi, sgsnNumber, sgsnAddress, extensionContainer, sgsnCapability,
-				informPreviousNetworkEntity, psLCSNotSupportedByUE, vGmlcAddress, addInfo, epsInfo, servingNodeTypeIndicator, skipSubscriberDataUpdate,
-				usedRATType, gprsSubscriptionDataNotNeeded, nodeTypeIndicator, areaRestricted, ueReachableIndicator, epsSubscriptionDataNotNeeded,
-				uesrvccCapability);
-	}
+    @Override
+    public Long addPurgeMSRequest(int customInvokeTimeout, IMSI imsi, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber,
+            MAPExtensionContainer extensionContainer) throws MAPException {
+        return this.wrappedDialog.addPurgeMSRequest(customInvokeTimeout, imsi, vlrNumber, sgsnNumber, extensionContainer);
+    }
+
+    @Override
+    public Long addPurgeMSRequest(IMSI imsi, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber, MAPExtensionContainer extensionContainer)
+            throws MAPException {
+        return this.wrappedDialog.addPurgeMSRequest(imsi, vlrNumber, sgsnNumber, extensionContainer);
+    }
+
+    @Override
+    public void addPurgeMSResponse(long invokeId, boolean freezeTMSI, boolean freezePTMSI, MAPExtensionContainer extensionContainer, boolean freezeMTMSI)
+            throws MAPException {
+        this.wrappedDialog.addPurgeMSResponse(invokeId, freezeTMSI, freezePTMSI, extensionContainer, freezeMTMSI);
+    }
+
+    @Override
+    public Long addUpdateGprsLocationRequest(int customInvokeTimeout, IMSI imsi, ISDNAddressString sgsnNumber, GSNAddress sgsnAddress,
+            MAPExtensionContainer extensionContainer, SGSNCapability sgsnCapability, boolean informPreviousNetworkEntity, boolean psLCSNotSupportedByUE,
+            GSNAddress vGmlcAddress, ADDInfo addInfo, EPSInfo epsInfo, boolean servingNodeTypeIndicator, boolean skipSubscriberDataUpdate,
+            UsedRATType usedRATType, boolean gprsSubscriptionDataNotNeeded, boolean nodeTypeIndicator, boolean areaRestricted, boolean ueReachableIndicator,
+            boolean epsSubscriptionDataNotNeeded, UESRVCCCapability uesrvccCapability) throws MAPException {
+        return this.wrappedDialog.addUpdateGprsLocationRequest(customInvokeTimeout, imsi, sgsnNumber, sgsnAddress, extensionContainer, sgsnCapability,
+                informPreviousNetworkEntity, psLCSNotSupportedByUE, vGmlcAddress, addInfo, epsInfo, servingNodeTypeIndicator, skipSubscriberDataUpdate,
+                usedRATType, gprsSubscriptionDataNotNeeded, nodeTypeIndicator, areaRestricted, ueReachableIndicator, epsSubscriptionDataNotNeeded,
+                uesrvccCapability);
+    }
 
 	@Override
 	public Long addUpdateGprsLocationRequest(IMSI imsi, ISDNAddressString sgsnNumber, GSNAddress sgsnAddress, MAPExtensionContainer extensionContainer,
