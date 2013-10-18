@@ -69,11 +69,19 @@ import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CancelReq
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectToResourceRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ContinueRequest;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ContinueWithArgumentRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectForwardConnectionRequest;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectForwardConnectionWithArgumentRequest;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectLegRequest;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectLegResponse;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.EstablishTemporaryConnectionRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.EventReportBCSMRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.FurnishChargingInformationRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitialDPRequest;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitiateCallAttemptRequest;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitiateCallAttemptResponse;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.MoveLegRequest;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.MoveLegResponse;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PlayAnnouncementRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PromptAndCollectUserInformationRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PromptAndCollectUserInformationResponse;
@@ -139,11 +147,19 @@ import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.Canc
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.ConnectRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.ConnectToResourceRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.ContinueRequestWrapper;
+import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.ContinueWithArgumentRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.DisconnectForwardConnectionRequestWrapper;
+import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.DisconnectForwardConnectionWithArgumentRequestWrapper;
+import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.DisconnectLegRequestWrapper;
+import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.DisconnectLegResponseWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.EstablishTemporaryConnectionRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.EventReportBCSMRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.FurnishChargingInformationRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.InitialDPRequestWrapper;
+import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.InitiateCallAttemptRequestWrapper;
+import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.InitiateCallAttemptResponseWrapper;
+import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.MoveLegRequestWrapper;
+import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.MoveLegResponseWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.PlayAnnouncementRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.PromptAndCollectUserInformationRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.PromptAndCollectUserInformationResponseWrapper;
@@ -888,6 +904,63 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		CancelRequestWrapper event = new CancelRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
 		onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
 	}
+
+    @Override
+    public void onContinueWithArgumentRequest(ContinueWithArgumentRequest ind) {
+        CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+        ContinueWithArgumentRequestWrapper event = new ContinueWithArgumentRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
+    }
+
+    @Override
+    public void onDisconnectLegRequest(DisconnectLegRequest ind) {
+        CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+        DisconnectLegRequestWrapper event = new DisconnectLegRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
+    }
+
+    @Override
+    public void onDisconnectLegResponse(DisconnectLegResponse ind) {
+        CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+        DisconnectLegResponseWrapper event = new DisconnectLegResponseWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
+    }
+
+    @Override
+    public void onDisconnectForwardConnectionWithArgumentRequest(DisconnectForwardConnectionWithArgumentRequest ind) {
+        CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+        DisconnectForwardConnectionWithArgumentRequestWrapper event = new DisconnectForwardConnectionWithArgumentRequestWrapper(
+                capDialogCircuitSwitchedCallWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
+    }
+
+    @Override
+    public void onInitiateCallAttemptRequest(InitiateCallAttemptRequest ind) {
+        CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+        InitiateCallAttemptRequestWrapper event = new InitiateCallAttemptRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
+    }
+
+    @Override
+    public void onInitiateCallAttemptResponse(InitiateCallAttemptResponse ind) {
+        CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+        InitiateCallAttemptResponseWrapper event = new InitiateCallAttemptResponseWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
+    }
+
+    @Override
+    public void onMoveLegRequest(MoveLegRequest ind) {
+        CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+        MoveLegRequestWrapper event = new MoveLegRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
+    }
+
+    @Override
+    public void onMoveLegResponse(MoveLegResponse ind) {
+        CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+        MoveLegResponseWrapper event = new MoveLegResponseWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
+    }
 
 	// ///////////////////////
 	// Service: GPRS

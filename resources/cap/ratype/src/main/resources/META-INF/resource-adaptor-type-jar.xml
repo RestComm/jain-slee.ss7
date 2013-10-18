@@ -242,7 +242,55 @@
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
 		</event-type-ref>
-		
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.circuitSwitchedCall.CONTINUE_WITH_ARGUMENT_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.circuitSwitchedCall.DISCONNECT_FORWARD_CONNECTION_WITH_ARGUMENT_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.circuitSwitchedCall.DISCONNECT_LEG_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.circuitSwitchedCall.DISCONNECT_LEG_RESPONSE</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.circuitSwitchedCall.INITIATE_CALL_ATTEMPT_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.circuitSwitchedCall.INITIATE_CALL_ATTEMPT_RESPONSE</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.circuitSwitchedCall.MOVE_LEG_REQUEST</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
+        <event-type-ref>
+            <event-type-name>ss7.cap.service.circuitSwitchedCall.MOVE_LEG_RESPONSE</event-type-name>
+            <event-type-vendor>org.mobicents</event-type-vendor>
+            <event-type-version>1.0</event-type-version>
+        </event-type-ref>
+
 		<!-- GPRS Service -->
 		
 		<event-type-ref>
