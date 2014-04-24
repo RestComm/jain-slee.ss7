@@ -77,7 +77,7 @@ import org.mobicents.protocols.ss7.isup.message.SuspendMessage;
 import org.mobicents.protocols.ss7.isup.message.UnblockingAckMessage;
 import org.mobicents.protocols.ss7.isup.message.UnblockingMessage;
 import org.mobicents.protocols.ss7.isup.message.UnequippedCICMessage;
-import org.mobicents.protocols.ss7.isup.message.User2UserInformationMessage;
+import org.mobicents.protocols.ss7.isup.message.UserToUserInformationMessage;
 import org.mobicents.protocols.ss7.isup.message.UserPartAvailableMessage;
 import org.mobicents.protocols.ss7.isup.message.UserPartTestMessage;
 import org.mobicents.protocols.ss7.isup.message.parameter.CauseIndicators;
@@ -450,7 +450,7 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 		case UnequippedCICMessage.MESSAGE_CODE:
 			eventName = "UNEQUIPPED_CIC";
 			break;
-		case User2UserInformationMessage.MESSAGE_CODE:
+		case UserToUserInformationMessage.MESSAGE_CODE:
 			eventName = "USER_TO_USER_INFORMATION";
 			break;
 		case UserPartAvailableMessage.MESSAGE_CODE:

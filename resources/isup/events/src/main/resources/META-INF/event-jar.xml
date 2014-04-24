@@ -315,7 +315,7 @@
 		<event-type-name>net.java.slee.resource.isup.USER_TO_USER_INFORMATION</event-type-name>
 		<event-type-vendor>net.java</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.isup.message.User2UserInformationMessage</event-class-name>
+		<event-class-name>org.mobicents.protocols.ss7.isup.message.UserToUserInformationMessage</event-class-name>
 	</event-definition>
 
 	<event-definition>
