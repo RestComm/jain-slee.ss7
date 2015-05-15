@@ -57,7 +57,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	 */
 	@Override
 	public Long getLinkedId() {
-		return this.wrappedComponent.getInvokeId();
+		return this.wrappedComponent.getLinkedId();
 	}
 
 	/*
