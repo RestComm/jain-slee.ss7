@@ -331,6 +331,7 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 		// 3. fire
 		//ActivityHandle handle = createActivityHandle(tx);
 		String eventName = null;
+		int code = CircuitActivity.CALL_SESSION;
 		switch(event.getMessage().getMessageType().getCode())
 		{
 		case AnswerMessage.MESSAGE_CODE:
@@ -343,10 +344,12 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 			eventName = "ADDRESS_COMPLETE";
 			break;
 		case BlockingMessage.MESSAGE_CODE:
+			code = CircuitActivity.MAINTENANCE;
 			eventName = "BLOCKING";
 			break;
 			
 		case BlockingAckMessage.MESSAGE_CODE:
+			code = CircuitActivity.MAINTENANCE;
 			eventName = "BLOCKING_ACK";
 			break;
 		case CallProgressMessage.MESSAGE_CODE:
@@ -356,9 +359,11 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 			eventName = "CHARGE_INFORMATION";
 			break;
 		case CircuitGroupBlockingMessage.MESSAGE_CODE:
+			code = CircuitActivity.MAINTENANCE;
 			eventName = "CIRCUIT_GROUP_BLOCKING";
 			break;
 		case CircuitGroupBlockingAckMessage.MESSAGE_CODE:
+			code = CircuitActivity.MAINTENANCE;
 			eventName = "CIRCUIT_GROUP_BLOCKING_ACK";
 			break;
 		case CircuitGroupQueryMessage.MESSAGE_CODE:
@@ -368,15 +373,19 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 			eventName = "CIRCUIT_GROUP_QUERY_RESPONSE";
 			break;
 		case CircuitGroupResetMessage.MESSAGE_CODE:
+			code = CircuitActivity.MAINTENANCE;
 			eventName = "CIRCUIT_GROUP_RESET";
 			break;
 		case CircuitGroupResetAckMessage.MESSAGE_CODE:
+			code = CircuitActivity.MAINTENANCE;
 			eventName = "CIRCUIT_GROUP_RESET_ACK";
 			break;
 		case CircuitGroupUnblockingMessage.MESSAGE_CODE:
+			code = CircuitActivity.MAINTENANCE;
 			eventName = "CIRCUIT_GROUP_UNBLOCKING";
 			break;
 		case CircuitGroupUnblockingAckMessage.MESSAGE_CODE:
+			code = CircuitActivity.MAINTENANCE;
 			eventName = "CIRCUIT_GROUP_UNBLOCKING_ACK";
 			break;
 		case ConnectMessage.MESSAGE_CODE:
@@ -431,6 +440,7 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 			eventName = "RELEASE";
 			break;
 		case ResetCircuitMessage.MESSAGE_CODE:
+			code = CircuitActivity.MAINTENANCE;
 			eventName = "RESET_CIRCUIT";
 			break;
 		case ResumeMessage.MESSAGE_CODE:
@@ -446,9 +456,11 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 			eventName = "SUSPEND";
 			break;
 		case UnblockingMessage.MESSAGE_CODE:
+			code = CircuitActivity.MAINTENANCE;
 			eventName = "UNBLOCKING";
 			break;
 		case UnblockingAckMessage.MESSAGE_CODE:
+			code = CircuitActivity.MAINTENANCE;
 			eventName = "UNBLOCKING_ACK";
 			break;
 		case UnequippedCICMessage.MESSAGE_CODE:
@@ -472,9 +484,11 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 		final FireableEventType eventType = eventTypeCache.getEventType(eventLookupFacility, eventName);        
         
         //if there is no TX, lets create STX
-		long tx=CircuitActivity.generateTransactionKey(event.getMessage().getCircuitIdentificationCode().getCIC(),event.getDpc());
+		long tx=CircuitActivity.generateTransactionKey(event.getMessage().getCircuitIdentificationCode().getCIC(),event.getDpc(), code);
 		
 		CircuitActivity ca = (CircuitActivity)getActivity(new ISUPActivityHandle(tx));
+		tracer.info("Gotten circuit activity " + ca);
+
       	if(ca == null)
 		{
       		if (eventTypeFilter.filterInitialEvent(eventType)) {
@@ -546,7 +560,12 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 	}
 	
 	public void onTimeout(ISUPTimeoutEvent event) {		
-		ActivityHandle handle=new ISUPActivityHandle(CircuitActivity.generateTransactionKey(event.getMessage().getCircuitIdentificationCode().getCIC(),event.getDpc()));
+		ActivityHandle handle=new ISUPActivityHandle(
+				CircuitActivity.generateTransactionKey(
+						event.getMessage().getCircuitIdentificationCode().getCIC(),
+						event.getDpc(),
+						CircuitActivity.getType(event.getMessage())));
+
         if(this.activities.containsKey(handle))
         {        		
                 TimeoutEvent te = new TimeoutEvent(event.getMessage(),event.getTimerId());
@@ -582,7 +601,12 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 		public CircuitActivity createCircuitActivity(ISUPMessage arg0,int dpc) throws IllegalArgumentException, ActivityAlreadyExistsException, 
 			NullPointerException, IllegalStateException, SLEEException, StartActivityException {
 				
-			ActivityHandle handle=new ISUPActivityHandle(CircuitActivity.generateTransactionKey(arg0.getCircuitIdentificationCode().getCIC(),dpc));
+			ActivityHandle handle=new ISUPActivityHandle(
+					CircuitActivity.generateTransactionKey(
+							arg0.getCircuitIdentificationCode().getCIC(),
+							dpc,
+							CircuitActivity.getType(arg0)));
+
 	        if(activities.containsKey(handle))
 	        	throw new ActivityAlreadyExistsException("Circuit activity already exists");
 	        
@@ -609,7 +633,9 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 
 		public void notifyBlockedChannel(int cic, int dpc)
 		{
-			ActivityHandle handle=new ISUPActivityHandle(CircuitActivity.generateTransactionKey(cic,dpc));
+			ActivityHandle handle=new ISUPActivityHandle(
+					CircuitActivity.generateTransactionKey(cic,dpc, CircuitActivity.CALL_SESSION));
+
 	        if(activities.containsKey(handle))
 	        {        		
 	                BlockedEvent be = new BlockedEvent(cic,dpc);
@@ -624,7 +650,9 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 		
 		public void notifyResetChannel(int cic, int dpc)
 		{
-			ActivityHandle handle=new ISUPActivityHandle(CircuitActivity.generateTransactionKey(cic,dpc));
+			ActivityHandle handle=new ISUPActivityHandle(
+					CircuitActivity.generateTransactionKey(cic,dpc, CircuitActivity.CALL_SESSION));
+
 	        if(activities.containsKey(handle))
 	        {        		
 	                BlockedEvent be = new BlockedEvent(cic,dpc);
