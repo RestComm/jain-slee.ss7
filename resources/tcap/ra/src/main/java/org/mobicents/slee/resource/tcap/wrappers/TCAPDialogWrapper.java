@@ -426,4 +426,9 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 		return ra;
 	}
 
+	@Override
+	public String toString() {
+		return this.wrappedDialog.toString();
+	}
+
 }
