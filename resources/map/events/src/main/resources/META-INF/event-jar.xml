@@ -172,7 +172,52 @@
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.authentication.SendAuthenticationInfoResponse</event-class-name>
 	</event-definition>	
+
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.authentication.AUTHENTICATION_FAILURE_REPORT_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.authentication.AuthenticationFailureReportRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.authentication.AUTHENTICATION_FAILURE_REPORT_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.authentication.AuthenticationFailureReportResponse</event-class-name>
+    </event-definition> 
+
+
+    <!-- Mobility - Fault recovery -->
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.faultRecovery.RESET_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.faultRecovery.ResetRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.faultRecovery.FORWARD_CHECK_SS_INDICATION_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.faultRecovery.ForwardCheckSSIndicationRequest</event-class-name>
+    </event-definition> 
+
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.faultRecovery.RESTORE_DATA_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.faultRecovery.RestoreDataRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.faultRecovery.RESTORE_DATA_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.faultRecovery.RestoreDataResponse</event-class-name>
+    </event-definition> 
 	
+
 	<!-- Mobility - IMEI management -->
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.imei.CHECK_IMEI_REQUEST</event-type-name>
@@ -189,38 +234,107 @@
 	</event-definition>
 
 	<!-- Mobility - Subscriber management -->
-	<event-definition>
-		<event-type-name>ss7.map.service.mobility.subscribermanagement.INSERT_SUBSCRIBER_DATA_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataRequest</event-class-name>
-	</event-definition>
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.subscribermanagement.INSERT_SUBSCRIBER_DATA_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataRequest</event-class-name>
+    </event-definition>
 
-	<event-definition>
-		<event-type-name>ss7.map.service.mobility.subscribermanagement.INSERT_SUBSCRIBER_DATA_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataResponse</event-class-name>
-	</event-definition>
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.subscribermanagement.INSERT_SUBSCRIBER_DATA_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataResponse</event-class-name>
+    </event-definition>
 
-	<!-- Mobility - Fault recovery management -->
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.subscribermanagement.DELETE_SUBSCRIBER_DATA_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.DeleteSubscriberDataRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.subscribermanagement.DELETE_SUBSCRIBER_DATA_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.DeleteSubscriberDataResponse</event-class-name>
+    </event-definition>
 
 	<!-- Mobility - Subscriber Information services -->
-	<event-definition>
-		<event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_INTERROGATION_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest</event-class-name>
-	</event-definition>
-	
-	<event-definition>
-		<event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_INTERROGATION_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationResponse</event-class-name>
-	</event-definition>		
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_INTERROGATION_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest</event-class-name>
+    </event-definition>
+    
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_INTERROGATION_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationResponse</event-class-name>
+    </event-definition>     
+
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.subscriberinfo.PROVIDE_SUBSCRIBER_INFO_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ProvideSubscriberInfoRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.subscriberinfo.PROVIDE_SUBSCRIBER_INFO_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ProvideSubscriberInfoResponse</event-class-name>
+    </event-definition>     
+
 
 	<!-- OAM -->
+    <event-definition>
+        <event-type-name>ss7.map.service.oam.SEND_IMSI_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.oam.SendImsiRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.oam.SEND_IMSI_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.oam.SendImsiResponse</event-class-name>
+    </event-definition>     
+
+    <event-definition>
+        <event-type-name>ss7.map.service.oam.ACTIVATE_TRACE_MODE_REQUEST_OAM</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.oam.ActivateTraceModeRequest_Oam</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.oam.ACTIVATE_TRACE_MODE_RESPONSE_OAM</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.oam.ActivateTraceModeResponse_Oam</event-class-name>
+    </event-definition>     
+
+    <event-definition>
+        <event-type-name>ss7.map.service.oam.ACTIVATE_TRACE_MODE_REQUEST_MOBILITY</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.oam.ActivateTraceModeRequest_Mobility</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.oam.ACTIVATE_TRACE_MODE_RESPONSE_MOBILITY</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.oam.ActivateTraceModeResponse_Mobility</event-class-name>
+    </event-definition>     
+
 
 	<!-- Call Handling -->
 	<event-definition>
@@ -250,8 +364,106 @@
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.mobicents.protocols.ss7.map.api.service.callhandling.ProvideRoamingNumberResponse</event-class-name>
 	</event-definition>
-	
+
 	<!-- Suplementary -->
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.REGISTER_SS_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.RegisterSSRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.REGISTER_SS_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.RegisterSSResponse</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.ERASE_SS_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.EraseSSRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.ERASE_SS_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.EraseSSResponse</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.ACTIVATE_SS_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.ActivateSSRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.ACTIVATE_SS_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.ActivateSSResponse</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.DEACTIVATE_SS_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.DeactivateSSRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.DEACTIVATE_SS_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.DeactivateSSResponse</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.INTERROGATE_SS_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.InterrogateSSRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.INTERROGATE_SS_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.InterrogateSSResponse</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.GET_PASSWORD_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.GetPasswordRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.GET_PASSWORD_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.GetPasswordResponse</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.REGISTER_PASSWORD_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.RegisterPasswordRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.suplementary.REGISTER_PASSWORD_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.supplementary.RegisterPasswordResponse</event-class-name>
+    </event-definition>
+
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.UNSTRUCTURED_SS_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
@@ -372,22 +584,58 @@
 		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.InformServiceCentreRequest</event-class-name>
 	</event-definition>
 
-	<event-definition>
-		<event-type-name>ss7.map.service.sms.ALERT_SERVICE_CENTER_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.AlertServiceCentreRequest</event-class-name>
-	</event-definition>
+    <event-definition>
+        <event-type-name>ss7.map.service.sms.ALERT_SERVICE_CENTER_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.AlertServiceCentreRequest</event-class-name>
+    </event-definition>
 
-	<event-definition>
-		<event-type-name>ss7.map.service.sms.ALERT_SERVICE_CENTER_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
-		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.AlertServiceCentreResponse</event-class-name>
-	</event-definition>
+    <event-definition>
+        <event-type-name>ss7.map.service.sms.ALERT_SERVICE_CENTER_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.AlertServiceCentreResponse</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.sms.READY_FOR_SM_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.ReadyForSMRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.sms.READY_FOR_SM_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.ReadyForSMResponse</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.sms.NOTE_SUBSCRIBER_PRESENT_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.sms.NoteSubscriberPresentRequest</event-class-name>
+    </event-definition>
+
 
 	<!-- Network-Requested PDP Context Activation services -->
-	
+    <event-definition>
+        <event-type-name>ss7.map.service.pdpContextActivation.SEND_ROUTING_INFO_FOR_GPRS_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.pdpContextActivation.SendRoutingInfoForGprsRequest</event-class-name>
+    </event-definition>
+
+    <event-definition>
+        <event-type-name>ss7.map.service.pdpContextActivation.SEND_ROUTING_INFO_FOR_GPRS_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.pdpContextActivation.SendRoutingInfoForGprsResponse</event-class-name>
+    </event-definition>
+
+
 	<!-- LSM -->
 	<event-definition>
 		<event-type-name>ss7.map.service.lsm.PROVIDE_SUBSCRIBER_LOCATION_REQUEST</event-type-name>

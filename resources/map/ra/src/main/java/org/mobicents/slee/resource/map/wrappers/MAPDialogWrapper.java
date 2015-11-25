@@ -146,6 +146,16 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 		throw new UnsupportedOperationException();
 	}
 
+    @Override
+    public int getNetworkId() {
+        return this.wrappedDialog.getNetworkId();
+    }
+
+    @Override
+    public void setNetworkId(int networkId) {
+        this.wrappedDialog.setNetworkId(networkId);
+    }
+
 	public void keepAlive() {
 //		this.wrappedDialog.keepAlive();
 		this.keepedTimeout = true;

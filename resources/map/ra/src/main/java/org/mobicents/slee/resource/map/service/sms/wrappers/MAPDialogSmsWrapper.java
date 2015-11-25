@@ -1,3 +1,25 @@
+/*
+ * TeleStax, Open Source Cloud Communications  Copyright 2012.
+ * and individual contributors
+ * by the @authors tag. See the copyright.txt in the distribution for a
+ * full listing of individual contributors.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+ */
+
 package org.mobicents.slee.resource.map.service.sms.wrappers;
 
 import org.mobicents.protocols.ss7.map.api.MAPException;
@@ -6,6 +28,7 @@ import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.TeleserviceCode;
+import org.mobicents.protocols.ss7.map.api.service.sms.AlertReason;
 import org.mobicents.protocols.ss7.map.api.service.sms.LocationInfoWithLMSI;
 import org.mobicents.protocols.ss7.map.api.service.sms.MAPDialogSms;
 import org.mobicents.protocols.ss7.map.api.service.sms.MWStatus;
@@ -30,7 +53,18 @@ public class MAPDialogSmsWrapper extends MAPDialogWrapper<MAPDialogSms> implemen
 		super(wrappedDialog, activityHandle, ra);
 	}
 
-	public Long addAlertServiceCentreRequest(ISDNAddressString arg0, AddressString arg1) throws MAPException {
+    @Override
+    public MAPDialogSms getWrappedDialog() {
+        return this.wrappedDialog;
+    }
+
+    @Override
+    public String toString() {
+        return "MAPDialogSmsWrapper [wrappedDialog=" + wrappedDialog + "]";
+    }
+
+
+    public Long addAlertServiceCentreRequest(ISDNAddressString arg0, AddressString arg1) throws MAPException {
 		return this.wrappedDialog.addAlertServiceCentreRequest(arg0, arg1);
 	}
 
@@ -134,14 +168,32 @@ public class MAPDialogSmsWrapper extends MAPDialogWrapper<MAPDialogSms> implemen
 		this.wrappedDialog.addSendRoutingInfoForSMResponse(invokeId, imsi, locationInfoWithLMSI, extensionContainer, mwdSet);
 	}
 
-	@Override
-	public MAPDialogSms getWrappedDialog() {
-		return this.wrappedDialog;
-	}
+    @Override
+    public Long addReadyForSMRequest(IMSI imsi, AlertReason alertReason, boolean alertReasonIndicator, MAPExtensionContainer extensionContainer,
+            boolean additionalAlertReasonIndicator) throws MAPException {
+        return this.wrappedDialog.addReadyForSMRequest(imsi, alertReason, alertReasonIndicator, extensionContainer, additionalAlertReasonIndicator);
+    }
 
-	@Override
-	public String toString() {
-		return "MAPDialogSmsWrapper [wrappedDialog=" + wrappedDialog + "]";
-	}
+    @Override
+    public Long addReadyForSMRequest(int customInvokeTimeout, IMSI imsi, AlertReason alertReason, boolean alertReasonIndicator,
+            MAPExtensionContainer extensionContainer, boolean additionalAlertReasonIndicator) throws MAPException {
+        return this.wrappedDialog.addReadyForSMRequest(customInvokeTimeout, imsi, alertReason, alertReasonIndicator, extensionContainer,
+                additionalAlertReasonIndicator);
+    }
+
+    @Override
+    public void addReadyForSMResponse(long invokeId, MAPExtensionContainer extensionContainer) throws MAPException {
+        this.wrappedDialog.addReadyForSMResponse(invokeId, extensionContainer);
+    }
+
+    @Override
+    public Long addNoteSubscriberPresentRequest(IMSI imsi) throws MAPException {
+        return this.wrappedDialog.addNoteSubscriberPresentRequest(imsi);
+    }
+
+    @Override
+    public Long addNoteSubscriberPresentRequest(int customInvokeTimeout, IMSI imsi) throws MAPException {
+        return this.wrappedDialog.addNoteSubscriberPresentRequest(customInvokeTimeout, imsi);
+    }
 
 }

@@ -118,7 +118,8 @@
 						<xincludeSupported>true</xincludeSupported>
 						<!-- needed for uri-resolvers; can be ommitted if using 'current' uri scheme -->
 						<!-- could also locate the docbook dependency and inspect its version... -->
-						<docbookVersion>1.72.0</docbookVersion>					
+						<docbookVersion>1.72.0</docbookVersion>
+						<injectionDateFormat>dd/MM/yyy</injectionDateFormat>					
 					</options>		
 				</configuration>			
 			</plugin>

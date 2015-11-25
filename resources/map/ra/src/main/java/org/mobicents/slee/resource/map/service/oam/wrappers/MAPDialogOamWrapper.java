@@ -22,7 +22,21 @@
 
 package org.mobicents.slee.resource.map.service.oam.wrappers;
 
+import org.mobicents.protocols.ss7.map.api.MAPException;
+import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
+import org.mobicents.protocols.ss7.map.api.primitives.GSNAddress;
+import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
+import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.map.api.service.oam.MAPDialogOam;
+import org.mobicents.protocols.ss7.map.api.service.oam.MDTConfiguration;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceDepthList;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceEventList;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceInterfaceList;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceNETypeList;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceReference;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceReference2;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceType;
 import org.mobicents.slee.resource.map.MAPDialogActivityHandle;
 import org.mobicents.slee.resource.map.MAPResourceAdaptor;
 import org.mobicents.slee.resource.map.wrappers.MAPDialogWrapper;
@@ -43,5 +57,44 @@ public class MAPDialogOamWrapper extends MAPDialogWrapper<MAPDialogOam> implemen
 	public MAPDialogOam getWrappedDialog() {
 		return this.wrappedDialog;
 	}
+
+
+	@Override
+    public Long addSendImsiRequest(ISDNAddressString msisdn) throws MAPException {
+        return this.wrappedDialog.addSendImsiRequest(msisdn);
+    }
+
+    @Override
+    public Long addSendImsiRequest(int customInvokeTimeout, ISDNAddressString msisdn) throws MAPException {
+        return this.wrappedDialog.addSendImsiRequest(customInvokeTimeout, msisdn);
+    }
+
+    @Override
+    public void addSendImsiResponse(long invokeId, IMSI imsi) throws MAPException {
+        this.wrappedDialog.addSendImsiResponse(invokeId, imsi);
+    }
+
+    @Override
+    public Long addActivateTraceModeRequest(IMSI imsi, TraceReference traceReference, TraceType traceType, AddressString omcId,
+            MAPExtensionContainer extensionContainer, TraceReference2 traceReference2, TraceDepthList traceDepthList, TraceNETypeList traceNeTypeList,
+            TraceInterfaceList traceInterfaceList, TraceEventList traceEventList, GSNAddress traceCollectionEntity, MDTConfiguration mdtConfiguration)
+            throws MAPException {
+        return this.wrappedDialog.addActivateTraceModeRequest(imsi, traceReference, traceType, omcId, extensionContainer, traceReference2, traceDepthList,
+                traceNeTypeList, traceInterfaceList, traceEventList, traceCollectionEntity, mdtConfiguration);
+    }
+
+    @Override
+    public Long addActivateTraceModeRequest(int customInvokeTimeout, IMSI imsi, TraceReference traceReference, TraceType traceType, AddressString omcId,
+            MAPExtensionContainer extensionContainer, TraceReference2 traceReference2, TraceDepthList traceDepthList, TraceNETypeList traceNeTypeList,
+            TraceInterfaceList traceInterfaceList, TraceEventList traceEventList, GSNAddress traceCollectionEntity, MDTConfiguration mdtConfiguration)
+            throws MAPException {
+        return this.wrappedDialog.addActivateTraceModeRequest(customInvokeTimeout, imsi, traceReference, traceType, omcId, extensionContainer, traceReference2,
+                traceDepthList, traceNeTypeList, traceInterfaceList, traceEventList, traceCollectionEntity, mdtConfiguration);
+    }
+
+    @Override
+    public void addActivateTraceModeResponse(long invokeId, MAPExtensionContainer extensionContainer, boolean traceSupportIndicator) throws MAPException {
+        this.wrappedDialog.addActivateTraceModeResponse(invokeId, extensionContainer, traceSupportIndicator);
+    }
 
 }

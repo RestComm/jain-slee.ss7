@@ -25,7 +25,9 @@ package org.mobicents.slee.resource.map.service.mobility.wrappers;
 import java.util.ArrayList;
 
 import org.mobicents.protocols.ss7.map.api.MAPException;
+import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.DiameterIdentity;
+import org.mobicents.protocols.ss7.map.api.primitives.EMLPPPriority;
 import org.mobicents.protocols.ss7.map.api.primitives.GSNAddress;
 import org.mobicents.protocols.ss7.map.api.primitives.IMEI;
 import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
@@ -34,13 +36,16 @@ import org.mobicents.protocols.ss7.map.api.primitives.LAIFixedLength;
 import org.mobicents.protocols.ss7.map.api.primitives.LMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.map.api.primitives.NAEAPreferredCI;
+import org.mobicents.protocols.ss7.map.api.primitives.NetworkResource;
 import org.mobicents.protocols.ss7.map.api.primitives.PlmnId;
 import org.mobicents.protocols.ss7.map.api.primitives.SubscriberIdentity;
 import org.mobicents.protocols.ss7.map.api.primitives.TMSI;
 import org.mobicents.protocols.ss7.map.api.service.mobility.MAPDialogMobility;
+import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.AccessType;
 import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.AuthenticationSetList;
 import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.CurrentSecurityContext;
 import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.EpsAuthenticationSetList;
+import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.FailureCause;
 import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.ReSynchronisationInfo;
 import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.RequestingNodeType;
 import org.mobicents.protocols.ss7.map.api.service.mobility.imei.EquipmentStatus;
@@ -66,12 +71,16 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.Category;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.ChargingCharacteristics;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.EPSSubscriptionData;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.EPSSubscriptionDataWithdraw;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.ExtBasicServiceCode;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.ExtBearerServiceCode;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.ExtSSInfo;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.ExtTeleserviceCode;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.GPRSSubscriptionData;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.GPRSSubscriptionDataWithdraw;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.LCSInformation;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.LSAInformation;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.LSAInformationWithdraw;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.MCSSInfo;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.NetworkAccessMode;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.ODBData;
@@ -79,12 +88,21 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.OfferedCamel4CSIs;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.RegionalSubscriptionResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.SGSNCAMELSubscriptionInfo;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.SpecificCSIWithdraw;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.SubscriberStatus;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.SupportedCamelPhases;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.VlrCamelSubscriptionInfo;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.VoiceBroadcastData;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.VoiceGroupCallData;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.ZoneCode;
+import org.mobicents.protocols.ss7.map.api.service.oam.MDTConfiguration;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceDepthList;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceEventList;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceInterfaceList;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceNETypeList;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceReference;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceReference2;
+import org.mobicents.protocols.ss7.map.api.service.oam.TraceType;
 import org.mobicents.protocols.ss7.map.api.service.supplementary.SSCode;
 import org.mobicents.slee.resource.map.MAPDialogActivityHandle;
 import org.mobicents.slee.resource.map.MAPResourceAdaptor;
@@ -136,6 +154,26 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 		this.wrappedDialog.addSendAuthenticationInfoResponse(invokeId, authenticationSetList, extensionContainer,
 				epsAuthenticationSetList);
 	}
+
+    @Override
+    public Long addAuthenticationFailureReportRequest(IMSI imsi, FailureCause failureCause, MAPExtensionContainer extensionContainer, Boolean reAttempt,
+            AccessType accessType, byte[] rand, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber) throws MAPException {
+        return this.wrappedDialog.addAuthenticationFailureReportRequest(imsi, failureCause, extensionContainer, reAttempt, accessType, rand, vlrNumber,
+                sgsnNumber);
+    }
+
+    @Override
+    public Long addAuthenticationFailureReportRequest(int customInvokeTimeout, IMSI imsi, FailureCause failureCause, MAPExtensionContainer extensionContainer,
+            Boolean reAttempt, AccessType accessType, byte[] rand, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber) throws MAPException {
+        return this.wrappedDialog.addAuthenticationFailureReportRequest(customInvokeTimeout, imsi, failureCause, extensionContainer, reAttempt, accessType,
+                rand, vlrNumber, sgsnNumber);
+    }
+
+    @Override
+    public void addAuthenticationFailureReportResponse(long invokeId, MAPExtensionContainer extensionContainer) throws MAPException {
+        this.wrappedDialog.addAuthenticationFailureReportResponse(invokeId, extensionContainer);
+    }
+
 
 	@Override
 	public long addAnyTimeInterrogationRequest(SubscriberIdentity subscriberIdentity, RequestedInfo requestedInfo,
@@ -391,4 +429,120 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 			boolean sgsnMmeSeparationSupported) throws MAPException {
 		this.wrappedDialog.addUpdateGprsLocationResponse(invokeId, hlrNumber, extensionContainer, addCapability, sgsnMmeSeparationSupported);
 	}
+
+    @Override
+    public Long addRestoreDataRequest(IMSI imsi, LMSI lmsi, VLRCapability vlrCapability, MAPExtensionContainer extensionContainer, boolean restorationIndicator)
+            throws MAPException {
+        return this.wrappedDialog.addRestoreDataRequest(imsi, lmsi, vlrCapability, extensionContainer, restorationIndicator);
+    }
+
+    @Override
+    public Long addRestoreDataRequest(int customInvokeTimeout, IMSI imsi, LMSI lmsi, VLRCapability vlrCapability, MAPExtensionContainer extensionContainer,
+            boolean restorationIndicator) throws MAPException {
+        return this.wrappedDialog.addRestoreDataRequest(customInvokeTimeout, imsi, lmsi, vlrCapability, extensionContainer, restorationIndicator);
+    }
+
+    @Override
+    public void addRestoreDataResponse(long invokeId, ISDNAddressString hlrNumber, boolean msNotReachable, MAPExtensionContainer extensionContainer)
+            throws MAPException {
+        this.wrappedDialog.addRestoreDataResponse(invokeId, hlrNumber, msNotReachable, extensionContainer);
+    }
+
+    @Override
+    public Long addResetRequest(NetworkResource networkResource, ISDNAddressString hlrNumber, ArrayList<IMSI> hlrList) throws MAPException {
+        return this.wrappedDialog.addResetRequest(networkResource, hlrNumber, hlrList);
+    }
+
+    @Override
+    public Long addResetRequest(int customInvokeTimeout, NetworkResource networkResource, ISDNAddressString hlrNumber, ArrayList<IMSI> hlrList)
+            throws MAPException {
+        return this.wrappedDialog.addResetRequest(customInvokeTimeout, networkResource, hlrNumber, hlrList);
+    }
+
+    @Override
+    public Long addForwardCheckSSIndicationRequest() throws MAPException {
+        return this.wrappedDialog.addForwardCheckSSIndicationRequest();
+    }
+
+    @Override
+    public Long addForwardCheckSSIndicationRequest(int customInvokeTimeout) throws MAPException {
+        return this.wrappedDialog.addForwardCheckSSIndicationRequest(customInvokeTimeout);
+    }
+
+    @Override
+    public long addProvideSubscriberInfoRequest(IMSI imsi, LMSI lmsi, RequestedInfo requestedInfo, MAPExtensionContainer extensionContainer,
+            EMLPPPriority callPriority) throws MAPException {
+        return this.wrappedDialog.addProvideSubscriberInfoRequest(imsi, lmsi, requestedInfo, extensionContainer, callPriority);
+    }
+
+    @Override
+    public long addProvideSubscriberInfoRequest(long customInvokeTimeout, IMSI imsi, LMSI lmsi, RequestedInfo requestedInfo,
+            MAPExtensionContainer extensionContainer, EMLPPPriority callPriority) throws MAPException {
+        return this.wrappedDialog.addProvideSubscriberInfoRequest(customInvokeTimeout, imsi, lmsi, requestedInfo, extensionContainer, callPriority);
+    }
+
+    @Override
+    public void addProvideSubscriberInfoResponse(long invokeId, SubscriberInfo subscriberInfo, MAPExtensionContainer extensionContainer) throws MAPException {
+        this.wrappedDialog.addProvideSubscriberInfoResponse(invokeId, subscriberInfo, extensionContainer);
+    }
+
+    @Override
+    public Long addDeleteSubscriberDataRequest(IMSI imsi, ArrayList<ExtBasicServiceCode> basicServiceList, ArrayList<SSCode> ssList,
+            boolean roamingRestrictionDueToUnsupportedFeature, ZoneCode regionalSubscriptionIdentifier, boolean vbsGroupIndication,
+            boolean vgcsGroupIndication, boolean camelSubscriptionInfoWithdraw, MAPExtensionContainer extensionContainer,
+            GPRSSubscriptionDataWithdraw gprsSubscriptionDataWithdraw, boolean roamingRestrictedInSgsnDueToUnsuppportedFeature,
+            LSAInformationWithdraw lsaInformationWithdraw, boolean gmlcListWithdraw, boolean istInformationWithdraw, SpecificCSIWithdraw specificCSIWithdraw,
+            boolean chargingCharacteristicsWithdraw, boolean stnSrWithdraw, EPSSubscriptionDataWithdraw epsSubscriptionDataWithdraw,
+            boolean apnOiReplacementWithdraw, boolean csgSubscriptionDeleted) throws MAPException {
+        return this.wrappedDialog.addDeleteSubscriberDataRequest(imsi, basicServiceList, ssList, roamingRestrictionDueToUnsupportedFeature,
+                regionalSubscriptionIdentifier, vbsGroupIndication, vgcsGroupIndication, camelSubscriptionInfoWithdraw, extensionContainer,
+                gprsSubscriptionDataWithdraw, roamingRestrictedInSgsnDueToUnsuppportedFeature, lsaInformationWithdraw, gmlcListWithdraw,
+                istInformationWithdraw, specificCSIWithdraw, chargingCharacteristicsWithdraw, stnSrWithdraw, epsSubscriptionDataWithdraw,
+                apnOiReplacementWithdraw, csgSubscriptionDeleted);
+    }
+
+    @Override
+    public Long addDeleteSubscriberDataRequest(long customInvokeTimeout, IMSI imsi, ArrayList<ExtBasicServiceCode> basicServiceList, ArrayList<SSCode> ssList,
+            boolean roamingRestrictionDueToUnsupportedFeature, ZoneCode regionalSubscriptionIdentifier, boolean vbsGroupIndication,
+            boolean vgcsGroupIndication, boolean camelSubscriptionInfoWithdraw, MAPExtensionContainer extensionContainer,
+            GPRSSubscriptionDataWithdraw gprsSubscriptionDataWithdraw, boolean roamingRestrictedInSgsnDueToUnsuppportedFeature,
+            LSAInformationWithdraw lsaInformationWithdraw, boolean gmlcListWithdraw, boolean istInformationWithdraw, SpecificCSIWithdraw specificCSIWithdraw,
+            boolean chargingCharacteristicsWithdraw, boolean stnSrWithdraw, EPSSubscriptionDataWithdraw epsSubscriptionDataWithdraw,
+            boolean apnOiReplacementWithdraw, boolean csgSubscriptionDeleted) throws MAPException {
+        return this.wrappedDialog.addDeleteSubscriberDataRequest(customInvokeTimeout, imsi, basicServiceList, ssList,
+                roamingRestrictionDueToUnsupportedFeature, regionalSubscriptionIdentifier, vbsGroupIndication, vgcsGroupIndication,
+                camelSubscriptionInfoWithdraw, extensionContainer, gprsSubscriptionDataWithdraw, roamingRestrictedInSgsnDueToUnsuppportedFeature,
+                lsaInformationWithdraw, gmlcListWithdraw, istInformationWithdraw, specificCSIWithdraw, chargingCharacteristicsWithdraw, stnSrWithdraw,
+                epsSubscriptionDataWithdraw, apnOiReplacementWithdraw, csgSubscriptionDeleted);
+    }
+
+    @Override
+    public void addDeleteSubscriberDataResponse(long invokeId, RegionalSubscriptionResponse regionalSubscriptionResponse,
+            MAPExtensionContainer extensionContainer) throws MAPException {
+        this.wrappedDialog.addDeleteSubscriberDataResponse(invokeId, regionalSubscriptionResponse, extensionContainer);
+    }
+
+    @Override
+    public Long addActivateTraceModeRequest(IMSI imsi, TraceReference traceReference, TraceType traceType, AddressString omcId,
+            MAPExtensionContainer extensionContainer, TraceReference2 traceReference2, TraceDepthList traceDepthList, TraceNETypeList traceNeTypeList,
+            TraceInterfaceList traceInterfaceList, TraceEventList traceEventList, GSNAddress traceCollectionEntity, MDTConfiguration mdtConfiguration)
+            throws MAPException {
+        return this.wrappedDialog.addActivateTraceModeRequest(imsi, traceReference, traceType, omcId, extensionContainer, traceReference2, traceDepthList,
+                traceNeTypeList, traceInterfaceList, traceEventList, traceCollectionEntity, mdtConfiguration);
+    }
+
+    @Override
+    public Long addActivateTraceModeRequest(int customInvokeTimeout, IMSI imsi, TraceReference traceReference, TraceType traceType, AddressString omcId,
+            MAPExtensionContainer extensionContainer, TraceReference2 traceReference2, TraceDepthList traceDepthList, TraceNETypeList traceNeTypeList,
+            TraceInterfaceList traceInterfaceList, TraceEventList traceEventList, GSNAddress traceCollectionEntity, MDTConfiguration mdtConfiguration)
+            throws MAPException {
+        return this.wrappedDialog.addActivateTraceModeRequest(customInvokeTimeout, imsi, traceReference, traceType, omcId, extensionContainer, traceReference2,
+                traceDepthList, traceNeTypeList, traceInterfaceList, traceEventList, traceCollectionEntity, mdtConfiguration);
+    }
+
+    @Override
+    public void addActivateTraceModeResponse(long invokeId, MAPExtensionContainer extensionContainer, boolean traceSupportIndicator) throws MAPException {
+        this.wrappedDialog.addActivateTraceModeResponse(invokeId, extensionContainer, traceSupportIndicator);
+    }
+
 }

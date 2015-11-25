@@ -22,6 +22,11 @@
 
 package org.mobicents.slee.resource.map.service.pdpContextActivation.wrappers;
 
+import org.mobicents.protocols.ss7.map.api.MAPException;
+import org.mobicents.protocols.ss7.map.api.primitives.GSNAddress;
+import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
+import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.map.api.service.pdpContextActivation.MAPDialogPdpContextActivation;
 import org.mobicents.slee.resource.map.MAPDialogActivityHandle;
 import org.mobicents.slee.resource.map.MAPResourceAdaptor;
@@ -43,5 +48,23 @@ public class MAPDialogPdpContextActivationWrapper extends MAPDialogWrapper<MAPDi
 	public MAPDialogPdpContextActivation getWrappedDialog() {
 		return this.wrappedDialog;
 	}
+
+    @Override
+    public Long addSendRoutingInfoForGprsRequest(IMSI imsi, GSNAddress ggsnAddress, ISDNAddressString ggsnNumber, MAPExtensionContainer extensionContainer)
+            throws MAPException {
+        return this.wrappedDialog.addSendRoutingInfoForGprsRequest(imsi, ggsnAddress, ggsnNumber, extensionContainer);
+    }
+
+    @Override
+    public Long addSendRoutingInfoForGprsRequest(int customInvokeTimeout, IMSI imsi, GSNAddress ggsnAddress, ISDNAddressString ggsnNumber,
+            MAPExtensionContainer extensionContainer) throws MAPException {
+        return this.wrappedDialog.addSendRoutingInfoForGprsRequest(customInvokeTimeout, imsi, ggsnAddress, ggsnNumber, extensionContainer);
+    }
+
+    @Override
+    public void addSendRoutingInfoForGprsResponse(long invokeId, GSNAddress sgsnAddress, GSNAddress ggsnAddress, Integer mobileNotReachableReason,
+            MAPExtensionContainer extensionContainer) throws MAPException {
+        this.wrappedDialog.addSendRoutingInfoForGprsResponse(invokeId, sgsnAddress, ggsnAddress, mobileNotReachableReason, extensionContainer);
+    }
 
 }

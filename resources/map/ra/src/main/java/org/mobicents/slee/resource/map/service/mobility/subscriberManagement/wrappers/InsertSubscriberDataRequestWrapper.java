@@ -260,6 +260,7 @@ public class InsertSubscriberDataRequestWrapper extends MobilityMessageWrapper<I
 	public Long getSubscribedPeriodicLAUtimer() {
 		return this.wrappedEvent.getSubscribedPeriodicLAUtimer();
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
