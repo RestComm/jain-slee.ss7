@@ -277,6 +277,16 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 		return this.wrappedDialog.isStructured();
 	}
 
+    @Override
+    public int getNetworkId() {
+        return this.wrappedDialog.getNetworkId();
+    }
+
+    @Override
+    public void setNetworkId(int networkId) {
+        this.wrappedDialog.setNetworkId(networkId);
+    }
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -425,5 +435,10 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	public TCAPResourceAdaptor getRa() {
 		return ra;
 	}
+
+    @Override
+    public String toString() {
+        return this.wrappedDialog.toString();
+    }
 
 }

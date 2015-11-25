@@ -22,6 +22,7 @@
 
 package org.mobicents.slee.resource.tcap.wrappers;
 
+import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
 import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication;
 import org.mobicents.protocols.ss7.tcap.asn.AbortSource;
 import org.mobicents.protocols.ss7.tcap.asn.ApplicationContextName;
@@ -69,5 +70,10 @@ public class UserAbortEventImpl extends DialogEventImpl<TCUserAbortIndication> i
 	public ResultSourceDiagnostic getResultSourceDiagnostic() {
 		return this.wrappedComponent.getResultSourceDiagnostic();
 	}
+
+    @Override
+    public SccpAddress getOriginatingAddress() {
+        return this.wrappedComponent.getOriginatingAddress();
+    }
 
 }
