@@ -115,6 +115,16 @@ public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog
 		throw new UnsupportedOperationException();
 	}
 
+    @Override
+    public int getNetworkId() {
+        return this.wrappedDialog.getNetworkId();
+    }
+
+    @Override
+    public void setNetworkId(int networkId) {
+        this.wrappedDialog.setNetworkId(networkId);
+    }
+
 	public void keepAlive() {
 //		this.wrappedDialog.keepAlive();
 		this.keepedTimeout = true;

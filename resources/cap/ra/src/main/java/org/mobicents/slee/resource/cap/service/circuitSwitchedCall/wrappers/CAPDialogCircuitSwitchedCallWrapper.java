@@ -522,6 +522,16 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
     }
 
     @Override
+    public Long addCollectInformationRequest() throws CAPException {
+        return this.wrappedDialog.addCollectInformationRequest();
+    }
+
+    @Override
+    public Long addCollectInformationRequest(int invokeId) throws CAPException {
+        return this.wrappedDialog.addCollectInformationRequest(invokeId);
+    }
+
+    @Override
     public String toString() {
         return "CAPDialogCircuitSwitchedCallWrapper [wrappedDialog=" + wrappedDialog + "]";
     }

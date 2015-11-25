@@ -66,6 +66,7 @@ import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CAPServic
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallInformationReportRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallInformationRequestRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CancelRequest;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CollectInformationRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectToResourceRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ContinueRequest;
@@ -144,6 +145,7 @@ import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.CAPD
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.CallInformationReportRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.CallInformationRequestRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.CancelRequestWrapper;
+import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.CollectInformationRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.ConnectRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.ConnectToResourceRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.ContinueRequestWrapper;
@@ -959,6 +961,13 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
     public void onMoveLegResponse(MoveLegResponse ind) {
         CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
         MoveLegResponseWrapper event = new MoveLegResponseWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
+    }
+
+    @Override
+    public void onCollectInformationRequest(CollectInformationRequest ind) {
+        CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
+        CollectInformationRequestWrapper event = new CollectInformationRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
         onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
     }
 
