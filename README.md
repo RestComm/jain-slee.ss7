@@ -25,7 +25,7 @@ Download binary from [here](https://github.com/Mobicents/jain-slee.ss7/releases)
 
 ## Maven Repository
 
-Artifacts are available at [Sonatype Maven Repo](https://oss.sonatype.org/content/repositories/releases/org/mobicents) which are also synched to central
+Artifacts are available at [Sonatype Maven Repo](https://oss.sonatype.org/content/repositories/releases/org/mobicents/resources/) which are also synced to central
 
 ## Wiki
 
