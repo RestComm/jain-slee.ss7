@@ -41,7 +41,6 @@ Read [the instructions](https://github.com/Mobicents/jss7/wiki/Build-jSS7-from-S
 *  USSD Gateway https://github.com/Mobicents/ussdgateway
 *  EIR https://github.com/Mobicents/jeir/
 *  GMLC https://github.com/Mobicents/gmlc/
-*  JAIN SLEE Resource Adaptors https://github.com/Mobicents/jain-slee.ss7
 *  MMSC https://github.com/Mobicents/mmscgateway
 
 ## All Open Source Mobicents Projects
