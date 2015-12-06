@@ -15,8 +15,8 @@
 	
 
 	<properties>
-		<ss7.version>2.2.0-SNAPSHOT</ss7.version>
-		<stream.version>1.0.0.BETA1</stream.version>
+		<ss7.version>3.0.1314</ss7.version>
+		<stream.version>1.0.0.FINAL</stream.version>
 	</properties>
 
 	<dependencyManagement>

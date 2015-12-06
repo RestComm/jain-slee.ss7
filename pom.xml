@@ -2,9 +2,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<groupId>org.mobicents</groupId>
 		<artifactId>mobicents-parent</artifactId>
-		<version>2.26</version>
+		<groupId>org.mobicents</groupId>
+		<version>2.27.21</version>
 	</parent>
 
 	<groupId>org.mobicents.servers.jainslee.ss7</groupId>
