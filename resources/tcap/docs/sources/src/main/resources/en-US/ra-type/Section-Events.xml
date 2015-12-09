@@ -67,7 +67,7 @@
 					</row>
 
 					<row>
-						<entry>COMPONENT_INVOKE_TIMEOUT</entry>
+						<entry>COMPONENT_INVOKE_ TIMEOUT</entry>
 						<entry>InvokeEvent</entry>
 						<entry>
 							Fired when locally initiated Invoke does not receive any answer for extended period of time.
@@ -79,19 +79,19 @@
 						<entry>Fired when remote end rejects component for some reason.</entry>
 					</row>
 					<row>
-						<entry>COMPONENT_RETURNRESULT</entry>
+						<entry>COMPONENT_ RETURNRESULT</entry>
 						<entry>ReturnResultEvent</entry>
 						<entry>
 							Fired when remote end responded to invoke sent earlier indicating that there are more response to arrive.
 						</entry>
 					</row>		
 					<row>
-						<entry>COMPONENT_RETURNRESULT_LAST</entry>
+						<entry>COMPONENT_ RETURNRESULT_LAST</entry>
 						<entry>ReturnResultLastEvent</entry>
 						<entry>Fired when remote end responded to invoke sent earlier indicating that this is last response.</entry>
 					</row>	
 					<row>
-						<entry>COMPONENT_RETURNERROR</entry>
+						<entry>COMPONENT_ RETURNERROR</entry>
 						<entry>ReturnErrorEvent</entry>
 						<entry>
 							Fired when remote peer indicates abnormal component. It indicates some protocol error in component sent

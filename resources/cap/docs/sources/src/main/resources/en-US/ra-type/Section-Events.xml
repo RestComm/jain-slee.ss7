@@ -291,7 +291,7 @@
 					</row>
 
 					<row>
-						<entry>ACTIVITY_TEST_REQUEST</entry>
+						<entry>ACTIVITY_TEST_ REQUEST</entry>
 						<entry>ActivityTestRequest</entry>
 						<entry>
 							The activity test (AT) is used for testing the CAMEL dialogue between the gsmSCF and the gsmSSF. 
@@ -305,14 +305,14 @@
 					</row>
 
 					<row>
-						<entry>ACTIVITY_TEST_RESPONSE</entry>
+						<entry>ACTIVITY_TEST_ RESPONSE</entry>
 						<entry>ActivityTestResponse</entry>
 						<entry>Response to ActivityTestRequest</entry>
 					</row>
 
 					<row>
-						<entry>APPLY_CHARGING_REPORT_REQUEST</entry>
-						<entry>ApplyChargingReportRequest</entry>
+						<entry>APPLY_CHARGING_ REPORT_REQUEST</entry>
+						<entry>ApplyChargingReport Request</entry>
 						<entry>
 						 	This is the report that is sent from gsmSSF to gsmSCF at the
  							end of a call period or when the call is released. In addition, when call set up failure occurs,
@@ -322,7 +322,7 @@
 					</row>
 					
 					<row>
-						<entry>APPLY_CHARGING_REQUEST</entry>
+						<entry>APPLY_CHARGING_ REQUEST</entry>
 						<entry>ApplyChargingRequest</entry>
 						<entry>
 						 	This is the instruction from the gsmSCF to the gsmSSF to start or continue monitoring the call duration.
@@ -330,24 +330,24 @@
 					</row>	
 					
 					<row>
-						<entry>ASSIST_REQUEST_INSTRUCTIONS_REQUEST</entry>
-						<entry>AssistRequestInstructionsRequest</entry>
+						<entry>ASSIST_REQUEST_ INSTRUCTIONS_REQUEST</entry>
+						<entry>AssistRequestInstructions Request</entry>
 						<entry>
 						 	Used by assisting gsmSSF to start the assisting dialogue.
 						</entry>
 					</row>		
 					
 					<row>
-						<entry>CALL_INFORMATION_REPORT_REQUEST</entry>
-						<entry>CallInformationReportRequest</entry>
+						<entry>CALL_INFORMATION_ REPORT_REQUEST</entry>
+						<entry>CallInformationReport Request</entry>
 						<entry>
 						 	This event contains the call-related information that was previously requested for this call.
 						</entry>
 					</row>	
 					
 					<row>
-						<entry>CALL_INFORMATION_REQUEST_REQUEST</entry>
-						<entry>CallInformationRequestRequest</entry>
+						<entry>CALL_INFORMATION_ REQUEST_REQUEST</entry>
+						<entry>CallInformationRequest Request</entry>
 						<entry>
 						 	This operation is used to request call-related information.
 						</entry>
@@ -390,8 +390,8 @@
 					</row>		
 					
 					<row>
-						<entry>CONNECT_TO_RESOURCE_REQUEST</entry>
-						<entry>ConnectToResourceRequest</entry>
+						<entry>CONNECT_TO_ RESOURCE_REQUEST</entry>
+						<entry>ConnectToResource Request</entry>
 						<entry>
 						 	This event is used to instruct the gsmSSF or assisting gsmSSF to connect
 							the call to a specialized resource, for user interaction
@@ -408,9 +408,8 @@
 					</row>		
 					
 					<row>
-						<entry>DISCONNECT_FORWARD_
-						CONNECTION_REQUEST</entry>
-						<entry>DisconnectForwardConnectionRequest</entry>
+						<entry>DISCONNECT_FORWARD_ CONNECTION_REQUEST</entry>
+						<entry>DisconnectForward ConnectionRequest</entry>
 						<entry>
 						 	This operation is used to terminate the connection to a specialized resource or
 							to terminate a temporary connection to an assisting gsmSSF or intelligent
@@ -419,9 +418,8 @@
 					</row>	
 					
 					<row>
-						<entry>ESTABLISH_TEMPORARY_
-						CONNECTION_REQUEST</entry>
-						<entry>EstablishTemporaryConnectionRequest</entry>
+						<entry>ESTABLISH_TEMPORARY_ CONNECTION_REQUEST</entry>
+						<entry>EstablishTemporary ConnectionRequest</entry>
 						<entry>
 						 	This event is used to establish a temporary connection between the serving
 							(G)MSC and an MSC with assisting gsmSSF
@@ -429,9 +427,8 @@
 					</row>
 
 					<row>
-						<entry>EVENT_REPORT_
-						BCSM_REQUEST</entry>
-						<entry>EventReportBCSMRequest</entry>
+						<entry>EVENT_REPORT_ BCSM_REQUEST</entry>
+						<entry>EventReportBCSM Request</entry>
 						<entry>
 						 	This event is used by the gsmSSF to inform the gsmSCF about the
 							occurrence of an event
@@ -439,9 +436,8 @@
 					</row>	
 					
 					<row>
-						<entry>FURNISH_CHARGING_
-						INFORMATION_REQUEST</entry>
-						<entry>FurnishChargingInformationRequest</entry>
+						<entry>FURNISH_CHARGING_ INFORMATION_REQUEST</entry>
+						<entry>FurnishCharging InformationRequest</entry>
 						<entry>
 						 	The gsmSCF may use this operation to place service-specific data in the CDR
 							for the call
@@ -449,9 +445,8 @@
 					</row>	
 					
 					<row>
-						<entry>PLAY_ANNOUNCEMENT_
-						REQUEST</entry>
-						<entry>PlayAnnouncementRequest</entry>
+						<entry>PLAY_ANNOUNCEMENT_ REQUEST</entry>
+						<entry>PlayAnnouncement Request</entry>
 						<entry>
 						 	A CAMEL service may use this operation to instruct the gsmSRF or intelligent
 							peripheral to play an announcement
@@ -459,8 +454,7 @@
 					</row>	
 					
 					<row>
-						<entry>RELEASE_CALL_
-						REQUEST</entry>
+						<entry>RELEASE_CALL_ REQUEST</entry>
 						<entry>ReleaseCallRequest</entry>
 						<entry>
 						 	This operation is used by the gsmSCF to release a call
@@ -468,10 +462,8 @@
 					</row>	
 					
 					<row>
-						<entry>PROMPT_AND_
-						COLLECT_USER_
-						INFORMATION_REQUEST</entry>
-						<entry>PromptAndCollectUserInformationRequest</entry>
+						<entry>PROMPT_AND_ COLLECT_USER_ INFORMATION_REQUEST</entry>
+						<entry>PromptAndCollectUser InformationRequest</entry>
 						<entry>
 						 	A CAMEL service may use this operation to instruct the gsmSRF or intelligent
 							peripheral to play an announcement and to collect digits from the user
@@ -479,19 +471,16 @@
 					</row>	
 					
 					<row>
-						<entry>PROMPT_AND_
-						COLLECT_USER_
-						INFORMATION_RESPONSE</entry>
-						<entry>PromptAndCollectUserInformationResponse</entry>
+						<entry>PROMPT_AND_ COLLECT_USER_ INFORMATION_RESPONSE</entry>
+						<entry>PromptAndCollectUser InformationResponse</entry>
 						<entry>
-						 	Response to PromptAndCollectUserInformationRequest
+						 	Response to PromptAndCollectUser InformationRequest
 						</entry>
 					</row>	
 					
 					<row>
-						<entry>REQUEST_REPORT_
-						BCSM_EVENT_REQUEST</entry>
-						<entry>RequestReportBCSMEventRequest</entry>
+						<entry>REQUEST_REPORT_ BCSM_EVENT_REQUEST</entry>
+						<entry>RequestReportBCSM EventRequest</entry>
 						<entry>
 						 	This operation may be used by the gsmSCF to arm or disarm detection points
 							in the BCSM
@@ -499,8 +488,7 @@
 					</row>	
 					
 					<row>
-						<entry>RESET_TIMER_
-						REQUEST</entry>
+						<entry>RESET_TIMER_ REQUEST</entry>
 						<entry>ResetTimerRequest</entry>
 						<entry>
 						 	This operation may be used by the gsmSCF to reload and restart the Tssf timer
@@ -508,9 +496,8 @@
 					</row>	
 
 					<row>
-						<entry>SEND_CHARGING_
-						INFORMATION_REQUEST</entry>
-						<entry>SendChargingInformationRequest</entry>
+						<entry>SEND_CHARGING_ INFORMATION_REQUEST</entry>
+						<entry>SendCharging InformationRequest</entry>
 						<entry>
 						 	This operation may be used by the gsmSCF to send advice of charge
 							information to the served subscriber
@@ -518,9 +505,8 @@
 					</row>	
 					
 					<row>
-						<entry>SPECIALIZED_RESOURCE_
-						REPORT_REQUEST</entry>
-						<entry>SpecializedResourceReportRequest</entry>
+						<entry>SPECIALIZED_RESOURCE_ REPORT_REQUEST</entry>
+						<entry>SpecializedResource ReportRequest</entry>
 						<entry>
 						 	This operation is used by the gsmSRF to inform the gsmSCF that the playing
 							of an announcement is complete
