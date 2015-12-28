@@ -312,25 +312,25 @@
 				</thead>
 				<tbody>
 					<row>
-						<entry>UPDATE_LOCATION_REQUEST</entry>
+						<entry>UPDATE_LOCATION_ REQUEST</entry>
 						<entry>UpdateLocationRequest</entry>
 						<entry> This service is used by the <acronym>VLR</acronym> to update the location information stored in the <acronym>HLR</acronym>.</entry>
 					</row>
 
 					<row>
-						<entry>UPDATE_LOCATION_RESPONSE</entry>
+						<entry>UPDATE_LOCATION_ RESPONSE</entry>
 						<entry>UpdateLocationResponse</entry>
 						<entry>Response to UpdateLocationRequest</entry>
 					</row>
 
 					<row>
-						<entry>CANCEL_LOCATION_REQUEST</entry>
+						<entry>CANCEL_LOCATION_ REQUEST</entry>
 						<entry>CancelLocationRequest</entry>
 						<entry> This service is used between <acronym>HLR</acronym> and <acronym>VLR</acronym> to delete a subscriber record from the <acronym>VLR</acronym>.</entry>
 					</row>
 
 					<row>
-						<entry>CANCEL_LOCATION_RESPONSE</entry>
+						<entry>CANCEL_LOCATION_ RESPONSE</entry>
 						<entry>CancelLocationResponse</entry>
 						<entry>Response to CancelLocationRequest</entry>
 					</row>
@@ -398,14 +398,14 @@
 				</thead>
 				<tbody>
 					<row>
-						<entry>SEND_AUTHENTICATION_INFO_REQUEST</entry>
-						<entry>SendAuthenticationInfoRequest</entry>
+						<entry>SEND_AUTHENTICATION_ INFO_REQUEST</entry>
+						<entry>SendAuthentication InfoRequest</entry>
 						<entry>This service is used between the VLR and the HLR for the VLR to retrieve authentication information from the HLR</entry>
 					</row>
 
 					<row>
-						<entry>SEND_AUTHENTICATION_INFO_RESPONSE</entry>
-						<entry>SendAuthenticationInfoResponse</entry>
+						<entry>SEND_AUTHENTICATION_ INFO_RESPONSE</entry>
+						<entry>SendAuthentication InfoResponse</entry>
 						<entry>Response to SendAuthenticationInfoRequest</entry>
 					</row>
 				</tbody>
@@ -547,14 +547,14 @@
 				</thead>
 				<tbody>
 					<row>
-						<entry>INSERT_SUBSCRIBER_DATA_REQUEST</entry>
-						<entry>InsertSubscriberDataRequest</entry>
+						<entry>INSERT_SUBSCRIBER_ DATA_REQUEST</entry>
+						<entry>InsertSubscriber DataRequest</entry>
 						<entry> This service is used by an HLR to update a VLR with certain subscriber data</entry>
 					</row>
 
 					<row>
-						<entry>INSERT_SUBSCRIBER_DATA_RESPONSE</entry>
-						<entry>InsertSubscriberDataResponse</entry>
+						<entry>INSERT_SUBSCRIBER_ DATA_RESPONSE</entry>
+						<entry>InsertSubscriber DataResponse</entry>
 						<entry>Response to InsertSubscriberDataRequest</entry>
 					</row>
 				</tbody>
@@ -621,8 +621,8 @@
 				</thead>
 				<tbody>
 					<row>
-						<entry>ANY_TIME_INTERROGATION_REQUEST</entry>
-						<entry>AnyTimeInterrogationRequest</entry>
+						<entry>ANY_TIME_ INTERROGATION_REQUEST</entry>
+						<entry>AnyTimeInterrogation Request</entry>
 						<entry>This service is used by the gsmSCF, to request information (e.g. subscriber state and location) from the HLR or the GMLC at any time. 
 						This service may also be used by the gsmSCF to request the Mobile Number Portability (MNP) information from the NPLR. 
 						This service is also used by the Presence Network Agent to request information, (e.g. subscriber state and location) about the subscriber 
@@ -630,8 +630,8 @@
 					</row>
 
 					<row>
-						<entry>ANY_TIME_INTERROGATION_RESPONSE</entry>
-						<entry>AnyTimeInterrogationResponse</entry>
+						<entry>ANY_TIME_ INTERROGATION_RESPONSE</entry>
+						<entry>AnyTimeInterrogation Response</entry>
 						<entry>Response to AnyTimeInterrogationRequest</entry>
 					</row>
 				</tbody>
@@ -698,28 +698,28 @@
 				</thead>
 				<tbody>
 					<row>
-						<entry>SEND_ROUTING_INFORMATION_REQUEST</entry>
-						<entry>SendRoutingInformationRequest</entry>
+						<entry>SEND_ROUTING_ INFORMATION_REQUEST</entry>
+						<entry>SendRoutingInformation Request</entry>
 						<entry>This service is used between the Gateway MSC and the HLR. The service is invoked by the Gateway MSC to perform the interrogation 
 						of the HLR in order to route a call towards the called MS</entry>
 					</row>
 
 					<row>
-						<entry>SEND_ROUTING_INFORMATION_RESPONSE</entry>
-						<entry>SendRoutingInformationResponse</entry>
+						<entry>SEND_ROUTING_ INFORMATION_RESPONSE</entry>
+						<entry>SendRoutingInformation Response</entry>
 						<entry>Response to SendRoutingInformationRequest</entry>
 					</row>
 					
 					<row>
-						<entry>PROVIDE_ROAMING_NUMBER_REQUEST</entry>
-						<entry>ProvideRoamingNumberRequest</entry>
+						<entry>PROVIDE_ROAMING_ NUMBER_REQUEST</entry>
+						<entry>ProvideRoamingNumber Request</entry>
 						<entry>This service is used between the HLR and VLR. The service is invoked by the HLR to request a VLR to send 
 						back a roaming number to enable the HLR to instruct the GMSC to route an incoming call to the called MS.</entry>
 					</row>	
 					
 					<row>
-						<entry>PROVIDE_ROAMING_NUMBER_RESPONSE</entry>
-						<entry>ProvideRoamingNumberResponse</entry>
+						<entry>PROVIDE_ROAMING_ NUMBER_RESPONSE</entry>
+						<entry>ProvideRoamingNumber Response</entry>
 						<entry>Response to ProvideRoamingNumberRequest</entry>
 					</row>									
 				</tbody>
@@ -794,38 +794,38 @@
 				</thead>
 				<tbody>
 					<row>
-						<entry>UNSTRUCTURED _SS_REQUEST</entry>
-						<entry>ProcessUnstructuredSSRequest</entry>
+						<entry>UNSTRUCTURED_ SS_REQUEST</entry>
+						<entry>ProcessUnstructuredSS Request</entry>
 						<entry>Indicates either initial or subsequent <acronym>USSD</acronym> message(all non final messages exchanged are of this type). Its exchanged between user device and <acronym>USSD</acronym> application.</entry>
 					</row>
 
 					<row>
-						<entry>UNSTRUCTURED _SS_RESPONSE</entry>
-						<entry>ProcessUnstructuredSSResponse</entry>
+						<entry>UNSTRUCTURED_ SS_RESPONSE</entry>
+						<entry>ProcessUnstructuredSS Response</entry>
 						<entry>Final message exchanged in <acronym>USSD</acronym> dialog.</entry>
 					</row>
 
 					<row>
-						<entry>PROCESS_UNSTRUCTURED _SS_REQUEST</entry>
-						<entry>ProcessUnstructuredSSRequest</entry>
+						<entry>PROCESS_ UNSTRUCTURED_ SS_REQUEST</entry>
+						<entry>ProcessUnstructuredSS Request</entry>
 						<entry>As UNSTRUCTURED _SS_REQUEST, however this message is exchanged between <acronym>SS7</acronym> equipment/nodes, like <acronym>HLR</acronym> and <acronym>VLR</acronym></entry>
 					</row>
 
 					<row>
-						<entry>PROCESS_UNSTRUCTURED _SS_RESPONSE</entry>
-						<entry>ProcessUnstructuredSSResponse</entry>
+						<entry>PROCESS_ UNSTRUCTURED_ SS_RESPONSE</entry>
+						<entry>ProcessUnstructuredSS Response</entry>
 						<entry>This event is equivalent of UNSTRUCTURED _SS_RESPONSE.</entry>
 					</row>
 
 					<row>
-						<entry>UNSTRUCTURED_SS _NOTIFY_REQUEST</entry>
-						<entry>UnstructuredSSNotifyRequest</entry>
+						<entry>UNSTRUCTURED_SS_ NOTIFY_REQUEST</entry>
+						<entry>UnstructuredSSNotify Request</entry>
 						<entry>This event represents will of entity to notify user device.</entry>
 					</row>
 
 					<row>
-						<entry>UNSTRUCTURED_SS_NOTIFY_RESPONSE</entry>
-						<entry>UnstructuredSSNotifyResponse</entry>
+						<entry>UNSTRUCTURED_SS_ NOTIFY_RESPONSE</entry>
+						<entry>UnstructuredSSNotify Response</entry>
 						<entry>This is response to Notify Request sent from application/nework to device.</entry>
 					</row>					
 
@@ -901,33 +901,33 @@
 				</thead>
 				<tbody>
 					<row>
-						<entry>PROVIDE_SUBSCRIBER _LOCATION_REQUEST</entry>
-						<entry>ProvideSubscriberLocationRequest</entry>
+						<entry>PROVIDE_SUBSCRIBER_ LOCATION_REQUEST</entry>
+						<entry>ProvideSubscriberLocation Request</entry>
 						<entry>This event indicates that GLMC requests location of user device(subscriber).</entry>
 					</row>
 					<row>
-						<entry>PROVIDE_SUBSCRIBER _LOCATION_RESPONSE</entry>
-						<entry>ProvideSubscriberLocationResponse</entry>
+						<entry>PROVIDE_SUBSCRIBER_ LOCATION_RESPONSE</entry>
+						<entry>ProvideSubscriberLocation Response</entry>
 						<entry></entry>
 					</row>
 					<row>
-						<entry>SEND_ROUTING_INFO _FOR_LCS_REQUEST</entry>
-						<entry>SendRoutingInfoForLCSRequest</entry>
+						<entry>SEND_ROUTING_INFO_ FOR_LCS_REQUEST</entry>
+						<entry>SendRoutingInfoForLCS Request</entry>
 						<entry>This event indicates that <acronym>SS7</acronym> entity requests routing information from <acronym>HLR</acronym>. Provided information is used to route <acronym>SMS</acronym> </entry>
 					</row>
 					<row>
-						<entry>SEND_ROUTING_INFO _FOR_LCS_RESPONSE</entry>
-						<entry>SendRoutingInfoForLCSResponse</entry>
+						<entry>SEND_ROUTING_INFO_ FOR_LCS_RESPONSE</entry>
+						<entry>SendRoutingInfoForLCS Response</entry>
 						<entry></entry>
 					</row>
 					<row>
-						<entry>SUBSCRIBER_LOCATION _REPORT_REQUEST</entry>
-						<entry>SubscriberLocationReportRequest</entry>
+						<entry>SUBSCRIBER_LOCATION_ REPORT_REQUEST</entry>
+						<entry>SubscriberLocationReport Request</entry>
 						<entry>This event indicates change in location of user device. It provides <acronym>SS7</acronym> equipment with update on subscriber location.</entry>
 					</row>
 					<row>
-						<entry>SUBSCRIBER_LOCATION _REPORT_RESPONSE</entry>
-						<entry>SubscriberLocationReportResponse</entry>
+						<entry>SUBSCRIBER_LOCATION_ REPORT_RESPONSE</entry>
+						<entry>SubscriberLocationReport Response</entry>
 						<entry></entry>
 					</row>
 				</tbody>
@@ -1003,80 +1003,80 @@
 				</thead>
 				<tbody>
 					<row>
-						<entry>FORWARD_SHORT _MESSAGE_REQUEST</entry>
-						<entry>ForwardShortMessageRequest</entry>
+						<entry>FORWARD_SHORT_ MESSAGE_REQUEST</entry>
+						<entry>ForwardShortMessage Request</entry>
 						<entry>This event indicates that <acronym>SMS</acronym> must be forwarded to another <acronym>SS7</acronym> node. This is <acronym>MAP</acronym> Phase 1 event, hence no distinction between <acronym>MO</acronym> and <acronym>MT</acronym>.</entry>
 					</row>
 
 					<row>
-						<entry>FORWARD_SHORT _MESSAGE_RESPONSE</entry>
-						<entry>ForwardShortMessageResponse</entry>
+						<entry>FORWARD_SHORT_ MESSAGE_RESPONSE</entry>
+						<entry>ForwardShortMessage Response</entry>
 						<entry></entry>
 					</row>
 
 					<row>
-						<entry>MO_FORWARD_SHORT _MESSAGE_REQUEST</entry>
-						<entry>MoForwardShortMessageRequest</entry>
+						<entry>MO_FORWARD_SHORT_ MESSAGE_REQUEST</entry>
+						<entry>MoForwardShortMessage Request</entry>
 						<entry>This event indicates that mobile originated <acronym>SMS</acronym> must be forwarded to another <acronym>SS7</acronym> node.</entry>
 					</row>
 
 					<row>
-						<entry>MO_FORWARD_SHORT _MESSAGE_RESPONSE</entry>
-						<entry>MoForwardShortMessageResponse</entry>
+						<entry>MO_FORWARD_SHORT_ MESSAGE_RESPONSE</entry>
+						<entry>MoForwardShortMessage Response</entry>
 						<entry></entry>
 					</row>
 
 					<row>
-						<entry>MT_FORWARD_SHORT _MESSAGE_REQUEST</entry>
-						<entry>MtForwardShortMessageRequest</entry>
+						<entry>MT_FORWARD_SHORT_ MESSAGE_REQUEST</entry>
+						<entry>MtForwardShortMessage Request</entry>
 						<entry>This event indicates that mobile terminated <acronym>SMS</acronym> must be forwarded to another <acronym>SS7</acronym> node.</entry>
 					</row>
 
 					<row>
-						<entry>MT_FORWARD_SHORT _MESSAGE_RESPONSE</entry>
-						<entry>MtForwardShortMessageResponse</entry>
+						<entry>MT_FORWARD_SHORT_ MESSAGE_RESPONSE</entry>
+						<entry>MtForwardShortMessage Response</entry>
 						<entry></entry>
 					</row>
 
 					<row>
-						<entry>SEND_ROUTING_INFO _FOR_SM_REQUEST</entry>
-						<entry>SendRoutingInfoForSMRequest</entry>
+						<entry>SEND_ROUTING_INFO_ FOR_SM_REQUEST</entry>
+						<entry>SendRoutingInfoForSM Request</entry>
 						<entry>This event indicates that <acronym>HLR</acronym> is being queried for routing inforamtion.</entry>
 					</row>
 
 					<row>
-						<entry>SEND_ROUTING_INFO _FOR_SM_RESPONSE</entry>
-						<entry>SendRoutingInfoForSMResponse</entry>
+						<entry>SEND_ROUTING_INFO_ FOR_SM_RESPONSE</entry>
+						<entry>SendRoutingInfoForSM Response</entry>
 						<entry></entry>
 					</row>
 
 					<row>
-						<entry>REPORT_SM_DELIVERY _STATUS_REQUEST</entry>
-						<entry>ReportSMDeliveryStatusRequest</entry>
+						<entry>REPORT_SM_DELIVERY_ STATUS_REQUEST</entry>
+						<entry>ReportSMDeliveryStatus Request</entry>
 						<entry>This event is used to inform <acronym>HLR</acronym> about <acronym>SMS</acronym> delivery status.</entry>
 					</row>
 
 					<row>
-						<entry>REPORT_SM_DELIVERY _STATUS_RESPONSE</entry>
-						<entry>ReportSMDeliveryStatusResponse</entry>
+						<entry>REPORT_SM_DELIVERY_ STATUS_RESPONSE</entry>
+						<entry>ReportSMDeliveryStatus Response</entry>
 						<entry></entry>
 					</row>
 
 					<row>
-						<entry>INFORM_SERVICE _CENTER_REQUEST</entry>
-						<entry>InformServiceCentreRequest</entry>
+						<entry>INFORM_SERVICE_ CENTER_REQUEST</entry>
+						<entry>InformServiceCentre Request</entry>
 						<entry>This event is used by <acronym>HLR</acronym> to inform message center about subscriber status.</entry>
 					</row>
 
 					<row>
-						<entry>ALERT_SERVICE _CENTER_REQUEST</entry>
-						<entry>AlertServiceCentreRequest</entry>
+						<entry>ALERT_SERVICE_ CENTER_REQUEST</entry>
+						<entry>AlertServiceCentre Request</entry>
 						<entry>This event is used by <acronym>HLR</acronym> to inform message center about change in subscirber status.</entry>
 					</row>
 
 					<row>
-						<entry>ALERT_SERVICE _CENTER_RESPONSE</entry>
-						<entry>AlertServiceCentreResponse</entry>
+						<entry>ALERT_SERVICE_ CENTER_RESPONSE</entry>
+						<entry>AlertServiceCentre Response</entry>
 						<entry></entry>
 					</row>
 				</tbody>

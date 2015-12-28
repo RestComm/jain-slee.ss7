@@ -25,8 +25,8 @@ import org.mobicents.protocols.ss7.cap.api.CAPDialog;
 
 public interface CAPContextInterfaceFactory {
 
-	public ActivityContextInterface getActivityContextInterface(CAPDialog dialog) throws NullPointerException,
-			UnrecognizedActivityException, FactoryException;
+	public ActivityContextInterface getActivityContextInterface(CAPDialog dialog)
+		throws NullPointerException, UnrecognizedActivityException, FactoryException;
 
 }
 	</programlisting>

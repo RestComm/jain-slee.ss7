@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [<!ENTITY % BOOK_ENTITIES SYSTEM "../User_Guide.ent">%BOOK_ENTITIES;]>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../User_Guide.ent">
+%BOOK_ENTITIES;
+]>
 
 <section id="ratype_sbb_code_examples">
 
@@ -17,52 +20,84 @@ import org.mobicents.slee.*;
 
 public abstract class TCAPExampleSbb implements Sbb, TCAPExample {
 
-	public void onDIALOG_UNI(org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onDIALOG_UNI(
+		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event, 
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onDIALOG_BEGIN(org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onDIALOG_BEGIN(
+		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onDIALOG_CONTINUE(org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onDIALOG_CONTINUE(
+		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onDIALOG_END(org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onDIALOG_END(
+		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onDIALOG_USERABORT(org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onDIALOG_USERABORT(
+		org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onDIALOG_PROVIDERABORT(org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onDIALOG_PROVIDERABORT(
+		org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onDIALOG_NOTICE(org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onDIALOG_NOTICE(
+		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onDIALOG_RELEASED(org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onDIALOG_RELEASED(
+		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onDIALOG_TIMEOUT(org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onDIALOG_TIMEOUT(
+		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onDIALOG_DELIMITER(org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onDIALOG_DELIMITER(
+		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onCOMPONENT_INVOKE(org.mobicents.slee.resource.tcap.events.InvokeEvent event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onCOMPONENT_INVOKE(
+		org.mobicents.slee.resource.tcap.events.InvokeEvent event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onCOMPONENT_INVOKE_TIMEOUT(org.mobicents.slee.resource.tcap.events.InvokeEvent event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onCOMPONENT_INVOKE_TIMEOUT(
+		org.mobicents.slee.resource.tcap.events.InvokeEvent event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onCOMPONENT_REJECT(org.mobicents.slee.resource.tcap.events.RejectEvent event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onCOMPONENT_REJECT(
+		org.mobicents.slee.resource.tcap.events.RejectEvent event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onCOMPONENT_RETURNRESULT(org.mobicents.slee.resource.tcap.events.ReturnResultEvent event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onCOMPONENT_RETURNRESULT(
+		org.mobicents.slee.resource.tcap.events.ReturnResultEvent event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onCOMPONENT_RETURNRESULT_LAST(org.mobicents.slee.resource.tcap.events.ReturnResultLastEvent event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onCOMPONENT_RETURNRESULT_LAST(
+		org.mobicents.slee.resource.tcap.events.ReturnResultLastEvent event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
-	public void onCOMPONENT_RETURNERROR(org.mobicents.slee.resource.tcap.events.ReturnErrorEvent event, ActivityContextInterface aci/*, EventContext eventContext*/) {
+	public void onCOMPONENT_RETURNERROR(
+		org.mobicents.slee.resource.tcap.events.ReturnErrorEvent event,
+		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
 
@@ -79,7 +114,9 @@ public abstract class TCAPExampleSbb implements Sbb, TCAPExample {
 	public void sbbRemove() {}
 	public void sbbLoad() {}
 	public void sbbStore() {}
-	public void sbbExceptionThrown(Exception exception, Object event, ActivityContextInterface activity) {}
+	public void sbbExceptionThrown(
+		Exception exception, Object event,
+		ActivityContextInterface activity) {}
 	public void sbbRolledBack(RolledBackContext context) {}
 	
 
