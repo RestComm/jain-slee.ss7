@@ -8,15 +8,15 @@
 	</parent>
 
 	<groupId>org.mobicents.servers.jainslee.ss7</groupId>
-	<artifactId>mobicents-slee-ss7</artifactId>
+	<artifactId>restcomm-slee-ss7</artifactId>
 	<version>2.8.0-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 
 	<scm>
-		<connection>scm:git:https://github.com/mobicents/jain-slee.ss7/</connection>
-		<developerConnection>scm:git:https://github.com/mobicents/jain-slee.ss7/</developerConnection>
-		<url>https://github.com/mobicents/jain-slee.ss7/</url>
+		<connection>scm:git:https://github.com/Restcomm/jain-slee.ss7/</connection>
+		<developerConnection>scm:git:https://github.com/Restcomm/jain-slee.ss7/</developerConnection>
+		<url>https://github.com/Restcomm/jain-slee.ss7/</url>
 	</scm>     
 
 	<profiles>

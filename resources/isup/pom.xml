@@ -5,12 +5,12 @@
 
 	<parent>
 		<groupId>org.mobicents.servers.jainslee.ss7</groupId>
-		<artifactId>mobicents-slee-ss7</artifactId>
+		<artifactId>restcomm-slee-ss7</artifactId>
 		<version>2.8.0-SNAPSHOT</version>
 		<relativePath>../..</relativePath>
 	</parent>
 
-	<artifactId>mobicents-slee-ra-isup</artifactId>
+	<artifactId>restcomm-slee-ra-isup</artifactId>
 	<groupId>org.mobicents.resources</groupId>
 	
 
@@ -95,7 +95,7 @@
 						<exclude>jtidy:jtidy</exclude>
 					</classpathExcludes>
 					<resolveTransitiveDependencies>true</resolveTransitiveDependencies>
-					<eclipseProjectName>mobicents-slee-ra-isup</eclipseProjectName>
+					<eclipseProjectName>restcomm-slee-ra-isup</eclipseProjectName>
 				</configuration>
 			</plugin>
 		</plugins>

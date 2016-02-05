@@ -27,7 +27,7 @@
 				java.lang.String
 			</config-property-type>
 			<config-property-value>
-				java:/mobicents/ss7/isup
+				java:/restcomm/ss7/isup
 			</config-property-value>
 		</config-property>
 		<config-property>

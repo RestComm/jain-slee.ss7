@@ -4,19 +4,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<artifactId>mobicents-slee-ra-tcap</artifactId>
+		<artifactId>restcomm-slee-ra-tcap</artifactId>
 		<groupId>org.mobicents.resources</groupId>
 		<version>2.8.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>mobicents-slee-ra-tcap-docs</artifactId>
+	<artifactId>restcomm-slee-ra-tcap-docs</artifactId>
 		
 	<packaging>pom</packaging>
 	
 	<modules>
 		<module>sources</module>
-		<module>sources-mobicents</module>
-		<module>jdocbook-mobicents</module>		
+		<module>sources-restcomm</module>
+		<module>jdocbook-restcomm</module>		
 	</modules>
 
 </project>
