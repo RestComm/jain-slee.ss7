@@ -33,7 +33,7 @@
 		<config-property>
 			<config-property-name>tcapJndi</config-property-name>
 			<config-property-type>java.lang.String</config-property-type>
-			<config-property-value>java:/mobicents/ss7/tcap</config-property-value>
+			<config-property-value>java:/restcomm/ss7/tcap</config-property-value>
 		</config-property>
 	</resource-adaptor>
 </resource-adaptor-jar>

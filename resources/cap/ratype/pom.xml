@@ -2,12 +2,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>mobicents-slee-ra-cap</artifactId>
+		<artifactId>restcomm-slee-ra-cap</artifactId>
 		<groupId>org.mobicents.resources</groupId>
 		<version>2.8.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>mobicents-slee-ra-cap-ratype</artifactId>
+	<artifactId>restcomm-slee-ra-cap-ratype</artifactId>
 
 	<dependencies>
 		<dependency>
@@ -16,7 +16,7 @@
 		</dependency>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>mobicents-slee-ra-cap-events</artifactId>
+			<artifactId>restcomm-slee-ra-cap-events</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 	</dependencies>

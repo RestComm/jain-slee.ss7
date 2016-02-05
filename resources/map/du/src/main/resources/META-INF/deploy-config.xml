@@ -4,7 +4,7 @@
 		resource-adaptor-id="ResourceAdaptorID[name=MAPResourceAdaptor,vendor=org.mobicents,version=2.0]"
 		entity-name="MAPRA">
 		<properties>
-			<property name="mapJndi" type="java.lang.String" value="java:/mobicents/ss7/map" />
+			<property name="mapJndi" type="java.lang.String" value="java:/restcomm/ss7/map" />
 		</properties>
 		<ra-link name="MAPRA" />
 	</ra-entity>
