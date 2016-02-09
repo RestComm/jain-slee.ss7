@@ -22,6 +22,8 @@
 
 package org.mobicents.slee.resource.cap.wrappers;
 
+import javolution.util.FastMap;
+
 import org.mobicents.protocols.ss7.cap.api.CAPDialog;
 import org.mobicents.protocols.ss7.cap.api.CAPDialogListener;
 import org.mobicents.protocols.ss7.cap.api.CAPParameterFactory;
@@ -33,6 +35,7 @@ import org.mobicents.protocols.ss7.cap.api.service.sms.CAPServiceSms;
 import org.mobicents.protocols.ss7.inap.api.INAPParameterFactory;
 import org.mobicents.protocols.ss7.isup.ISUPParameterFactory;
 import org.mobicents.protocols.ss7.map.api.MAPParameterFactory;
+import org.mobicents.protocols.ss7.sccp.NetworkIdState;
 import org.mobicents.slee.resource.cap.CAPDialogActivityHandle;
 import org.mobicents.slee.resource.cap.CAPResourceAdaptor;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.CAPServiceCircuitSwitchedCallWrapper;
@@ -129,6 +132,22 @@ public class CAPProviderWrapper implements CAPProvider {
 	public CAPServiceSms getCAPServiceSms() {
 		return wrappedCAPServiceSms;
 	}
+
+    @Override
+    public NetworkIdState getNetworkIdState(int networkId) {
+        if (this.wrappedProvider == null) {
+            throw new IllegalStateException("RA is has not been activated.");
+        }
+        return this.wrappedProvider.getNetworkIdState(networkId);
+    }
+
+    @Override
+    public FastMap<Integer, NetworkIdState> getNetworkIdStateList() {
+        if (this.wrappedProvider == null) {
+            throw new IllegalStateException("RA is has not been activated.");
+        }
+        return this.wrappedProvider.getNetworkIdStateList();
+    }
 
 	public void setWrappedProvider(CAPProvider wrappedProvider) {
 		this.wrappedProvider = wrappedProvider;

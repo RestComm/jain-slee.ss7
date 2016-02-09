@@ -22,6 +22,9 @@
 
 package org.mobicents.slee.resource.tcap.wrappers;
 
+import javolution.util.FastMap;
+
+import org.mobicents.protocols.ss7.sccp.NetworkIdState;
 import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
 import org.mobicents.protocols.ss7.tcap.api.ComponentPrimitiveFactory;
 import org.mobicents.protocols.ss7.tcap.api.DialogPrimitiveFactory;
@@ -163,6 +166,22 @@ public class TCAPProviderWrapper implements TCAPProvider {
 	public void removeTCListener(TCListener arg0) {
 		throw new UnsupportedOperationException();
 	}
+
+    @Override
+    public NetworkIdState getNetworkIdState(int networkId) {
+        if (this.wrappedProvider == null) {
+            throw new IllegalStateException("RA is has not been activated.");
+        }
+        return this.wrappedProvider.getNetworkIdState(networkId);
+    }
+
+    @Override
+    public FastMap<Integer, NetworkIdState> getNetworkIdStateList() {
+        if (this.wrappedProvider == null) {
+            throw new IllegalStateException("RA is has not been activated.");
+        }
+        return this.wrappedProvider.getNetworkIdStateList();
+    }
 
 	public void setWrappedProvider(TCAPProvider wrappedProvider) {
 		this.wrappedProvider = wrappedProvider;
