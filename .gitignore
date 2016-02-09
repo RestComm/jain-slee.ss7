@@ -27,10 +27,10 @@ Thumbs.db
 # SLEE
 ${release.dir}
 ${env.JBOSS_HOME}
-resources/cap/docs/sources-mobicents/src/
-resources/isup/docs/sources-mobicents/src/
-resources/map/docs/sources-mobicents/src/
-resources/tcap/docs/sources-mobicents/src/
+resources/cap/docs/sources-restcomm/src/
+resources/isup/docs/sources-restcomm/src/
+resources/map/docs/sources-restcomm/src/
+resources/tcap/docs/sources-restcomm/src/
 
 # temp files
 *~
