@@ -13,26 +13,26 @@
 		<!-- Library -->
 		<dependency>
 			<artifactId>restcomm-slee-ra-isup-library</artifactId>
-			<groupId>${pom.groupId}</groupId>
-			<version>${pom.version}</version>
+			<groupId>${project.groupId}</groupId>
+			<version>${project.version}</version>
 		</dependency>
 		<!-- components -->
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-isup-events</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 			
 		</dependency>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-isup-ratype</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 			
 		</dependency>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-isup-ra</artifactId>
-			<version>${pom.version}</version>			
+			<version>${project.version}</version>			
 		</dependency>
 
 	</dependencies>
