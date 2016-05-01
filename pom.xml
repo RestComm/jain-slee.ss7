@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<artifactId>restcomm-parent</artifactId>
 		<groupId>org.mobicents</groupId>
-		<version>2.27.32</version>
+		<version>2.27.32</version> <!-- parent pom version -->
 	</parent>
 
 	<groupId>org.mobicents.servers.jainslee.ss7</groupId>
@@ -39,80 +39,83 @@
 						<preparationGoals>clean install</preparationGoals>
 						<autoVersionSubmodules>true</autoVersionSubmodules> 
 					</configuration>
+				</plugin>
+			</plugins>
+		</build>		
+	</profile>
+
+	<!-- binary release profile, add only modules that are included in the binary -->
+	<profile>
+		<id>release</id>
+		<modules>
+			<module>resources/map</module>				
+			<module>resources/cap</module>
+			<module>resources/tcap</module>
+			<module>resources/isup</module>
+		</modules>
+	</profile>
+	<profile>
+		<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>install</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.1.2</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<phase>verify</phase>
+									<goals>
+										<goal>jar</goal>
+									</goals>
+								</execution>
+						</executions>
 					</plugin>
 				</plugins>
-			</build>		
+			</build>
 		</profile>
-		<!-- binary release profile, add only modules that are included in the binary -->
-		<profile>
-			<id>release</id>
-			<modules>
-				<module>resources/map</module>				
-        <module>resources/cap</module>
-        <module>resources/tcap</module>
-        <module>resources/isup</module>
-			</modules>
-		</profile>
-                <profile>
-                      <id>release-sign-artifacts</id>
-                      <activation>
-                        <property>
-                          <name>performRelease</name>
-                          <value>true</value>
-                        </property>
-                      </activation>
-                      <build>
-                        <plugins>
-                          <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-gpg-plugin</artifactId>
-                            <executions>
-                              <execution>
-                                <id>sign-artifacts</id>
-                                <phase>install</phase>
-                                <goals>
-                                  <goal>sign</goal>
-                                </goals>
-                              </execution>
-                            </executions>
-                          </plugin>
-                        <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>2.1.2</version>
-                        <executions>
-                                <execution>
-                                        <id>attach-sources</id>
-                                        <phase>verify</phase>
-                                        <goals>
-                                                <goal>jar</goal>
-                                        </goals>
-                                </execution>
-                        </executions>
-                        </plugin>
-                        </plugins>
-                      </build>
-               </profile>
 	</profiles>	
 
-	
+
 	<!-- dupe info from parent, but it's only way to retrieve the parent without checkout -->
 
 	<repositories>
-                <repository>
-                        <id>restcomm-public-repository-group</id>
-                        <name>Restcomm Public Maven Repository Group</name>
-                        <url>https://oss.sonatype.org/content/groups/public</url>
-                        <layout>default</layout>
-                        <releases>
-                                <enabled>true</enabled>
-                                <updatePolicy>never</updatePolicy>
-                        </releases>
-                        <snapshots>
-                                <enabled>true</enabled>
-                                <updatePolicy>never</updatePolicy>
-                        </snapshots>
-                </repository>
-        </repositories>
-	
+		<repository>
+			<id>restcomm-public-repository-group</id>
+			<name>Restcomm Public Maven Repository Group</name>
+			<url>https://oss.sonatype.org/content/groups/public</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<!-- the place to extra repos -->
+
 </project>
