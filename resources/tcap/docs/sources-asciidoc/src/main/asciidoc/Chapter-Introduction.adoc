@@ -1,0 +1,8 @@
+[[_introduction]]
+= Introduction to {this-platform} JAIN SLEE {this-ra} Resource Adaptor
+
+The Transaction Capabilities Application Part (TCAP) is defined in ITU-T Recommendations Q.771-Q.775. TCAP allows services at network nodes to communicate with each other using an agreed-upon set of data elements. The primary purpose of TCAP is to facilitate multiple concurrent dialogs between the same sub-systems on the same machines, using Transaction IDs to differentiate these, similar to the way TCP ports facilitate multiplexing connections between the same IP addresses on the Internet.
+
+IMPORTANT: For better understanding of TCAP read the specifications defined in ITU-T Recommendations Q.771-Q.775
+
+This resource adaptor provides a {this-ra} API for JAIN SLEE applications, adapting the {this-ra} Stack defined in {this-platform} jSS7.

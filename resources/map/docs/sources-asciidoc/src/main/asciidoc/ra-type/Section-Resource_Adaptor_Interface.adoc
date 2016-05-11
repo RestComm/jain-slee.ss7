@@ -1,0 +1,100 @@
+
+[[_ratype_ra_interface]]
+= Resource Adaptor Interface
+
+The MAP Resource Adaptor SBB Interface provides SBBs with access to the MAP objects required for creating a new, aborting, ending a MAPdialog and sending USSD Request/Response.
+It is defined as follows: 
+
+[source,java]
+----
+
+package org.mobicents.protocols.ss7.map.api;
+
+
+public interface MAPProvider {
+
+	 public abstract void addMAPDialogListener(MAPDialogListener mapdialoglistener);
+
+    public abstract void removeMAPDialogListener(MAPDialogListener mapdialoglistener);
+
+    public abstract MAPParameterFactory getMAPParameterFactory();
+
+    public abstract MAPErrorMessageFactory getMAPErrorMessageFactory();
+
+    public abstract MAPDialog getMAPDialog(Long long1);
+
+	public MAPSmsTpduParameterFactory getMAPSmsTpduParameterFactory();
+
+	public MAPServiceMobility getMAPServiceMobility();
+
+	public MAPServiceCallHandling getMAPServiceCallHandling();
+
+	public MAPServiceOam getMAPServiceOam();
+
+	public MAPServicePdpContextActivation getMAPServicePdpContextActivation();
+
+	public MAPServiceSupplementary getMAPServiceSupplementary();
+	
+	public MAPServiceSms getMAPServiceSms();
+	
+	public MAPServiceLsm getMAPServiceLsm();
+
+}
+----
+
+ public abstract void addMAPDialogListener(MAPDialogListener mapdialoglistener);::
+  this method is not supported.
+  Call to it causes NotSupportedException to be thrown.
+
+public abstract void removeMAPDialogListener(MAPDialogListener mapdialoglistener);::
+  this method is not supported.
+  Call to it causes NotSupportedException to be thrown.
+
+public abstract MAPParameterFactory getMAPParameterFactory();::
+  retrieves factory for generic MAP components
+
+public abstract MAPErrorMessageFactory getMAPErrorMessageFactory();::
+  retrieves implementation of MAP error message factory.
+  Error messages are used to indicate erroneous conditions.
+
+public abstract MAPDialog getMAPDialog(Long dialogId);::
+  retrieves active dialog by its `ID`. 
+
+public abstract MAPDialog getMAPSmsTpduParameterFactory();::
+  retrieves factory for SMS transaction protocol data unit.
+  This is useful for services that are based on SMS.
+
+public abstract MAPServiceMobility getMAPServiceMobility();::
+  retrieves MAP mobility service.
+  It is used to create mobility dialogs.
+
+public abstract MAPServiceCallHandling getMAPServiceCallHandling();::
+  retrieves MAP call handling service.
+  It is used to create call handling dialogs.
+
+public abstract MAPServiceOam getMAPServiceOam();::
+  retrieves MAP operations and managemenet service.
+  It is used to create OAM dialogs.
++
+  NOTE: This service is not yet implemented
+
+public abstract MAPServicePdpContextActivation getMAPServicePdpContextActivation()::
+  retrieves MAP Network-Requested PDP Context Activation services.
++
+  NOTE: This service is not yet implemented
+
+public abstract MAPServiceSupplementary getMAPServiceSupplementary();::
+  retrieves MAP sumplementary service.
+  It is used to create USSD dialogs.
+
+public abstract MAPServiceSms getMAPServiceSms();::
+  retrieves MAP SMS service.
+  It is used to create SMS dialogs.
+  In current release it is not supported.
+
+public abstract MAPServiceLsm getMAPServiceLsm();::
+  retrieves MAP LMS service.
+  It is used to create LMS dialogs.
+  In current release it is not supported.
+
+NOTE: As MAP stack is being completed, it will support more services, this list of `getMAPServiceX` will expand to support all implemented services.

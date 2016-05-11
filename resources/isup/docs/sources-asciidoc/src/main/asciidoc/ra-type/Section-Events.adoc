@@ -1,0 +1,84 @@
+
+[[_ratype_events]]
+= Events
+
+Events represent telephony switch actions taken over particular circuit.
+
+Based on type events are fired on of two activities this  Type defines.
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are ommited.
+For prefix values, for each column, please see list below: 
+
+Name::
+  net.java.slee.resource.isup. 
+
+Event Class::
+  org.mobicents.protocols.ss7.isup.message. 
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name`  column values, to correctly render the table.
+Please remove them when using copy/paste.
+
+`Server` column indicates if event is received on server activity.
+====
+
+.Events fired by &THIS.RA;
+[cols="1,1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments | Server
+| ADDRESS_COMPLETE | AddressCompleteMessage |  | Y
+| ANSWER | AnswerMessage |  | Y
+| APPLICATION_TRANSPORT | ApplicationTransportMessage |  | 		
+| BLOCKING | BlockingMessage |  | Y
+| BLOCKING_ACK | BlockingAckMessage |  | -
+| CALL_PROGRESS | CallProgressMessage |  | Y
+| CHARGE_INFORMATION | ChargeInformationMessage |  | Y
+| CIRCUIT_GROUP_BLOCKING | CircuitGroupBlockingMessage |  | Y
+| CIRCUIT_GROUP_ BLOCKING_ACK | CircuitGroupBlocking AckMessage |  | N
+| CIRCUIT_GROUP_QUERY | CircuitGroup QueryMessage |  | Y
+| CIRCUIT_GROUP_ QUERY_RESPONSE | CircuitGroupQuery ResponseMessage |  | N
+| CIRCUIT_GROUP_RESET | CircuitGroup ResetMessage |  | Y
+| CIRCUIT_GROUP _RESET_ACK | CircuitGroupResetAckMessage |  | N
+| CIRCUIT_GROUP _UNBLOCKING | CircuitGroup UnblockingMessage |  | Y
+| CIRCUIT_GROUP _UNBLOCKING_ACK | CircuitGroup UnblockingAckMessage |  | N
+| CONNECT | ConnectMessage |  | Y
+| CONTINUITY_ CHECK_REQUEST | ContinuityCheck RequestMessage |  | Y
+| CONTINUITY | ContinuityMessage |  | N
+| FACILITY_ACCPETED | FacilityAcceptedMessage |  | Z
+| FACILITY_REJECTED | FacilityRejectedMessage |  | Z
+| FORWARD_TRANSFER | ForwardTransferMessage |  | Z
+| IDENTIFICATION_REQUEST | Identification RequestMessage |  | Z
+| IDENTIFICATION_RESPONSE | Identification ResponseMessage |  | Z
+| INITIAL_ ADDRESS_MESSAGE | InitialAddress Message |  | Y
+| LOOP_PREVENTION | LoopPrevention Message |  | Z
+| LOOPBACK_ACK | LoopbackAckMessage |  | Z
+| NETWORK_RESOURCE _MANAGEMENT | NetworkResource ManagementMessage |  | Z
+| OVERLOAD | OverloadMessage |  | Z
+| PASS_ALONG | PassAlongMessage |  | Z
+| PRERELEASE_INFORMATION | PreRelease InformationMessage |  | Z
+| RELEASE | ReleaseMessage |  | Y
+| RELEASE_COMPLETE | ReleaseCompleteMessage |  | N
+| RESET_CIRCUIT | ResetCircuitMessage |  | Y
+| RESUME | ResumeMessage |  | Z
+| SUBSEQUENT_ADDRESS | SubsequentAddressMessage |  | Z
+| SUBSEQUENT_ DIRECTORY_NUMBER | SubsequentDirectory NumberMessage |  | Z
+| SUSPEND | SuspendMessage |  | Z
+| UNBLOCKING | UnblockingMessage |  | Y
+| UNBLOCKING_ACK | Unblocking AckMessage |  | N
+| UNEQUIPPED_CIC | Unequipped CICMessage |  | Z
+| USER_TO_ USER_INFORMATION | User2User InformationMessage |  | Z
+| USER_PART _AVAILABLE | UserPart AvailableMessage |  | Z
+| USER_PART_TEST | UserPart TestMessage |  | Z
+|===
+
+There is one additional message defined.
+It is fired on both types of activities.
+It indicates timeout of transaction:
+
+* Event name: TRANSACTION_ENDED
+* Class name: org.mobicents.slee.resources.ss7.isup.events.TransactionEnded

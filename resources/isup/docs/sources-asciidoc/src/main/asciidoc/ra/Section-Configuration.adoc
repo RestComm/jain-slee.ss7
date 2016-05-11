@@ -1,0 +1,21 @@
+
+[[_ra_configuration]]
+= Configuration
+
+The Resource Adaptor supports configuration only at Resource Adaptor Entity creation time.
+It supports following properties:
+
+.Resource Adaptor's Configuration Properties - cap-default-ra.properties
+[cols="1,1,1,1", frame="all", options="header"]
+|===
+| Property Name | Description | Property Type | Default Value
+| mtp.driver | Configures driver of MTP layer | java.lang.String | m3ua
+| mtp.address.remote | Address of remote end of data link. It expects data in format: IP:Port .	| java.lang.String | 
+| mtp.address.local | As above. It points to local address to which data link is bound. | java.lang.String | 
+| mtp.apc | Indicates adjacent point code (dpc for originating messages). | java.lang.Integer |  
+| mtp.opc | Indiactes oritinating point code. | java.lang.Integer | 
+| isup.client.timeout | Value of timeout in milisecond. It controls timeout of client transaction. This value must be lower than isup.general.timeout | java.lang.Long | 30.000
+| isup.general.timeout | Value of timeout in millisecond. It controls how long transaction object lingers in stack before its released - in case no action is performed. | java.lang.Long | 120.000
+|===
+
+IMPORTANT: JAIN SLEE 1.1 Specification requires values set for properties without a default value,  which means the configuration for those properties are mandatory,  otherwise the Resource Adaptor Entity creation will fail! 

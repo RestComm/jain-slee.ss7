@@ -1,0 +1,389 @@
+
+[[_ratype_events]]
+= Events
+
+Events represent's MAP's common services as well as services related to USSD Events are fired on `MAPDialog`. Below sections detail different type of events, depending on cause of it beeing fired into SLEE. 
+
+[[_ratype_events_component]]
+== Component
+
+Below events are fired into SLEE when something happens with components passed in {this-ra} messages. 
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below: 
+
+Name::
+  ss7.map. 
+
+Event Class::
+  org.mobicents.slee.resource.map.events 
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Component events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| INVOKE_TIMEOUT | InvokeTimeout | Fired when localy initiated Invoke does not receive any answer for extended period of time.
+| ERROR_COMPONENT | ErrorComponent | Fired when remote peer indicates abnormal component. It indicates some protocol error in component sent from local peer.
+| REJECT_COMPONENT | RejectComponent | Fired when remote end rejects component for some reason.
+|===
+
+[[_ratype_events_dialog]]
+== Dialog
+
+Dialog events are fired into SLEE to indicate basic occurrence of dialog related data. 
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below: 
+
+Name::
+  ss7.map. 
+
+Event Class::
+  org.mobicents.slee.resource.map.events 
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Dialog events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| DIALOG_DELIMITER | DialogDelimiter | Indicates end of MAP commands that triggered other events to be fired.
+| DIALOG_REQUEST | DialogRequest | Generic event representing ANY map request. This event is fired for ALL incoming requests.
+| DIALOG_ACCEPT | DialogAccept | Indicates that remote peer acknowledged dialog. This event is fired prior to any other event in such case.
+| DIALOG_REJECT | DialogReject | Opposite to DIALOG_ACCEPT. Indicates that remote peer rejected dialog for some reason. This event is fired prior to one indicating reason.
+| DIALOG_USERABORT | DialogUserAbort | Fired when remote MAP user aborts dialog.
+| DIALOG_PROVIDERABORT | DialogProviderAbort | Fired when when dialog is aborted due to transport level error.
+| DIALOG_CLOSE | DialogClose | Fired when dialog is closed via TCAP-END primitive.
+| DIALOG_NOTICE | DialogNotice | Fired when abnormal message is received within dialog. For instance when when duplicated InvokeID or wrong operation is received(for running MAP service).
+| DIALOG_TIMEOUT | DialogTimeout | Fired when dialog is about to timeout. Depending on configuration RA may sustain dialog or let it timeout. This event is fired when there is no activity on dialog for extended period of time.
+| DIALOG_RELEASE | DialogRelease | Fired when Dialog and all the resources related to dialog are released. This is last event on this activity after which activity will end.
+|===
+
+[[_ratype_events_service_mobiity_location_management_service]]
+== Mobility - Location Management Service
+
+Below events are fired when dialog receives callbacks for mobility location management service.
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below: 
+
+Name::
+  ss7.map.service.mobility.locationManagement.
+
+Event Class::
+  org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Mobility - Location Management Service events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| UPDATE_LOCATION_ REQUEST | UpdateLocationRequest | This service is used by the VLR to update the location information stored in the HLR.
+| UPDATE_LOCATION_ RESPONSE | UpdateLocationResponse | Response to UpdateLocationRequest
+| CANCEL_LOCATION_ REQUEST | CancelLocationRequest | This service is used between HLR and VLR to delete a subscriber record from the VLR.
+| CANCEL_LOCATION_ RESPONSE | CancelLocationResponse | Response to CancelLocationRequest
+|===
+
+[[_ratype_events_service_mobility_authentication_management_service]]
+== Mobility - Authentication Management Service
+
+Below events are fired when dialog receives callbacks for mobility authentication management service.
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below: 
+
+Name::
+  ss7.map.service.mobility.authentication.
+
+Event Class::
+  org.mobicents.protocols.ss7.map.api.service.mobility.authentication.
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Mobility - Authentication Management Service events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| SEND_AUTHENTICATION_ INFO_REQUEST | SendAuthentication InfoRequest | This service is used between the VLR and the HLR for the VLR to retrieve authentication information from the HLR
+| SEND_AUTHENTICATION_ INFO_RESPONSE | SendAuthentication InfoResponse | Response to SendAuthenticationInfoRequest
+|===
+
+[[_ratype_events_service_mobility_imei_management_service]]
+== Mobility - IMEI Management Service
+
+Below events are fired when dialog receives callbacks for mobility IMEI management service.
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below: 
+
+Name::
+  ss7.map.service.mobility.imei.
+
+Event Class::
+  org.mobicents.protocols.ss7.map.api.service.mobility.imei.
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Mobility - Authentication Management Service events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| CHECK_IMEI_REQUEST | CheckImeiRequest | This service is used between the VLR and the MSC and between the MSC and the EIR and between the SGSN and EIR to request check of IMEI. If the IMEI is not available in the MSC or in the SGSN, it is requested from the MS and transferred to the EIR in the service request.
+| CHECK_IMEI_RESPONSE | CheckImeiResponse | Response to CheckImeiRequest
+|===
+
+[[_ratype_events_service_mobility_subscriber_management_service]]
+== Mobility - Subscriber Management Service
+
+Below events are fired when dialog receives callbacks for mobility subscriber management service.
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below: 
+
+Name::
+  ss7.map.service.mobility.subscribermanagement.
+
+Event Class::
+  org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Mobility - Authentication Management Service events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| INSERT_SUBSCRIBER_ DATA_REQUEST | InsertSubscriber DataRequest | This service is used by an HLR to update a VLR with certain subscriber data
+| INSERT_SUBSCRIBER_ DATA_RESPONSE | InsertSubscriber DataResponse | Response to InsertSubscriberDataRequest
+|===
+
+[[_ratype_events_service_mobility_subscriber_information_service]]
+== Mobility - Subscriber Information Service
+
+Below events are fired when dialog receives callbacks for mobility subscriber information service.
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below: 
+
+Name::
+  ss7.map.service.mobility.subscriberinfo.
+
+Event Class::
+  org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Mobility - Authentication Management Service events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| ANY_TIME_ INTERROGATION_REQUEST | AnyTimeInterrogation Request | This service is used by the gsmSCF, to request information (e.g. subscriber state and location) from the HLR or the GMLC at any time. This service may also be used by the gsmSCF to request the Mobile Number Portability (MNP) information from the NPLR. This service is also used by the Presence Network Agent to request information, (e.g. subscriber state and location) about the subscriber (associated with a presentity) from the HLR at any time (see 3GPP TS 23.141 [128]).
+| ANY_TIME_ INTERROGATION_RESPONSE | AnyTimeInterrogation Response | Response to AnyTimeInterrogationRequest
+|===
+
+[[_ratype_events_service_call_handling_service]]
+== Call Handling Service
+
+Below events are fired when dialog receives callbacks for call handling service.
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below: 
+
+Name::
+  ss7.map.service.callhandling.
+
+Event Class::
+  org.mobicents.protocols.ss7.map.api.service.callhandling.
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Mobility - Authentication Management Service events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| SEND_ROUTING_ INFORMATION_REQUEST | SendRoutingInformation Request | This service is used between the Gateway MSC and the HLR. The service is invoked by the Gateway MSC to perform the interrogation of the HLR in order to route a call towards the called MS
+| SEND_ROUTING_ INFORMATION_RESPONSE | SendRoutingInformation Response | Response to SendRoutingInformationRequest
+| PROVIDE_ROAMING_ NUMBER_REQUEST | ProvideRoamingNumber Request | This service is used between the HLR and VLR. The service is invoked by the HLR to request a VLR to send back a roaming number to enable the HLR to instruct the GMSC to route an incoming call to the called MS.
+| PROVIDE_ROAMING_ NUMBER_RESPONSE | ProvideRoamingNumber Response | Response to ProvideRoamingNumberRequest
+|===
+
+[[_ratype_events_service_suplementeary]]
+== Suplementary service
+
+Below events are fired when dialog receives callbacks for suplementary service.
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below: 
+
+Name::
+  ss7.map.service.suplementary. 
+
+Event Class::
+  org.mobicents.protocols.ss7.map.api.service.supplementary. 
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Suplementary service events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| UNSTRUCTURED_ SS_REQUEST | ProcessUnstructuredSS Request | Indicates either initial or subsequent USSD message(all non final messages exchanged are of this type). Its exchanged between user device and USSD application.
+| UNSTRUCTURED_ SS_RESPONSE | ProcessUnstructuredSS Response | Final message exchanged in USSD dialog.
+| PROCESS_ UNSTRUCTURED_ SS_REQUEST | ProcessUnstructuredSS Request | As UNSTRUCTURED _SS_REQUEST, however this message is exchanged between SS7 equipment/nodes, like HLR and VLR
+| PROCESS_ UNSTRUCTURED_ SS_RESPONSE | ProcessUnstructuredSS Response | This event is equivalent of UNSTRUCTURED _SS_RESPONSE.
+| UNSTRUCTURED_SS_ NOTIFY_REQUEST | UnstructuredSSNotify Request | This event represents will of entity to notify user device.
+| UNSTRUCTURED_SS_ NOTIFY_RESPONSE | UnstructuredSSNotify Response | This is response to Notify Request sent from application/nework to device.
+|===
+
+[[_ratype_events_service_lsm]]
+== Local service management
+
+Below events are fired when dialog receives callbacks for local service management.
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below: 
+
+Name::
+  ss7.map.service.lsm. 
+
+Event Class::
+  org.mobicents.protocols.ss7.map.api.service.lsm. 
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Local service management events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| PROVIDE_SUBSCRIBER_ LOCATION_REQUEST | ProvideSubscriberLocation Request | This event indicates that GLMC requests location of user device(subscriber).
+| PROVIDE_SUBSCRIBER_ LOCATION_RESPONSE | ProvideSubscriberLocation Response |  
+| SEND_ROUTING_INFO_ FOR_LCS_REQUEST | SendRoutingInfoForLCS Request | This event indicates that SS7 entity requests routing information from HLR. Provided information is used to route SMS
+| SEND_ROUTING_INFO_ FOR_LCS_RESPONSE | SendRoutingInfoForLCS Response |  
+| SUBSCRIBER_LOCATION_ REPORT_REQUEST | SubscriberLocationReport Request | This event indicates change in location of user device. It provides SS7 equipment with update on subscriber location.
+| SUBSCRIBER_LOCATION_ REPORT_RESPONSE | SubscriberLocationReport Response |  
+|===
+
+[[_ratype_events_service_sms]]
+== Short message service
+
+Below events are fired when dialog receives callbacks for short message service.
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below: 
+
+Name::
+  ss7.map.service.sms. 
+
+Event Class::
+  org.mobicents.protocols.ss7.map.api.service.sms. 
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Short message service events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| FORWARD_SHORT_ MESSAGE_REQUEST | ForwardShortMessage Request | This event indicates that SMS must be forwarded to another SS7 node. This is MAP Phase 1 event, hence no distinction between MO and MT.
+| FORWARD_SHORT_ MESSAGE_RESPONSE | ForwardShortMessage Response |  
+| MO_FORWARD_SHORT_ MESSAGE_REQUEST | MoForwardShortMessage Request | This event indicates that mobile originated SMS must be forwarded to another SS7 node.
+| MO_FORWARD_SHORT_ MESSAGE_RESPONSE | MoForwardShortMessage Response |  
+| MT_FORWARD_SHORT_ MESSAGE_REQUEST | MtForwardShortMessage Request | This event indicates that mobile terminated SMS must be forwarded to another SS7 node.
+| MT_FORWARD_SHORT_ MESSAGE_RESPONSE | MtForwardShortMessage Response |  
+| SEND_ROUTING_INFO_ FOR_SM_REQUEST | SendRoutingInfoForSM Request | This event indicates that HLR is being queried for routing inforamtion.
+| SEND_ROUTING_INFO_ FOR_SM_RESPONSE | SendRoutingInfoForSM Response |  
+| REPORT_SM_DELIVERY_ STATUS_REQUEST | ReportSMDeliveryStatus Request | This event is used to inform HLR about SMS delivery status.
+| REPORT_SM_DELIVERY_ STATUS_RESPONSE | ReportSMDeliveryStatus Response |  
+| INFORM_SERVICE_ CENTER_REQUEST | InformServiceCentre Request | This event is used by HLR to inform message center about subscriber status.
+| ALERT_SERVICE_ CENTER_REQUEST | AlertServiceCentre Request | This event is used by HLR to inform message center about change in subscirber status.
+| ALERT_SERVICE_ CENTER_RESPONSE | AlertServiceCentre Response |  
+|===

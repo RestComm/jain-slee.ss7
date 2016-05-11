@@ -1,0 +1,9 @@
+[[_introduction]]
+= Introduction to {this-platform} JAIN SLEE {this-ra} Resource Adaptor
+
+The CAMEL (Customized Applications for Mobile network Enhanced Logic) Application Part (CAP) protocol is used by network operators to provide their subscribers  with operator specific services even when roaming outside the HPLMN. CAP provides services such as prepaid roaming services, fraud control, special numbers  and closed user groups (e.g., office extension numbers that work everywhere). CAP has been defined in four versions (phases), each of which has an accompanying specification that builds upon the previous phase.
+This application layer provides a standardized set of services.  uses the services of the `SS7`		network, specifically the Signaling Connection Control Part (SCCP)  and the Transaction Capabilities Application Part (TCAP) 
+
+IMPORTANT: For better understanding of CA read the specifications defined in `3GPP TS 22.078` (service aspects) and `3GPP TS 23.078` (technical realization).
+
+This resource adaptor provides a CAP API for JAIN SLEE applications, adapting the CAP Stack defined in {this-platform} jSS7.

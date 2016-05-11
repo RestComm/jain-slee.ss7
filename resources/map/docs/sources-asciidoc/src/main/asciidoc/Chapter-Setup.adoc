@@ -1,0 +1,100 @@
+= Setup
+:doctype: book
+:sectnums:
+:toc: left
+:icons: font
+:experimental:
+:sourcedir: .
+
+[[_preinstall_requirements_and_prerequisites]]
+== Pre-Install Requirements and Prerequisites
+
+Ensure that the following requirements have been met before continuing with the install.
+
+=== Hardware Requirements
+
+The Resource Adaptor hardware's main concern is RAM memory and Java Heap size, the more the better. 
+
+Of course, memory is only needed to store the Resource Adaptor state, the faster the CPU more {this-ra} Messages  processing is supported, yet no particular CPU is a real requirement to use the RA. 
+
+=== Software Prerequisites
+
+The RA requires {this-platform} JAIN SLEE properly set.
+
+[[_source_code]]
+== {this-platform}  JAIN SLEE {this-ra}  Resource Adaptor Source Code
+
+
+
+[[_release_source_building]]
+=== Release Source Code Building
+
+
+. Downloading the source code
++
+IMPORTANT: Git is used to manage {this-platform} JAIN SLEE source code.
+Instructions for downloading, installing and using Git can be found at http://git-scm.com/				    	
++
+Use Git to checkout a specific release source, the Git repository URL is {this-trunk-source-code-url},  then switch to the specific release version, lets consider {project-version}. 
++
+[source]
+----
+
+[usr]$ git clone https://github.com/Restcomm/jain-slee.ss7/ 
+[usr]$ cd jain-slee.ss7
+[usr]$ git checkout tags/{project-version}
+----
+
+. Building the source code
++
+IMPORTANT: Maven 2.0.9 (or higher) is used to build the release.
+Instructions for using Maven2,  including install, can be found at http://maven.apache.org			    		
++
+Use Maven to build the deployable unit binary.
++
+[source]
+----
+
+[usr]$ cd resources/MAP
+[usr]$ mvn install
+----
++
+Once the process finishes you should have the `deployable-unit` jar file in the  [path]_target_ directory, if {this-platform}  JAIN SLEE is installed and environment  variable JBOSS_HOME is pointing to its underlying {jee.platform} directory,  then the deployable unit jar will also be deployed in the container. 
+
+
+[[_master_source_building]]
+=== Development Master Source Building
+
+Similar process as for <<_release_source_building>>, the only change is the Git reference  should be the `master`.
+The `git checkout tags/{project-version}`  command should not be performed.
+If already performed, the following should be used in order to switch  back to the master: 
+
+[source]
+----
+
+[usr]$ git checkout master
+----
+
+[[_install]]
+== Installing {this-platform}  JAIN SLEE {this-ra}  Resource Adaptor
+
+To install the Resource Adaptor simply execute provided ant script [path]_build.xml_ default target:
+
+[source]
+----
+[usr]$ ant
+----
+
+The script will copy the RA deployable unit jar to the `default` {this-platform}  JAIN SLEE  server profile deploy directory, to deploy to another server profile use the argument `-Dnode=`. 
+
+[[_uninstall]]
+== Uninstalling {this-platform}  JAIN SLEE {this-ra}  Resource Adaptor
+
+To uninstall the Resource Adaptor simply execute provided ant script [path]_build.xml_  `undeploy` target: 
+
+[source]
+----
+[usr]$ ant undeploy
+----
+
+The script will delete the RA deployable unit jar from the `default` {this-platform}   JAIN SLEE server profile deploy directory, to undeploy from another server profile use the argument  `-Dnode=`. 

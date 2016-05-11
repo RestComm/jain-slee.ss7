@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<section id="ratype_activities">
+
+	<title>Activities</title>
+
+	<para>
+		An &THIS.RA; activity object represents a set of related events in an
+		&THIS.RA; resource. This RA Type defines only one activity object:
+	</para>
+	<variablelist>
+		<varlistentry>
+			<term>CAPDialog</term>
+			<listitem>
+				<para>
+					All the events related to CAP Dialog and events related to Service are fired on this activity.
+					This activity ends implicitly when CAP stack sends P-Abort or explicitly when user aborts the 
+					Dialog or end's the Dialog.
+ 					Class name is
+					<literal>org.mobicents.protocols.ss7.cap.api.CAPDialog</literal>
+				</para>
+				<para>
+					New <literal>CAPDialog</literal> activity objects are created via specific CAP Service interface. 
+					Check <xref linkend="ratype_ra_interface"/> section for available services. 
+				</para>
+				<para>
+					Depending on service used, activity object provides additional set of methods. For instance 
+					<literal>Circuit Switched Call</literal> dialog: 
+					<classname>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CAPDialogCircuitSwitchedCall</classname> 
+					exposes methods specific for exchange of call related messages. 
+				</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+</section>
