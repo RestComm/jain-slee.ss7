@@ -1,0 +1,14 @@
+
+[[_ra_traces_and_alarms]]
+= Traces and Alarms
+
+[[_ra_tracers]]
+== Tracers
+
+Each Resource Adaptor Entity uses a single JAIN SLEE 1.1 Tracer, named `TCAPResourceAdaptor`.
+The related Log4j Logger category, which can be used to change the Tracer level from Log4j configuration,  is `javax.slee.RAEntityNotification[entity=TCAPRA]`		
+
+[[_ra_alarms]]
+== Alarms
+
+No alarms are set by this Resource Adaptor.

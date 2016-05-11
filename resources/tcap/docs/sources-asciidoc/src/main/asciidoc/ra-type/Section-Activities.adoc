@@ -1,0 +1,12 @@
+
+[[_ratype_activities]]
+= Activities
+
+An {this-ra} activity object represents a set of related events in an {this-ra} resource.
+This RA Type defines only one activity object: 
+
+Dialog::
+  All the events related to TCAP Dialog and events related to Service are fired on this activity.
+  This activity ends implicitly when TCAP stack sends P-Abort or explicitly when user aborts the  Dialog or end's the Dialog.
+  Class name is `org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog`
+  New Dialog activity objects is created via SBB interface exposed by Resource Adaptor

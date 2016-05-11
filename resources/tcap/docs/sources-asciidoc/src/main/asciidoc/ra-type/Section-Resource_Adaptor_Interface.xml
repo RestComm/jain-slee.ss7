@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<section id="ratype_ra_interface">
+
+	<title>Resource Adaptor Interface</title>
+
+	<para>
+		The CAP Resource Adaptor SBB Interface provides SBBs with
+		access to the CAP objects required for creating a new, aborting, ending a CAPDialog and
+		sending Request/Response. It is defined as follows:
+	</para>
+	
+	<programlisting language="java">
+package org.mobicents.protocols.ss7.cap.api;
+
+import java.io.Serializable;
+
+import org.mobicents.protocols.ss7.cap.api.errors.CAPErrorMessageFactory;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CAPServiceCircuitSwitchedCall;
+import org.mobicents.protocols.ss7.cap.api.service.gprs.CAPServiceGprs;
+import org.mobicents.protocols.ss7.cap.api.service.sms.CAPServiceSms;
+import org.mobicents.protocols.ss7.inap.api.INAPParameterFactory;
+import org.mobicents.protocols.ss7.isup.ISUPParameterFactory;
+import org.mobicents.protocols.ss7.map.api.MAPParameterFactory;
+
+public interface CAPProvider extends Serializable {
+
+	/**
+	 * Add CAP Dialog listener to the Stack
+	 * 
+	 * @param capDialogListener
+	 */
+	public void addCAPDialogListener(CAPDialogListener capDialogListener);
+
+	/**
+	 * Remove CAP DIalog Listener from the stack
+	 * 
+	 * @param capDialogListener
+	 */
+	public void removeCAPDialogListener(CAPDialogListener capDialogListener);
+
+	/**
+	 * Get the {@link CAPParameterFactory}
+	 * 
+	 * @return
+	 */
+	public CAPParameterFactory getCAPParameterFactory();
+
+	/**
+	 * Get the {@link MAPParameterFactory}
+	 * 
+	 * @return
+	 */
+	public MAPParameterFactory getMAPParameterFactory();
+
+	/**
+	 * Get the {@link ISUPParameterFactory}
+	 * 
+	 * @return
+	 */
+	public ISUPParameterFactory getISUPParameterFactory();
+
+	/**
+	 * Get the {@link INAPParameterFactory}
+	 * 
+	 * @return
+	 */
+	public INAPParameterFactory getINAPParameterFactory();
+
+	/**
+	 * Get the {@link CAPErrorMessageFactory}
+	 * 
+	 * @return
+	 */
+	public CAPErrorMessageFactory getCAPErrorMessageFactory();
+	
+	/**
+	 * Get {@link CAPDialog} corresponding to passed dialogId
+	 * 
+	 * @param dialogId
+	 * @return
+	 */
+	public CAPDialog getCAPDialog(Long dialogId);
+
+	public CAPServiceCircuitSwitchedCall getCAPServiceCircuitSwitchedCall();
+	public CAPServiceGprs getCAPServiceGprs();
+	public CAPServiceSms getCAPServiceSms();
+		
+}
+	
+	</programlisting>
+	<variablelist>
+		<varlistentry>
+			<term>public void addCAPDialogListener(CAPDialogListener capDialogListener);</term>
+			<listitem>
+				<para>this method is not supported. Call to it causes NotSupportedException to be thrown.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public void removeCAPDialogListener(CAPDialogListener capDialogListener);</term>
+			<listitem>
+				<para>this method is not supported. Call to it causes NotSupportedException to be thrown.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public CAPParameterFactory getCAPParameterFactory();</term>
+			<listitem>
+				<para>retrieves factory for generic CAP components</para>
+			</listitem>
+		</varlistentry>		
+		<varlistentry>
+			<term>public abstract MAPParameterFactory getMAPParameterFactory();</term>
+			<listitem>
+				<para>retrieves factory for generic MAP components</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public ISUPParameterFactory getISUPParameterFactory();</term>
+			<listitem>
+				<para>retrieves factory for generic ISUP components</para>
+			</listitem>
+		</varlistentry>	
+		<varlistentry>
+			<term>public INAPParameterFactory getINAPParameterFactory();</term>
+			<listitem>
+				<para>retrieves factory for generic INAP components</para>
+			</listitem>
+		</varlistentry>				
+		<varlistentry>
+			<term>public CAPErrorMessageFactory getCAPErrorMessageFactory();</term>
+			<listitem>
+				<para>retrieves implementation of CAP error message factory. Error messages are used to indicate erroneous conditions.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public CAPDialog getCAPDialog(Long dialogId);</term>
+			<listitem>
+				<para>retrieves active dialog by its <literal>ID</literal>. </para>
+			</listitem>
+		</varlistentry>
+		
+		<varlistentry>
+			<term>public CAPServiceCircuitSwitchedCall getCAPServiceCircuitSwitchedCall();</term>
+			<listitem>
+				<para>retrieves CAP Circuit Switch Call service. It is used to create circuit switch call related dialogs.</para>
+			</listitem>
+		</varlistentry>		
+		
+		<varlistentry>
+			<term>public CAPServiceGprs getCAPServiceGprs();</term>
+			<listitem>
+				<para>retrieves CAP GPRS Service. It is used to create GPPRS handling dialogs.</para>
+				<note>
+					<para>
+						This service is not yet implemented
+					</para>
+				</note>				
+			</listitem>
+		</varlistentry>		
+		
+		<varlistentry>
+			<term>public CAPServiceSms getCAPServiceSms();</term>
+			<listitem>
+				<para>retrieves CAP SMS service. It is used to create SMS dialogs.</para>
+				<note>
+					<para>
+						This service is not yet implemented
+					</para>
+				</note>
+			</listitem>
+		</varlistentry>				
+	</variablelist>
+	<note>
+		<para>As CAP stack is being completed, it will support more services, this list of <literal>getCAPServiceX</literal> will expand to support all implemented services.</para>
+	</note>
+</section>

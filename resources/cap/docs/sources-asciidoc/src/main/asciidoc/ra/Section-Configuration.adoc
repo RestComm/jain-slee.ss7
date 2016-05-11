@@ -1,0 +1,15 @@
+
+[[_ra_configuration]]
+= Configuration
+
+The Resource Adaptor supports configuration only at Resource Adaptor Entity creation time.
+It supports following properties:
+
+.Resource Adaptor's Configuration Properties - cap-default-ra.properties
+[cols="1,1,1,1", frame="all", options="header"]
+|===
+| Property Name | Description | Property Type | Default Value
+| mapJndi | JNDI name of CAP stack | java.lang.String | java:/mobicents/ss7/cap
+|===
+
+IMPORTANT: JAIN SLEE 1.1 Specification requires values set for properties without a default value,  which means the configuration for those properties are mandatory,  otherwise the Resource Adaptor Entity creation will fail! 

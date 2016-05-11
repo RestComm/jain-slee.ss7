@@ -1,0 +1,40 @@
+[[_ratype]]
+= Resource Adaptor Type
+
+{this-ra} Resource Adaptor Type is defined by {this-platform} team as part of effort to standardize RA Types.
+
+:leveloffset: +1
+
+include::Section-Activities.adoc[]
+
+:leveloffset: -1
+
+:leveloffset: +1
+
+include::Section-Events.adoc[]
+
+:leveloffset: -1
+
+:leveloffset: +1
+
+include::Section-Activity_Context_Interface_Factory.adoc[]
+
+:leveloffset: -1
+
+:leveloffset: +1
+
+include::Section-Resource_Adaptor_Interface.adoc[]
+
+:leveloffset: -1
+
+:leveloffset: +1
+
+include::Section-Restrictions.adoc[]
+
+:leveloffset: -1
+
+:leveloffset: +1
+
+include::Section-Sbb_Code_Examples.adoc[]
+
+:leveloffset: -1

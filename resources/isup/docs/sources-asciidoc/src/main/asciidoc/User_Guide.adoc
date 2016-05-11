@@ -1,0 +1,57 @@
+= User Guide to {this-platform} {this-application} {this-ra} RA {project-version}
+:doctype: book
+:sectnums:
+:toc: left
+:icons: font
+:experimental:
+:sourcedir: .
+:toclevels: 3
+:sectnumlevels: 4
+
+:leveloffset: 1
+
+include::Book_Info.adoc[]
+
+:leveloffset: 0
+
+:leveloffset: 1
+
+include::Common_Content/Preface.adoc[]
+
+:leveloffset: 0
+
+:leveloffset: 1
+
+include::Chapter-Introduction.adoc[]
+
+:leveloffset: 0
+
+:leveloffset: 1
+
+include::ra-type/Chapter-Resource_Adaptor_Type.adoc[]
+
+:leveloffset: 0
+
+:leveloffset: 1
+
+include::ra/Chapter-Resource_Adaptor.adoc[]
+
+:leveloffset: 0
+
+:leveloffset: 1
+
+include::Chapter-Setup.adoc[]
+
+:leveloffset: 0
+
+:leveloffset: 1
+
+include::Chapter-Clustering.adoc[]
+
+:leveloffset: 0
+
+:leveloffset: 1
+
+include::Revision_History.adoc[]
+
+:leveloffset: 0

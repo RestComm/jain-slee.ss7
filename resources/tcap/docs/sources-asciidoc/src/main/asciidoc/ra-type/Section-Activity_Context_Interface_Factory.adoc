@@ -1,0 +1,25 @@
+
+[[_ratype_aci_factory]]
+= Activity Context Interface Factory
+
+The interface of the TCAP resource adaptor type specific Activity Context Interface Factory is defined as follows: 
+
+[source,java]
+----
+
+
+package org.mobicents.slee.resource.tcap;
+
+import javax.slee.ActivityContextInterface;
+import javax.slee.FactoryException;
+import javax.slee.UnrecognizedActivityException;
+
+import org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog;
+
+public interface TCAPContextInterfaceFactory {
+
+	public ActivityContextInterface getActivityContextInterface(Dialog dialog) 
+		throws NullPointerException, UnrecognizedActivityException, FactoryException;
+
+}
+----

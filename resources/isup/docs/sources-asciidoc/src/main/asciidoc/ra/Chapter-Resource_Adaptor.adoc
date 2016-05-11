@@ -1,0 +1,23 @@
+[[_ra]]
+= Resource Adaptor Implementation
+
+The RA implementation uses the {this-platform} {this-ra} stack.
+The stack is the result of the work done by {this-platform} JSLEE Server development teams, and source code is provided in all releases.
+
+:leveloffset: +1
+
+include::Section-Configuration.adoc[]
+
+:leveloffset: -1
+
+:leveloffset: +1
+
+include::Section-Default_Resource_Adaptor_Entities.adoc[]
+
+:leveloffset: -1
+
+:leveloffset: +1
+
+include::Section-Logging_Traces_and_Alarms.adoc[]
+
+:leveloffset: -1

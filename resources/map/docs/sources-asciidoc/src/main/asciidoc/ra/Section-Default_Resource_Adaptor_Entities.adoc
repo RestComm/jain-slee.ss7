@@ -1,0 +1,30 @@
+
+[[_ra_default_ra_entities]]
+= Default Resource Adaptor Entities
+
+There is a single Resource Adaptor Entity created when deploying the Resource Adaptor, named `MAPRA`.
+The `MAPRA` entity uses the default Resource Adaptor configuration, specified in <<_ra_configuration>>.
+
+The `MAPRA` entity is also bound to Resource Adaptor Link Name `MAPRA`, to use it in an Sbb add the following XML to its descriptor:
+
+[source,xml]
+----
+
+
+		<resource-adaptor-type-binding>
+			<resource-adaptor-type-ref>
+				<resource-adaptor-type-name>MAPResourceAdaptorType</resource-adaptor-type-name>
+				<resource-adaptor-type-vendor>org.mobicents</resource-adaptor-type-vendor>
+				<resource-adaptor-type-version>2.0</resource-adaptor-type-version>
+			</resource-adaptor-type-ref>
+			<activity-context-interface-factory-name>
+				slee/resources/map/2.0/acifactory
+			</activity-context-interface-factory-name>
+			<resource-adaptor-entity-binding>
+				<resource-adaptor-object-name>
+					slee/resources/map/2.0/provider
+				</resource-adaptor-object-name>
+				<resource-adaptor-entity-link>MAPRA</resource-adaptor-entity-link>
+			</resource-adaptor-entity-binding>
+		</resource-adaptor-type-binding>
+----

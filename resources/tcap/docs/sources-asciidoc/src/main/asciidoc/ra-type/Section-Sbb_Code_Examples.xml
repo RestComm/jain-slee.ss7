@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<section id="ratype_sbb_code_examples">
+
+	<title>Sbb Code Examples</title>
+
+	<para>The following code shows complete flow of application receiving the CAP Dialog request and then IDP Request.</para>
+	
+	
+	<programlisting language="java">
+public abstract class IdpSbb extends MissCallAlertBaseSbb implements Idp {
+
+	public void onDIALOG_DELIMITER(org.mobicents.slee.resource.cap.events.DialogDelimiter event,
+			ActivityContextInterface aci) {
+	}
+
+	public void onDIALOG_REQUEST(org.mobicents.slee.resource.cap.events.DialogRequest event,
+			ActivityContextInterface aci) {
+	}
+
+	public void onDIALOG_ACCEPT(org.mobicents.slee.resource.cap.events.DialogAccept event,
+			ActivityContextInterface aci) {
+	}
+
+	public void onDIALOG_USERABORT(org.mobicents.slee.resource.cap.events.DialogUserAbort event,
+			ActivityContextInterface aci) {
+	}
+
+	public void onDIALOG_PROVIDERABORT(org.mobicents.slee.resource.cap.events.DialogProviderAbort event,
+			ActivityContextInterface aci) {
+	}
+
+	public void onDIALOG_CLOSE(org.mobicents.slee.resource.cap.events.DialogClose event,
+			ActivityContextInterface aci) {
+	}
+
+	public void onDIALOG_NOTICE(org.mobicents.slee.resource.cap.events.DialogNotice event,
+			ActivityContextInterface aci) {
+	}
+
+	public void onDIALOG_TIMEOUT(org.mobicents.slee.resource.cap.events.DialogTimeout event,
+			ActivityContextInterface aci) {
+	}
+
+	public void onDIALOG_RELEASE(org.mobicents.slee.resource.cap.events.DialogRelease event,
+			ActivityContextInterface aci) {
+	}
+
+	public void onINITIAL_DP_REQUEST(
+			org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitialDPRequest event,
+			ActivityContextInterface aci) {
+
+		if (this.logger.isFineEnabled()) {
+			this.logger.fine("INITIAL_DP_REQUEST = " + event);
+		}
+
+		try {
+			// TODO All processing
+			CalledPartyNumberCap calledPartyNumberCap = event.getCalledPartyNumber();
+			CallingPartyNumberCap callingPartyNumberCap = event.getCallingPartyNumber();
+
+			CalledPartyBCDNumber calledPartyBCDNumber = event.getCalledPartyBCDNumber();
+			AddressNature addressNature = calledPartyBCDNumber.getAddressNature();
+			NumberingPlan numberingPlan = calledPartyBCDNumber.getNumberingPlan();
+			String destinationMSISDN = calledPartyBCDNumber.getAddress();
+
+			.......
+			.......
+
+		} catch (Exception e) {
+			logger.severe("Unexpected error: ", e);
+			// TODO: isolate try+catch per if/else
+			// TODO: terminater dialog
+		}
+	}
+
+	public void onINVOKE_TIMEOUT(org.mobicents.slee.resource.cap.events.InvokeTimeout event,
+			ActivityContextInterface aci) {
+	}
+
+	public void onERROR_COMPONENT(org.mobicents.slee.resource.cap.events.ErrorComponent event,
+			ActivityContextInterface aci) {
+	}
+
+	public void onREJECT_COMPONENT(org.mobicents.slee.resource.cap.events.RejectComponent event,
+			ActivityContextInterface aci) {
+	}
+
+	public void setSbbContext(SbbContext context) {
+		super.setSbbContext(sbbContext);
+
+		this.logger = sbbContext.getTracer(getClass().getName());
+
+		// CAP RA
+		this.capAcif = (CAPContextInterfaceFactory) this.sbbContext
+			.getActivityContextInterfaceFactory(capRATypeID);
+		this.capProvider = (CAPProvider) this.sbbContext
+			.getResourceAdaptorInterface(capRATypeID, capRaLink);
+		this.capParameterFactory = this.capProvider.getCAPParameterFactory();
+	}
+
+}
+	</programlisting>
+</section>

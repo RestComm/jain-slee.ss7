@@ -1,0 +1,24 @@
+
+[[_ratype_aci_factory]]
+= Activity Context Interface Factory
+
+The interface of the {this-ra} resource adaptor type specific Activity Context Interface Factory is defined as follows: 
+
+[source,java]
+----
+
+package org.mobicents.slee.resource.cap;
+
+import javax.slee.ActivityContextInterface;
+import javax.slee.FactoryException;
+import javax.slee.UnrecognizedActivityException;
+
+import org.mobicents.protocols.ss7.cap.api.CAPDialog;
+
+public interface CAPContextInterfaceFactory {
+
+	public ActivityContextInterface getActivityContextInterface(CAPDialog dialog)
+		throws NullPointerException, UnrecognizedActivityException, FactoryException;
+
+}
+----

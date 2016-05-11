@@ -1,0 +1,83 @@
+
+[[_ratype_events]]
+= Events
+
+Events represent's {this-ra} 's messages related to dialog and components.
+Events are fired on `Dialog`.
+Below sections detail different type of events,  depending on cause of it being fired into SLEE. 
+
+[[_ratype_events_component]]
+== Component
+
+Below events are fired into  when something happens with components passed in  messages. 
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below:  
+
+Name::
+  ss7.tcap.
+
+Event Class::
+  org.mobicents.slee.resource.tcap.events.
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Component events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| COMPONENT_INVOKE |  InvokeEvent |  Fired when Invoke is received by underlying TCAP stack
+| COMPONENT_INVOKE_ TIMEOUT |  InvokeEvent |  Fired when locally initiated Invoke does not receive any answer for extended period of time.
+| COMPONENT_REJECT |  RejectEvent |  Fired when remote end rejects component for some reason.
+| COMPONENT_ RETURNRESULT |  ReturnResultEvent |  Fired when remote end responded to invoke sent earlier indicating that there are more response to arrive.
+| COMPONENT_ RETURNRESULT_LAST |  ReturnResultLastEvent |  Fired when remote end responded to invoke sent earlier indicating that this is last response.
+| COMPONENT_ RETURNERROR |  ReturnErrorEvent |  Fired when remote peer indicates abnormal component. It indicates some protocol error in component sent from local peer.
+|===
+
+[[_ratype_events_dialog]]
+== Dialog
+
+Dialog events are fired into SLEE to indicate basic occurrence of dialog related data. 
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are omitted.
+For prefix values, for each column, please see list below:  
+
+Name::
+  ss7.tcap.
+
+Event Class::
+  org.mobicents.protocols.ss7.tcap.api.tc.dialog. 
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name` column values, to correctly render the table.
+Please remove them when using copy/paste. 
+====
+
+.Dialog events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| DIALOG_UNI |  Dialog |  Indicates TCAP stack received uni-direction dialog. Dialog will be released automatically
+| DIALOG_BEGIN |  Dialog |  Event indicate new Dialog is initiated by peer.
+| DIALOG_CONTINUE |  Dialog |  Event indicates continuation of existing dialog
+| DIALOG_END |  Dialog |  Event indicates peer ended dialog
+| DIALOG_USERABORT |  events.TCUserAbortIndication |  Peer user aborted dialog
+| DIALOG_PROVIDERABORT |  events.TCPAbortIndication |  Either local stack or peer stack aborted dialog
+| DIALOG_NOTICE |  Dialog |  Fired when abnormal message is received within dialog. For instance when when duplicated InvokeID or wrong operation is received.
+| DIALOG_RELEASED |  Dialog |  Fired when Dialog and all the resources related to dialog are released. This is last event on this activity after which activity will end.
+| DIALOG_TIMEOUT |  Dialog |  Fired when dialog is about to timeout. Depending on configuration RA may sustain dialog or let it timeout. This event is fired when there is no activity on dialog for extended period of time.
+| DIALOG_DELIMITER |  Dialog |  Indicates all the component events are fired.
+|===

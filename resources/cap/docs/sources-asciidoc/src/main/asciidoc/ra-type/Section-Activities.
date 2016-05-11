@@ -1,0 +1,86 @@
+
+[[_ratype_events]]
+= Events
+
+Events represent telephony switch actions taken over particular circuit.
+
+Based on type events are fired on of two activities this  Type defines.
+
+[IMPORTANT]
+====
+For proper render of this table prefixes, for entries on some columns are ommited.
+For prefix values, for each column, please see list below: 
+
+Name::
+  net.java.slee.resource.isup. 
+
+Event Class::
+  org.mobicents.protocols.ss7.isup.message. 
+
+Version for all defined events is 1.0
+
+Vendor for all defined events is org.mobicents
+
+Spaces where introduced in `Name`  column values, to correctly render the table.
+Please remove them when using copy/paste.
+
+`Server` column indicates if event is received on server activity.
+====
+
+.Events fired by &THIS.RA;
+[cols="1,1,1,1", frame="all", options="header"]
+|===
+| Name
+| Event Class
+| Comments
+| Server
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|===
+
+There is one additional message defined.
+It is fired on both types of activities.
+It indicates timeout of transaction:
+
+* Event name: TRANSACTION_ENDED
+* Class name: org.mobicents.slee.resources.ss7.isup.events.TransactionEnded
