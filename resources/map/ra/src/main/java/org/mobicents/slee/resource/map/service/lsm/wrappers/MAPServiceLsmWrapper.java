@@ -57,7 +57,8 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#acivate()
 	 */
 	public void acivate() {
-		wrappedLSM.acivate();
+		throw new UnsupportedOperationException();
+
 	}
 	
 	/*
@@ -66,7 +67,8 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#deactivate()
 	 */
 	public void deactivate() {
-		wrappedLSM.deactivate();
+		throw new UnsupportedOperationException();
+
 	}
 
 	/*
@@ -99,7 +101,7 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 	 * @see org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsm#addMAPServiceListener(org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsmListener)
 	 */
 	public void addMAPServiceListener(MAPServiceLsmListener mapservicelsmlistener) {
-		wrappedLSM.addMAPServiceListener(mapservicelsmlistener);
+		throw new UnsupportedOperationException();
 
 	}
 
@@ -129,8 +131,7 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 	 * @see org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsm#removeMAPServiceListener(org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsmListener)
 	 */
 	public void removeMAPServiceListener(MAPServiceLsmListener mapservicelsmlistener) {
-		wrappedLSM.removeMAPServiceListener(mapservicelsmlistener);
-
+		throw new UnsupportedOperationException();
 	}
 
 }

@@ -54,11 +54,11 @@ public class MAPServiceCallHandlingWrapper implements MAPServiceCallHandling {
 	}
 
 	public void acivate() {
-		wrappedCallHandling.acivate();
+		throw new UnsupportedOperationException();
 	}
 
 	public void deactivate() {
-		wrappedCallHandling.deactivate();
+		throw new UnsupportedOperationException();
 	}
 
 	public MAPProvider getMAPProvider() {
@@ -97,11 +97,11 @@ public class MAPServiceCallHandlingWrapper implements MAPServiceCallHandling {
     }
 
 	public void addMAPServiceListener(MAPServiceCallHandlingListener mapServiceListener) {
-		wrappedCallHandling.addMAPServiceListener(mapServiceListener);
+		throw new UnsupportedOperationException();
 	}
 
 	public void removeMAPServiceListener(MAPServiceCallHandlingListener mapServiceListener) {
-		wrappedCallHandling.removeMAPServiceListener(mapServiceListener);
+		throw new UnsupportedOperationException();
 	}
 
 }
