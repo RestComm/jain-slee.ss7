@@ -58,8 +58,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#acivate()
 	 */
 	public void acivate() {
-		throw new UnsupportedOperationException();
-
+		wrappedSMS.acivate();
 	}
 
 	/*
@@ -68,8 +67,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#deactivate()
 	 */
 	public void deactivate() {
-		throw new UnsupportedOperationException();
-
+		wrappedSMS.deactivate();
 	}
 
 	/*
@@ -107,7 +105,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	 * (org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSmsListener)
 	 */
 	public void addMAPServiceListener(MAPServiceSmsListener mapservicesmslistener) {
-		throw new UnsupportedOperationException();
+		wrappedSMS.addMAPServiceListener(mapservicesmslistener);
 
 	}
 
@@ -153,8 +151,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	 * (org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSmsListener)
 	 */
 	public void removeMAPServiceListener(MAPServiceSmsListener mapservicesmslistener) {
-		throw new UnsupportedOperationException();
-
+		wrappedSMS.addMAPServiceListener(mapservicesmslistener);
 	}
 
 }

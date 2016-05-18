@@ -53,11 +53,11 @@ public class MAPServicePdpContextActivationWrapper implements MAPServicePdpConte
 	}
 
 	public void acivate() {
-		throw new UnsupportedOperationException();
+		wrappedPdpContextActivation.acivate();
 	}
 
 	public void deactivate() {
-		throw new UnsupportedOperationException();
+		wrappedPdpContextActivation.deactivate();
 	}
 
 	public MAPProvider getMAPProvider() {
@@ -73,7 +73,7 @@ public class MAPServicePdpContextActivationWrapper implements MAPServicePdpConte
 	}
 
 	public void addMAPServiceListener(MAPServicePdpContextActivationListener arg0) {
-		throw new UnsupportedOperationException();
+		wrappedPdpContextActivation.addMAPServiceListener(arg0);
 	}
 
     public MAPDialogPdpContextActivation createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference,
@@ -100,7 +100,7 @@ public class MAPServicePdpContextActivationWrapper implements MAPServicePdpConte
 	}
 
 	public void removeMAPServiceListener(MAPServicePdpContextActivationListener arg0) {
-		throw new UnsupportedOperationException();
+		wrappedPdpContextActivation.removeMAPServiceListener(arg0);
 	}
 
 }
