@@ -53,11 +53,11 @@ public class MAPServiceOamWrapper implements MAPServiceOam {
 	}
 
 	public void acivate() {
-		throw new UnsupportedOperationException();
+		wrappedOam.acivate();
 	}
 
 	public void deactivate() {
-		throw new UnsupportedOperationException();
+		wrappedOam.deactivate();
 	}
 
 	public MAPProvider getMAPProvider() {
@@ -73,7 +73,7 @@ public class MAPServiceOamWrapper implements MAPServiceOam {
 	}
 
 	public void addMAPServiceListener(MAPServiceOamListener arg0) {
-		throw new UnsupportedOperationException();
+		wrappedOam.addMAPServiceListener(arg0);
 	}
 
     @Override
@@ -101,6 +101,6 @@ public class MAPServiceOamWrapper implements MAPServiceOam {
     }
 
 	public void removeMAPServiceListener(MAPServiceOamListener arg0) {
-		throw new UnsupportedOperationException();
+		wrappedOam.removeMAPServiceListener(arg0);
 	}
 }

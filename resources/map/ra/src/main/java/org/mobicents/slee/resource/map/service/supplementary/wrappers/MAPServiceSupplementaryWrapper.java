@@ -60,8 +60,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#acivate()
 	 */
 	public void acivate() {
-		throw new UnsupportedOperationException();
-
+		wrappedUSSD.acivate();
 	}
 
 	/*
@@ -70,8 +69,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#deactivate()
 	 */
 	public void deactivate() {
-		throw new UnsupportedOperationException();
-
+		wrappedUSSD.deactivate();
 	}
 
 	/*
@@ -112,8 +110,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	 * map.api.service.supplementary.MAPServiceSupplementaryListener)
 	 */
 	public void addMAPServiceListener(MAPServiceSupplementaryListener mapservicesupplementarylistener) {
-		throw new UnsupportedOperationException();
-
+		wrappedUSSD.addMAPServiceListener(mapservicesupplementarylistener);
 	}
 
     @Override
@@ -161,8 +158,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	 * .map.api.service.supplementary.MAPServiceSupplementaryListener)
 	 */
 	public void removeMAPServiceListener(MAPServiceSupplementaryListener mapservicesupplementarylistener) {
-		throw new UnsupportedOperationException();
-
+		wrappedUSSD.removeMAPServiceListener(mapservicesupplementarylistener);
 	}
 
 }

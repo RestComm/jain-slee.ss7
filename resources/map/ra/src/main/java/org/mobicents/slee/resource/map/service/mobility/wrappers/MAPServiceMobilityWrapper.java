@@ -35,11 +35,11 @@ public class MAPServiceMobilityWrapper implements MAPServiceMobility {
 	}
 
 	public void acivate() {
-		throw new UnsupportedOperationException();
+		wrappedMobility.acivate();
 	}
 
 	public void deactivate() {
-		throw new UnsupportedOperationException();
+		wrappedMobility.deactivate();
 	}
 
 	public boolean isActivated() {
@@ -51,8 +51,7 @@ public class MAPServiceMobilityWrapper implements MAPServiceMobility {
 	}
 
 	public void addMAPServiceListener(MAPServiceMobilityListener arg0) {
-		throw new UnsupportedOperationException();
-
+		wrappedMobility.addMAPServiceListener(arg0);
 	}
 
     public MAPDialogMobility createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
@@ -78,7 +77,7 @@ public class MAPServiceMobilityWrapper implements MAPServiceMobility {
     }
 
 	public void removeMAPServiceListener(MAPServiceMobilityListener arg0) {
-		throw new UnsupportedOperationException();
+		wrappedMobility.removeMAPServiceListener(arg0);
 	}
 
 }
