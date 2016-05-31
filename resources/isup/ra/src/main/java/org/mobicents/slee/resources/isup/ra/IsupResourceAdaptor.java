@@ -189,11 +189,15 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
     }
 
     public void raStopping() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void raInactive() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            this.isupProvider.removeListener(this);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            this.tracer.severe("Failed to inactivate ISUP RA ", e);
+        }
     }
 
 	public void raVerifyConfiguration(ConfigProperties configProperties) throws InvalidConfigurationException {
