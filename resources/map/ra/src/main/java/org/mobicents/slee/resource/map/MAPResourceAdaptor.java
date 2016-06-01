@@ -61,6 +61,8 @@ import org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessage;
 import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.mobicents.protocols.ss7.map.api.service.callhandling.IstCommandRequest;
+import org.mobicents.protocols.ss7.map.api.service.callhandling.IstCommandResponse;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.MAPDialogCallHandling;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.MAPServiceCallHandlingListener;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.ProvideRoamingNumberRequest;
@@ -173,6 +175,8 @@ import org.mobicents.slee.resource.map.events.ErrorComponent;
 import org.mobicents.slee.resource.map.events.InvokeTimeout;
 import org.mobicents.slee.resource.map.events.MAPEvent;
 import org.mobicents.slee.resource.map.events.RejectComponent;
+import org.mobicents.slee.resource.map.service.callhandling.wrappers.IstCommandRequestWrapper;
+import org.mobicents.slee.resource.map.service.callhandling.wrappers.IstCommandResponseWrapper;
 import org.mobicents.slee.resource.map.service.callhandling.wrappers.MAPDialogCallHandlingWrapper;
 import org.mobicents.slee.resource.map.service.callhandling.wrappers.ProvideRoamingNumberRequestWrapper;
 import org.mobicents.slee.resource.map.service.callhandling.wrappers.ProvideRoamingNumberResponseWrapper;
@@ -1216,6 +1220,22 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 				mapDialogCallHandlingWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogCallHandlingWrapper, event);
 	}
+
+    @Override
+    public void onIstCommandRequest(IstCommandRequest ind) {
+        MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper) ind.getMAPDialog()
+                .getUserObject();
+        IstCommandRequestWrapper event = new IstCommandRequestWrapper(mapDialogCallHandlingWrapper, ind);
+        onEvent(event.getEventTypeName(), mapDialogCallHandlingWrapper, event);
+    }
+
+    @Override
+    public void onIstCommandResponse(IstCommandResponse ind) {
+        MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper) ind.getMAPDialog()
+                .getUserObject();
+        IstCommandResponseWrapper event = new IstCommandResponseWrapper(mapDialogCallHandlingWrapper, ind);
+        onEvent(event.getEventTypeName(), mapDialogCallHandlingWrapper, event);
+    }
 
 	// /////////////////////////
 	// SERVICE: Suplementary //

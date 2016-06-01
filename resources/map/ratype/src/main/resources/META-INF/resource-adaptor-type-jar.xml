@@ -333,6 +333,18 @@
 			<event-type-version>1.0</event-type-version>
 		</event-type-ref>			
 
+		<event-type-ref>
+			<event-type-name>ss7.map.service.callhandling.IST_COMMAND_REQUEST</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>			
+
+		<event-type-ref>
+			<event-type-name>ss7.map.service.callhandling.IST_COMMAND_RESPONSE</event-type-name>
+			<event-type-vendor>org.mobicents</event-type-vendor>
+			<event-type-version>1.0</event-type-version>
+		</event-type-ref>			
+
 		<!-- SERVICE: suplementary -->
         <event-type-ref>
             <event-type-name>ss7.map.service.suplementary.REGISTER_SS_REQUEST</event-type-name>

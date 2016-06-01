@@ -23,6 +23,7 @@
 package org.mobicents.slee.resource.map.service.callhandling.wrappers;
 
 import java.util.ArrayList;
+
 import org.mobicents.protocols.ss7.map.api.MAPException;
 import org.mobicents.protocols.ss7.map.api.primitives.AlertingPattern;
 import org.mobicents.protocols.ss7.map.api.primitives.EMLPPPriority;
@@ -95,60 +96,116 @@ public class MAPDialogCallHandlingWrapper extends MAPDialogWrapper<MAPDialogCall
 		this.wrappedDialog.addProvideRoamingNumberResponse(invokeId, roamingNumber, extensionContainer, releaseResourcesSupported, vmscAddress);
 	}
 
-	@Override
-	public Long addProvideRoamingNumberRequest(IMSI arg0, ISDNAddressString arg1, ISDNAddressString arg2, LMSI arg3, ExternalSignalInfo arg4,
-			ExternalSignalInfo arg5, boolean arg6, ISDNAddressString arg7, CallReferenceNumber arg8, boolean arg9, MAPExtensionContainer arg10,
-			AlertingPattern arg11, boolean arg12, SupportedCamelPhases arg13, ExtExternalSignalInfo arg14, boolean arg15, boolean arg16, boolean arg17,
-			boolean arg18, OfferedCamel4CSIs arg19, boolean arg20, PagingArea arg21, EMLPPPriority arg22, boolean arg23, ISDNAddressString arg24)
-			throws MAPException {
-		return this.wrappedDialog.addProvideRoamingNumberRequest(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14,
-				arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23, arg24);
-	}
+    @Override
+    public Long addSendRoutingInformationRequest(ISDNAddressString msisdn, CUGCheckInfo cugCheckInfo,
+            Integer numberOfForwarding, InterrogationType interrogationType, boolean orInterrogation, Integer orCapability,
+            ISDNAddressString gmscAddress, CallReferenceNumber callReferenceNumber, ForwardingReason forwardingReason,
+            ExtBasicServiceCode basicServiceGroup, ExternalSignalInfo networkSignalInfo, CamelInfo camelInfo,
+            boolean suppressionOfAnnouncement, MAPExtensionContainer extensionContainer, AlertingPattern alertingPattern,
+            boolean ccbsCall, Integer supportedCCBSPhase, ExtExternalSignalInfo additionalSignalInfo,
+            ISTSupportIndicator istSupportIndicator, boolean prePagingSupported,
+            CallDiversionTreatmentIndicator callDiversionTreatmentIndicator, boolean longFTNSupported, boolean suppressVtCSI,
+            boolean suppressIncomingCallBarring, boolean gsmSCFInitiatedCall, ExtBasicServiceCode basicServiceGroup2,
+            ExternalSignalInfo networkSignalInfo2, SuppressMTSS supressMTSS, boolean mtRoamingRetrySupported,
+            EMLPPPriority callPriority) throws MAPException {
+        return this.wrappedDialog
+                .addSendRoutingInformationRequest(msisdn, cugCheckInfo, numberOfForwarding, interrogationType, orInterrogation,
+                        orCapability, gmscAddress, callReferenceNumber, forwardingReason, basicServiceGroup, networkSignalInfo,
+                        camelInfo, suppressionOfAnnouncement, extensionContainer, alertingPattern, ccbsCall,
+                        supportedCCBSPhase, additionalSignalInfo, istSupportIndicator, prePagingSupported,
+                        callDiversionTreatmentIndicator, longFTNSupported, suppressVtCSI, suppressIncomingCallBarring,
+                        gsmSCFInitiatedCall, basicServiceGroup2, networkSignalInfo2, supressMTSS, mtRoamingRetrySupported,
+                        callPriority);
+    }
 
-	@Override
-	public Long addSendRoutingInformationRequest(ISDNAddressString arg0, CUGCheckInfo arg1, Integer arg2, ExternalSignalInfo arg3) throws MAPException {
-		return this.wrappedDialog.addSendRoutingInformationRequest(arg0, arg1, arg2, arg3);
-	}
+    @Override
+    public Long addSendRoutingInformationRequest(int customInvokeTimeout, ISDNAddressString msisdn, CUGCheckInfo cugCheckInfo,
+            Integer numberOfForwarding, InterrogationType interrogationType, boolean orInterrogation, Integer orCapability,
+            ISDNAddressString gmscAddress, CallReferenceNumber callReferenceNumber, ForwardingReason forwardingReason,
+            ExtBasicServiceCode basicServiceGroup, ExternalSignalInfo networkSignalInfo, CamelInfo camelInfo,
+            boolean suppressionOfAnnouncement, MAPExtensionContainer extensionContainer, AlertingPattern alertingPattern,
+            boolean ccbsCall, Integer supportedCCBSPhase, ExtExternalSignalInfo additionalSignalInfo,
+            ISTSupportIndicator istSupportIndicator, boolean prePagingSupported,
+            CallDiversionTreatmentIndicator callDiversionTreatmentIndicator, boolean longFTNSupported, boolean suppressVtCSI,
+            boolean suppressIncomingCallBarring, boolean gsmSCFInitiatedCall, ExtBasicServiceCode basicServiceGroup2,
+            ExternalSignalInfo networkSignalInfo2, SuppressMTSS supressMTSS, boolean mtRoamingRetrySupported,
+            EMLPPPriority callPriority) throws MAPException {
+        return this.wrappedDialog.addSendRoutingInformationRequest(customInvokeTimeout, msisdn, cugCheckInfo,
+                numberOfForwarding, interrogationType, orInterrogation, orCapability, gmscAddress, callReferenceNumber,
+                forwardingReason, basicServiceGroup, networkSignalInfo, camelInfo, suppressionOfAnnouncement,
+                extensionContainer, alertingPattern, ccbsCall, supportedCCBSPhase, additionalSignalInfo, istSupportIndicator,
+                prePagingSupported, callDiversionTreatmentIndicator, longFTNSupported, suppressVtCSI,
+                suppressIncomingCallBarring, gsmSCFInitiatedCall, basicServiceGroup2, networkSignalInfo2, supressMTSS,
+                mtRoamingRetrySupported, callPriority);
+    }
 
-	@Override
-	public Long addSendRoutingInformationRequest(int arg0, ISDNAddressString arg1, CUGCheckInfo arg2, Integer arg3, ExternalSignalInfo arg4)
-			throws MAPException {
-		return this.wrappedDialog.addSendRoutingInformationRequest(arg0, arg1, arg2, arg3, arg4);
-	}
+    @Override
+    public Long addSendRoutingInformationRequest(ISDNAddressString msisdn, CUGCheckInfo cugCheckInfo,
+            Integer numberOfForwarding, ExternalSignalInfo networkSignalInfo) throws MAPException {
+        return this.wrappedDialog.addSendRoutingInformationRequest(msisdn, cugCheckInfo, numberOfForwarding, networkSignalInfo);
+    }
 
-	@Override
-	public Long addSendRoutingInformationRequest(ISDNAddressString arg0, CUGCheckInfo arg1, Integer arg2, InterrogationType arg3, boolean arg4, Integer arg5,
-			ISDNAddressString arg6, CallReferenceNumber arg7, ForwardingReason arg8, ExtBasicServiceCode arg9, ExternalSignalInfo arg10, CamelInfo arg11,
-			boolean arg12, MAPExtensionContainer arg13, AlertingPattern arg14, boolean arg15, Integer arg16, ExtExternalSignalInfo arg17,
-			ISTSupportIndicator arg18, boolean arg19, CallDiversionTreatmentIndicator arg20, boolean arg21, boolean arg22, boolean arg23, boolean arg24,
-			ExtBasicServiceCode arg25, ExternalSignalInfo arg26, SuppressMTSS arg27, boolean arg28, EMLPPPriority arg29) throws MAPException {
-		return this.wrappedDialog.addSendRoutingInformationRequest(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13,
-				arg14, arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23, arg24, arg25, arg26, arg27, arg28, arg29);
-	}
+    @Override
+    public Long addSendRoutingInformationRequest(int customInvokeTimeout, ISDNAddressString msisdn, CUGCheckInfo cugCheckInfo,
+            Integer numberOfForwarding, ExternalSignalInfo networkSignalInfo) throws MAPException {
+        return this.wrappedDialog.addSendRoutingInformationRequest(customInvokeTimeout, msisdn, cugCheckInfo,
+                numberOfForwarding, networkSignalInfo);
+    }
 
-	@Override
-	public Long addSendRoutingInformationRequest(int arg0, ISDNAddressString arg1, CUGCheckInfo arg2, Integer arg3, InterrogationType arg4, boolean arg5,
-			Integer arg6, ISDNAddressString arg7, CallReferenceNumber arg8, ForwardingReason arg9, ExtBasicServiceCode arg10, ExternalSignalInfo arg11,
-			CamelInfo arg12, boolean arg13, MAPExtensionContainer arg14, AlertingPattern arg15, boolean arg16, Integer arg17, ExtExternalSignalInfo arg18,
-			ISTSupportIndicator arg19, boolean arg20, CallDiversionTreatmentIndicator arg21, boolean arg22, boolean arg23, boolean arg24, boolean arg25,
-			ExtBasicServiceCode arg26, ExternalSignalInfo arg27, SuppressMTSS arg28, boolean arg29, EMLPPPriority arg30) throws MAPException {
-		return this.wrappedDialog.addSendRoutingInformationRequest(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13,
-				arg14, arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23, arg24, arg25, arg26, arg27, arg28, arg29, arg30);
-	}
+    @Override
+    public Long addProvideRoamingNumberRequest(IMSI imsi, ISDNAddressString mscNumber, ISDNAddressString msisdn, LMSI lmsi,
+            ExternalSignalInfo gsmBearerCapability, ExternalSignalInfo networkSignalInfo, boolean suppressionOfAnnouncement,
+            ISDNAddressString gmscAddress, CallReferenceNumber callReferenceNumber, boolean orInterrogation,
+            MAPExtensionContainer extensionContainer, AlertingPattern alertingPattern, boolean ccbsCall,
+            SupportedCamelPhases supportedCamelPhasesInInterrogatingNode, ExtExternalSignalInfo additionalSignalInfo,
+            boolean orNotSupportedInGMSC, boolean prePagingSupported, boolean longFTNSupported, boolean suppressVtCsi,
+            OfferedCamel4CSIs offeredCamel4CSIsInInterrogatingNode, boolean mtRoamingRetrySupported, PagingArea pagingArea,
+            EMLPPPriority callPriority, boolean mtrfIndicator, ISDNAddressString oldMSCNumber) throws MAPException {
+        return this.wrappedDialog.addProvideRoamingNumberRequest(imsi, mscNumber, msisdn, lmsi, gsmBearerCapability,
+                networkSignalInfo, suppressionOfAnnouncement, gmscAddress, callReferenceNumber, orInterrogation,
+                extensionContainer, alertingPattern, ccbsCall, supportedCamelPhasesInInterrogatingNode, additionalSignalInfo,
+                orNotSupportedInGMSC, prePagingSupported, longFTNSupported, suppressVtCsi,
+                offeredCamel4CSIsInInterrogatingNode, mtRoamingRetrySupported, pagingArea, callPriority, mtrfIndicator,
+                oldMSCNumber);
+    }
 
-	@Override
-	public void addSendRoutingInformationResponse(long arg0, IMSI arg1, CUGCheckInfo arg2, RoutingInfo arg3) throws MAPException {
-		this.wrappedDialog.addSendRoutingInformationResponse(arg0, arg1, arg2, arg3);
-	}
+    @Override
+    public void addSendRoutingInformationResponse(long invokeId, IMSI imsi, ExtendedRoutingInfo extRoutingInfo,
+            CUGCheckInfo cugCheckInfo, boolean cugSubscriptionFlag, SubscriberInfo subscriberInfo, ArrayList<SSCode> ssList,
+            ExtBasicServiceCode basicService, boolean forwardingInterrogationRequired, ISDNAddressString vmscAddress,
+            MAPExtensionContainer extensionContainer, NAEAPreferredCI naeaPreferredCI, CCBSIndicators ccbsIndicators,
+            ISDNAddressString msisdn, NumberPortabilityStatus nrPortabilityStatus, Integer istAlertTimer,
+            SupportedCamelPhases supportedCamelPhases, OfferedCamel4CSIs offeredCamel4CSIs, RoutingInfo routingInfo2,
+            ArrayList<SSCode> ssList2, ExtBasicServiceCode basicService2, AllowedServices allowedServices,
+            UnavailabilityCause unavailabilityCause, boolean releaseResourcesSupported, ExternalSignalInfo gsmBearerCapability)
+            throws MAPException {
+        this.wrappedDialog.addSendRoutingInformationResponse(invokeId, imsi, extRoutingInfo, cugCheckInfo, cugSubscriptionFlag,
+                subscriberInfo, ssList, basicService, forwardingInterrogationRequired, vmscAddress, extensionContainer,
+                naeaPreferredCI, ccbsIndicators, msisdn, nrPortabilityStatus, istAlertTimer, supportedCamelPhases,
+                offeredCamel4CSIs, routingInfo2, ssList2, basicService2, allowedServices, unavailabilityCause,
+                releaseResourcesSupported, gsmBearerCapability);
+    }
 
-	@Override
-	public void addSendRoutingInformationResponse(long arg0, IMSI arg1, ExtendedRoutingInfo arg2, CUGCheckInfo arg3, boolean arg4, SubscriberInfo arg5,
-			ArrayList<SSCode> arg6, ExtBasicServiceCode arg7, boolean arg8, ISDNAddressString arg9, MAPExtensionContainer arg10, NAEAPreferredCI arg11,
-			CCBSIndicators arg12, ISDNAddressString arg13, NumberPortabilityStatus arg14, Integer arg15, SupportedCamelPhases arg16, OfferedCamel4CSIs arg17,
-			RoutingInfo arg18, ArrayList<SSCode> arg19, ExtBasicServiceCode arg20, AllowedServices arg21, UnavailabilityCause arg22, boolean arg23,
-			ExternalSignalInfo arg24) throws MAPException {
-		this.wrappedDialog.addSendRoutingInformationResponse(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12, arg13, arg14,
-				arg15, arg16, arg17, arg18, arg19, arg20, arg21, arg22, arg23, arg24);
-	}
+    @Override
+    public void addSendRoutingInformationResponse(long invokeId, IMSI imsi, CUGCheckInfo cugCheckInfo, RoutingInfo routingInfo2)
+            throws MAPException {
+        this.wrappedDialog.addSendRoutingInformationResponse(invokeId, imsi, cugCheckInfo, routingInfo2);
+    }
+
+    @Override
+    public Long addIstCommandRequest(IMSI imsi, MAPExtensionContainer extensionContainer) throws MAPException {
+        return this.wrappedDialog.addIstCommandRequest(imsi, extensionContainer);
+    }
+
+    @Override
+    public Long addIstCommandRequest(int customInvokeTimeout, IMSI imsi, MAPExtensionContainer extensionContainer)
+            throws MAPException {
+        return this.wrappedDialog.addIstCommandRequest(customInvokeTimeout, imsi, extensionContainer);
+    }
+
+    @Override
+    public void addIstCommandResponse(long invokeId, MAPExtensionContainer extensionContainer) throws MAPException {
+        this.wrappedDialog.addIstCommandResponse(invokeId, extensionContainer);
+    }
 
 }
