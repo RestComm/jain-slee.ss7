@@ -365,6 +365,20 @@
 		<event-class-name>org.mobicents.protocols.ss7.map.api.service.callhandling.ProvideRoamingNumberResponse</event-class-name>
 	</event-definition>
 
+	<event-definition>
+		<event-type-name>ss7.map.service.callhandling.IST_COMMAND_REQUEST</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.callhandling.IstCommandRequest</event-class-name>
+	</event-definition>
+
+	<event-definition>
+		<event-type-name>ss7.map.service.callhandling.IST_COMMAND_RESPONSE</event-type-name>
+		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-version>1.0</event-type-version>
+		<event-class-name>org.mobicents.protocols.ss7.map.api.service.callhandling.IstCommandResponse</event-class-name>
+	</event-definition>
+
 	<!-- Suplementary -->
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.REGISTER_SS_REQUEST</event-type-name>
