@@ -114,7 +114,7 @@
 				<updatePolicy>never</updatePolicy>
 			</snapshots>
 		</repository>
-	</repositories>
 
 	<!-- the place to extra repos -->
+	</repositories>
 </project>
