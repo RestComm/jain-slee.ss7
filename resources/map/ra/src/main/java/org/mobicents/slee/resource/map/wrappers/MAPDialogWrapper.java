@@ -239,6 +239,16 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 		this.wrappedDialog.setRemoteAddress(address);
 	}
 
+    @Override
+    public long getIdleTaskTimeout() {
+        return this.wrappedDialog.getIdleTaskTimeout();
+    }
+
+    @Override
+    public void setIdleTaskTimeout(long idleTaskTimeoutMs) {
+        this.wrappedDialog.setIdleTaskTimeout(idleTaskTimeoutMs);
+    }
+
 	public MAPDialogActivityHandle getActivityHandle() {
 		return activityHandle;
 	}

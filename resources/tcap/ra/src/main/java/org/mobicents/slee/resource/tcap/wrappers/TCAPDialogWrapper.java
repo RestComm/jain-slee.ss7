@@ -287,6 +287,16 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
         this.wrappedDialog.setNetworkId(networkId);
     }
 
+    @Override
+    public long getIdleTaskTimeout() {
+        return this.wrappedDialog.getIdleTaskTimeout();
+    }
+
+    @Override
+    public void setIdleTaskTimeout(long idleTaskTimeoutMs) {
+        this.wrappedDialog.setIdleTaskTimeout(idleTaskTimeoutMs);
+    }
+
 	/*
 	 * (non-Javadoc)
 	 * 
