@@ -124,6 +124,11 @@ public class ConnectRequestWrapper extends CircuitSwitchedCallMessageWrapper<Con
 		return this.wrappedEvent.getSuppressionOfAnnouncement();
 	}
 
+    @Override
+    public boolean getSuppressNCSI() {
+        return this.wrappedEvent.getSuppressNCSI();
+    }
+
 	public String toString() {
 		return "ConnectRequestWrapper [wrapped=" + this.wrappedEvent + "]";
 	}

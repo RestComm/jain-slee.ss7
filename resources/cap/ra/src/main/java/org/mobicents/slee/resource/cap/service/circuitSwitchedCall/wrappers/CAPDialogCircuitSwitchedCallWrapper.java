@@ -188,11 +188,11 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 			OriginalCalledNumberCap originalCalledPartyID, CAPExtensions extensions, Carrier carrier, CallingPartysCategoryInap callingPartysCategory,
 			RedirectingPartyIDCap redirectingPartyID, RedirectionInformationInap redirectionInformation, ArrayList<GenericNumberCap> genericNumbers,
 			ServiceInteractionIndicatorsTwo serviceInteractionIndicatorsTwo, LocationNumberCap chargeNumber, LegID legToBeConnected, CUGInterlock cugInterlock,
-			boolean cugOutgoingAccess, boolean suppressionOfAnnouncement, boolean ocsIApplicable, NAOliInfo naoliInfo, boolean borInterrogationRequested)
+			boolean cugOutgoingAccess, boolean suppressionOfAnnouncement, boolean ocsIApplicable, NAOliInfo naoliInfo, boolean borInterrogationRequested, boolean suppressNCSI)
 			throws CAPException {
 		return this.wrappedDialog.addConnectRequest(destinationRoutingAddress, alertingPattern, originalCalledPartyID, extensions, carrier,
 				callingPartysCategory, redirectingPartyID, redirectionInformation, genericNumbers, serviceInteractionIndicatorsTwo, chargeNumber,
-				legToBeConnected, cugInterlock, cugOutgoingAccess, suppressionOfAnnouncement, ocsIApplicable, naoliInfo, borInterrogationRequested);
+				legToBeConnected, cugInterlock, cugOutgoingAccess, suppressionOfAnnouncement, ocsIApplicable, naoliInfo, borInterrogationRequested, suppressNCSI);
 	}
 
 	@Override
@@ -200,11 +200,11 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 			OriginalCalledNumberCap originalCalledPartyID, CAPExtensions extensions, Carrier carrier, CallingPartysCategoryInap callingPartysCategory,
 			RedirectingPartyIDCap redirectingPartyID, RedirectionInformationInap redirectionInformation, ArrayList<GenericNumberCap> genericNumbers,
 			ServiceInteractionIndicatorsTwo serviceInteractionIndicatorsTwo, LocationNumberCap chargeNumber, LegID legToBeConnected, CUGInterlock cugInterlock,
-			boolean cugOutgoingAccess, boolean suppressionOfAnnouncement, boolean ocsIApplicable, NAOliInfo naoliInfo, boolean borInterrogationRequested)
+			boolean cugOutgoingAccess, boolean suppressionOfAnnouncement, boolean ocsIApplicable, NAOliInfo naoliInfo, boolean borInterrogationRequested, boolean suppressNCSI)
 			throws CAPException {
 		return this.wrappedDialog.addConnectRequest(customInvokeTimeout, destinationRoutingAddress, alertingPattern, originalCalledPartyID, extensions,
 				carrier, callingPartysCategory, redirectingPartyID, redirectionInformation, genericNumbers, serviceInteractionIndicatorsTwo, chargeNumber,
-				legToBeConnected, cugInterlock, cugOutgoingAccess, suppressionOfAnnouncement, ocsIApplicable, naoliInfo, borInterrogationRequested);
+				legToBeConnected, cugInterlock, cugOutgoingAccess, suppressionOfAnnouncement, ocsIApplicable, naoliInfo, borInterrogationRequested, suppressNCSI);
 	}
 
 	@Override
@@ -519,6 +519,22 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
     @Override
     public void addMoveLegResponse(long invokeId) throws CAPException {
         this.wrappedDialog.addMoveLegResponse(invokeId);
+    }
+
+    @Override
+    public Long addSplitLegRequest(LegID legIDToSplit, Integer newCallSegmentId, CAPExtensions extensions) throws CAPException {
+        return this.wrappedDialog.addSplitLegRequest(legIDToSplit, newCallSegmentId, extensions);
+    }
+
+    @Override
+    public Long addSplitLegRequest(int customInvokeTimeout, LegID legIDToSplit, Integer newCallSegmentId,
+            CAPExtensions extensions) throws CAPException {
+        return this.wrappedDialog.addSplitLegRequest(customInvokeTimeout, legIDToSplit, newCallSegmentId, extensions);
+    }
+
+    @Override
+    public void addSplitLegResponse(long invokeId) throws CAPException {
+        this.wrappedDialog.addSplitLegResponse(invokeId);
     }
 
     @Override

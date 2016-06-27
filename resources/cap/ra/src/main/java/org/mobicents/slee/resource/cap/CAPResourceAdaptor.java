@@ -91,6 +91,8 @@ import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.RequestRe
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ResetTimerRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SendChargingInformationRequest;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SpecializedResourceReportRequest;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SplitLegRequest;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SplitLegResponse;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSRequest;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSResponse;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.ApplyChargingGPRSRequest;
@@ -170,6 +172,8 @@ import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.Requ
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.ResetTimerRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.SendChargingInformationRequestWrapper;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.SpecializedResourceReportRequestWrapper;
+import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.SplitLegRequestWrapper;
+import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.SplitLegResponseWrapper;
 import org.mobicents.slee.resource.cap.service.gprs.wrappers.ActivityTestGPRSRequestWrapper;
 import org.mobicents.slee.resource.cap.service.gprs.wrappers.ActivityTestGPRSResponseWrapper;
 import org.mobicents.slee.resource.cap.service.gprs.wrappers.ApplyChargingGPRSRequestWrapper;
@@ -961,6 +965,22 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
     public void onMoveLegResponse(MoveLegResponse ind) {
         CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind.getCAPDialog().getUserObject();
         MoveLegResponseWrapper event = new MoveLegResponseWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
+    }
+
+    @Override
+    public void onSplitLegRequest(SplitLegRequest ind) {
+        CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+                .getCAPDialog().getUserObject();
+        SplitLegRequestWrapper event = new SplitLegRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);
+        onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
+    }
+
+    @Override
+    public void onSplitLegResponse(SplitLegResponse ind) {
+        CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
+                .getCAPDialog().getUserObject();
+        SplitLegResponseWrapper event = new SplitLegResponseWrapper(capDialogCircuitSwitchedCallWrapper, ind);
         onEvent(event.getEventTypeName(), capDialogCircuitSwitchedCallWrapper, event);
     }
 
