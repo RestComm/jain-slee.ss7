@@ -103,6 +103,8 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.oam.ActivateTraceMod
 import org.mobicents.protocols.ss7.map.api.service.mobility.oam.ActivateTraceModeResponse_Mobility;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationResponse;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeSubscriptionInterrogationRequest;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeSubscriptionInterrogationResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ProvideSubscriberInfoRequest;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ProvideSubscriberInfoResponse;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.DeleteSubscriberDataRequest;
@@ -213,6 +215,8 @@ import org.mobicents.slee.resource.map.service.mobility.oam.wrappers.ActivateTra
 import org.mobicents.slee.resource.map.service.mobility.oam.wrappers.ActivateTraceModeResponse_MobilityWrapper;
 import org.mobicents.slee.resource.map.service.mobility.subscriberInformation.wrappers.AnyTimeInterrogationRequestWrapper;
 import org.mobicents.slee.resource.map.service.mobility.subscriberInformation.wrappers.AnyTimeInterrogationResponseWrapper;
+import org.mobicents.slee.resource.map.service.mobility.subscriberInformation.wrappers.AnyTimeSubscriptionInterrogationRequestWrapper;
+import org.mobicents.slee.resource.map.service.mobility.subscriberInformation.wrappers.AnyTimeSubscriptionInterrogationResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.subscriberInformation.wrappers.ProvideSubscriberInfoRequestWrapper;
 import org.mobicents.slee.resource.map.service.mobility.subscriberInformation.wrappers.ProvideSubscriberInfoResponseWrapper;
 import org.mobicents.slee.resource.map.service.mobility.subscriberManagement.wrappers.DeleteSubscriberDataRequestWrapper;
@@ -1120,6 +1124,22 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 				anyTimeInterrogationResponse);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
+
+    @Override
+    public void onAnyTimeSubscriptionInterrogationRequest(AnyTimeSubscriptionInterrogationRequest request) {
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) request.getMAPDialog().getUserObject();
+        AnyTimeSubscriptionInterrogationRequestWrapper event = new AnyTimeSubscriptionInterrogationRequestWrapper(
+                mapDialogMobilityWrapper, request);
+        onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+    }
+
+    @Override
+    public void onAnyTimeSubscriptionInterrogationResponse(AnyTimeSubscriptionInterrogationResponse response) {
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) response.getMAPDialog().getUserObject();
+        AnyTimeSubscriptionInterrogationResponseWrapper event = new AnyTimeSubscriptionInterrogationResponseWrapper(
+                mapDialogMobilityWrapper, response);
+        onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
+    }
 
     @Override
     public void onProvideSubscriberInfoRequest(ProvideSubscriberInfoRequest request) {

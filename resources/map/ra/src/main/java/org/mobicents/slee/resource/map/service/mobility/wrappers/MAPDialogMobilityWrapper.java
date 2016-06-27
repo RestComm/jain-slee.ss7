@@ -63,7 +63,18 @@ import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.T
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UESRVCCCapability;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UsedRATType;
 import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.VLRCapability;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.CAMELSubscriptionInfo;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.CallBarringData;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.CallForwardingData;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.CallHoldData;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.CallWaitingData;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ClipData;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ClirData;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.EctData;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.MSISDNBS;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ODBInfo;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.RequestedInfo;
+import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.RequestedSubscriptionInfo;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.SubscriberInfo;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.AccessRestrictionData;
 import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.CSAllocationRetentionPriority;
@@ -543,6 +554,36 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
     @Override
     public void addActivateTraceModeResponse(long invokeId, MAPExtensionContainer extensionContainer, boolean traceSupportIndicator) throws MAPException {
         this.wrappedDialog.addActivateTraceModeResponse(invokeId, extensionContainer, traceSupportIndicator);
+    }
+
+    @Override
+    public long addAnyTimeSubscriptionInterrogationRequest(SubscriberIdentity subscriberIdentity,
+            RequestedSubscriptionInfo requestedSubscriptionInfo, ISDNAddressString gsmSCFAddress,
+            MAPExtensionContainer extensionContainer, boolean isLongFTNSupported) throws MAPException {
+        return this.wrappedDialog.addAnyTimeSubscriptionInterrogationRequest(subscriberIdentity, requestedSubscriptionInfo,
+                gsmSCFAddress, extensionContainer, isLongFTNSupported);
+    }
+
+    @Override
+    public long addAnyTimeSubscriptionInterrogationRequest(int customTimeout, SubscriberIdentity subscriberIdentity,
+            RequestedSubscriptionInfo requestedSubscriptionInfo, ISDNAddressString gsmSCFAddress,
+            MAPExtensionContainer extensionContainer, boolean isLongFTNSupported) throws MAPException {
+        return this.wrappedDialog.addAnyTimeSubscriptionInterrogationRequest(customTimeout, subscriberIdentity,
+                requestedSubscriptionInfo, gsmSCFAddress, extensionContainer, isLongFTNSupported);
+    }
+
+    @Override
+    public void addAnyTimeSubscriptionInterrogationResponse(long invokeId, CallForwardingData callForwardingData,
+            CallBarringData callBarringData, ODBInfo odbInfo, CAMELSubscriptionInfo camelSubscriptionInfo,
+            SupportedCamelPhases supportedVlrCamelPhases, SupportedCamelPhases supportedSgsnCamelPhases,
+            MAPExtensionContainer extensionContainer, OfferedCamel4CSIs offeredCamel4CSIsInVlr,
+            OfferedCamel4CSIs offeredCamel4CSIsInSgsn, ArrayList<MSISDNBS> msisdnBsList,
+            ArrayList<CSGSubscriptionData> csgSubscriptionDataList, CallWaitingData callWaitingData, CallHoldData callHoldData,
+            ClipData clipData, ClirData clirData, EctData ectData) throws MAPException {
+        this.wrappedDialog.addAnyTimeSubscriptionInterrogationResponse(invokeId, callForwardingData, callBarringData, odbInfo,
+                camelSubscriptionInfo, supportedVlrCamelPhases, supportedSgsnCamelPhases, extensionContainer,
+                offeredCamel4CSIsInVlr, offeredCamel4CSIsInSgsn, msisdnBsList, csgSubscriptionDataList, callWaitingData,
+                callHoldData, clipData, clirData, ectData);
     }
 
 }

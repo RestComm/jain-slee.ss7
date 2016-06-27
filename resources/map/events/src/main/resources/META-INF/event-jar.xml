@@ -278,6 +278,20 @@
     </event-definition>     
 
     <event-definition>
+        <event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_SUBSCRIPTION_INTERROGATION_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeSubscriptionInterrogationRequest</event-class-name>
+    </event-definition>     
+
+    <event-definition>
+        <event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_SUBSCRIPTION_INTERROGATION_RESPONSE</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeSubscriptionInterrogationResponse</event-class-name>
+    </event-definition>     
+
+    <event-definition>
         <event-type-name>ss7.map.service.mobility.subscriberinfo.PROVIDE_SUBSCRIBER_INFO_REQUEST</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
