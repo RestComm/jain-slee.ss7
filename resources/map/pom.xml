@@ -25,7 +25,7 @@
 		<docs.ra.dirname>MAP</docs.ra.dirname>
 		<docs.bookid>MAP</docs.bookid>
 
-		<ss7.version>7.1.11</ss7.version>
+		<ss7.version>7.1.32</ss7.version>
 		<asn.version>2.1.5</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
 
