@@ -11,26 +11,33 @@ import org.mobicents.slee.resource.map.events.MAPEvent;
  */
 public abstract class MAPMessageWrapper<T extends MAPMessage> extends MAPEvent<T> implements MAPMessage {
 
-	
+    public MAPMessageWrapper(MAPDialogWrapper mapDialogWrapper, String eventTypeName, T wrappedEvent) {
+        super(mapDialogWrapper, eventTypeName, wrappedEvent);
+    }
 
-	public MAPMessageWrapper(MAPDialogWrapper mapDialogWrapper, String eventTypeName, T wrappedEvent) {
-		super(mapDialogWrapper, eventTypeName, wrappedEvent);
-	}
+    @Override
+    public long getInvokeId() {
+        return this.wrappedEvent.getInvokeId();
+    }
 
-	public long getInvokeId() {
-		return this.wrappedEvent.getInvokeId();
-	}
+    @Override
+    public MAPMessageType getMessageType() {
+        return this.wrappedEvent.getMessageType();
+    }
 
-	public MAPMessageType getMessageType() {
-		return this.wrappedEvent.getMessageType();
-	}
+    @Override
+    public int getOperationCode() {
+        return this.wrappedEvent.getOperationCode();
+    }
 
-	public int getOperationCode() {
-		return this.wrappedEvent.getOperationCode();
-	}
+    @Override
+    public void setInvokeId(long invokeId) {
+        this.wrappedEvent.setInvokeId(invokeId);
+    }
 
-	public void setInvokeId(long arg0) {
-		this.wrappedEvent.setInvokeId(arg0);
-	}
-	
+    @Override
+    public boolean isReturnResultNotLast() {
+        return this.wrappedEvent.isReturnResultNotLast();
+    }
+
 }
