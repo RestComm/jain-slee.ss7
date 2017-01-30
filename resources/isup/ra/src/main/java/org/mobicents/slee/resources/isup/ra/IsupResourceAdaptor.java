@@ -6,8 +6,10 @@
 package org.mobicents.slee.resources.isup.ra;
 
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.slee.Address;
 import javax.slee.SLEEException;
@@ -177,10 +179,17 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 
     public void raActive() {
     	try {
-    		InitialContext ic = new InitialContext();
-            this.isupProvider = (ISUPProvider) ic.lookup(this.isupJndi);
-            tracer.info("Sucssefully connected to ISUP service[" + this.isupJndi + "]");
-            
+				//InitialContext ic = new InitialContext();
+				//this.isupProvider = (ISUPProvider) ic.lookup(this.isupJndi);
+				//tracer.info("Sucssefully connected to ISUP service[" + this.isupJndi + "]");
+
+				Object object = ManagementFactory.getPlatformMBeanServer()
+					.getAttribute(new ObjectName("org.mobicents.ss7:service=ISUPSS7Service"), "Stack");
+				if (object instanceof ISUPProvider) {
+					this.isupProvider = (ISUPProvider) object;
+					tracer.info("Successfully connected to TCAP service[" + this.isupProvider.getClass().getCanonicalName() + "]");
+				}
+
     		this.isupProvider.addListener(this);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
