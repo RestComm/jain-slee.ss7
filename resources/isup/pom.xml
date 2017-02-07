@@ -15,7 +15,7 @@
 
 
 	<properties>
-		<ss7.version>8.0.49</ss7.version>
+		<ss7.version>8.0.65</ss7.version>
 		<stream.version>1.0.0.FINAL</stream.version>
 	</properties>
 

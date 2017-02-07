@@ -149,6 +149,26 @@ public class CAPProviderWrapper implements CAPProvider {
         return this.wrappedProvider.getNetworkIdStateList();
     }
 
+    @Override
+    public void setUserPartCongestionLevel(String congObject, int level) {
+        this.wrappedProvider.setUserPartCongestionLevel(congObject, level);
+    }
+
+    @Override
+    public int getMemoryCongestionLevel() {
+        return this.wrappedProvider.getMemoryCongestionLevel();
+    }
+
+    @Override
+    public int getExecutorCongestionLevel() {
+        return this.wrappedProvider.getExecutorCongestionLevel();
+    }
+
+    @Override
+    public int getCumulativeCongestionLevel() {
+        return this.wrappedProvider.getCumulativeCongestionLevel();
+    }
+
 	public void setWrappedProvider(CAPProvider wrappedProvider) {
 		this.wrappedProvider = wrappedProvider;
 

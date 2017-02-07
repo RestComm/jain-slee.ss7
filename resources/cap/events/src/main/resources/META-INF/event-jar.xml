@@ -323,6 +323,13 @@
         <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CollectInformationRequest</event-class-name>
     </event-definition>
 
+    <event-definition>
+        <event-type-name>ss7.cap.service.circuitSwitchedCall.CALL_GAP_REQUEST</event-type-name>
+        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-version>1.0</event-type-version>
+        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallGapRequest</event-class-name>
+    </event-definition>
+
 	<!-- GPRS Service -->
 		
 		<event-definition>

@@ -230,6 +230,26 @@ public class MAPProviderWrapper implements MAPProvider {
         return this.wrappedProvider.getNetworkIdStateList();
     }
 
+    @Override
+    public int getCumulativeCongestionLevel() {
+        return this.wrappedProvider.getCumulativeCongestionLevel();
+    }
+
+    @Override
+    public int getExecutorCongestionLevel() {
+        return this.wrappedProvider.getExecutorCongestionLevel();
+    }
+
+    @Override
+    public int getMemoryCongestionLevel() {
+        return this.wrappedProvider.getMemoryCongestionLevel();
+    }
+
+    @Override
+    public void setUserPartCongestionLevel(String congObject, int level) {
+        this.wrappedProvider.setUserPartCongestionLevel(congObject, level);
+    }
+
 	public void setWrappedProvider(MAPProvider wrappedProvider) {
 		this.wrappedProvider = wrappedProvider;
 
