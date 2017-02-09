@@ -1189,9 +1189,4 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
         onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
     }
 
-    @Override
-    public void onCallGapRequest(CallGapRequest ind) {
-			//
-		}
-
 }
