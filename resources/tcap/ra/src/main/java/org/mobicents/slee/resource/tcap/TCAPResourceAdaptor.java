@@ -22,6 +22,7 @@
 
 package org.mobicents.slee.resource.tcap;
 
+import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.slee.Address;
 import javax.slee.AddressPlan;
@@ -74,6 +75,8 @@ import org.mobicents.slee.resource.tcap.wrappers.ReturnResultLastEventImpl;
 import org.mobicents.slee.resource.tcap.wrappers.TCAPDialogWrapper;
 import org.mobicents.slee.resource.tcap.wrappers.TCAPProviderWrapper;
 import org.mobicents.slee.resource.tcap.wrappers.UserAbortEventImpl;
+
+import java.lang.management.ManagementFactory;
 
 /**
  * 
@@ -221,11 +224,17 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	public void raActive() {
 
 		try {
-			InitialContext ic = new InitialContext();
-			this.realProvider = (TCAPProvider) ic.lookup(this.tcapJndi);
+			//InitialContext ic = new InitialContext();
+			//this.realProvider = (TCAPProvider) ic.lookup(this.tcapJndi);
+			//if (tracer.isInfoEnabled()) {
+			//	tracer.info("Successfully connected to TCAP service[" + this.tcapJndi + "]");
+			//}
 
-			if (tracer.isInfoEnabled()) {
-				tracer.info("Successfully connected to TCAP service[" + this.tcapJndi + "]");
+			Object object = ManagementFactory.getPlatformMBeanServer()
+					.getAttribute(new ObjectName("org.mobicents.ss7:service=TCAPSS7Service"), "Stack");
+			if (object instanceof TCAPProvider) {
+				this.realProvider = (TCAPProvider) object;
+				tracer.info("Successfully connected to TCAP service[" + this.realProvider.getClass().getCanonicalName() + "]");
 			}
 
 			this.realProvider.addTCListener(this);

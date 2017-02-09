@@ -22,6 +22,7 @@
 
 package org.mobicents.slee.resource.cap;
 
+import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.slee.Address;
 import javax.slee.AddressPlan;
@@ -46,6 +47,7 @@ import javax.slee.resource.SleeEndpoint;
 import javax.slee.resource.StartActivityException;
 import javax.slee.resource.UnrecognizedActivityHandleException;
 
+import org.mobicents.protocols.ss7.cap.CAPProviderImpl;
 import org.mobicents.protocols.ss7.cap.api.CAPDialog;
 import org.mobicents.protocols.ss7.cap.api.CAPDialogListener;
 import org.mobicents.protocols.ss7.cap.api.CAPMessage;
@@ -56,44 +58,7 @@ import org.mobicents.protocols.ss7.cap.api.dialog.CAPGprsReferenceNumber;
 import org.mobicents.protocols.ss7.cap.api.dialog.CAPNoticeProblemDiagnostic;
 import org.mobicents.protocols.ss7.cap.api.dialog.CAPUserAbortReason;
 import org.mobicents.protocols.ss7.cap.api.errors.CAPErrorMessage;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ActivityTestRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ActivityTestResponse;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ApplyChargingReportRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ApplyChargingRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.AssistRequestInstructionsRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CAPDialogCircuitSwitchedCall;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CAPServiceCircuitSwitchedCallListener;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallGapRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallInformationReportRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallInformationRequestRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CancelRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CollectInformationRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectToResourceRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ContinueRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ContinueWithArgumentRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectForwardConnectionRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectForwardConnectionWithArgumentRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectLegRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectLegResponse;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.EstablishTemporaryConnectionRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.EventReportBCSMRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.FurnishChargingInformationRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitialDPRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitiateCallAttemptRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitiateCallAttemptResponse;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.MoveLegRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.MoveLegResponse;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PlayAnnouncementRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PromptAndCollectUserInformationRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PromptAndCollectUserInformationResponse;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ReleaseCallRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.RequestReportBCSMEventRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ResetTimerRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SendChargingInformationRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SpecializedResourceReportRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SplitLegRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SplitLegResponse;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.*;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSRequest;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSResponse;
 import org.mobicents.protocols.ss7.cap.api.service.gprs.ApplyChargingGPRSRequest;
@@ -206,6 +171,8 @@ import org.mobicents.slee.resource.cap.service.sms.wrappers.RequestReportSMSEven
 import org.mobicents.slee.resource.cap.service.sms.wrappers.ResetTimerSMSRequestWrapper;
 import org.mobicents.slee.resource.cap.wrappers.CAPDialogWrapper;
 import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
+
+import java.lang.management.ManagementFactory;
 
 /**
  * 
@@ -356,9 +323,16 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 	public void raActive() {
 
 		try {
-			InitialContext ic = new InitialContext();
-			this.realProvider = (CAPProvider) ic.lookup(this.capJndi);
-			tracer.info("Successfully connected to CAP service[" + this.capJndi + "]");
+			//InitialContext ic = new InitialContext();
+			//this.realProvider = (CAPProvider) ic.lookup(this.capJndi);
+			//tracer.info("Successfully connected to CAP service[" + this.capJndi + "]");
+
+			Object object = ManagementFactory.getPlatformMBeanServer()
+					.getAttribute(new ObjectName("org.mobicents.ss7:service=CAPSS7Service"), "Stack");
+			if (object instanceof CAPProvider) {
+				this.realProvider = (CAPProvider) object;
+				tracer.info("Successfully connected to CAP service[" + this.realProvider.getClass().getCanonicalName() + "]");
+			}
 
 			this.realProvider.addCAPDialogListener(this);
 
@@ -1214,5 +1188,10 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
         ContinueSMSRequestWrapper event = new ContinueSMSRequestWrapper(capDialogSmsWrapper, ind);
         onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
     }
+
+    @Override
+    public void onCallGapRequest(CallGapRequest ind) {
+			//
+		}
 
 }
