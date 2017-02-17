@@ -9,7 +9,7 @@
 
 	<groupId>org.mobicents.servers.jainslee.ss7</groupId>
 	<artifactId>restcomm-slee-ss7</artifactId>
-	<version>8.0.0-SNAPSHOT</version>
+	<version>8.1.8</version>
 
 	<packaging>pom</packaging>
 
@@ -28,7 +28,7 @@
 
 	<properties>
 		<!--<ss7.version>8.0.49</ss7.version>-->
-		<ss7.version>8.0.0-SNAPSHOT</ss7.version>
+		<ss7.version>8.0.73</ss7.version>
 
 		<asn.version>2.1.5</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
