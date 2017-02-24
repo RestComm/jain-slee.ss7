@@ -231,7 +231,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 			//}
 
 			Object object = ManagementFactory.getPlatformMBeanServer()
-					.getAttribute(new ObjectName("org.mobicents.ss7:service=TCAPSS7Service"), "Stack");
+					.getAttribute(new ObjectName("org.mobicents.ss7:service=TCAPSS7Service_TCAPSS7Service"), "Stack");
 			if (object instanceof TCAPProvider) {
 				this.realProvider = (TCAPProvider) object;
 				tracer.info("Successfully connected to TCAP service[" + this.realProvider.getClass().getCanonicalName() + "]");

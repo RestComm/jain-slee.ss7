@@ -184,7 +184,7 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 				//tracer.info("Sucssefully connected to ISUP service[" + this.isupJndi + "]");
 
 				Object object = ManagementFactory.getPlatformMBeanServer()
-					.getAttribute(new ObjectName("org.mobicents.ss7:service=ISUPSS7Service"), "Stack");
+					.getAttribute(new ObjectName("org.mobicents.ss7:service=ISUPSS7Service_ISUPSS7Service"), "Stack");
 				if (object instanceof ISUPProvider) {
 					this.isupProvider = (ISUPProvider) object;
 					tracer.info("Successfully connected to TCAP service[" + this.isupProvider.getClass().getCanonicalName() + "]");

@@ -434,7 +434,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 			//tracer.info("Successfully connected to MAP service[" + this.mapJndi + "]");
 
 			Object object = ManagementFactory.getPlatformMBeanServer()
-					.getAttribute(new ObjectName("org.mobicents.ss7:service=MAPSS7Service"), "Stack");
+					.getAttribute(new ObjectName("org.mobicents.ss7:service=MAPSS7Service_MAPSS7Service"), "Stack");
 			if (object instanceof MAPProvider) {
 				this.realProvider = (MAPProvider) object;
 				tracer.info("Successfully connected to MAP service[" + this.realProvider.getClass().getCanonicalName() + "]");

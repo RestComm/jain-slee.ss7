@@ -328,7 +328,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 			//tracer.info("Successfully connected to CAP service[" + this.capJndi + "]");
 
 			Object object = ManagementFactory.getPlatformMBeanServer()
-					.getAttribute(new ObjectName("org.mobicents.ss7:service=CAPSS7Service"), "Stack");
+					.getAttribute(new ObjectName("org.mobicents.ss7:service=CAPSS7Service_CAPSS7Service"), "Stack");
 			if (object instanceof CAPProvider) {
 				this.realProvider = (CAPProvider) object;
 				tracer.info("Successfully connected to CAP service[" + this.realProvider.getClass().getCanonicalName() + "]");
