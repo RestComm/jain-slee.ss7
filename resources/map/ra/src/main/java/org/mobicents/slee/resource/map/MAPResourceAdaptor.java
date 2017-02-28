@@ -429,16 +429,22 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	public void raActive() {
 
 		try {
-			//InitialContext ic = new InitialContext();
-			//this.realProvider = (MAPProvider) ic.lookup(this.mapJndi);
-			//tracer.info("Successfully connected to MAP service[" + this.mapJndi + "]");
-
-			Object object = ManagementFactory.getPlatformMBeanServer()
-					.getAttribute(new ObjectName("org.mobicents.ss7:service=MAPSS7Service"), "Stack");
-			if (object instanceof MAPProvider) {
-				this.realProvider = (MAPProvider) object;
-				tracer.info("Successfully connected to MAP service[" + this.realProvider.getClass().getCanonicalName() + "]");
-			}
+            ObjectName objectName = new ObjectName("org.mobicents.ss7:service=MAPSS7Service");
+            Object object = null;
+            if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
+                // trying to get via MBeanServer
+                object = ManagementFactory.getPlatformMBeanServer().getAttribute(objectName, "Stack");
+            } else {
+                // trying to get via Jndi
+                InitialContext ic = new InitialContext();
+                object = ic.lookup(this.mapJndi);
+            }
+            if (object instanceof MAPProvider) {
+                this.realProvider = (MAPProvider) object;
+                tracer.info("Successfully connected to MAP service[" + this.realProvider.getClass().getCanonicalName() + "]");
+            } else {
+                tracer.severe("Failed of connecting to MAP service[org.mobicents.ss7:service=MAPSS7Service]");
+            }
 
 			this.realProvider.addMAPDialogListener(this);
 

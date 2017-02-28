@@ -178,23 +178,33 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
     }
 
     public void raActive() {
-    	try {
-				//InitialContext ic = new InitialContext();
-				//this.isupProvider = (ISUPProvider) ic.lookup(this.isupJndi);
-				//tracer.info("Sucssefully connected to ISUP service[" + this.isupJndi + "]");
+        try {
+            // InitialContext ic = new InitialContext();
+            // this.isupProvider = (ISUPProvider) ic.lookup(this.isupJndi);
+            // tracer.info("Sucssefully connected to ISUP service[" + this.isupJndi + "]");
 
-				Object object = ManagementFactory.getPlatformMBeanServer()
-					.getAttribute(new ObjectName("org.mobicents.ss7:service=ISUPSS7Service"), "Stack");
-				if (object instanceof ISUPProvider) {
-					this.isupProvider = (ISUPProvider) object;
-					tracer.info("Successfully connected to TCAP service[" + this.isupProvider.getClass().getCanonicalName() + "]");
-				}
+            ObjectName objectName = new ObjectName("org.mobicents.ss7:service=ISUPSS7Service");
+            Object object = null;
+            if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
+                // trying to get via MBeanServer
+                object = ManagementFactory.getPlatformMBeanServer().getAttribute(objectName, "Stack");
+            } else {
+                // trying to get via Jndi
+                InitialContext ic = new InitialContext();
+                object = ic.lookup(this.isupJndi);
+            }
+            if (object instanceof ISUPProvider) {
+                this.isupProvider = (ISUPProvider) object;
+                tracer.info("Successfully connected to ISUP service[" + this.isupProvider.getClass().getCanonicalName() + "]");
+            } else {
+                tracer.severe("Failed of connecting to ISUP service[org.mobicents.ss7:service=ISUPSS7Service]");
+            }
 
-    		this.isupProvider.addListener(this);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			this.tracer.severe("Failed to activate ISUP RA ", e);
-		}
+            this.isupProvider.addListener(this);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            this.tracer.severe("Failed to activate ISUP RA ", e);
+        }
     }
 
     public void raStopping() {
