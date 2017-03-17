@@ -750,7 +750,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	private void handleDialogRequest(MAPDialog mapDialog, AddressString destReference, AddressString origReference,
-			MAPExtensionContainer extensionContainer, IMSI eriImsi, AddressString eriVlrNo) {
+			MAPExtensionContainer extensionContainer, AddressString eriMsisdn, AddressString eriVlrNo) {
 		try {
 
 			if (this.tracer.isFineEnabled()) {
@@ -784,7 +784,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 			}
 
 			DialogRequest event = new DialogRequest(mapDialogWrapper, destReference, origReference, extensionContainer,
-					eriImsi, eriVlrNo);
+					eriMsisdn, eriVlrNo);
 			mapDialog.setUserObject(mapDialogWrapper);
 			this.startActivity(mapDialogWrapper);
 			this.fireEvent(event.getEventTypeName(), mapDialogWrapper.getActivityHandle(), event, EventFlags.NO_FLAGS);
@@ -804,8 +804,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	public void onDialogRequestEricsson(MAPDialog mapDialog, AddressString destReference, AddressString origReference,
-			IMSI eriImsi, AddressString eriVlrNo) {
-		this.handleDialogRequest(mapDialog, destReference, origReference, null, eriImsi, eriVlrNo);
+	        AddressString eriMsisdn, AddressString eriVlrNo) {
+		this.handleDialogRequest(mapDialog, destReference, origReference, null, eriMsisdn, eriVlrNo);
 	}
 
 	/**

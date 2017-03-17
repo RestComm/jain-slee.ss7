@@ -48,7 +48,7 @@ import org.mobicents.slee.resource.map.MAPResourceAdaptor;
  *
  */
 public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog {
-	
+
 	protected MAPDialogActivityHandle activityHandle;
 	protected final MAPResourceAdaptor ra;
 	protected T wrappedDialog;
@@ -74,7 +74,7 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 		this.wrappedDialog.abort(arg0);
 	}
 
-	public void addEricssonData(IMSI arg0, AddressString arg1) {
+	public void addEricssonData(AddressString arg0, AddressString arg1) {
 		this.wrappedDialog.addEricssonData(arg0, arg1);
 	}
 
