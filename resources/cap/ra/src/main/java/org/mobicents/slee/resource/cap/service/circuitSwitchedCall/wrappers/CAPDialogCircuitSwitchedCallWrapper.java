@@ -25,6 +25,9 @@ package org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers;
 import java.util.ArrayList;
 
 import org.mobicents.protocols.ss7.cap.api.CAPException;
+import org.mobicents.protocols.ss7.cap.api.gap.GapCriteria;
+import org.mobicents.protocols.ss7.cap.api.gap.GapIndicators;
+import org.mobicents.protocols.ss7.cap.api.gap.GapTreatment;
 import org.mobicents.protocols.ss7.cap.api.isup.CalledPartyNumberCap;
 import org.mobicents.protocols.ss7.cap.api.isup.CallingPartyNumberCap;
 import org.mobicents.protocols.ss7.cap.api.isup.CauseCap;
@@ -52,6 +55,7 @@ import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.primitive
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.primitive.Carrier;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.primitive.CollectedInfo;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.primitive.ContinueWithArgumentArgExtension;
+import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.primitive.ControlType;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.primitive.DestinationRoutingAddress;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.primitive.EventSpecificInformationBCSM;
 import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.primitive.FCIBCCCAMELsequence1;
@@ -529,6 +533,18 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
     @Override
     public Long addCollectInformationRequest(int invokeId) throws CAPException {
         return this.wrappedDialog.addCollectInformationRequest(invokeId);
+    }
+
+    @Override
+    public Long addCallGapRequest(GapCriteria gapCriteria, GapIndicators gapIndicators, ControlType controlType,
+            GapTreatment gapTreatment, CAPExtensions capExtension) throws CAPException {
+        return addCallGapRequest(gapCriteria, gapIndicators, controlType, gapTreatment, capExtension);
+    }
+
+    @Override
+    public Long addCallGapRequest(int customInvokeTimeout, GapCriteria gapCriteria, GapIndicators gapIndicators,
+            ControlType controlType, GapTreatment gapTreatment, CAPExtensions capExtension) throws CAPException {
+        return addCallGapRequest(customInvokeTimeout, gapCriteria, gapIndicators, controlType, gapTreatment, capExtension);
     }
 
     @Override
