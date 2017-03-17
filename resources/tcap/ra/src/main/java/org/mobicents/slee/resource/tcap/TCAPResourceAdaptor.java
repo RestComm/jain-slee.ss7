@@ -235,16 +235,27 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
             if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
                 // trying to get via MBeanServer
                 object = ManagementFactory.getPlatformMBeanServer().getAttribute(objectName, "Stack");
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via MBeanServer: " + objectName + ", object: " + object);
+				}
             } else {
                 // trying to get via Jndi
                 InitialContext ic = new InitialContext();
                 object = ic.lookup(this.tcapJndi);
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via JNDI: " + this.tcapJndi + ", object: " + object);
+				}
             }
 			if (object instanceof TCAPProvider) {
 				this.realProvider = (TCAPProvider) object;
-				tracer.info("Successfully connected to TCAP service[" + this.realProvider.getClass().getCanonicalName() + "]");
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Successfully connected to TCAP service[" +
+							this.realProvider.getClass().getCanonicalName() + "]");
+				}
             } else {
-                tracer.severe("Failed of connecting to TCAP service[org.mobicents.ss7:service=TCAPSS7Service]");
+				if (tracer.isSevereEnabled()) {
+					tracer.severe("Failed of connecting to TCAP service[org.mobicents.ss7:service=TCAPSS7Service]");
+				}
 			}
 
 			this.realProvider.addTCListener(this);
