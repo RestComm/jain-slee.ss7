@@ -173,4 +173,9 @@ public class TCAPProviderWrapper implements TCAPProvider {
 		return this.wrappedProvider.getPreviewMode();
 	}
 
+    @Override
+    public int getCurrentDialogsCount() {
+        return wrappedProvider.getCurrentDialogsCount();
+    }
+
 }

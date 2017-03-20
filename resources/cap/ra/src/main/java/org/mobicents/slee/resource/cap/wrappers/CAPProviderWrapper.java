@@ -141,5 +141,10 @@ public class CAPProviderWrapper implements CAPProvider {
 	public CAPResourceAdaptor getRa() {
 		return ra;
 	}
+
+    @Override
+    public int getCurrentDialogsCount() {
+        return wrappedProvider.getCurrentDialogsCount();
+    }
 }
 
