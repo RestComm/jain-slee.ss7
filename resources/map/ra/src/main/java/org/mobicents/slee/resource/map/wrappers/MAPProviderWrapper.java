@@ -266,4 +266,9 @@ public class MAPProviderWrapper implements MAPProvider {
 		return ra;
 	}
 
+    @Override
+    public int getCurrentDialogsCount() {
+        return wrappedProvider.getCurrentDialogsCount();
+    }
+
 }

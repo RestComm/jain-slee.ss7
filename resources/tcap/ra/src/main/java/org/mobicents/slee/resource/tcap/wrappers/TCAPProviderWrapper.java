@@ -212,4 +212,9 @@ public class TCAPProviderWrapper implements TCAPProvider {
         this.wrappedProvider.setUserPartCongestionLevel(congObject, level);
     }
 
+    @Override
+    public int getCurrentDialogsCount() {
+        return wrappedProvider.getCurrentDialogsCount();
+    }
+
 }
