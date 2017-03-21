@@ -55,6 +55,9 @@ public class DialogRequest extends MAPEvent {
 		this.extensionContainer = extensionContainer;
 		this.eriMsisdn = eriMsisdn;
 		this.eriVlrNo = eriVlrNo;
+
+        if (eriMsisdn != null || eriVlrNo != null)
+            this.eriStyle = true;
 	}
 
 	public AddressString getDestReference() {
