@@ -303,6 +303,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	private transient SleeEndpoint sleeEndpoint = null;
 
 	private ResourceAdaptorContext resourceAdaptorContext;
+	private MAPResourceAdaptorStatisticsUsageParameters defaultUsageParameters;
 
 	private EventIDCache eventIdCache = null;
 
@@ -594,6 +595,15 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		this.sleeEndpoint = raContext.getSleeEndpoint();
 
 		this.eventIdCache = new EventIDCache(this.tracer);
+
+		try {
+			this.defaultUsageParameters =
+					(MAPResourceAdaptorStatisticsUsageParameters) raContext.getDefaultUsageParameterSet();
+
+			tracer.info("defaultUsageParameters: " + this.defaultUsageParameters);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void unsetResourceAdaptorContext() {

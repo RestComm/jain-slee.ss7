@@ -199,6 +199,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 	private transient SleeEndpoint sleeEndpoint = null;
 
 	private ResourceAdaptorContext resourceAdaptorContext;
+	private CAPResourceAdaptorStatisticsUsageParameters defaultUsageParameters;
 
 	private EventIDCache eventIdCache = null;
 
@@ -443,6 +444,15 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		this.tracer = resourceAdaptorContext.getTracer(CAPResourceAdaptor.class.getSimpleName());
 
 		this.eventIdCache = new EventIDCache(this.tracer);
+
+		try {
+			this.defaultUsageParameters =
+					(CAPResourceAdaptorStatisticsUsageParameters) raContext.getDefaultUsageParameterSet();
+
+			tracer.info("defaultUsageParameters: " + this.defaultUsageParameters);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void unsetResourceAdaptorContext() {

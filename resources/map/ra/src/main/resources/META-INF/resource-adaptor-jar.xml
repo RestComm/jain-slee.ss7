@@ -29,6 +29,18 @@
 					org.mobicents.slee.resource.map.MAPResourceAdaptor
 				</resource-adaptor-class-name>
 			</resource-adaptor-class>
+
+			<resource-adaptor-usage-parameters-interface>
+				<description>
+					RestComm Statistics
+				</description>
+				<resource-adaptor-usage-parameters-interface-name>
+					org.mobicents.slee.resource.map.MAPResourceAdaptorStatisticsUsageParameters
+				</resource-adaptor-usage-parameters-interface-name>
+				<usage-parameter name="calls" notifications-enabled="False"/>
+				<usage-parameter name="messages" notifications-enabled="False"/>
+				<usage-parameter name="seconds" notifications-enabled="False"/>
+			</resource-adaptor-usage-parameters-interface>
 		</resource-adaptor-classes>
 		<config-property>
 			<config-property-name>mapJndi</config-property-name>
