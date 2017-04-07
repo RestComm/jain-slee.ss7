@@ -23,6 +23,7 @@
 package org.mobicents.slee.resource.cap;
 
 import javax.management.ObjectName;
+import javax.naming.InitialContext;
 import javax.slee.Address;
 import javax.slee.AddressPlan;
 import javax.slee.SLEEException;
