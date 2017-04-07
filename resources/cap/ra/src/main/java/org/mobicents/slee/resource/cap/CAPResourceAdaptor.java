@@ -22,7 +22,7 @@
 
 package org.mobicents.slee.resource.cap;
 
-import javax.naming.InitialContext;
+import javax.management.ObjectName;
 import javax.slee.Address;
 import javax.slee.AddressPlan;
 import javax.slee.SLEEException;
@@ -203,6 +203,8 @@ import org.mobicents.slee.resource.cap.service.sms.wrappers.ResetTimerSMSRequest
 import org.mobicents.slee.resource.cap.wrappers.CAPDialogWrapper;
 import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
 
+import java.lang.management.ManagementFactory;
+
 /**
  * 
  * @author amit bhayani
@@ -352,9 +354,16 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 	public void raActive() {
 
 		try {
-			InitialContext ic = new InitialContext();
-			this.realProvider = (CAPProvider) ic.lookup(this.capJndi);
-			tracer.info("Successfully connected to CAP service[" + this.capJndi + "]");
+			//InitialContext ic = new InitialContext();
+			//this.realProvider = (CAPProvider) ic.lookup(this.capJndi);
+			//tracer.info("Successfully connected to CAP service[" + this.capJndi + "]");
+
+			Object object = ManagementFactory.getPlatformMBeanServer()
+					.getAttribute(new ObjectName("org.mobicents.ss7:service=CAPSS7Service"), "Stack");
+			if (object instanceof CAPProvider) {
+				this.realProvider = (CAPProvider) object;
+				tracer.info("Successfully connected to CAP service[" + this.realProvider.getClass().getCanonicalName() + "]");
+			}
 
 			this.realProvider.addCAPDialogListener(this);
 

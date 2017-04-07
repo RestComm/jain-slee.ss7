@@ -22,6 +22,7 @@
 
 package org.mobicents.slee.resource.map;
 
+import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.slee.Address;
 import javax.slee.AddressPlan;
@@ -269,6 +270,8 @@ import org.mobicents.slee.resource.map.service.supplementary.wrappers.Unstructur
 import org.mobicents.slee.resource.map.wrappers.MAPDialogWrapper;
 import org.mobicents.slee.resource.map.wrappers.MAPProviderWrapper;
 
+import java.lang.management.ManagementFactory;
+
 /**
  * 
  * @author amit bhayani
@@ -422,9 +425,16 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	public void raActive() {
 
 		try {
-			InitialContext ic = new InitialContext();
-			this.realProvider = (MAPProvider) ic.lookup(this.mapJndi);
-			tracer.info("Successfully connected to MAP service[" + this.mapJndi + "]");
+			//InitialContext ic = new InitialContext();
+			//this.realProvider = (MAPProvider) ic.lookup(this.mapJndi);
+			//tracer.info("Successfully connected to MAP service[" + this.mapJndi + "]");
+
+			Object object = ManagementFactory.getPlatformMBeanServer()
+					.getAttribute(new ObjectName("org.mobicents.ss7:service=MAPSS7Service"), "Stack");
+			if (object instanceof MAPProvider) {
+				this.realProvider = (MAPProvider) object;
+				tracer.info("Successfully connected to MAP service[" + this.realProvider.getClass().getCanonicalName() + "]");
+			}
 
 			this.realProvider.addMAPDialogListener(this);
 

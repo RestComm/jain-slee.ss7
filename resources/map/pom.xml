@@ -24,12 +24,6 @@
 		<docs.ra.name>MAP</docs.ra.name>
 		<docs.ra.dirname>MAP</docs.ra.dirname>
 		<docs.bookid>MAP</docs.bookid>
-
-		<ss7.version>7.2.1390</ss7.version>
-		<asn.version>2.1.5</asn.version>
-		<stream.version>1.0.0.FINAL</stream.version>
-
-		<javolution.version>5.5.1</javolution.version>
 	</properties>
 
 	<profiles>

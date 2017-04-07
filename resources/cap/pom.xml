@@ -24,11 +24,6 @@
 		<docs.ra.name>CAP</docs.ra.name>
 		<docs.ra.dirname>CAP</docs.ra.dirname>
 		<docs.bookid>CAP</docs.bookid>
-
-		<ss7.version>7.2.1390</ss7.version>
-		<asn.version>2.1.5</asn.version>
-
-		<javolution.version>5.5.1</javolution.version>
 	</properties>
 
 	<profiles>

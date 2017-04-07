@@ -12,12 +12,6 @@
 
 	<artifactId>restcomm-slee-ra-isup</artifactId>
 	<groupId>org.mobicents.resources</groupId>
-	
-
-	<properties>
-		<ss7.version>7.2.1390</ss7.version>
-		<stream.version>1.0.0.FINAL</stream.version>
-	</properties>
 
 	<dependencyManagement>
 		<dependencies>
