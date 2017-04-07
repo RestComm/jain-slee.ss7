@@ -358,11 +358,21 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 			//this.realProvider = (CAPProvider) ic.lookup(this.capJndi);
 			//tracer.info("Successfully connected to CAP service[" + this.capJndi + "]");
 
-			Object object = ManagementFactory.getPlatformMBeanServer()
-					.getAttribute(new ObjectName("org.mobicents.ss7:service=CAPSS7Service"), "Stack");
+            ObjectName objectName = new ObjectName("org.mobicents.ss7:service=CAPSS7Service");
+            Object object = null;
+            if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
+                // trying to get via MBeanServer
+                object = ManagementFactory.getPlatformMBeanServer().getAttribute(objectName, "Stack");
+            } else {
+                // trying to get via Jndi
+                InitialContext ic = new InitialContext();
+                object = ic.lookup(this.capJndi);
+            }
 			if (object instanceof CAPProvider) {
 				this.realProvider = (CAPProvider) object;
 				tracer.info("Successfully connected to CAP service[" + this.realProvider.getClass().getCanonicalName() + "]");
+            } else {
+                tracer.severe("Failed of connecting to CAP service[org.mobicents.ss7:service=CAPSS7Service]");
 			}
 
 			this.realProvider.addCAPDialogListener(this);
