@@ -188,16 +188,27 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
             if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
                 // trying to get via MBeanServer
                 object = ManagementFactory.getPlatformMBeanServer().getAttribute(objectName, "Stack");
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via MBeanServer: " + objectName + ", object: " + object);
+				}
             } else {
                 // trying to get via Jndi
                 InitialContext ic = new InitialContext();
                 object = ic.lookup(this.isupJndi);
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via JNDI: " + this.isupJndi + ", object: " + object);
+				}
             }
             if (object instanceof ISUPProvider) {
                 this.isupProvider = (ISUPProvider) object;
-                tracer.info("Successfully connected to ISUP service[" + this.isupProvider.getClass().getCanonicalName() + "]");
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Successfully connected to ISUP service[" +
+							this.isupProvider.getClass().getCanonicalName() + "]");
+				}
             } else {
-                tracer.severe("Failed of connecting to ISUP service[org.mobicents.ss7:service=ISUPSS7Service]");
+				if (tracer.isSevereEnabled()) {
+					tracer.severe("Failed of connecting to ISUP service[org.mobicents.ss7:service=ISUPSS7Service]");
+				}
             }
 
             this.isupProvider.addListener(this);
