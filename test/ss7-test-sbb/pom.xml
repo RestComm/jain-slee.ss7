@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.mobicents.servers.jainslee.ss7</groupId>
+		<artifactId>restcomm-slee-ss7</artifactId>
+		<version>8.0.0-SNAPSHOT</version>
+		<relativePath>../..</relativePath>
+	</parent>
+
+	<groupId>org.mobicents.resources</groupId>
+	<artifactId>ss7-test-sbb</artifactId>
+
+	<name>JSS7-RA : SS7 Test SBB</name>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>sbb</module>
+		<module>du</module>
+	</modules>
+
+	<properties>
+<!--
+		<restcomm.resources.map.version>7.3.0-SNAPSHOT</restcomm.resources.map.version>
+		<restcomm.core.ext.version>2.8.10</restcomm.core.ext.version>
+-->
+	</properties>
+
+	<profiles>
+	</profiles>
+
+</project>
