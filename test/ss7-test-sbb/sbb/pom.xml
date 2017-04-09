@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>ss7-test-sbb</artifactId>
+		<version>7.3.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>sbbs</artifactId>
+
+	<name>JSS7-RA : SS7 Test SBB : SBBs</name>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>org.mobicents.servers.jainslee.api</groupId>
+			<artifactId>jain-slee-11-ext</artifactId>
+			<version>${restcomm.core.ext.version}</version>
+		</dependency>
+		<dependency>
+			<artifactId>restcomm-slee-ra-map-ratype</artifactId>
+			<groupId>org.mobicents.resources</groupId>
+			<version>${project.version}</version>
+		</dependency>
+    </dependencies>
+
+	<profiles>
+	</profiles>
+
+</project>
