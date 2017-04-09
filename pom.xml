@@ -24,6 +24,7 @@
 		<module>resources/cap</module>
 		<module>resources/tcap</module>
 		<module>resources/isup</module>
+		<module>test/ss7-test-sbb</module>
 	</modules>
 
 	<properties>
@@ -32,6 +33,7 @@
 		<asn.version>2.1.5</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
 		<javolution.version>5.5.1</javolution.version>
+		<restcomm.core.ext.version>2.8.10</restcomm.core.ext.version>
 	</properties>
 
 	<profiles>
