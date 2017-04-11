@@ -22,6 +22,7 @@
 
 package org.mobicents.slee.resource.map;
 
+import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.slee.Address;
 import javax.slee.AddressPlan;
@@ -273,6 +274,8 @@ import org.mobicents.slee.resource.map.service.supplementary.wrappers.Unstructur
 import org.mobicents.slee.resource.map.wrappers.MAPDialogWrapper;
 import org.mobicents.slee.resource.map.wrappers.MAPProviderWrapper;
 
+import java.lang.management.ManagementFactory;
+
 /**
  * 
  * @author amit bhayani
@@ -300,6 +303,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	private transient SleeEndpoint sleeEndpoint = null;
 
 	private ResourceAdaptorContext resourceAdaptorContext;
+	private MAPResourceAdaptorStatisticsUsageParameters defaultUsageParameters;
 
 	private EventIDCache eventIdCache = null;
 
@@ -426,9 +430,34 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	public void raActive() {
 
 		try {
-			InitialContext ic = new InitialContext();
-			this.realProvider = (MAPProvider) ic.lookup(this.mapJndi);
-			tracer.info("Successfully connected to MAP service[" + this.mapJndi + "]");
+            ObjectName objectName = new ObjectName("org.mobicents.ss7:service=MAPSS7Service");
+            Object object = null;
+            if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
+                // trying to get via MBeanServer
+                object = ManagementFactory.getPlatformMBeanServer().getAttribute(objectName, "Stack");
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via MBeanServer: " + objectName + ", object: " + object);
+				}
+            } else {
+                // trying to get via Jndi
+                InitialContext ic = new InitialContext();
+                object = ic.lookup(this.mapJndi);
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via JNDI: " + this.mapJndi + ", object: " + object);
+				}
+            }
+
+            if (object instanceof MAPProvider) {
+                this.realProvider = (MAPProvider) object;
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Successfully connected to MAP service[" +
+							this.realProvider.getClass().getCanonicalName() + "]");
+				}
+            } else {
+				if (tracer.isSevereEnabled()) {
+					tracer.severe("Failed of connecting to MAP service[org.mobicents.ss7:service=MAPSS7Service]");
+				}
+            }
 
 			this.realProvider.addMAPDialogListener(this);
 
@@ -566,6 +595,15 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		this.sleeEndpoint = raContext.getSleeEndpoint();
 
 		this.eventIdCache = new EventIDCache(this.tracer);
+
+		try {
+			this.defaultUsageParameters =
+					(MAPResourceAdaptorStatisticsUsageParameters) raContext.getDefaultUsageParameterSet();
+
+			tracer.info("defaultUsageParameters: " + this.defaultUsageParameters);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void unsetResourceAdaptorContext() {

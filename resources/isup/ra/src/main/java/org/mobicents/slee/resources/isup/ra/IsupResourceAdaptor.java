@@ -6,8 +6,10 @@
 package org.mobicents.slee.resources.isup.ra;
 
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.util.concurrent.ConcurrentHashMap;
 
+import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.slee.Address;
 import javax.slee.SLEEException;
@@ -176,16 +178,44 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
     }
 
     public void raActive() {
-    	try {
-    		InitialContext ic = new InitialContext();
-            this.isupProvider = (ISUPProvider) ic.lookup(this.isupJndi);
-            tracer.info("Sucssefully connected to ISUP service[" + this.isupJndi + "]");
-            
-    		this.isupProvider.addListener(this);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			this.tracer.severe("Failed to activate ISUP RA ", e);
-		}
+        try {
+            // InitialContext ic = new InitialContext();
+            // this.isupProvider = (ISUPProvider) ic.lookup(this.isupJndi);
+            // tracer.info("Sucssefully connected to ISUP service[" + this.isupJndi + "]");
+
+            ObjectName objectName = new ObjectName("org.mobicents.ss7:service=ISUPSS7Service");
+            Object object = null;
+            if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
+                // trying to get via MBeanServer
+                object = ManagementFactory.getPlatformMBeanServer().getAttribute(objectName, "Stack");
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via MBeanServer: " + objectName + ", object: " + object);
+				}
+            } else {
+                // trying to get via Jndi
+                InitialContext ic = new InitialContext();
+                object = ic.lookup(this.isupJndi);
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via JNDI: " + this.isupJndi + ", object: " + object);
+				}
+            }
+            if (object instanceof ISUPProvider) {
+                this.isupProvider = (ISUPProvider) object;
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Successfully connected to ISUP service[" +
+							this.isupProvider.getClass().getCanonicalName() + "]");
+				}
+            } else {
+				if (tracer.isSevereEnabled()) {
+					tracer.severe("Failed of connecting to ISUP service[org.mobicents.ss7:service=ISUPSS7Service]");
+				}
+            }
+
+            this.isupProvider.addListener(this);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            this.tracer.severe("Failed to activate ISUP RA ", e);
+        }
     }
 
     public void raStopping() {
