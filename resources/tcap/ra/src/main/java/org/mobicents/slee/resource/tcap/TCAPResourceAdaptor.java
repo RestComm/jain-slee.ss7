@@ -22,6 +22,7 @@
 
 package org.mobicents.slee.resource.tcap;
 
+import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.slee.Address;
 import javax.slee.AddressPlan;
@@ -74,6 +75,8 @@ import org.mobicents.slee.resource.tcap.wrappers.ReturnResultLastEventImpl;
 import org.mobicents.slee.resource.tcap.wrappers.TCAPDialogWrapper;
 import org.mobicents.slee.resource.tcap.wrappers.TCAPProviderWrapper;
 import org.mobicents.slee.resource.tcap.wrappers.UserAbortEventImpl;
+
+import java.lang.management.ManagementFactory;
 
 /**
  * 
@@ -221,11 +224,38 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	public void raActive() {
 
 		try {
-			InitialContext ic = new InitialContext();
-			this.realProvider = (TCAPProvider) ic.lookup(this.tcapJndi);
+			//InitialContext ic = new InitialContext();
+			//this.realProvider = (TCAPProvider) ic.lookup(this.tcapJndi);
+			//if (tracer.isInfoEnabled()) {
+			//	tracer.info("Successfully connected to TCAP service[" + this.tcapJndi + "]");
+			//}
 
-			if (tracer.isInfoEnabled()) {
-				tracer.info("Successfully connected to TCAP service[" + this.tcapJndi + "]");
+            ObjectName objectName = new ObjectName("org.mobicents.ss7:service=TCAPSS7Service");
+            Object object = null;
+            if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
+                // trying to get via MBeanServer
+                object = ManagementFactory.getPlatformMBeanServer().getAttribute(objectName, "Stack");
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via MBeanServer: " + objectName + ", object: " + object);
+				}
+            } else {
+                // trying to get via Jndi
+                InitialContext ic = new InitialContext();
+                object = ic.lookup(this.tcapJndi);
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via JNDI: " + this.tcapJndi + ", object: " + object);
+				}
+            }
+			if (object instanceof TCAPProvider) {
+				this.realProvider = (TCAPProvider) object;
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Successfully connected to TCAP service[" +
+							this.realProvider.getClass().getCanonicalName() + "]");
+				}
+            } else {
+				if (tracer.isSevereEnabled()) {
+					tracer.severe("Failed of connecting to TCAP service[org.mobicents.ss7:service=TCAPSS7Service]");
+				}
 			}
 
 			this.realProvider.addTCListener(this);

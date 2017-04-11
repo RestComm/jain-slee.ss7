@@ -22,6 +22,7 @@
 
 package org.mobicents.slee.resource.cap;
 
+import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.slee.Address;
 import javax.slee.AddressPlan;
@@ -203,6 +204,8 @@ import org.mobicents.slee.resource.cap.service.sms.wrappers.ResetTimerSMSRequest
 import org.mobicents.slee.resource.cap.wrappers.CAPDialogWrapper;
 import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
 
+import java.lang.management.ManagementFactory;
+
 /**
  * 
  * @author amit bhayani
@@ -352,9 +355,38 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 	public void raActive() {
 
 		try {
-			InitialContext ic = new InitialContext();
-			this.realProvider = (CAPProvider) ic.lookup(this.capJndi);
-			tracer.info("Successfully connected to CAP service[" + this.capJndi + "]");
+			//InitialContext ic = new InitialContext();
+			//this.realProvider = (CAPProvider) ic.lookup(this.capJndi);
+			//tracer.info("Successfully connected to CAP service[" + this.capJndi + "]");
+
+            ObjectName objectName = new ObjectName("org.mobicents.ss7:service=CAPSS7Service");
+            Object object = null;
+            if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
+                // trying to get via MBeanServer
+                object = ManagementFactory.getPlatformMBeanServer().getAttribute(objectName, "Stack");
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via MBeanServer: " + objectName + ", object: " + object);
+				}
+            } else {
+                // trying to get via JNDI
+                InitialContext ic = new InitialContext();
+                object = ic.lookup(this.capJndi);
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Trying to get via JNDI: " + this.capJndi + ", object: " + object);
+				}
+            }
+
+			if (object instanceof CAPProvider) {
+				this.realProvider = (CAPProvider) object;
+				if (tracer.isInfoEnabled()) {
+					tracer.info("Successfully connected to CAP service[" +
+							this.realProvider.getClass().getCanonicalName() + "]");
+				}
+            } else {
+				if (tracer.isSevereEnabled()) {
+					tracer.severe("Failed of connecting to CAP service[org.mobicents.ss7:service=CAPSS7Service]");
+				}
+			}
 
 			this.realProvider.addCAPDialogListener(this);
 
