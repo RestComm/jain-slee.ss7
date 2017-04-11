@@ -17,7 +17,7 @@
 		<dependency>
 			<groupId>org.mobicents.servers.jainslee.api</groupId>
 			<artifactId>jain-slee-11-ext</artifactId>
-			<version>${restcomm.core.ext.version}</version>
+			<version>${restcomm.slee.ext.version}</version>
 		</dependency>
 		<dependency>
 			<artifactId>restcomm-slee-ra-map-ratype</artifactId>

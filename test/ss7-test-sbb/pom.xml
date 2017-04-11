@@ -21,10 +21,6 @@
 	</modules>
 
 	<properties>
-<!--
-		<restcomm.resources.map.version>7.3.0-SNAPSHOT</restcomm.resources.map.version>
-		<restcomm.core.ext.version>2.8.10</restcomm.core.ext.version>
--->
 	</properties>
 
 	<profiles>
