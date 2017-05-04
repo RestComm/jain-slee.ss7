@@ -38,7 +38,7 @@
 	</properties>
 
 	<profiles>
-		<!-- maven release profile, add all existent modules that build properly, so pom versions are updated and artifacts released -->
+		<!-- CHANGED maven release profile, add all existent modules that build properly, so pom versions are updated and artifacts released -->
 		<profile>
 			<id>maven-release</id>
 			<modules>
