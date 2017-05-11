@@ -34,6 +34,9 @@
 		<stream.version>1.0.0.FINAL</stream.version>
 		<javolution.version>5.5.1</javolution.version>
 		<restcomm.slee.ext.version>7.0.70</restcomm.slee.ext.version>
+
+        <maven.du.plugin.jboss5.version>3.0.14</maven.du.plugin.jboss5.version>
+        <maven.du.plugin.wildfly.version>4.0.2</maven.du.plugin.wildfly.version>
 	</properties>
 
 	<profiles>
