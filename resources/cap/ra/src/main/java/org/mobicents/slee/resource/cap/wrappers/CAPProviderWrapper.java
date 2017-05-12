@@ -24,6 +24,8 @@ package org.mobicents.slee.resource.cap.wrappers;
 
 import org.mobicents.protocols.ss7.cap.api.CAPDialog;
 import org.mobicents.protocols.ss7.cap.api.CAPDialogListener;
+import org.mobicents.protocols.ss7.cap.api.CAPException;
+import org.mobicents.protocols.ss7.cap.api.CAPMessage;
 import org.mobicents.protocols.ss7.cap.api.CAPParameterFactory;
 import org.mobicents.protocols.ss7.cap.api.CAPProvider;
 import org.mobicents.protocols.ss7.cap.api.errors.CAPErrorMessageFactory;
@@ -33,6 +35,7 @@ import org.mobicents.protocols.ss7.cap.api.service.sms.CAPServiceSms;
 import org.mobicents.protocols.ss7.inap.api.INAPParameterFactory;
 import org.mobicents.protocols.ss7.isup.ISUPParameterFactory;
 import org.mobicents.protocols.ss7.map.api.MAPParameterFactory;
+import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
 import org.mobicents.slee.resource.cap.CAPDialogActivityHandle;
 import org.mobicents.slee.resource.cap.CAPResourceAdaptor;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.CAPServiceCircuitSwitchedCallWrapper;
@@ -146,5 +149,15 @@ public class CAPProviderWrapper implements CAPProvider {
     public int getCurrentDialogsCount() {
         return wrappedProvider.getCurrentDialogsCount();
     }
-}
 
+    @Override
+    public void relayCapMessage(int newServiceKey, CAPMessage capMessage) throws CAPException {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void relayCapMessage(int newServiceKey, SccpAddress origAddress, SccpAddress destAddress, CAPMessage capMessage)
+            throws CAPException {
+        throw new UnsupportedOperationException();
+    }
+}

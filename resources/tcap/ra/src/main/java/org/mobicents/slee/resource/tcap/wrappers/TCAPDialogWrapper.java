@@ -287,6 +287,16 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
         this.wrappedDialog.setNetworkId(networkId);
     }
 
+    @Override
+    public Long getRelayedLocalDialogId() {
+        return this.wrappedDialog.getRelayedLocalDialogId();
+    }
+
+    @Override
+    public void setRelayedLocalDialogId(Long relayedLocalDialogId) {
+        this.wrappedDialog.setRelayedLocalDialogId(relayedLocalDialogId);
+    }
+
 	/*
 	 * (non-Javadoc)
 	 * 

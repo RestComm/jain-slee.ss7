@@ -95,6 +95,12 @@ public class CAPServiceCircuitSwitchedCallWrapper implements CAPServiceCircuitSw
         return this.createNewDialog(appCntx, origAddress, destAddress, null);
 	}
 
+    @Override
+    public CAPDialogCircuitSwitchedCall createNewRelayedDialog(CAPApplicationContext appCntx, SccpAddress origAddress, SccpAddress destAddress,
+            Long relayedLocalTrId) throws CAPException {
+        throw new UnsupportedOperationException();
+    }
+
 	public void addCAPServiceListener(CAPServiceCircuitSwitchedCallListener capServiceListener) {
 		throw new UnsupportedOperationException();
 	}
