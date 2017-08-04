@@ -22,8 +22,6 @@
 
 package org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers;
 
-import java.util.ArrayList;
-
 import org.mobicents.protocols.ss7.cap.api.CAPException;
 import org.mobicents.protocols.ss7.cap.api.gap.GapCriteria;
 import org.mobicents.protocols.ss7.cap.api.gap.GapIndicators;
@@ -87,6 +85,8 @@ import org.mobicents.slee.resource.cap.CAPDialogActivityHandle;
 import org.mobicents.slee.resource.cap.CAPResourceAdaptor;
 import org.mobicents.slee.resource.cap.wrappers.CAPDialogWrapper;
 
+import java.util.ArrayList;
+
 
 /**
  * 
@@ -100,11 +100,6 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 	}
 
 	@Override
-	public CAPDialogCircuitSwitchedCall getWrappedDialog() {
-		return this.wrappedDialog;
-	}
-
-	@Override
 	public Long addInitialDPRequest(int serviceKey, CalledPartyNumberCap calledPartyNumber, CallingPartyNumberCap callingPartyNumber,
 			CallingPartysCategoryInap callingPartysCategory, CGEncountered CGEncountered, IPSSPCapabilities IPSSPCapabilities,
 			LocationNumberCap locationNumber, OriginalCalledNumberCap originalCalledPartyID, CAPExtensions extensions,
@@ -115,7 +110,7 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 			ExtBasicServiceCode extBasicServiceCode, CallReferenceNumber callReferenceNumber, ISDNAddressString mscAddress,
 			CalledPartyBCDNumber calledPartyBCDNumber, TimeAndTimezone timeAndTimezone, boolean callForwardingSSPending,
 			InitialDPArgExtension initialDPArgExtension) throws CAPException {
-		return this.wrappedDialog.addInitialDPRequest(serviceKey, calledPartyNumber, callingPartyNumber, callingPartysCategory, CGEncountered,
+		return this.getWrappedDialog().addInitialDPRequest(serviceKey, calledPartyNumber, callingPartyNumber, callingPartysCategory, CGEncountered,
 				IPSSPCapabilities, locationNumber, originalCalledPartyID, extensions, highLayerCompatibility, additionalCallingPartyNumber, bearerCapability,
 				eventTypeBCSM, redirectingPartyID, redirectionInformation, cause, serviceInteractionIndicatorsTwo, carrier, cugIndex, cugInterlock,
 				cugOutgoingAccess, imsi, subscriberState, locationInformation, extBasicServiceCode, callReferenceNumber, mscAddress, calledPartyBCDNumber,
@@ -133,7 +128,7 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 			ExtBasicServiceCode extBasicServiceCode, CallReferenceNumber callReferenceNumber, ISDNAddressString mscAddress,
 			CalledPartyBCDNumber calledPartyBCDNumber, TimeAndTimezone timeAndTimezone, boolean callForwardingSSPending,
 			InitialDPArgExtension initialDPArgExtension) throws CAPException {
-		return this.wrappedDialog.addInitialDPRequest(customInvokeTimeout, serviceKey, calledPartyNumber, callingPartyNumber, callingPartysCategory,
+		return this.getWrappedDialog().addInitialDPRequest(customInvokeTimeout, serviceKey, calledPartyNumber, callingPartyNumber, callingPartysCategory,
 				CGEncountered, IPSSPCapabilities, locationNumber, originalCalledPartyID, extensions, highLayerCompatibility, additionalCallingPartyNumber,
 				bearerCapability, eventTypeBCSM, redirectingPartyID, redirectionInformation, cause, serviceInteractionIndicatorsTwo, carrier, cugIndex,
 				cugInterlock, cugOutgoingAccess, imsi, subscriberState, locationInformation, extBasicServiceCode, callReferenceNumber, mscAddress,
@@ -142,49 +137,49 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 
 	@Override
 	public Long addApplyChargingReportRequest(TimeDurationChargingResult timeDurationChargingResult) throws CAPException {
-		return this.wrappedDialog.addApplyChargingReportRequest(timeDurationChargingResult);
+		return this.getWrappedDialog().addApplyChargingReportRequest(timeDurationChargingResult);
 	}
 
 	@Override
 	public Long addApplyChargingReportRequest(int customInvokeTimeout, TimeDurationChargingResult timeDurationChargingResult) throws CAPException {
-		return this.wrappedDialog.addApplyChargingReportRequest(customInvokeTimeout, timeDurationChargingResult);
+		return this.getWrappedDialog().addApplyChargingReportRequest(customInvokeTimeout, timeDurationChargingResult);
 	}
 
 	@Override
 	public Long addApplyChargingRequest(CAMELAChBillingChargingCharacteristics aChBillingChargingCharacteristics, SendingSideID partyToCharge,
 			CAPExtensions extensions, AChChargingAddress aChChargingAddress) throws CAPException {
-		return this.wrappedDialog.addApplyChargingRequest(aChBillingChargingCharacteristics, partyToCharge, extensions, aChChargingAddress);
+		return this.getWrappedDialog().addApplyChargingRequest(aChBillingChargingCharacteristics, partyToCharge, extensions, aChChargingAddress);
 	}
 
 	@Override
 	public Long addApplyChargingRequest(int customInvokeTimeout, CAMELAChBillingChargingCharacteristics aChBillingChargingCharacteristics,
 			SendingSideID partyToCharge, CAPExtensions extensions, AChChargingAddress aChChargingAddress) throws CAPException {
-		return this.wrappedDialog
+		return this.getWrappedDialog()
 				.addApplyChargingRequest(customInvokeTimeout, aChBillingChargingCharacteristics, partyToCharge, extensions, aChChargingAddress);
 	}
 
 	@Override
 	public Long addCallInformationReportRequest(ArrayList<RequestedInformation> requestedInformationList, CAPExtensions extensions, ReceivingSideID legID)
 			throws CAPException {
-		return this.wrappedDialog.addCallInformationReportRequest(requestedInformationList, extensions, legID);
+		return this.getWrappedDialog().addCallInformationReportRequest(requestedInformationList, extensions, legID);
 	}
 
 	@Override
 	public Long addCallInformationReportRequest(int customInvokeTimeout, ArrayList<RequestedInformation> requestedInformationList, CAPExtensions extensions,
 			ReceivingSideID legID) throws CAPException {
-		return this.wrappedDialog.addCallInformationReportRequest(customInvokeTimeout, requestedInformationList, extensions, legID);
+		return this.getWrappedDialog().addCallInformationReportRequest(customInvokeTimeout, requestedInformationList, extensions, legID);
 	}
 
 	@Override
 	public Long addCallInformationRequestRequest(ArrayList<RequestedInformationType> requestedInformationTypeList, CAPExtensions extensions, SendingSideID legID)
 			throws CAPException {
-		return this.wrappedDialog.addCallInformationRequestRequest(requestedInformationTypeList, extensions, legID);
+		return this.getWrappedDialog().addCallInformationRequestRequest(requestedInformationTypeList, extensions, legID);
 	}
 
 	@Override
 	public Long addCallInformationRequestRequest(int customInvokeTimeout, ArrayList<RequestedInformationType> requestedInformationTypeList,
 			CAPExtensions extensions, SendingSideID legID) throws CAPException {
-		return this.wrappedDialog.addCallInformationRequestRequest(customInvokeTimeout, requestedInformationTypeList, extensions, legID);
+		return this.getWrappedDialog().addCallInformationRequestRequest(customInvokeTimeout, requestedInformationTypeList, extensions, legID);
 	}
 
 	@Override
@@ -194,7 +189,7 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 			ServiceInteractionIndicatorsTwo serviceInteractionIndicatorsTwo, LocationNumberCap chargeNumber, LegID legToBeConnected, CUGInterlock cugInterlock,
 			boolean cugOutgoingAccess, boolean suppressionOfAnnouncement, boolean ocsIApplicable, NAOliInfo naoliInfo, boolean borInterrogationRequested)
 			throws CAPException {
-		return this.wrappedDialog.addConnectRequest(destinationRoutingAddress, alertingPattern, originalCalledPartyID, extensions, carrier,
+		return this.getWrappedDialog().addConnectRequest(destinationRoutingAddress, alertingPattern, originalCalledPartyID, extensions, carrier,
 				callingPartysCategory, redirectingPartyID, redirectionInformation, genericNumbers, serviceInteractionIndicatorsTwo, chargeNumber,
 				legToBeConnected, cugInterlock, cugOutgoingAccess, suppressionOfAnnouncement, ocsIApplicable, naoliInfo, borInterrogationRequested);
 	}
@@ -206,84 +201,84 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 			ServiceInteractionIndicatorsTwo serviceInteractionIndicatorsTwo, LocationNumberCap chargeNumber, LegID legToBeConnected, CUGInterlock cugInterlock,
 			boolean cugOutgoingAccess, boolean suppressionOfAnnouncement, boolean ocsIApplicable, NAOliInfo naoliInfo, boolean borInterrogationRequested)
 			throws CAPException {
-		return this.wrappedDialog.addConnectRequest(customInvokeTimeout, destinationRoutingAddress, alertingPattern, originalCalledPartyID, extensions,
+		return this.getWrappedDialog().addConnectRequest(customInvokeTimeout, destinationRoutingAddress, alertingPattern, originalCalledPartyID, extensions,
 				carrier, callingPartysCategory, redirectingPartyID, redirectionInformation, genericNumbers, serviceInteractionIndicatorsTwo, chargeNumber,
 				legToBeConnected, cugInterlock, cugOutgoingAccess, suppressionOfAnnouncement, ocsIApplicable, naoliInfo, borInterrogationRequested);
 	}
 
 	@Override
 	public Long addContinueRequest() throws CAPException {
-		return this.wrappedDialog.addContinueRequest();
+		return this.getWrappedDialog().addContinueRequest();
 	}
 
 	@Override
 	public Long addContinueRequest(int customInvokeTimeout) throws CAPException {
-		return this.wrappedDialog.addContinueRequest(customInvokeTimeout);
+		return this.getWrappedDialog().addContinueRequest(customInvokeTimeout);
 	}
 
 	@Override
 	public Long addEventReportBCSMRequest(EventTypeBCSM eventTypeBCSM, EventSpecificInformationBCSM eventSpecificInformationBCSM, ReceivingSideID legID,
 			MiscCallInfo miscCallInfo, CAPExtensions extensions) throws CAPException {
-		return this.wrappedDialog.addEventReportBCSMRequest(eventTypeBCSM, eventSpecificInformationBCSM, legID, miscCallInfo, extensions);
+		return this.getWrappedDialog().addEventReportBCSMRequest(eventTypeBCSM, eventSpecificInformationBCSM, legID, miscCallInfo, extensions);
 	}
 
 	@Override
 	public Long addEventReportBCSMRequest(int customInvokeTimeout, EventTypeBCSM eventTypeBCSM, EventSpecificInformationBCSM eventSpecificInformationBCSM,
 			ReceivingSideID legID, MiscCallInfo miscCallInfo, CAPExtensions extensions) throws CAPException {
-		return this.wrappedDialog.addEventReportBCSMRequest(customInvokeTimeout, eventTypeBCSM, eventSpecificInformationBCSM, legID, miscCallInfo, extensions);
+		return this.getWrappedDialog().addEventReportBCSMRequest(customInvokeTimeout, eventTypeBCSM, eventSpecificInformationBCSM, legID, miscCallInfo, extensions);
 	}
 
 	@Override
 	public Long addRequestReportBCSMEventRequest(ArrayList<BCSMEvent> bcsmEventList, CAPExtensions extensions) throws CAPException {
-		return this.wrappedDialog.addRequestReportBCSMEventRequest(bcsmEventList, extensions);
+		return this.getWrappedDialog().addRequestReportBCSMEventRequest(bcsmEventList, extensions);
 	}
 
 	@Override
 	public Long addRequestReportBCSMEventRequest(int customInvokeTimeout, ArrayList<BCSMEvent> bcsmEventList, CAPExtensions extensions) throws CAPException {
-		return this.wrappedDialog.addRequestReportBCSMEventRequest(customInvokeTimeout, bcsmEventList, extensions);
+		return this.getWrappedDialog().addRequestReportBCSMEventRequest(customInvokeTimeout, bcsmEventList, extensions);
 	}
 
 	@Override
 	public Long addReleaseCallRequest(CauseCap cause) throws CAPException {
-		return this.wrappedDialog.addReleaseCallRequest(cause);
+		return this.getWrappedDialog().addReleaseCallRequest(cause);
 	}
 
 	@Override
 	public Long addReleaseCallRequest(int customInvokeTimeout, CauseCap cause) throws CAPException {
-		return this.wrappedDialog.addReleaseCallRequest(customInvokeTimeout, cause);
+		return this.getWrappedDialog().addReleaseCallRequest(customInvokeTimeout, cause);
 	}
 
 	@Override
 	public Long addActivityTestRequest() throws CAPException {
-		return this.wrappedDialog.addActivityTestRequest();
+		return this.getWrappedDialog().addActivityTestRequest();
 	}
 
 	@Override
 	public Long addActivityTestRequest(int customInvokeTimeout) throws CAPException {
-		return this.wrappedDialog.addActivityTestRequest(customInvokeTimeout);
+		return this.getWrappedDialog().addActivityTestRequest(customInvokeTimeout);
 	}
 
 	@Override
 	public void addActivityTestResponse(long invokeId) throws CAPException {
-		this.wrappedDialog.addActivityTestResponse(invokeId);
+		this.getWrappedDialog().addActivityTestResponse(invokeId);
 	}
 
 	@Override
 	public Long addAssistRequestInstructionsRequest(Digits correlationID, IPSSPCapabilities ipSSPCapabilities, CAPExtensions extensions) throws CAPException {
-		return this.wrappedDialog.addAssistRequestInstructionsRequest(correlationID, ipSSPCapabilities, extensions);
+		return this.getWrappedDialog().addAssistRequestInstructionsRequest(correlationID, ipSSPCapabilities, extensions);
 	}
 
 	@Override
 	public Long addAssistRequestInstructionsRequest(int customInvokeTimeout, Digits correlationID, IPSSPCapabilities ipSSPCapabilities, CAPExtensions extensions)
 			throws CAPException {
-		return this.wrappedDialog.addAssistRequestInstructionsRequest(customInvokeTimeout, correlationID, ipSSPCapabilities, extensions);
+		return this.getWrappedDialog().addAssistRequestInstructionsRequest(customInvokeTimeout, correlationID, ipSSPCapabilities, extensions);
 	}
 
 	@Override
 	public Long addEstablishTemporaryConnectionRequest(Digits assistingSSPIPRoutingAddress, Digits correlationID, ScfID scfID, CAPExtensions extensions,
 			Carrier carrier, ServiceInteractionIndicatorsTwo serviceInteractionIndicatorsTwo, Integer callSegmentID, NAOliInfo naOliInfo,
 			LocationNumberCap chargeNumber, OriginalCalledNumberCap originalCalledPartyID, CallingPartyNumberCap callingPartyNumber) throws CAPException {
-		return this.wrappedDialog.addEstablishTemporaryConnectionRequest(assistingSSPIPRoutingAddress, correlationID, scfID, extensions, carrier,
+		return this.getWrappedDialog().addEstablishTemporaryConnectionRequest(assistingSSPIPRoutingAddress, correlationID, scfID, extensions, carrier,
 				serviceInteractionIndicatorsTwo, callSegmentID, naOliInfo, chargeNumber, originalCalledPartyID, callingPartyNumber);
 	}
 
@@ -292,93 +287,93 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 			CAPExtensions extensions, Carrier carrier, ServiceInteractionIndicatorsTwo serviceInteractionIndicatorsTwo, Integer callSegmentID,
 			NAOliInfo naOliInfo, LocationNumberCap chargeNumber, OriginalCalledNumberCap originalCalledPartyID, CallingPartyNumberCap callingPartyNumber)
 			throws CAPException {
-		return this.wrappedDialog.addEstablishTemporaryConnectionRequest(customInvokeTimeout, assistingSSPIPRoutingAddress, correlationID, scfID, extensions,
+		return this.getWrappedDialog().addEstablishTemporaryConnectionRequest(customInvokeTimeout, assistingSSPIPRoutingAddress, correlationID, scfID, extensions,
 				carrier, serviceInteractionIndicatorsTwo, callSegmentID, naOliInfo, chargeNumber, originalCalledPartyID, callingPartyNumber);
 	}
 
 	@Override
 	public Long addDisconnectForwardConnectionRequest() throws CAPException {
-		return this.wrappedDialog.addDisconnectForwardConnectionRequest();
+		return this.getWrappedDialog().addDisconnectForwardConnectionRequest();
 	}
 
 	@Override
 	public Long addDisconnectForwardConnectionRequest(int customInvokeTimeout) throws CAPException {
-		return this.wrappedDialog.addDisconnectForwardConnectionRequest(customInvokeTimeout);
+		return this.getWrappedDialog().addDisconnectForwardConnectionRequest(customInvokeTimeout);
 	}
 
 	@Override
 	public Long addConnectToResourceRequest(CalledPartyNumberCap resourceAddress_IPRoutingAddress, boolean resourceAddress_Null, CAPExtensions extensions,
 			ServiceInteractionIndicatorsTwo serviceInteractionIndicatorsTwo, Integer callSegmentID) throws CAPException {
-		return this.wrappedDialog.addConnectToResourceRequest(resourceAddress_IPRoutingAddress, resourceAddress_Null, extensions,
+		return this.getWrappedDialog().addConnectToResourceRequest(resourceAddress_IPRoutingAddress, resourceAddress_Null, extensions,
 				serviceInteractionIndicatorsTwo, callSegmentID);
 	}
 
 	@Override
 	public Long addConnectToResourceRequest(int customInvokeTimeout, CalledPartyNumberCap resourceAddress_IPRoutingAddress, boolean resourceAddress_Null,
 			CAPExtensions extensions, ServiceInteractionIndicatorsTwo serviceInteractionIndicatorsTwo, Integer callSegmentID) throws CAPException {
-		return this.wrappedDialog.addConnectToResourceRequest(customInvokeTimeout, resourceAddress_IPRoutingAddress, resourceAddress_Null, extensions,
+		return this.getWrappedDialog().addConnectToResourceRequest(customInvokeTimeout, resourceAddress_IPRoutingAddress, resourceAddress_Null, extensions,
 				serviceInteractionIndicatorsTwo, callSegmentID);
 	}
 
 	@Override
 	public Long addResetTimerRequest(TimerID timerID, int timerValue, CAPExtensions extensions, Integer callSegmentID) throws CAPException {
-		return this.wrappedDialog.addResetTimerRequest(timerID, timerValue, extensions, callSegmentID);
+		return this.getWrappedDialog().addResetTimerRequest(timerID, timerValue, extensions, callSegmentID);
 	}
 
 	@Override
 	public Long addResetTimerRequest(int customInvokeTimeout, TimerID timerID, int timerValue, CAPExtensions extensions, Integer callSegmentID)
 			throws CAPException {
-		return this.wrappedDialog.addResetTimerRequest(customInvokeTimeout, timerID, timerValue, extensions, callSegmentID);
+		return this.getWrappedDialog().addResetTimerRequest(customInvokeTimeout, timerID, timerValue, extensions, callSegmentID);
 	}
 
 	@Override
 	public Long addFurnishChargingInformationRequest(FCIBCCCAMELsequence1 FCIBCCCAMELsequence1) throws CAPException {
-		return this.wrappedDialog.addFurnishChargingInformationRequest(FCIBCCCAMELsequence1);
+		return this.getWrappedDialog().addFurnishChargingInformationRequest(FCIBCCCAMELsequence1);
 	}
 
 	@Override
 	public Long addFurnishChargingInformationRequest(int customInvokeTimeout, FCIBCCCAMELsequence1 FCIBCCCAMELsequence1) throws CAPException {
-		return this.wrappedDialog.addFurnishChargingInformationRequest(customInvokeTimeout, FCIBCCCAMELsequence1);
+		return this.getWrappedDialog().addFurnishChargingInformationRequest(customInvokeTimeout, FCIBCCCAMELsequence1);
 	}
 
 	@Override
 	public Long addSendChargingInformationRequest(SCIBillingChargingCharacteristics sciBillingChargingCharacteristics, SendingSideID partyToCharge,
 			CAPExtensions extensions) throws CAPException {
-		return this.wrappedDialog.addSendChargingInformationRequest(sciBillingChargingCharacteristics, partyToCharge, extensions);
+		return this.getWrappedDialog().addSendChargingInformationRequest(sciBillingChargingCharacteristics, partyToCharge, extensions);
 	}
 
 	@Override
 	public Long addSendChargingInformationRequest(int customInvokeTimeout, SCIBillingChargingCharacteristics sciBillingChargingCharacteristics,
 			SendingSideID partyToCharge, CAPExtensions extensions) throws CAPException {
-		return this.wrappedDialog.addSendChargingInformationRequest(customInvokeTimeout, sciBillingChargingCharacteristics, partyToCharge, extensions);
+		return this.getWrappedDialog().addSendChargingInformationRequest(customInvokeTimeout, sciBillingChargingCharacteristics, partyToCharge, extensions);
 	}
 
 	@Override
 	public Long addSpecializedResourceReportRequest_CapV23(Long linkedId) throws CAPException {
-		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV23(linkedId);
+		return this.getWrappedDialog().addSpecializedResourceReportRequest_CapV23(linkedId);
 	}
 
 	@Override
 	public Long addSpecializedResourceReportRequest_CapV4(Long linkedId, boolean isAllAnnouncementsComplete, boolean isFirstAnnouncementStarted) throws CAPException {
-		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV4(linkedId, isAllAnnouncementsComplete, isFirstAnnouncementStarted);
+		return this.getWrappedDialog().addSpecializedResourceReportRequest_CapV4(linkedId, isAllAnnouncementsComplete, isFirstAnnouncementStarted);
 	}
 
 	@Override
 	public Long addSpecializedResourceReportRequest_CapV23(Long linkedId, int customInvokeTimeout) throws CAPException {
-		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV23(linkedId, customInvokeTimeout);
+		return this.getWrappedDialog().addSpecializedResourceReportRequest_CapV23(linkedId, customInvokeTimeout);
 	}
 
 	@Override
 	public Long addSpecializedResourceReportRequest_CapV4(Long linkedId, int customInvokeTimeout, boolean isAllAnnouncementsComplete, boolean isFirstAnnouncementStarted)
 			throws CAPException {
-		return this.wrappedDialog.addSpecializedResourceReportRequest_CapV4(linkedId, customInvokeTimeout, isAllAnnouncementsComplete, isFirstAnnouncementStarted);
+		return this.getWrappedDialog().addSpecializedResourceReportRequest_CapV4(linkedId, customInvokeTimeout, isAllAnnouncementsComplete, isFirstAnnouncementStarted);
 	}
 
 	@Override
 	public Long addPlayAnnouncementRequest(InformationToSend informationToSend, Boolean disconnectFromIPForbidden,
 			Boolean requestAnnouncementCompleteNotification, CAPExtensions extensions, Integer callSegmentID, Boolean requestAnnouncementStartedNotification)
 			throws CAPException {
-		return this.wrappedDialog.addPlayAnnouncementRequest(informationToSend, disconnectFromIPForbidden, requestAnnouncementCompleteNotification, extensions,
+		return this.getWrappedDialog().addPlayAnnouncementRequest(informationToSend, disconnectFromIPForbidden, requestAnnouncementCompleteNotification, extensions,
 				callSegmentID, requestAnnouncementStartedNotification);
 	}
 
@@ -386,14 +381,14 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 	public Long addPlayAnnouncementRequest(int customInvokeTimeout, InformationToSend informationToSend, Boolean disconnectFromIPForbidden,
 			Boolean requestAnnouncementCompleteNotification, CAPExtensions extensions, Integer callSegmentID, Boolean requestAnnouncementStartedNotification)
 			throws CAPException {
-		return this.wrappedDialog.addPlayAnnouncementRequest(customInvokeTimeout, informationToSend, disconnectFromIPForbidden,
+		return this.getWrappedDialog().addPlayAnnouncementRequest(customInvokeTimeout, informationToSend, disconnectFromIPForbidden,
 				requestAnnouncementCompleteNotification, extensions, callSegmentID, requestAnnouncementStartedNotification);
 	}
 
 	@Override
 	public Long addPromptAndCollectUserInformationRequest(CollectedInfo collectedInfo, Boolean disconnectFromIPForbidden, InformationToSend informationToSend,
 			CAPExtensions extensions, Integer callSegmentID, Boolean requestAnnouncementStartedNotification) throws CAPException {
-		return this.wrappedDialog.addPromptAndCollectUserInformationRequest(collectedInfo, disconnectFromIPForbidden, informationToSend, extensions,
+		return this.getWrappedDialog().addPromptAndCollectUserInformationRequest(collectedInfo, disconnectFromIPForbidden, informationToSend, extensions,
 				callSegmentID, requestAnnouncementStartedNotification);
 	}
 
@@ -401,75 +396,75 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 	public Long addPromptAndCollectUserInformationRequest(int customInvokeTimeout, CollectedInfo collectedInfo, Boolean disconnectFromIPForbidden,
 			InformationToSend informationToSend, CAPExtensions extensions, Integer callSegmentID, Boolean requestAnnouncementStartedNotification)
 			throws CAPException {
-		return this.wrappedDialog.addPromptAndCollectUserInformationRequest(customInvokeTimeout, collectedInfo, disconnectFromIPForbidden, informationToSend,
+		return this.getWrappedDialog().addPromptAndCollectUserInformationRequest(customInvokeTimeout, collectedInfo, disconnectFromIPForbidden, informationToSend,
 				extensions, callSegmentID, requestAnnouncementStartedNotification);
 	}
 
 	@Override
 	public void addPromptAndCollectUserInformationResponse_DigitsResponse(long invokeId, Digits digitsResponse) throws CAPException {
-		this.wrappedDialog.addPromptAndCollectUserInformationResponse_DigitsResponse(invokeId, digitsResponse);
+		this.getWrappedDialog().addPromptAndCollectUserInformationResponse_DigitsResponse(invokeId, digitsResponse);
 	}
 
 	@Override
 	public Long addCancelRequest_InvokeId(Integer invokeID) throws CAPException {
-		return this.wrappedDialog.addCancelRequest_InvokeId(invokeID);
+		return this.getWrappedDialog().addCancelRequest_InvokeId(invokeID);
 	}
 
 	@Override
 	public Long addCancelRequest_AllRequests() throws CAPException {
-		return this.wrappedDialog.addCancelRequest_AllRequests();
+		return this.getWrappedDialog().addCancelRequest_AllRequests();
 	}
 
 	@Override
 	public Long addCancelRequest_CallSegmentToCancel(CallSegmentToCancel callSegmentToCancel) throws CAPException {
-		return this.wrappedDialog.addCancelRequest_CallSegmentToCancel(callSegmentToCancel);
+		return this.getWrappedDialog().addCancelRequest_CallSegmentToCancel(callSegmentToCancel);
 	}
 
 	@Override
 	public Long addCancelRequest_InvokeId(int customInvokeTimeout, Integer invokeID) throws CAPException {
-		return this.wrappedDialog.addCancelRequest_InvokeId(customInvokeTimeout, invokeID);
+		return this.getWrappedDialog().addCancelRequest_InvokeId(customInvokeTimeout, invokeID);
 	}
 
 	@Override
 	public Long addCancelRequest_AllRequests(int customInvokeTimeout) throws CAPException {
-		return this.wrappedDialog.addCancelRequest_AllRequests(customInvokeTimeout);
+		return this.getWrappedDialog().addCancelRequest_AllRequests(customInvokeTimeout);
 	}
 
 	@Override
 	public Long addCancelRequest_CallSegmentToCancel(int customInvokeTimeout, CallSegmentToCancel callSegmentToCancel) throws CAPException {
-		return this.wrappedDialog.addCancelRequest_CallSegmentToCancel(customInvokeTimeout, callSegmentToCancel);
+		return this.getWrappedDialog().addCancelRequest_CallSegmentToCancel(customInvokeTimeout, callSegmentToCancel);
 	}
 
     @Override
     public Long addDisconnectForwardConnectionWithArgumentRequest(Integer callSegmentID, CAPExtensions extensions) throws CAPException {
-        return this.wrappedDialog.addDisconnectForwardConnectionWithArgumentRequest(callSegmentID, extensions);
+        return this.getWrappedDialog().addDisconnectForwardConnectionWithArgumentRequest(callSegmentID, extensions);
     }
 
     @Override
     public Long addDisconnectForwardConnectionWithArgumentRequest(int customInvokeTimeout, Integer callSegmentID, CAPExtensions extensions) throws CAPException {
-        return this.wrappedDialog.addDisconnectForwardConnectionWithArgumentRequest(customInvokeTimeout, callSegmentID, extensions);
+        return this.getWrappedDialog().addDisconnectForwardConnectionWithArgumentRequest(customInvokeTimeout, callSegmentID, extensions);
     }
 
     @Override
     public Long addDisconnectLegRequest(LegID logToBeReleased, CauseCap releaseCause, CAPExtensions extensions) throws CAPException {
-        return this.wrappedDialog.addDisconnectLegRequest(logToBeReleased, releaseCause, extensions);
+        return this.getWrappedDialog().addDisconnectLegRequest(logToBeReleased, releaseCause, extensions);
     }
 
     @Override
     public Long addDisconnectLegRequest(int customInvokeTimeout, LegID logToBeReleased, CauseCap releaseCause, CAPExtensions extensions) throws CAPException {
-        return this.wrappedDialog.addDisconnectLegRequest(customInvokeTimeout, logToBeReleased, releaseCause, extensions);
+        return this.getWrappedDialog().addDisconnectLegRequest(customInvokeTimeout, logToBeReleased, releaseCause, extensions);
     }
 
     @Override
     public void addDisconnectLegResponse(long invokeId) throws CAPException {
-        this.wrappedDialog.addDisconnectLegResponse(invokeId);
+        this.getWrappedDialog().addDisconnectLegResponse(invokeId);
     }
 
     @Override
     public Long addInitiateCallAttemptRequest(DestinationRoutingAddress destinationRoutingAddress, CAPExtensions extensions, LegID legToBeCreated,
             Integer newCallSegment, CallingPartyNumberCap callingPartyNumber, CallReferenceNumber callReferenceNumber, ISDNAddressString gsmSCFAddress,
             boolean suppressTCsi) throws CAPException {
-        return this.wrappedDialog.addInitiateCallAttemptRequest(destinationRoutingAddress, extensions, legToBeCreated, newCallSegment, callingPartyNumber,
+        return this.getWrappedDialog().addInitiateCallAttemptRequest(destinationRoutingAddress, extensions, legToBeCreated, newCallSegment, callingPartyNumber,
                 callReferenceNumber, gsmSCFAddress, suppressTCsi);
     }
 
@@ -477,14 +472,14 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
     public Long addInitiateCallAttemptRequest(int customInvokeTimeout, DestinationRoutingAddress destinationRoutingAddress, CAPExtensions extensions,
             LegID legToBeCreated, Integer newCallSegment, CallingPartyNumberCap callingPartyNumber, CallReferenceNumber callReferenceNumber,
             ISDNAddressString gsmSCFAddress, boolean suppressTCsi) throws CAPException {
-        return this.wrappedDialog.addInitiateCallAttemptRequest(customInvokeTimeout, destinationRoutingAddress, extensions, legToBeCreated, newCallSegment,
+        return this.getWrappedDialog().addInitiateCallAttemptRequest(customInvokeTimeout, destinationRoutingAddress, extensions, legToBeCreated, newCallSegment,
                 callingPartyNumber, callReferenceNumber, gsmSCFAddress, suppressTCsi);
     }
 
     @Override
     public void addInitiateCallAttemptResponse(long invokeId, SupportedCamelPhases supportedCamelPhases,
             OfferedCamel4Functionalities offeredCamel4Functionalities, CAPExtensions extensions, boolean releaseCallArgExtensionAllowed) throws CAPException {
-        this.wrappedDialog.addInitiateCallAttemptResponse(invokeId, supportedCamelPhases, offeredCamel4Functionalities, extensions,
+        this.getWrappedDialog().addInitiateCallAttemptResponse(invokeId, supportedCamelPhases, offeredCamel4Functionalities, extensions,
                 releaseCallArgExtensionAllowed);
     }
 
@@ -494,7 +489,7 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
             ArrayList<GenericNumberCap> genericNumbers, CUGInterlock cugInterlock, boolean cugOutgoingAccess, LocationNumberCap chargeNumber, Carrier carrier,
             boolean suppressionOfAnnouncement, NAOliInfo naOliInfo, boolean borInterrogationRequested, boolean suppressOCsi,
             ContinueWithArgumentArgExtension continueWithArgumentArgExtension) throws CAPException {
-        return this.wrappedDialog.addContinueWithArgumentRequest(alertingPattern, extensions, serviceInteractionIndicatorsTwo, callingPartysCategory,
+        return this.getWrappedDialog().addContinueWithArgumentRequest(alertingPattern, extensions, serviceInteractionIndicatorsTwo, callingPartysCategory,
                 genericNumbers, cugInterlock, cugOutgoingAccess, chargeNumber, carrier, suppressionOfAnnouncement, naOliInfo, borInterrogationRequested,
                 suppressOCsi, continueWithArgumentArgExtension);
     }
@@ -505,34 +500,34 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
             ArrayList<GenericNumberCap> genericNumbers, CUGInterlock cugInterlock, boolean cugOutgoingAccess, LocationNumberCap chargeNumber, Carrier carrier,
             boolean suppressionOfAnnouncement, NAOliInfo naOliInfo, boolean borInterrogationRequested, boolean suppressOCsi,
             ContinueWithArgumentArgExtension continueWithArgumentArgExtension) throws CAPException {
-        return this.wrappedDialog.addContinueWithArgumentRequest(customInvokeTimeout, alertingPattern, extensions, serviceInteractionIndicatorsTwo,
+        return this.getWrappedDialog().addContinueWithArgumentRequest(customInvokeTimeout, alertingPattern, extensions, serviceInteractionIndicatorsTwo,
                 callingPartysCategory, genericNumbers, cugInterlock, cugOutgoingAccess, chargeNumber, carrier, suppressionOfAnnouncement, naOliInfo,
                 borInterrogationRequested, suppressOCsi, continueWithArgumentArgExtension);
     }
 
     @Override
     public Long addMoveLegRequest(LegID logIDToMove, CAPExtensions extensions) throws CAPException {
-        return this.wrappedDialog.addMoveLegRequest(logIDToMove, extensions);
+        return this.getWrappedDialog().addMoveLegRequest(logIDToMove, extensions);
     }
 
     @Override
     public Long addMoveLegRequest(int customInvokeTimeout, LegID logIDToMove, CAPExtensions extensions) throws CAPException {
-        return this.wrappedDialog.addMoveLegRequest(customInvokeTimeout, logIDToMove, extensions);
+        return this.getWrappedDialog().addMoveLegRequest(customInvokeTimeout, logIDToMove, extensions);
     }
 
     @Override
     public void addMoveLegResponse(long invokeId) throws CAPException {
-        this.wrappedDialog.addMoveLegResponse(invokeId);
+        this.getWrappedDialog().addMoveLegResponse(invokeId);
     }
 
     @Override
     public Long addCollectInformationRequest() throws CAPException {
-        return this.wrappedDialog.addCollectInformationRequest();
+        return this.getWrappedDialog().addCollectInformationRequest();
     }
 
     @Override
     public Long addCollectInformationRequest(int invokeId) throws CAPException {
-        return this.wrappedDialog.addCollectInformationRequest(invokeId);
+        return this.getWrappedDialog().addCollectInformationRequest(invokeId);
     }
 
     @Override
@@ -549,7 +544,7 @@ public class CAPDialogCircuitSwitchedCallWrapper extends CAPDialogWrapper<CAPDia
 
     @Override
     public String toString() {
-        return "CAPDialogCircuitSwitchedCallWrapper [wrappedDialog=" + wrappedDialog + "]";
+        return "CAPDialogCircuitSwitchedCallWrapper [dialogId=" + this.dialogId + "]";
     }
 
 }

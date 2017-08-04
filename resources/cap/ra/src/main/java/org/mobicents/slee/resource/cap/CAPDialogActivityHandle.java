@@ -22,35 +22,46 @@
 
 package org.mobicents.slee.resource.cap;
 
-import java.io.Serializable;
-import javax.slee.resource.ActivityHandle;
-
 import org.mobicents.slee.resource.cap.wrappers.CAPDialogWrapper;
 
+import javax.slee.resource.ActivityHandle;
+import java.io.Serializable;
+
 /**
- * 
+ *
  * @author sergey vetyutnev
- * 
+ *
  */
 public class CAPDialogActivityHandle implements Serializable, ActivityHandle {
 
-	private long dialogId;
-	private transient CAPDialogWrapper activity;
+	private final long dialogId;
+
+	private transient CAPResourceAdaptor capRa;
+	private transient CAPDialogWrapper activity=null;
 
 	/**
 	 * @param dialogId
 	 */
-	public CAPDialogActivityHandle(long dialogId) {
+	public CAPDialogActivityHandle(CAPResourceAdaptor capRa, long dialogId) {
 		super();
+		this.capRa=capRa;
 		this.dialogId = dialogId;
+	}
+
+	boolean hasCachedActivity() {
+		return activity!=null;
+	}
+	void setRa(CAPResourceAdaptor ra) {
+		this.capRa=ra;
 	}
 
 	public long getDialogId() {
 		return this.dialogId;
 	}
 
-
 	public CAPDialogWrapper getActivity() {
+		if(activity==null)
+			activity=(CAPDialogWrapper)capRa.getActivity(this);
 		return activity;
 	}
 

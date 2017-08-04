@@ -36,7 +36,6 @@ import org.mobicents.protocols.ss7.inap.api.INAPParameterFactory;
 import org.mobicents.protocols.ss7.isup.ISUPParameterFactory;
 import org.mobicents.protocols.ss7.map.api.MAPParameterFactory;
 import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
-import org.mobicents.slee.resource.cap.CAPDialogActivityHandle;
 import org.mobicents.slee.resource.cap.CAPResourceAdaptor;
 import org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers.CAPServiceCircuitSwitchedCallWrapper;
 import org.mobicents.slee.resource.cap.service.gprs.wrappers.CAPServiceGprsWrapper;
@@ -117,8 +116,7 @@ public class CAPProviderWrapper implements CAPProvider {
 		if (this.wrappedProvider == null) {
 			throw new IllegalStateException("RA is has not been activated.");
 		}
-		CAPDialogActivityHandle ah = new CAPDialogActivityHandle(dialogId);
-		return (CAPDialog) this.ra.getActivity(ah);
+		return (CAPDialogWrapper)wrappedProvider.getCAPDialog(dialogId).getUserObject();
 	}
 
 	public CAPServiceCircuitSwitchedCall getCAPServiceCircuitSwitchedCall() {

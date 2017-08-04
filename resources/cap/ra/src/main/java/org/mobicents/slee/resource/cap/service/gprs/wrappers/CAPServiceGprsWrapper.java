@@ -44,9 +44,6 @@ public class CAPServiceGprsWrapper implements CAPServiceGprs {
 	protected CAPServiceGprs wrappedGprs;
 	protected CAPProviderWrapper capProviderWrapper;
 
-	/**
-	 * @param CAPServiceGPRS
-	 */
 	public CAPServiceGprsWrapper(CAPProviderWrapper capProviderWrapper, CAPServiceGprs capServiceGprs) {
 		this.wrappedGprs = capServiceGprs;
 		this.capProviderWrapper = capProviderWrapper;
@@ -74,7 +71,7 @@ public class CAPServiceGprsWrapper implements CAPServiceGprs {
 
     public CAPDialogGprs createNewDialog(CAPApplicationContext appCntx, SccpAddress origAddress, SccpAddress destAddress, Long localTrId) throws CAPException {
         CAPDialogGprs capDialog = this.wrappedGprs.createNewDialog(appCntx, origAddress, destAddress, localTrId);
-        CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getLocalDialogId());
+        CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capProviderWrapper.getRa(),capDialog.getLocalDialogId());
 
         CAPDialogGprsWrapper dw = new CAPDialogGprsWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
         capDialog.setUserObject(dw);

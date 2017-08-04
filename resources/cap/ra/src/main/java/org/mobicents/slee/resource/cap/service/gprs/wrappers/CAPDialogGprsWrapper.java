@@ -22,8 +22,6 @@
 
 package org.mobicents.slee.resource.cap.service.gprs.wrappers;
 
-import java.util.ArrayList;
-
 import org.mobicents.protocols.ss7.cap.api.CAPException;
 import org.mobicents.protocols.ss7.cap.api.primitives.CAPExtensions;
 import org.mobicents.protocols.ss7.cap.api.primitives.TimeAndTimezone;
@@ -57,6 +55,8 @@ import org.mobicents.slee.resource.cap.CAPDialogActivityHandle;
 import org.mobicents.slee.resource.cap.CAPResourceAdaptor;
 import org.mobicents.slee.resource.cap.wrappers.CAPDialogWrapper;
 
+import java.util.ArrayList;
+
 /**
  * 
  * @author sergey vetyutnev
@@ -69,13 +69,8 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 	}
 
 	@Override
-	public CAPDialogGprs getWrappedDialog() {
-		return this.wrappedDialog;
-	}
-
-	@Override
 	public String toString() {
-		return "CAPDialogGprsWrapper [wrappedDialog=" + wrappedDialog + "]";
+		return "CAPDialogGprsWrapper [dialogId=" + dialogId+ "]";
 	}
 
 	@Override
@@ -89,7 +84,7 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			PDPInitiationType pdpInitiationType, CAPExtensions extensions,
 			GSNAddress gsnAddress, boolean secondaryPDPContext, IMEI imei)
 			throws CAPException {
-		return this.wrappedDialog.addInitialDpGprsRequest(serviceKey, gprsEventType, msisdn, imsi, timeAndTimezone, gprsMSClass, endUserAddress, qualityOfService, accessPointName, routeingAreaIdentity, chargingID, sgsnCapabilities, locationInformationGPRS, pdpInitiationType, extensions, gsnAddress, secondaryPDPContext, imei);
+		return this.getWrappedDialog().addInitialDpGprsRequest(serviceKey, gprsEventType, msisdn, imsi, timeAndTimezone, gprsMSClass, endUserAddress, qualityOfService, accessPointName, routeingAreaIdentity, chargingID, sgsnCapabilities, locationInformationGPRS, pdpInitiationType, extensions, gsnAddress, secondaryPDPContext, imei);
 		
 	}
 
@@ -106,21 +101,21 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			GSNAddress gsnAddress, boolean secondaryPDPContext, IMEI imei)
 			throws CAPException {
 		
-		return this.wrappedDialog.addInitialDpGprsRequest(customInvokeTimeout, serviceKey, gprsEventType, msisdn, imsi, timeAndTimezone, gprsMSClass, endUserAddress, qualityOfService, accessPointName, routeingAreaIdentity, chargingID, sgsnCapabilities, locationInformationGPRS, pdpInitiationType, extensions, gsnAddress, secondaryPDPContext, imei);
+		return this.getWrappedDialog().addInitialDpGprsRequest(customInvokeTimeout, serviceKey, gprsEventType, msisdn, imsi, timeAndTimezone, gprsMSClass, endUserAddress, qualityOfService, accessPointName, routeingAreaIdentity, chargingID, sgsnCapabilities, locationInformationGPRS, pdpInitiationType, extensions, gsnAddress, secondaryPDPContext, imei);
 	}
 
 	@Override
 	public Long addRequestReportGPRSEventRequest(
 			ArrayList<GPRSEvent> gprsEvent, PDPID pdpID) throws CAPException {
 		
-		return this.wrappedDialog.addRequestReportGPRSEventRequest(gprsEvent, pdpID);
+		return this.getWrappedDialog().addRequestReportGPRSEventRequest(gprsEvent, pdpID);
 	}
 
 	@Override
 	public Long addRequestReportGPRSEventRequest(int customInvokeTimeout,
 			ArrayList<GPRSEvent> gprsEvent, PDPID pdpID) throws CAPException {
 		
-		return this.wrappedDialog.addRequestReportGPRSEventRequest(customInvokeTimeout, gprsEvent, pdpID);
+		return this.getWrappedDialog().addRequestReportGPRSEventRequest(customInvokeTimeout, gprsEvent, pdpID);
 	}
 
 	@Override
@@ -128,7 +123,7 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			ChargingCharacteristics chargingCharacteristics,
 			Integer tariffSwitchInterval, PDPID pdpID) throws CAPException {
 		
-		return this.wrappedDialog.addApplyChargingGPRSRequest(chargingCharacteristics, tariffSwitchInterval, pdpID);
+		return this.getWrappedDialog().addApplyChargingGPRSRequest(chargingCharacteristics, tariffSwitchInterval, pdpID);
 	}
 
 	@Override
@@ -136,28 +131,28 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			ChargingCharacteristics chargingCharacteristics,
 			Integer tariffSwitchInterval, PDPID pdpID) throws CAPException {
 		
-		return this.wrappedDialog.addApplyChargingGPRSRequest(customInvokeTimeout, chargingCharacteristics, tariffSwitchInterval, pdpID);
+		return this.getWrappedDialog().addApplyChargingGPRSRequest(customInvokeTimeout, chargingCharacteristics, tariffSwitchInterval, pdpID);
 	}
 
 	@Override
 	public Long addEntityReleasedGPRSRequest(GPRSCause gprsCause, PDPID pdpID)
 			throws CAPException {
 		
-		return this.wrappedDialog.addEntityReleasedGPRSRequest(gprsCause, pdpID);
+		return this.getWrappedDialog().addEntityReleasedGPRSRequest(gprsCause, pdpID);
 	}
 
 	@Override
 	public Long addEntityReleasedGPRSRequest(int customInvokeTimeout,
 			GPRSCause gprsCause, PDPID pdpID) throws CAPException {
 		
-		return this.wrappedDialog.addEntityReleasedGPRSRequest(customInvokeTimeout, gprsCause, pdpID);
+		return this.getWrappedDialog().addEntityReleasedGPRSRequest(customInvokeTimeout, gprsCause, pdpID);
 	}
 
 	@Override
 	public void addEntityReleasedGPRSResponse(long invokeId)
 			throws CAPException {
 		
-		this.wrappedDialog.addEntityReleasedGPRSResponse(invokeId);
+		this.getWrappedDialog().addEntityReleasedGPRSResponse(invokeId);
 		
 	}
 
@@ -165,55 +160,55 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 	public Long addConnectGPRSRequest(AccessPointName accessPointName,
 			PDPID pdpID) throws CAPException {
 		
-		return this.wrappedDialog.addConnectGPRSRequest(accessPointName, pdpID);
+		return this.getWrappedDialog().addConnectGPRSRequest(accessPointName, pdpID);
 	}
 
 	@Override
 	public Long addConnectGPRSRequest(int customInvokeTimeout,
 			AccessPointName accessPointName, PDPID pdpID) throws CAPException {
 		
-		return this.wrappedDialog.addConnectGPRSRequest(customInvokeTimeout, accessPointName, pdpID);
+		return this.getWrappedDialog().addConnectGPRSRequest(customInvokeTimeout, accessPointName, pdpID);
 	}
 
 	@Override
 	public Long addContinueGPRSRequest(PDPID pdpID) throws CAPException {
 		
-		return this.wrappedDialog.addContinueGPRSRequest(pdpID);
+		return this.getWrappedDialog().addContinueGPRSRequest(pdpID);
 	}
 
 	@Override
 	public Long addContinueGPRSRequest(int customInvokeTimeout, PDPID pdpID)
 			throws CAPException {
 		
-		return this.wrappedDialog.addContinueGPRSRequest(customInvokeTimeout, pdpID);
+		return this.getWrappedDialog().addContinueGPRSRequest(customInvokeTimeout, pdpID);
 	}
 
 	@Override
 	public Long addReleaseGPRSRequest(GPRSCause gprsCause, PDPID pdpID)
 			throws CAPException {
 		
-		return this.wrappedDialog.addReleaseGPRSRequest(gprsCause, pdpID);
+		return this.getWrappedDialog().addReleaseGPRSRequest(gprsCause, pdpID);
 	}
 
 	@Override
 	public Long addReleaseGPRSRequest(int customInvokeTimeout,
 			GPRSCause gprsCause, PDPID pdpID) throws CAPException {
 		
-		return this.wrappedDialog.addReleaseGPRSRequest(customInvokeTimeout, gprsCause, pdpID);
+		return this.getWrappedDialog().addReleaseGPRSRequest(customInvokeTimeout, gprsCause, pdpID);
 	}
 
 	@Override
 	public Long addResetTimerGPRSRequest(TimerID timerID, int timerValue)
 			throws CAPException {
 		
-		return this.wrappedDialog.addResetTimerGPRSRequest(timerID, timerValue);
+		return this.getWrappedDialog().addResetTimerGPRSRequest(timerID, timerValue);
 	}
 
 	@Override
 	public Long addResetTimerGPRSRequest(int customInvokeTimeout,
 			TimerID timerID, int timerValue) throws CAPException {
 		
-		return this.wrappedDialog.addResetTimerGPRSRequest(customInvokeTimeout, timerID, timerValue);
+		return this.getWrappedDialog().addResetTimerGPRSRequest(customInvokeTimeout, timerID, timerValue);
 	}
 
 	@Override
@@ -221,7 +216,7 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			CAMELFCIGPRSBillingChargingCharacteristics fciGPRSBillingChargingCharacteristics)
 			throws CAPException {
 		
-		return this.wrappedDialog.addFurnishChargingInformationGPRSRequest(fciGPRSBillingChargingCharacteristics);
+		return this.getWrappedDialog().addFurnishChargingInformationGPRSRequest(fciGPRSBillingChargingCharacteristics);
 	}
 
 	@Override
@@ -230,20 +225,20 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			CAMELFCIGPRSBillingChargingCharacteristics fciGPRSBillingChargingCharacteristics)
 			throws CAPException {
 		
-		return this.wrappedDialog.addFurnishChargingInformationGPRSRequest(customInvokeTimeout, fciGPRSBillingChargingCharacteristics);
+		return this.getWrappedDialog().addFurnishChargingInformationGPRSRequest(customInvokeTimeout, fciGPRSBillingChargingCharacteristics);
 	}
 
 	@Override
 	public Long addCancelGPRSRequest(PDPID pdpID) throws CAPException {
 		
-		return this.wrappedDialog.addCancelGPRSRequest(pdpID);
+		return this.getWrappedDialog().addCancelGPRSRequest(pdpID);
 	}
 
 	@Override
 	public Long addCancelGPRSRequest(int customInvokeTimeout, PDPID pdpID)
 			throws CAPException {
 		
-		return this.wrappedDialog.addCancelGPRSRequest(customInvokeTimeout, pdpID);
+		return this.getWrappedDialog().addCancelGPRSRequest(customInvokeTimeout, pdpID);
 	}
 
 	@Override
@@ -251,7 +246,7 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			CAMELSCIGPRSBillingChargingCharacteristics sciGPRSBillingChargingCharacteristics)
 			throws CAPException {
 		
-		return this.wrappedDialog.addSendChargingInformationGPRSRequest(sciGPRSBillingChargingCharacteristics);
+		return this.getWrappedDialog().addSendChargingInformationGPRSRequest(sciGPRSBillingChargingCharacteristics);
 	}
 
 	@Override
@@ -260,7 +255,7 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			CAMELSCIGPRSBillingChargingCharacteristics sciGPRSBillingChargingCharacteristics)
 			throws CAPException {
 		
-		return this.wrappedDialog.addSendChargingInformationGPRSRequest(customInvokeTimeout, sciGPRSBillingChargingCharacteristics);
+		return this.getWrappedDialog().addSendChargingInformationGPRSRequest(customInvokeTimeout, sciGPRSBillingChargingCharacteristics);
 	}
 
 	@Override
@@ -269,7 +264,7 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			boolean active, PDPID pdpID, ChargingRollOver chargingRollOver)
 			throws CAPException {
 		
-		return this.wrappedDialog.addApplyChargingReportGPRSRequest(chargingResult, qualityOfService, active, pdpID, chargingRollOver);
+		return this.getWrappedDialog().addApplyChargingReportGPRSRequest(chargingResult, qualityOfService, active, pdpID, chargingRollOver);
 	}
 
 	@Override
@@ -278,14 +273,14 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			boolean active, PDPID pdpID, ChargingRollOver chargingRollOver)
 			throws CAPException {
 		
-		return this.wrappedDialog.addApplyChargingReportGPRSRequest(customInvokeTimeout, chargingResult, qualityOfService, active, pdpID, chargingRollOver);
+		return this.getWrappedDialog().addApplyChargingReportGPRSRequest(customInvokeTimeout, chargingResult, qualityOfService, active, pdpID, chargingRollOver);
 	}
 
 	@Override
 	public void addApplyChargingReportGPRSResponse(long invokeId)
 			throws CAPException {
 		
-		this.wrappedDialog.addApplyChargingReportGPRSResponse(invokeId);
+		this.getWrappedDialog().addApplyChargingReportGPRSResponse(invokeId);
 	}
 
 	@Override
@@ -294,7 +289,7 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			GPRSEventSpecificInformation gprsEventSpecificInformation,
 			PDPID pdpID) throws CAPException {
 		
-		return this.wrappedDialog.addEventReportGPRSRequest(gprsEventType, miscGPRSInfo, gprsEventSpecificInformation, pdpID);
+		return this.getWrappedDialog().addEventReportGPRSRequest(gprsEventType, miscGPRSInfo, gprsEventSpecificInformation, pdpID);
 	}
 
 	@Override
@@ -303,29 +298,29 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 			GPRSEventSpecificInformation gprsEventSpecificInformation,
 			PDPID pdpID) throws CAPException { 
 		
-		return this.wrappedDialog.addEventReportGPRSRequest(customInvokeTimeout, gprsEventType, miscGPRSInfo, gprsEventSpecificInformation, pdpID);
+		return this.getWrappedDialog().addEventReportGPRSRequest(customInvokeTimeout, gprsEventType, miscGPRSInfo, gprsEventSpecificInformation, pdpID);
 	}
 
 	@Override
 	public void addEventReportGPRSResponse(long invokeId) throws CAPException {
 		
-		this.wrappedDialog.addEventReportGPRSResponse(invokeId);
+		this.getWrappedDialog().addEventReportGPRSResponse(invokeId);
 	}
 
 	@Override
 	public Long addActivityTestGPRSRequest() throws CAPException {
-		return this.wrappedDialog.addActivityTestGPRSRequest();
+		return this.getWrappedDialog().addActivityTestGPRSRequest();
 	}
 
 	@Override
 	public Long addActivityTestGPRSRequest(int customInvokeTimeout)
 			throws CAPException {
-		return this.wrappedDialog.addActivityTestGPRSRequest(customInvokeTimeout);
+		return this.getWrappedDialog().addActivityTestGPRSRequest(customInvokeTimeout);
 	}
 
 	@Override
 	public void addActivityTestGPRSResponse(long invokeId) throws CAPException {
-		this.wrappedDialog.addActivityTestGPRSResponse(invokeId);
+		this.getWrappedDialog().addActivityTestGPRSResponse(invokeId);
 	}
 
 

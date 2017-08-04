@@ -44,9 +44,6 @@ public class CAPServiceCircuitSwitchedCallWrapper implements CAPServiceCircuitSw
 	protected CAPServiceCircuitSwitchedCall wrappedCircuitSwitchedCall;
 	protected CAPProviderWrapper capProviderWrapper;
 
-	/**
-	 * @param CAPServiceCircuitSwitchedCall
-	 */
 	public CAPServiceCircuitSwitchedCallWrapper(CAPProviderWrapper capProviderWrapper, CAPServiceCircuitSwitchedCall capServiceCircuitSwitchedCall) {
 		this.wrappedCircuitSwitchedCall = capServiceCircuitSwitchedCall;
 		this.capProviderWrapper = capProviderWrapper;
@@ -77,7 +74,7 @@ public class CAPServiceCircuitSwitchedCallWrapper implements CAPServiceCircuitSw
             throws CAPException {
 
         CAPDialogCircuitSwitchedCall capDialog = this.wrappedCircuitSwitchedCall.createNewDialog(appCntx, origAddress, destAddress, localTrId);
-        CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getLocalDialogId());
+        CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capProviderWrapper.getRa(),capDialog.getLocalDialogId());
 
         CAPDialogCircuitSwitchedCallWrapper dw = new CAPDialogCircuitSwitchedCallWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
         capDialog.setUserObject(dw);

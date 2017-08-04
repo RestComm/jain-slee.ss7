@@ -39,207 +39,212 @@ import org.mobicents.slee.resource.cap.CAPDialogActivityHandle;
 import org.mobicents.slee.resource.cap.CAPResourceAdaptor;
 
 /**
- * 
+ *
  * @author sergey vetyutnev
  * @author amit bhayani
- * 
+ *
  */
 public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog {
-	
-	protected CAPDialogActivityHandle activityHandle;
-	protected final CAPResourceAdaptor ra;
-	protected T wrappedDialog;
-	
-	private boolean keepedTimeout;
 
-	public CAPDialogWrapper(T wrappedDialog, CAPDialogActivityHandle activityHandle, CAPResourceAdaptor ra) {
-		this.wrappedDialog = wrappedDialog;
-		this.activityHandle = activityHandle;
-		this.activityHandle.setActivity(this);
-		this.ra = ra;
-	}
+    protected CAPDialogActivityHandle activityHandle;
+    protected transient CAPResourceAdaptor ra;
+    protected transient T wrappedDialog;
+
+    private boolean keepedTimeout;
+    protected final Long dialogId;
+
+    public void restoreTransientData(CAPResourceAdaptor ra) {
+        this.ra=ra;
+    }
+
+    public CAPDialogWrapper(T wrappedDialog, CAPDialogActivityHandle activityHandle, CAPResourceAdaptor ra) {
+        this.wrappedDialog = wrappedDialog;
+        dialogId= this.wrappedDialog.getLocalDialogId();
+        this.activityHandle = activityHandle;
+        this.activityHandle.setActivity(this);
+        this.ra = ra;
+    }
+
+    public T getWrappedDialog() {
+        if(wrappedDialog ==null)
+            wrappedDialog =ra.getWrappedDialog(dialogId);
+        return wrappedDialog;
+    }
 
     public SccpAddress getLocalAddress(){
-    	return this.wrappedDialog.getLocalAddress();
+        return this.getWrappedDialog().getLocalAddress();
     }
-    
+
     public SccpAddress getRemoteAddress(){
-    	return this.wrappedDialog.getRemoteAddress();
+        return this.getWrappedDialog().getRemoteAddress();
     }
 
-	public void abort(CAPUserAbortReason arg0) throws CAPException {
-		this.wrappedDialog.abort(arg0);
-	}
+    public void abort(CAPUserAbortReason arg0) throws CAPException {
+        this.getWrappedDialog().abort(arg0);
+    }
 
-	public boolean cancelInvocation(Long arg0) throws CAPException {
-		return this.wrappedDialog.cancelInvocation(arg0);
-	}
+    public boolean cancelInvocation(Long arg0) throws CAPException {
+        return this.getWrappedDialog().cancelInvocation(arg0);
+    }
 
-	public CAPApplicationContext getApplicationContext() {
-		return this.wrappedDialog.getApplicationContext();
-	}
+    public CAPApplicationContext getApplicationContext() {
+        return this.getWrappedDialog().getApplicationContext();
+    }
 
-	public Long getLocalDialogId() {
-		return this.wrappedDialog.getLocalDialogId();
-	}
-	
-	public Long getRemoteDialogId() {
-		return this.wrappedDialog.getRemoteDialogId();
-	}
+    public Long getLocalDialogId() {
+        return this.getWrappedDialog().getLocalDialogId();
+    }
 
-	public int getMaxUserDataLength() {
-		return this.wrappedDialog.getMaxUserDataLength();
-	}
+    public Long getRemoteDialogId() {
+        return this.getWrappedDialog().getRemoteDialogId();
+    }
 
-	public int getMessageUserDataLengthOnClose(boolean arg0) throws CAPException {
-		return this.wrappedDialog.getMessageUserDataLengthOnClose(arg0);
-	}
+    public int getMaxUserDataLength() {
+        return this.getWrappedDialog().getMaxUserDataLength();
+    }
 
-	public int getMessageUserDataLengthOnSend() throws CAPException {
-		return this.wrappedDialog.getMessageUserDataLengthOnSend();
-	}
+    public int getMessageUserDataLengthOnClose(boolean arg0) throws CAPException {
+        return this.getWrappedDialog().getMessageUserDataLengthOnClose(arg0);
+    }
 
-	public boolean getReturnMessageOnError() {
-		return this.wrappedDialog.getReturnMessageOnError();
-	}
+    public int getMessageUserDataLengthOnSend() throws CAPException {
+        return this.getWrappedDialog().getMessageUserDataLengthOnSend();
+    }
 
-	public CAPServiceBase getService() {
-		throw new UnsupportedOperationException();
-	}
+    public boolean getReturnMessageOnError() {
+        return this.getWrappedDialog().getReturnMessageOnError();
+    }
 
-	public CAPDialogState getState() {
-		return this.wrappedDialog.getState();
-	}
+    public CAPServiceBase getService() {
+        throw new UnsupportedOperationException();
+    }
 
-	public Object getUserObject() {
-		throw new UnsupportedOperationException();
-	}
+    public CAPDialogState getState() {
+        return this.getWrappedDialog().getState();
+    }
+
+    public Object getUserObject() {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public int getNetworkId() {
-        return this.wrappedDialog.getNetworkId();
+        return this.getWrappedDialog().getNetworkId();
     }
 
     @Override
     public void setNetworkId(int networkId) {
-        this.wrappedDialog.setNetworkId(networkId);
+        this.getWrappedDialog().setNetworkId(networkId);
     }
 
-	public void keepAlive() {
-//		this.wrappedDialog.keepAlive();
-		this.keepedTimeout = true;
-	}
+    public void keepAlive() {
+//		this.getWrappedDialog().keepAlive();
+        this.keepedTimeout = true;
+    }
 
-	public void startDialogTimeoutProc() {
-		this.keepedTimeout = false;
-	}
+    public void startDialogTimeoutProc() {
+        this.keepedTimeout = false;
+    }
 
-	public boolean checkDialogTimeoutProcKeeped() {
-		return this.keepedTimeout;
-	}
-	
-	public void release() {
-		this.wrappedDialog.release();
-	}
+    public boolean checkDialogTimeoutProcKeeped() {
+        return this.keepedTimeout;
+    }
 
-	public void resetInvokeTimer(Long arg0) throws CAPException {
-		this.wrappedDialog.resetInvokeTimer(arg0);
-	}
+    public void release() {
+        this.getWrappedDialog().release();
+    }
 
-	public void send() throws CAPException {
-		this.wrappedDialog.send();
-	}
+    public void resetInvokeTimer(Long arg0) throws CAPException {
+        this.getWrappedDialog().resetInvokeTimer(arg0);
+    }
 
-	@Override
-	public void sendDelayed() throws CAPException {
-		this.wrappedDialog.sendDelayed();
-	}
+    public void send() throws CAPException {
+        this.getWrappedDialog().send();
+    }
 
-	public void close(boolean arg0) throws CAPException {
-		this.wrappedDialog.close(arg0);
-	}
+    @Override
+    public void sendDelayed() throws CAPException {
+        this.getWrappedDialog().sendDelayed();
+    }
 
-	public void closeDelayed(boolean arg0) throws CAPException {
-		this.wrappedDialog.closeDelayed(arg0);
-	}
+    public void close(boolean arg0) throws CAPException {
+        this.getWrappedDialog().close(arg0);
+    }
 
-	public CAPGprsReferenceNumber getGprsReferenceNumber() {
-		return this.wrappedDialog.getGprsReferenceNumber();
-	}
+    public void closeDelayed(boolean arg0) throws CAPException {
+        this.getWrappedDialog().closeDelayed(arg0);
+    }
 
-	public CAPGprsReferenceNumber getReceivedGprsReferenceNumber() {
-		return this.wrappedDialog.getReceivedGprsReferenceNumber();
-	}
+    public CAPGprsReferenceNumber getGprsReferenceNumber() {
+        return this.getWrappedDialog().getGprsReferenceNumber();
+    }
 
-	public MessageType getTCAPMessageType() {
-		return this.wrappedDialog.getTCAPMessageType();
-	}
+    public CAPGprsReferenceNumber getReceivedGprsReferenceNumber() {
+        return this.getWrappedDialog().getReceivedGprsReferenceNumber();
+    }
 
-	public void sendErrorComponent(Long arg0, CAPErrorMessage arg1) throws CAPException {
-		this.wrappedDialog.sendErrorComponent(arg0, arg1);
-	}
+    public MessageType getTCAPMessageType() {
+        return this.getWrappedDialog().getTCAPMessageType();
+    }
 
-	public void sendInvokeComponent(Invoke arg0) throws CAPException {
-		this.wrappedDialog.sendInvokeComponent(arg0);
-	}
+    public void sendErrorComponent(Long arg0, CAPErrorMessage arg1) throws CAPException {
+        this.getWrappedDialog().sendErrorComponent(arg0, arg1);
+    }
 
-	public void sendRejectComponent(Long arg0, Problem arg1) throws CAPException {
-		this.wrappedDialog.sendRejectComponent(arg0, arg1);
-	}
+    public void sendInvokeComponent(Invoke arg0) throws CAPException {
+        this.getWrappedDialog().sendInvokeComponent(arg0);
+    }
 
-	public void sendReturnResultLastComponent(ReturnResultLast arg0) throws CAPException {
-		this.wrappedDialog.sendReturnResultLastComponent(arg0);
-	}
+    public void sendRejectComponent(Long arg0, Problem arg1) throws CAPException {
+        this.getWrappedDialog().sendRejectComponent(arg0, arg1);
+    }
 
-	public void setGprsReferenceNumber(CAPGprsReferenceNumber arg0) {
-		this.wrappedDialog.setGprsReferenceNumber(arg0);
-	}
+    public void sendReturnResultLastComponent(ReturnResultLast arg0) throws CAPException {
+        this.getWrappedDialog().sendReturnResultLastComponent(arg0);
+    }
 
-	public void setReturnMessageOnError(boolean val) {
-		this.wrappedDialog.setReturnMessageOnError(val);
-	}
+    public void setGprsReferenceNumber(CAPGprsReferenceNumber arg0) {
+        this.getWrappedDialog().setGprsReferenceNumber(arg0);
+    }
 
-	public void setUserObject(Object arg0) {
-		throw new UnsupportedOperationException();
-	}
+    public void setReturnMessageOnError(boolean val) {
+        this.getWrappedDialog().setReturnMessageOnError(val);
+    }
 
-	@Override
-	public void processInvokeWithoutAnswer(Long invokeId) {
-		this.wrappedDialog.processInvokeWithoutAnswer(invokeId);
-	}
+    public void setUserObject(Object arg0) {
+        throw new UnsupportedOperationException();
+    }
 
-	@Override
-	public void setLocalAddress(SccpAddress address) {
-		this.wrappedDialog.setLocalAddress(address);
-	}
+    @Override
+    public void processInvokeWithoutAnswer(Long invokeId) {
+        this.getWrappedDialog().processInvokeWithoutAnswer(invokeId);
+    }
 
-	@Override
-	public void setRemoteAddress(SccpAddress address) {
-		this.wrappedDialog.setRemoteAddress(address);
-	}
+    @Override
+    public void setLocalAddress(SccpAddress address) {
+        this.getWrappedDialog().setLocalAddress(address);
+    }
 
-	public CAPDialogActivityHandle getActivityHandle() {
-		return activityHandle;
-	}
-	
-	public void clear() {
-		//TODO Any more cleaning here?
-		if (this.activityHandle != null) {
-			this.activityHandle.setActivity(null);
-			this.activityHandle = null;
-		}
-		
-		if(this.wrappedDialog != null){
-			this.wrappedDialog.setUserObject(null);
-			this.wrappedDialog = null;
-		}
-	}
+    @Override
+    public void setRemoteAddress(SccpAddress address) {
+        this.getWrappedDialog().setRemoteAddress(address);
+    }
 
-	public CAPResourceAdaptor getRa() {
-		return ra;
-	}
+    public CAPDialogActivityHandle getActivityHandle() {
+        return activityHandle;
+    }
 
-	
-	public abstract T getWrappedDialog();
-	
+    public void clear() {
+        //TODO Any more cleaning here?
+        if (this.activityHandle != null) {
+            this.activityHandle.setActivity(null);
+            this.activityHandle = null;
+        }
+    }
+
+    public CAPResourceAdaptor getRa() {
+        return ra;
+    }
+
+
 }

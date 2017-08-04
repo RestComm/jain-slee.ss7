@@ -43,9 +43,6 @@ public class CAPServiceSmsWrapper implements CAPServiceSms {
 	protected CAPServiceSms wrappedSms;
 	protected CAPProviderWrapper capProviderWrapper;
 
-	/**
-	 * @param CAPServiceCircuitSwitchedCall
-	 */
 	public CAPServiceSmsWrapper(CAPProviderWrapper capProviderWrapper, CAPServiceSms capServiceSms) {
 		this.wrappedSms = capServiceSms;
 		this.capProviderWrapper = capProviderWrapper;
@@ -74,7 +71,7 @@ public class CAPServiceSmsWrapper implements CAPServiceSms {
     public CAPDialogSms createNewDialog(CAPApplicationContext appCntx, SccpAddress origAddress, SccpAddress destAddress, Long localTrId) throws CAPException {
 
         CAPDialogSms capDialog = this.wrappedSms.createNewDialog(appCntx, origAddress, destAddress, localTrId);
-        CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getLocalDialogId());
+        CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capProviderWrapper.getRa(),capDialog.getLocalDialogId());
 
         CAPDialogSmsWrapper dw = new CAPDialogSmsWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
         capDialog.setUserObject(dw);
