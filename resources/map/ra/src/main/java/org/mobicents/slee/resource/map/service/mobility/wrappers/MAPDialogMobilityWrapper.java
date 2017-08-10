@@ -1,5 +1,5 @@
 /*
- * TeleStax, Open Source Cloud Communications  Copyright 2012. 
+ * TeleStax, Open Source Cloud Communications  Copyright 2012.
  * and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
@@ -109,9 +109,9 @@ import org.mobicents.slee.resource.map.MAPResourceAdaptor;
 import org.mobicents.slee.resource.map.wrappers.MAPDialogWrapper;
 
 /**
- * 
+ *
  * @author amit bhayani
- * 
+ *
  */
 public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility> implements MAPDialogMobility {
 
@@ -121,17 +121,12 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	}
 
 	@Override
-	public MAPDialogMobility getWrappedDialog() {
-		return this.wrappedDialog;
-	}
-
-	@Override
 	public Long addSendAuthenticationInfoRequest(IMSI imsi, int numberOfRequestedVectors,
 			boolean segmentationProhibited, boolean immediateResponsePreferred,
 			ReSynchronisationInfo reSynchronisationInfo, MAPExtensionContainer extensionContainer,
 			RequestingNodeType requestingNodeType, PlmnId requestingPlmnId, Integer numberOfRequestedAdditionalVectors,
 			boolean additionalVectorsAreForEPS) throws MAPException {
-		return this.wrappedDialog.addSendAuthenticationInfoRequest(imsi, numberOfRequestedVectors,
+		return this.getWrappedDialog().addSendAuthenticationInfoRequest(imsi, numberOfRequestedVectors,
 				segmentationProhibited, immediateResponsePreferred, reSynchronisationInfo, extensionContainer,
 				requestingNodeType, requestingPlmnId, numberOfRequestedAdditionalVectors, additionalVectorsAreForEPS);
 	}
@@ -142,7 +137,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 			ReSynchronisationInfo reSynchronisationInfo, MAPExtensionContainer extensionContainer,
 			RequestingNodeType requestingNodeType, PlmnId requestingPlmnId, Integer numberOfRequestedAdditionalVectors,
 			boolean additionalVectorsAreForEPS) throws MAPException {
-		return this.wrappedDialog.addSendAuthenticationInfoRequest(customInvokeTimeout, imsi, numberOfRequestedVectors,
+		return this.getWrappedDialog().addSendAuthenticationInfoRequest(customInvokeTimeout, imsi, numberOfRequestedVectors,
 				segmentationProhibited, immediateResponsePreferred, reSynchronisationInfo, extensionContainer,
 				requestingNodeType, requestingPlmnId, numberOfRequestedAdditionalVectors, additionalVectorsAreForEPS);
 	}
@@ -151,34 +146,34 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	public void addSendAuthenticationInfoResponse(long invokeId, AuthenticationSetList authenticationSetList,
 			MAPExtensionContainer extensionContainer, EpsAuthenticationSetList epsAuthenticationSetList)
 			throws MAPException {
-		this.wrappedDialog.addSendAuthenticationInfoResponse(invokeId, authenticationSetList, extensionContainer,
+		this.getWrappedDialog().addSendAuthenticationInfoResponse(invokeId, authenticationSetList, extensionContainer,
 				epsAuthenticationSetList);
 	}
 
     @Override
     public Long addAuthenticationFailureReportRequest(IMSI imsi, FailureCause failureCause, MAPExtensionContainer extensionContainer, Boolean reAttempt,
             AccessType accessType, byte[] rand, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber) throws MAPException {
-        return this.wrappedDialog.addAuthenticationFailureReportRequest(imsi, failureCause, extensionContainer, reAttempt, accessType, rand, vlrNumber,
+        return this.getWrappedDialog().addAuthenticationFailureReportRequest(imsi, failureCause, extensionContainer, reAttempt, accessType, rand, vlrNumber,
                 sgsnNumber);
     }
 
     @Override
     public Long addAuthenticationFailureReportRequest(int customInvokeTimeout, IMSI imsi, FailureCause failureCause, MAPExtensionContainer extensionContainer,
             Boolean reAttempt, AccessType accessType, byte[] rand, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber) throws MAPException {
-        return this.wrappedDialog.addAuthenticationFailureReportRequest(customInvokeTimeout, imsi, failureCause, extensionContainer, reAttempt, accessType,
+        return this.getWrappedDialog().addAuthenticationFailureReportRequest(customInvokeTimeout, imsi, failureCause, extensionContainer, reAttempt, accessType,
                 rand, vlrNumber, sgsnNumber);
     }
 
     @Override
     public void addAuthenticationFailureReportResponse(long invokeId, MAPExtensionContainer extensionContainer) throws MAPException {
-        this.wrappedDialog.addAuthenticationFailureReportResponse(invokeId, extensionContainer);
+        this.getWrappedDialog().addAuthenticationFailureReportResponse(invokeId, extensionContainer);
     }
 
 
 	@Override
 	public long addAnyTimeInterrogationRequest(SubscriberIdentity subscriberIdentity, RequestedInfo requestedInfo,
 			ISDNAddressString gsmSCFAddress, MAPExtensionContainer extensionContainer) throws MAPException {
-		return this.wrappedDialog.addAnyTimeInterrogationRequest(subscriberIdentity, requestedInfo, gsmSCFAddress,
+		return this.getWrappedDialog().addAnyTimeInterrogationRequest(subscriberIdentity, requestedInfo, gsmSCFAddress,
 				extensionContainer);
 	}
 
@@ -186,7 +181,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	public long addAnyTimeInterrogationRequest(long customInvokeTimeout, SubscriberIdentity subscriberIdentity,
 			RequestedInfo requestedInfo, ISDNAddressString gsmSCFAddress, MAPExtensionContainer extensionContainer)
 			throws MAPException {
-		return this.wrappedDialog.addAnyTimeInterrogationRequest(customInvokeTimeout, subscriberIdentity,
+		return this.getWrappedDialog().addAnyTimeInterrogationRequest(customInvokeTimeout, subscriberIdentity,
 				requestedInfo, gsmSCFAddress, extensionContainer);
 	}
 
@@ -202,7 +197,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 			VLRCapability vlrCapability, boolean informPreviousNetworkEntity, boolean csLCSNotSupportedByUE,
 			GSNAddress vGmlcAddress, ADDInfo addInfo, PagingArea pagingArea, boolean skipSubscriberDataUpdate,
 			boolean restorationIndicator) throws MAPException {
-		return this.wrappedDialog.addUpdateLocationRequest(imsi, mscNumber, roamingNumber, vlrNumber, lmsi,
+		return this.getWrappedDialog().addUpdateLocationRequest(imsi, mscNumber, roamingNumber, vlrNumber, lmsi,
 				extensionContainer, vlrCapability, informPreviousNetworkEntity, csLCSNotSupportedByUE, vGmlcAddress,
 				addInfo, pagingArea, skipSubscriberDataUpdate, restorationIndicator);
 	}
@@ -213,7 +208,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 			MAPExtensionContainer extensionContainer, VLRCapability vlrCapability, boolean informPreviousNetworkEntity,
 			boolean csLCSNotSupportedByUE, GSNAddress vGmlcAddress, ADDInfo addInfo, PagingArea pagingArea,
 			boolean skipSubscriberDataUpdate, boolean restorationIndicator) throws MAPException {
-		return this.wrappedDialog.addUpdateLocationRequest(customInvokeTimeout, imsi, mscNumber, roamingNumber,
+		return this.getWrappedDialog().addUpdateLocationRequest(customInvokeTimeout, imsi, mscNumber, roamingNumber,
 				vlrNumber, lmsi, extensionContainer, vlrCapability, informPreviousNetworkEntity, csLCSNotSupportedByUE,
 				vGmlcAddress, addInfo, pagingArea, skipSubscriberDataUpdate, restorationIndicator);
 	}
@@ -222,47 +217,47 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	public void addUpdateLocationResponse(long invokeId, ISDNAddressString hlrNumber,
 			MAPExtensionContainer extensionContainer, boolean addCapability, boolean pagingAreaCapability)
 			throws MAPException {
-		this.wrappedDialog.addUpdateLocationResponse(invokeId, hlrNumber, extensionContainer, addCapability,
+		this.getWrappedDialog().addUpdateLocationResponse(invokeId, hlrNumber, extensionContainer, addCapability,
 				pagingAreaCapability);
 	}
 
 	@Override
 	public Long addCheckImeiRequest(IMEI imei, RequestedEquipmentInfo requestedEquipmentInfo,
 			MAPExtensionContainer extensionContainer) throws MAPException {
-		return this.wrappedDialog.addCheckImeiRequest(imei, requestedEquipmentInfo, extensionContainer);
+		return this.getWrappedDialog().addCheckImeiRequest(imei, requestedEquipmentInfo, extensionContainer);
 	}
 
 	@Override
 	public Long addCheckImeiRequest(long customInvokeTimeout, IMEI imei, RequestedEquipmentInfo requestedEquipmentInfo,
 			MAPExtensionContainer extensionContainer) throws MAPException {
-		return this.wrappedDialog.addCheckImeiRequest(customInvokeTimeout, imei, requestedEquipmentInfo,
+		return this.getWrappedDialog().addCheckImeiRequest(customInvokeTimeout, imei, requestedEquipmentInfo,
 				extensionContainer);
 	}
 
 	@Override
 	public void addCheckImeiResponse(long invokeId, EquipmentStatus equipmentStatus, UESBIIu bmuef,
 			MAPExtensionContainer extensionContainer) throws MAPException {
-		this.wrappedDialog.addCheckImeiResponse(invokeId, equipmentStatus, bmuef, extensionContainer);
+		this.getWrappedDialog().addCheckImeiResponse(invokeId, equipmentStatus, bmuef, extensionContainer);
 	}
 
 	@Override
-	public Long addCheckImeiRequest_Huawei(IMEI imei, RequestedEquipmentInfo requestedEquipmentInfo, 
+	public Long addCheckImeiRequest_Huawei(IMEI imei, RequestedEquipmentInfo requestedEquipmentInfo,
 			MAPExtensionContainer extensionContainer, IMSI imsi)
 			throws MAPException {
-		return this.wrappedDialog.addCheckImeiRequest_Huawei(imei, requestedEquipmentInfo, extensionContainer, imsi);
+		return this.getWrappedDialog().addCheckImeiRequest_Huawei(imei, requestedEquipmentInfo, extensionContainer, imsi);
 	}
 
 	@Override
 	public Long addCheckImeiRequest_Huawei(long arg0, IMEI arg1, RequestedEquipmentInfo arg2,
 			MAPExtensionContainer arg3, IMSI arg4) throws MAPException {
-		return this.wrappedDialog.addCheckImeiRequest_Huawei(arg0, arg1, arg2, arg3, arg4);
+		return this.getWrappedDialog().addCheckImeiRequest_Huawei(arg0, arg1, arg2, arg3, arg4);
 	}
 
 	@Override
 	public Long addCancelLocationRequest(int customInvokeTimeout, IMSI imsi, IMSIWithLMSI imsiWithLmsi, CancellationType cancellationType,
 			MAPExtensionContainer extensionContainer, TypeOfUpdate typeOfUpdate, boolean mtrfSupportedAndAuthorized, boolean mtrfSupportedAndNotAuthorized,
 			ISDNAddressString newMSCNumber, ISDNAddressString newVLRNumber, LMSI newLmsi) throws MAPException {
-		return this.wrappedDialog.addCancelLocationRequest(customInvokeTimeout, imsi, imsiWithLmsi, cancellationType, extensionContainer, typeOfUpdate,
+		return this.getWrappedDialog().addCancelLocationRequest(customInvokeTimeout, imsi, imsiWithLmsi, cancellationType, extensionContainer, typeOfUpdate,
 				mtrfSupportedAndAuthorized, mtrfSupportedAndNotAuthorized, newMSCNumber, newVLRNumber, newLmsi);
 	}
 
@@ -270,13 +265,13 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	public Long addCancelLocationRequest(IMSI imsi, IMSIWithLMSI imsiWithLmsi, CancellationType cancellationType, MAPExtensionContainer extensionContainer,
 			TypeOfUpdate typeOfUpdate, boolean mtrfSupportedAndAuthorized, boolean mtrfSupportedAndNotAuthorized, ISDNAddressString newMSCNumber,
 			ISDNAddressString newVLRNumber, LMSI newLmsi) throws MAPException {
-		return this.wrappedDialog.addCancelLocationRequest(imsi, imsiWithLmsi, cancellationType, extensionContainer, typeOfUpdate,
+		return this.getWrappedDialog().addCancelLocationRequest(imsi, imsiWithLmsi, cancellationType, extensionContainer, typeOfUpdate,
 				mtrfSupportedAndAuthorized, mtrfSupportedAndNotAuthorized, newMSCNumber, newVLRNumber, newLmsi);
 	}
 
 	@Override
 	public void addCancelLocationResponse(long invokeId, MAPExtensionContainer extensionContainer) throws MAPException {
-		this.wrappedDialog.addCancelLocationResponse(invokeId, extensionContainer);
+		this.getWrappedDialog().addCancelLocationResponse(invokeId, extensionContainer);
 	}
 
 	@Override
@@ -285,7 +280,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 			ODBData odbData, boolean roamingRestrictionDueToUnsupportedFeature, ArrayList<ZoneCode> regionalSubscriptionData,
 			ArrayList<VoiceBroadcastData> vbsSubscriptionData, ArrayList<VoiceGroupCallData> vgcsSubscriptionData,
 			VlrCamelSubscriptionInfo vlrCamelSubscriptionInfo) throws MAPException {
-		return this.wrappedDialog.addInsertSubscriberDataRequest(imsi, msisdn, category, subscriberStatus, bearerServiceList, teleserviceList, provisionedSS,
+		return this.getWrappedDialog().addInsertSubscriberDataRequest(imsi, msisdn, category, subscriberStatus, bearerServiceList, teleserviceList, provisionedSS,
 				odbData, roamingRestrictionDueToUnsupportedFeature, regionalSubscriptionData, vbsSubscriptionData, vgcsSubscriptionData,
 				vlrCamelSubscriptionInfo);
 	}
@@ -296,7 +291,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 			ArrayList<ExtSSInfo> provisionedSS, ODBData odbData, boolean roamingRestrictionDueToUnsupportedFeature,
 			ArrayList<ZoneCode> regionalSubscriptionData, ArrayList<VoiceBroadcastData> vbsSubscriptionData,
 			ArrayList<VoiceGroupCallData> vgcsSubscriptionData, VlrCamelSubscriptionInfo vlrCamelSubscriptionInfo) throws MAPException {
-		return this.wrappedDialog.addInsertSubscriberDataRequest(customInvokeTimeout, imsi, msisdn, category, subscriberStatus, bearerServiceList,
+		return this.getWrappedDialog().addInsertSubscriberDataRequest(customInvokeTimeout, imsi, msisdn, category, subscriberStatus, bearerServiceList,
 				teleserviceList, provisionedSS, odbData, roamingRestrictionDueToUnsupportedFeature, regionalSubscriptionData, vbsSubscriptionData,
 				vgcsSubscriptionData, vlrCamelSubscriptionInfo);
 	}
@@ -314,7 +309,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 			EPSSubscriptionData epsSubscriptionData, ArrayList<CSGSubscriptionData> csgSubscriptionDataList, boolean ueReachabilityRequestIndicator,
 			ISDNAddressString sgsnNumber, DiameterIdentity mmeName, Long subscribedPeriodicRAUTAUtimer, boolean vplmnLIPAAllowed, Boolean mdtUserConsent,
 			Long subscribedPeriodicLAUtimer) throws MAPException {
-		return this.wrappedDialog.addInsertSubscriberDataRequest(imsi, msisdn, category, subscriberStatus, bearerServiceList, teleserviceList, provisionedSS,
+		return this.getWrappedDialog().addInsertSubscriberDataRequest(imsi, msisdn, category, subscriberStatus, bearerServiceList, teleserviceList, provisionedSS,
 				odbData, roamingRestrictionDueToUnsupportedFeature, regionalSubscriptionData, vbsSubscriptionData, vgcsSubscriptionData,
 				vlrCamelSubscriptionInfo, extensionContainer, naeaPreferredCI, gprsSubscriptionData, roamingRestrictedInSgsnDueToUnsupportedFeature,
 				networkAccessMode, lsaInformation, lmuIndicator, lcsInformation, istAlertTimer, superChargerSupportedInHLR, mcSsInfo,
@@ -336,7 +331,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 			Boolean icsIndicator, EPSSubscriptionData epsSubscriptionData, ArrayList<CSGSubscriptionData> csgSubscriptionDataList,
 			boolean ueReachabilityRequestIndicator, ISDNAddressString sgsnNumber, DiameterIdentity mmeName, Long subscribedPeriodicRAUTAUtimer,
 			boolean vplmnLIPAAllowed, Boolean mdtUserConsent, Long subscribedPeriodicLAUtimer) throws MAPException {
-		return this.wrappedDialog.addInsertSubscriberDataRequest(customInvokeTimeout, imsi, msisdn, category, subscriberStatus, bearerServiceList,
+		return this.getWrappedDialog().addInsertSubscriberDataRequest(customInvokeTimeout, imsi, msisdn, category, subscriberStatus, bearerServiceList,
 				teleserviceList, provisionedSS, odbData, roamingRestrictionDueToUnsupportedFeature, regionalSubscriptionData, vbsSubscriptionData,
 				vgcsSubscriptionData, vlrCamelSubscriptionInfo, extensionContainer, naeaPreferredCI, gprsSubscriptionData,
 				roamingRestrictedInSgsnDueToUnsupportedFeature, networkAccessMode, lsaInformation, lmuIndicator, lcsInformation, istAlertTimer,
@@ -349,7 +344,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	public void addInsertSubscriberDataResponse(long invokeId, ArrayList<ExtTeleserviceCode> teleserviceList,
 			ArrayList<ExtBearerServiceCode> bearerServiceList, ArrayList<SSCode> ssList, ODBGeneralData odbGeneralData,
 			RegionalSubscriptionResponse regionalSubscriptionResponse) throws MAPException {
-		this.wrappedDialog.addInsertSubscriberDataResponse(invokeId, teleserviceList, bearerServiceList, ssList, odbGeneralData, regionalSubscriptionResponse);
+		this.getWrappedDialog().addInsertSubscriberDataResponse(invokeId, teleserviceList, bearerServiceList, ssList, odbGeneralData, regionalSubscriptionResponse);
 	}
 
 	@Override
@@ -357,7 +352,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 			ArrayList<ExtBearerServiceCode> bearerServiceList, ArrayList<SSCode> ssList, ODBGeneralData odbGeneralData,
 			RegionalSubscriptionResponse regionalSubscriptionResponse, SupportedCamelPhases supportedCamelPhases, MAPExtensionContainer extensionContainer,
 			OfferedCamel4CSIs offeredCamel4CSIs, SupportedFeatures supportedFeatures) throws MAPException {
-		this.wrappedDialog.addInsertSubscriberDataResponse(invokeId, teleserviceList, bearerServiceList, ssList, odbGeneralData, regionalSubscriptionResponse,
+		this.getWrappedDialog().addInsertSubscriberDataResponse(invokeId, teleserviceList, bearerServiceList, ssList, odbGeneralData, regionalSubscriptionResponse,
 				supportedCamelPhases, extensionContainer, offeredCamel4CSIs, supportedFeatures);
 	}
 
@@ -365,7 +360,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	public Long addSendIdentificationRequest(int customInvokeTimeout, TMSI tmsi, Integer numberOfRequestedVectors, boolean segmentationProhibited,
 			MAPExtensionContainer extensionContainer, ISDNAddressString mscNumber, LAIFixedLength previousLAI, Integer hopCounter,
 			boolean mtRoamingForwardingSupported, ISDNAddressString newVLRNumber, LMSI lmsi) throws MAPException {
-		return this.wrappedDialog.addSendIdentificationRequest(customInvokeTimeout, tmsi, numberOfRequestedVectors, segmentationProhibited, extensionContainer,
+		return this.getWrappedDialog().addSendIdentificationRequest(customInvokeTimeout, tmsi, numberOfRequestedVectors, segmentationProhibited, extensionContainer,
 				mscNumber, previousLAI, hopCounter, mtRoamingForwardingSupported, newVLRNumber, lmsi);
 	}
 
@@ -373,32 +368,32 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	public Long addSendIdentificationRequest(TMSI tmsi, Integer numberOfRequestedVectors, boolean segmentationProhibited,
 			MAPExtensionContainer extensionContainer, ISDNAddressString mscNumber, LAIFixedLength previousLAI, Integer hopCounter,
 			boolean mtRoamingForwardingSupported, ISDNAddressString newVLRNumber, LMSI lmsi) throws MAPException {
-		return this.wrappedDialog.addSendIdentificationRequest(tmsi, numberOfRequestedVectors, segmentationProhibited, extensionContainer, mscNumber,
+		return this.getWrappedDialog().addSendIdentificationRequest(tmsi, numberOfRequestedVectors, segmentationProhibited, extensionContainer, mscNumber,
 				previousLAI, hopCounter, mtRoamingForwardingSupported, newVLRNumber, lmsi);
 	}
 
 	@Override
 	public void addSendIdentificationResponse(long invokeId, IMSI imsi, AuthenticationSetList authenticationSetList,
 			CurrentSecurityContext currentSecurityContext, MAPExtensionContainer extensionContainer) throws MAPException {
-		this.wrappedDialog.addSendIdentificationResponse(invokeId, imsi, authenticationSetList, currentSecurityContext, extensionContainer);
+		this.getWrappedDialog().addSendIdentificationResponse(invokeId, imsi, authenticationSetList, currentSecurityContext, extensionContainer);
 	}
 
     @Override
     public Long addPurgeMSRequest(int customInvokeTimeout, IMSI imsi, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber,
             MAPExtensionContainer extensionContainer) throws MAPException {
-        return this.wrappedDialog.addPurgeMSRequest(customInvokeTimeout, imsi, vlrNumber, sgsnNumber, extensionContainer);
+        return this.getWrappedDialog().addPurgeMSRequest(customInvokeTimeout, imsi, vlrNumber, sgsnNumber, extensionContainer);
     }
 
     @Override
     public Long addPurgeMSRequest(IMSI imsi, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber, MAPExtensionContainer extensionContainer)
             throws MAPException {
-        return this.wrappedDialog.addPurgeMSRequest(imsi, vlrNumber, sgsnNumber, extensionContainer);
+        return this.getWrappedDialog().addPurgeMSRequest(imsi, vlrNumber, sgsnNumber, extensionContainer);
     }
 
     @Override
     public void addPurgeMSResponse(long invokeId, boolean freezeTMSI, boolean freezePTMSI, MAPExtensionContainer extensionContainer, boolean freezeMTMSI)
             throws MAPException {
-        this.wrappedDialog.addPurgeMSResponse(invokeId, freezeTMSI, freezePTMSI, extensionContainer, freezeMTMSI);
+        this.getWrappedDialog().addPurgeMSResponse(invokeId, freezeTMSI, freezePTMSI, extensionContainer, freezeMTMSI);
     }
 
     @Override
@@ -407,7 +402,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
             GSNAddress vGmlcAddress, ADDInfo addInfo, EPSInfo epsInfo, boolean servingNodeTypeIndicator, boolean skipSubscriberDataUpdate,
             UsedRATType usedRATType, boolean gprsSubscriptionDataNotNeeded, boolean nodeTypeIndicator, boolean areaRestricted, boolean ueReachableIndicator,
             boolean epsSubscriptionDataNotNeeded, UESRVCCCapability uesrvccCapability) throws MAPException {
-        return this.wrappedDialog.addUpdateGprsLocationRequest(customInvokeTimeout, imsi, sgsnNumber, sgsnAddress, extensionContainer, sgsnCapability,
+        return this.getWrappedDialog().addUpdateGprsLocationRequest(customInvokeTimeout, imsi, sgsnNumber, sgsnAddress, extensionContainer, sgsnCapability,
                 informPreviousNetworkEntity, psLCSNotSupportedByUE, vGmlcAddress, addInfo, epsInfo, servingNodeTypeIndicator, skipSubscriberDataUpdate,
                 usedRATType, gprsSubscriptionDataNotNeeded, nodeTypeIndicator, areaRestricted, ueReachableIndicator, epsSubscriptionDataNotNeeded,
                 uesrvccCapability);
@@ -419,7 +414,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 			EPSInfo epsInfo, boolean servingNodeTypeIndicator, boolean skipSubscriberDataUpdate, UsedRATType usedRATType,
 			boolean gprsSubscriptionDataNotNeeded, boolean nodeTypeIndicator, boolean areaRestricted, boolean ueReachableIndicator,
 			boolean epsSubscriptionDataNotNeeded, UESRVCCCapability uesrvccCapability) throws MAPException {
-		return this.wrappedDialog.addUpdateGprsLocationRequest(imsi, sgsnNumber, sgsnAddress, extensionContainer, sgsnCapability, informPreviousNetworkEntity,
+		return this.getWrappedDialog().addUpdateGprsLocationRequest(imsi, sgsnNumber, sgsnAddress, extensionContainer, sgsnCapability, informPreviousNetworkEntity,
 				psLCSNotSupportedByUE, vGmlcAddress, addInfo, epsInfo, servingNodeTypeIndicator, skipSubscriberDataUpdate, usedRATType,
 				gprsSubscriptionDataNotNeeded, nodeTypeIndicator, areaRestricted, ueReachableIndicator, epsSubscriptionDataNotNeeded, uesrvccCapability);
 	}
@@ -427,63 +422,63 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	@Override
 	public void addUpdateGprsLocationResponse(long invokeId, ISDNAddressString hlrNumber, MAPExtensionContainer extensionContainer, boolean addCapability,
 			boolean sgsnMmeSeparationSupported) throws MAPException {
-		this.wrappedDialog.addUpdateGprsLocationResponse(invokeId, hlrNumber, extensionContainer, addCapability, sgsnMmeSeparationSupported);
+		this.getWrappedDialog().addUpdateGprsLocationResponse(invokeId, hlrNumber, extensionContainer, addCapability, sgsnMmeSeparationSupported);
 	}
 
     @Override
     public Long addRestoreDataRequest(IMSI imsi, LMSI lmsi, VLRCapability vlrCapability, MAPExtensionContainer extensionContainer, boolean restorationIndicator)
             throws MAPException {
-        return this.wrappedDialog.addRestoreDataRequest(imsi, lmsi, vlrCapability, extensionContainer, restorationIndicator);
+        return this.getWrappedDialog().addRestoreDataRequest(imsi, lmsi, vlrCapability, extensionContainer, restorationIndicator);
     }
 
     @Override
     public Long addRestoreDataRequest(int customInvokeTimeout, IMSI imsi, LMSI lmsi, VLRCapability vlrCapability, MAPExtensionContainer extensionContainer,
             boolean restorationIndicator) throws MAPException {
-        return this.wrappedDialog.addRestoreDataRequest(customInvokeTimeout, imsi, lmsi, vlrCapability, extensionContainer, restorationIndicator);
+        return this.getWrappedDialog().addRestoreDataRequest(customInvokeTimeout, imsi, lmsi, vlrCapability, extensionContainer, restorationIndicator);
     }
 
     @Override
     public void addRestoreDataResponse(long invokeId, ISDNAddressString hlrNumber, boolean msNotReachable, MAPExtensionContainer extensionContainer)
             throws MAPException {
-        this.wrappedDialog.addRestoreDataResponse(invokeId, hlrNumber, msNotReachable, extensionContainer);
+        this.getWrappedDialog().addRestoreDataResponse(invokeId, hlrNumber, msNotReachable, extensionContainer);
     }
 
     @Override
     public Long addResetRequest(NetworkResource networkResource, ISDNAddressString hlrNumber, ArrayList<IMSI> hlrList) throws MAPException {
-        return this.wrappedDialog.addResetRequest(networkResource, hlrNumber, hlrList);
+        return this.getWrappedDialog().addResetRequest(networkResource, hlrNumber, hlrList);
     }
 
     @Override
     public Long addResetRequest(int customInvokeTimeout, NetworkResource networkResource, ISDNAddressString hlrNumber, ArrayList<IMSI> hlrList)
             throws MAPException {
-        return this.wrappedDialog.addResetRequest(customInvokeTimeout, networkResource, hlrNumber, hlrList);
+        return this.getWrappedDialog().addResetRequest(customInvokeTimeout, networkResource, hlrNumber, hlrList);
     }
 
     @Override
     public Long addForwardCheckSSIndicationRequest() throws MAPException {
-        return this.wrappedDialog.addForwardCheckSSIndicationRequest();
+        return this.getWrappedDialog().addForwardCheckSSIndicationRequest();
     }
 
     @Override
     public Long addForwardCheckSSIndicationRequest(int customInvokeTimeout) throws MAPException {
-        return this.wrappedDialog.addForwardCheckSSIndicationRequest(customInvokeTimeout);
+        return this.getWrappedDialog().addForwardCheckSSIndicationRequest(customInvokeTimeout);
     }
 
     @Override
     public long addProvideSubscriberInfoRequest(IMSI imsi, LMSI lmsi, RequestedInfo requestedInfo, MAPExtensionContainer extensionContainer,
             EMLPPPriority callPriority) throws MAPException {
-        return this.wrappedDialog.addProvideSubscriberInfoRequest(imsi, lmsi, requestedInfo, extensionContainer, callPriority);
+        return this.getWrappedDialog().addProvideSubscriberInfoRequest(imsi, lmsi, requestedInfo, extensionContainer, callPriority);
     }
 
     @Override
     public long addProvideSubscriberInfoRequest(long customInvokeTimeout, IMSI imsi, LMSI lmsi, RequestedInfo requestedInfo,
             MAPExtensionContainer extensionContainer, EMLPPPriority callPriority) throws MAPException {
-        return this.wrappedDialog.addProvideSubscriberInfoRequest(customInvokeTimeout, imsi, lmsi, requestedInfo, extensionContainer, callPriority);
+        return this.getWrappedDialog().addProvideSubscriberInfoRequest(customInvokeTimeout, imsi, lmsi, requestedInfo, extensionContainer, callPriority);
     }
 
     @Override
     public void addProvideSubscriberInfoResponse(long invokeId, SubscriberInfo subscriberInfo, MAPExtensionContainer extensionContainer) throws MAPException {
-        this.wrappedDialog.addProvideSubscriberInfoResponse(invokeId, subscriberInfo, extensionContainer);
+        this.getWrappedDialog().addProvideSubscriberInfoResponse(invokeId, subscriberInfo, extensionContainer);
     }
 
     @Override
@@ -494,7 +489,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
             LSAInformationWithdraw lsaInformationWithdraw, boolean gmlcListWithdraw, boolean istInformationWithdraw, SpecificCSIWithdraw specificCSIWithdraw,
             boolean chargingCharacteristicsWithdraw, boolean stnSrWithdraw, EPSSubscriptionDataWithdraw epsSubscriptionDataWithdraw,
             boolean apnOiReplacementWithdraw, boolean csgSubscriptionDeleted) throws MAPException {
-        return this.wrappedDialog.addDeleteSubscriberDataRequest(imsi, basicServiceList, ssList, roamingRestrictionDueToUnsupportedFeature,
+        return this.getWrappedDialog().addDeleteSubscriberDataRequest(imsi, basicServiceList, ssList, roamingRestrictionDueToUnsupportedFeature,
                 regionalSubscriptionIdentifier, vbsGroupIndication, vgcsGroupIndication, camelSubscriptionInfoWithdraw, extensionContainer,
                 gprsSubscriptionDataWithdraw, roamingRestrictedInSgsnDueToUnsuppportedFeature, lsaInformationWithdraw, gmlcListWithdraw,
                 istInformationWithdraw, specificCSIWithdraw, chargingCharacteristicsWithdraw, stnSrWithdraw, epsSubscriptionDataWithdraw,
@@ -509,7 +504,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
             LSAInformationWithdraw lsaInformationWithdraw, boolean gmlcListWithdraw, boolean istInformationWithdraw, SpecificCSIWithdraw specificCSIWithdraw,
             boolean chargingCharacteristicsWithdraw, boolean stnSrWithdraw, EPSSubscriptionDataWithdraw epsSubscriptionDataWithdraw,
             boolean apnOiReplacementWithdraw, boolean csgSubscriptionDeleted) throws MAPException {
-        return this.wrappedDialog.addDeleteSubscriberDataRequest(customInvokeTimeout, imsi, basicServiceList, ssList,
+        return this.getWrappedDialog().addDeleteSubscriberDataRequest(customInvokeTimeout, imsi, basicServiceList, ssList,
                 roamingRestrictionDueToUnsupportedFeature, regionalSubscriptionIdentifier, vbsGroupIndication, vgcsGroupIndication,
                 camelSubscriptionInfoWithdraw, extensionContainer, gprsSubscriptionDataWithdraw, roamingRestrictedInSgsnDueToUnsuppportedFeature,
                 lsaInformationWithdraw, gmlcListWithdraw, istInformationWithdraw, specificCSIWithdraw, chargingCharacteristicsWithdraw, stnSrWithdraw,
@@ -519,7 +514,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
     @Override
     public void addDeleteSubscriberDataResponse(long invokeId, RegionalSubscriptionResponse regionalSubscriptionResponse,
             MAPExtensionContainer extensionContainer) throws MAPException {
-        this.wrappedDialog.addDeleteSubscriberDataResponse(invokeId, regionalSubscriptionResponse, extensionContainer);
+        this.getWrappedDialog().addDeleteSubscriberDataResponse(invokeId, regionalSubscriptionResponse, extensionContainer);
     }
 
     @Override
@@ -527,7 +522,7 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
             MAPExtensionContainer extensionContainer, TraceReference2 traceReference2, TraceDepthList traceDepthList, TraceNETypeList traceNeTypeList,
             TraceInterfaceList traceInterfaceList, TraceEventList traceEventList, GSNAddress traceCollectionEntity, MDTConfiguration mdtConfiguration)
             throws MAPException {
-        return this.wrappedDialog.addActivateTraceModeRequest(imsi, traceReference, traceType, omcId, extensionContainer, traceReference2, traceDepthList,
+        return this.getWrappedDialog().addActivateTraceModeRequest(imsi, traceReference, traceType, omcId, extensionContainer, traceReference2, traceDepthList,
                 traceNeTypeList, traceInterfaceList, traceEventList, traceCollectionEntity, mdtConfiguration);
     }
 
@@ -536,13 +531,13 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
             MAPExtensionContainer extensionContainer, TraceReference2 traceReference2, TraceDepthList traceDepthList, TraceNETypeList traceNeTypeList,
             TraceInterfaceList traceInterfaceList, TraceEventList traceEventList, GSNAddress traceCollectionEntity, MDTConfiguration mdtConfiguration)
             throws MAPException {
-        return this.wrappedDialog.addActivateTraceModeRequest(customInvokeTimeout, imsi, traceReference, traceType, omcId, extensionContainer, traceReference2,
+        return this.getWrappedDialog().addActivateTraceModeRequest(customInvokeTimeout, imsi, traceReference, traceType, omcId, extensionContainer, traceReference2,
                 traceDepthList, traceNeTypeList, traceInterfaceList, traceEventList, traceCollectionEntity, mdtConfiguration);
     }
 
     @Override
     public void addActivateTraceModeResponse(long invokeId, MAPExtensionContainer extensionContainer, boolean traceSupportIndicator) throws MAPException {
-        this.wrappedDialog.addActivateTraceModeResponse(invokeId, extensionContainer, traceSupportIndicator);
+        this.getWrappedDialog().addActivateTraceModeResponse(invokeId, extensionContainer, traceSupportIndicator);
     }
 
 }

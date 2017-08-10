@@ -29,30 +29,40 @@ import javax.slee.resource.ActivityHandle;
 import org.mobicents.slee.resource.map.wrappers.MAPDialogWrapper;
 
 /**
- * 
+ *
  * @author amit bhayani
- * 
+ *
  */
 public class MAPDialogActivityHandle implements Serializable, ActivityHandle {
 
-	private long dialogId;
-	private transient MAPDialogWrapper activity;
-	
+	private final long dialogId;
+
+	private transient MAPResourceAdaptor mapRa;
+	private transient MAPDialogWrapper activity=null;
 
 	/**
 	 * @param dialogId
 	 */
-	public MAPDialogActivityHandle(long dialogId) {
+	public MAPDialogActivityHandle(MAPResourceAdaptor mapRa, long dialogId) {
 		super();
+		this.mapRa=mapRa;
 		this.dialogId = dialogId;
+	}
+
+	boolean hasCachedActivity() {
+		return activity!=null;
+	}
+	void setRa(MAPResourceAdaptor ra) {
+		this.mapRa=ra;
 	}
 
 	public long getDialogId() {
 		return this.dialogId;
 	}
 
-
 	public MAPDialogWrapper getActivity() {
+		if(activity==null)
+			activity=(MAPDialogWrapper)mapRa.getActivity(this);
 		return activity;
 	}
 

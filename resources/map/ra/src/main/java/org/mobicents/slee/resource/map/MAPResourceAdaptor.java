@@ -1,5 +1,5 @@
 /*
- * TeleStax, Open Source Cloud Communications  
+ * TeleStax, Open Source Cloud Communications
  * Copyright 2012, Telestax Inc and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
@@ -22,31 +22,6 @@
 
 package org.mobicents.slee.resource.map;
 
-import javax.management.ObjectName;
-import javax.naming.InitialContext;
-import javax.slee.Address;
-import javax.slee.AddressPlan;
-import javax.slee.SLEEException;
-import javax.slee.facilities.Tracer;
-import javax.slee.resource.ActivityAlreadyExistsException;
-import javax.slee.resource.ActivityFlags;
-import javax.slee.resource.ActivityHandle;
-import javax.slee.resource.ActivityIsEndingException;
-import javax.slee.resource.ConfigProperties;
-import javax.slee.resource.EventFlags;
-import javax.slee.resource.FailureReason;
-import javax.slee.resource.FireEventException;
-import javax.slee.resource.FireableEventType;
-import javax.slee.resource.IllegalEventException;
-import javax.slee.resource.InvalidConfigurationException;
-import javax.slee.resource.Marshaler;
-import javax.slee.resource.ReceivableService;
-import javax.slee.resource.ResourceAdaptor;
-import javax.slee.resource.ResourceAdaptorContext;
-import javax.slee.resource.SleeEndpoint;
-import javax.slee.resource.StartActivityException;
-import javax.slee.resource.UnrecognizedActivityHandleException;
-
 import org.mobicents.protocols.ss7.map.api.MAPDialog;
 import org.mobicents.protocols.ss7.map.api.MAPDialogListener;
 import org.mobicents.protocols.ss7.map.api.MAPException;
@@ -60,7 +35,6 @@ import org.mobicents.protocols.ss7.map.api.dialog.MAPRefuseReason;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPUserAbortChoice;
 import org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessage;
 import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.IstCommandRequest;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.IstCommandResponse;
@@ -162,6 +136,9 @@ import org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSR
 import org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSResponse;
 import org.mobicents.protocols.ss7.tcap.asn.ApplicationContextName;
 import org.mobicents.protocols.ss7.tcap.asn.comp.Problem;
+import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor;
+import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext;
+import org.mobicents.slee.resource.cluster.ReplicatedData;
 import org.mobicents.slee.resource.map.events.DialogAccept;
 import org.mobicents.slee.resource.map.events.DialogClose;
 import org.mobicents.slee.resource.map.events.DialogDelimiter;
@@ -270,16 +247,43 @@ import org.mobicents.slee.resource.map.service.supplementary.wrappers.Unstructur
 import org.mobicents.slee.resource.map.wrappers.MAPDialogWrapper;
 import org.mobicents.slee.resource.map.wrappers.MAPProviderWrapper;
 
+import javax.management.ObjectName;
+import javax.naming.InitialContext;
+import javax.slee.Address;
+import javax.slee.AddressPlan;
+import javax.slee.SLEEException;
+import javax.slee.facilities.TraceLevel;
+import javax.slee.facilities.Tracer;
+import javax.slee.resource.ActivityAlreadyExistsException;
+import javax.slee.resource.ActivityFlags;
+import javax.slee.resource.ActivityHandle;
+import javax.slee.resource.ActivityIsEndingException;
+import javax.slee.resource.ConfigProperties;
+import javax.slee.resource.EventFlags;
+import javax.slee.resource.FailureReason;
+import javax.slee.resource.FireEventException;
+import javax.slee.resource.FireableEventType;
+import javax.slee.resource.IllegalEventException;
+import javax.slee.resource.InvalidConfigurationException;
+import javax.slee.resource.Marshaler;
+import javax.slee.resource.ReceivableService;
+import javax.slee.resource.ResourceAdaptor;
+import javax.slee.resource.ResourceAdaptorContext;
+import javax.slee.resource.SleeEndpoint;
+import javax.slee.resource.StartActivityException;
+import javax.slee.resource.UnrecognizedActivityHandleException;
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
 import java.lang.management.ManagementFactory;
 
 /**
- * 
+ *
  * @author amit bhayani
  * @author baranowb
  * @author sergey vetyutnev
- * 
+ *
  */
-public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, MAPServiceMobilityListener,
+public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourceAdaptor<Long,byte[]>, MAPDialogListener, MAPServiceMobilityListener,
 		MAPServiceCallHandlingListener, MAPServiceOamListener, MAPServicePdpContextActivationListener,
 		MAPServiceSupplementaryListener, MAPServiceSmsListener, MAPServiceLsmListener {
 	/**
@@ -316,6 +320,10 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	private String mapJndi = null;
 	private transient static final Address address = new Address(AddressPlan.IP, "localhost");
+
+	private FaultTolerantResourceAdaptorContext<Long,byte[]> ftResourceAdaptorContext;
+	private ReplicatedData<Long, byte[]> replicateData;
+
 
 	public MAPResourceAdaptor() {
 		this.mapProvider = new MAPProviderWrapper(this);
@@ -390,8 +398,19 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		dw.release();
 	}
 
+
+	@Override
 	public Object getActivity(ActivityHandle handle) {
-		return ((MAPDialogActivityHandle) handle).getActivity();
+		if(! (handle instanceof MAPDialogActivityHandle))
+			return null;
+
+		MAPDialogActivityHandle mah=(MAPDialogActivityHandle)handle;
+		if(mah.hasCachedActivity())
+			return mah.getActivity();
+		MAPDialogWrapper activity=retrieveMapDialogWrapper(mah.getDialogId());
+		mah.setActivity(activity);
+		mah.setRa(this);
+		return activity;
 	}
 
 	public ActivityHandle getActivityHandle(Object activity) {
@@ -641,7 +660,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	/**
 	 * Filters the even and returns true if the event was fired
-	 * 
+	 *
 	 * @param eventName
 	 * @param handle
 	 * @param event
@@ -709,7 +728,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onDialogAccept(MAPDialog mapDialog, MAPExtensionContainer extension) {
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+		MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 		DialogAccept dialogAccept = new DialogAccept(mapDialogWrapper, extension);
 		onEvent(dialogAccept.getEventTypeName(), mapDialogWrapper, dialogAccept);
 	}
@@ -718,7 +737,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onDialogClose(MAPDialog mapDialog) {
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+		MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 		DialogClose dialogClose = new DialogClose(mapDialogWrapper);
 		MAPDialogActivityHandle handle = onEvent(dialogClose.getEventTypeName(), mapDialogWrapper, dialogClose);
 
@@ -731,7 +750,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onDialogDelimiter(MAPDialog mapDialog) {
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+		MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 		DialogDelimiter dialogDelimiter = new DialogDelimiter(mapDialogWrapper);
 		onEvent(dialogDelimiter.getEventTypeName(), mapDialogWrapper, dialogDelimiter);
 	}
@@ -740,7 +759,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onDialogNotice(MAPDialog mapDialog, MAPNoticeProblemDiagnostic noticeProblemDiagnostic) {
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+		MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 		DialogNotice dialogNotice = new DialogNotice(mapDialogWrapper, noticeProblemDiagnostic);
 		onEvent(dialogNotice.getEventTypeName(), mapDialogWrapper, dialogNotice);
 	}
@@ -750,7 +769,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 */
 	public void onDialogProviderAbort(MAPDialog mapDialog, MAPAbortProviderReason abortProviderReason,
 			MAPAbortSource abortSource, MAPExtensionContainer extensionContainer) {
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+		MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 		DialogProviderAbort dialogProviderAbort = new DialogProviderAbort(mapDialogWrapper, abortProviderReason,
 				abortSource, extensionContainer);
 		MAPDialogActivityHandle handle = onEvent(dialogProviderAbort.getEventTypeName(), mapDialogWrapper,
@@ -767,7 +786,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 */
 	public void onDialogReject(MAPDialog mapDialog, MAPRefuseReason refuseReason,
 			ApplicationContextName alternativeApplicationContext, MAPExtensionContainer extensionContainer) {
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+		MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 		DialogReject dialogReject = new DialogReject(mapDialogWrapper, refuseReason, alternativeApplicationContext,
 				extensionContainer);
 		MAPDialogActivityHandle handle = onEvent(dialogReject.getEventTypeName(), mapDialogWrapper, dialogReject);
@@ -785,7 +804,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 				this.tracer.fine(String.format("Received onDialogRequest id=%d ", mapDialog.getLocalDialogId()));
 			}
 
-			MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
+			MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(this,mapDialog.getLocalDialogId());
 			MAPDialogWrapper mapDialogWrapper = null;
 
 			if (mapDialog instanceof MAPDialogMobility) {
@@ -842,7 +861,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	public void onDialogUserAbort(MAPDialog mapDialog, MAPUserAbortChoice userReason,
 			MAPExtensionContainer extensionContainer) {
 
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+		MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 		DialogUserAbort dialogUserAbort = new DialogUserAbort(mapDialogWrapper, userReason, extensionContainer);
 		MAPDialogActivityHandle handle = onEvent(dialogUserAbort.getEventTypeName(), mapDialogWrapper, dialogUserAbort);
 
@@ -858,7 +877,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	public void onDialogRelease(MAPDialog mapDialog) {
 		try {
 
-			MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+			MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 			DialogRelease dialogRelease = new DialogRelease(mapDialogWrapper);
 			MAPDialogActivityHandle handle = onEvent(dialogRelease.getEventTypeName(), mapDialogWrapper, dialogRelease);
 
@@ -884,18 +903,18 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 		mapDialog.keepAlive();
 
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+		MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 		DialogTimeout dt = new DialogTimeout(mapDialogWrapper);
-		
+
 		if (mapDialogWrapper == null) {
 			this.tracer
 					.severe(String.format("Firing %s but MAPDialogWrapper userObject is null", dt.getEventTypeName()));
 			mapDialog.release();
 			return;
 		}
-		
+
 		mapDialogWrapper.startDialogTimeoutProc();
-		
+
 		if (this.tracer.isFineEnabled()) {
 			this.tracer.fine(String.format("Firing %s for DialogId=%d", dt.getEventTypeName(), mapDialogWrapper
 					.getWrappedDialog().getLocalDialogId()));
@@ -917,7 +936,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onInvokeTimeout(MAPDialog mapDialog, Long invokeId) {
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+		MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 		InvokeTimeout invokeTimeout = new InvokeTimeout(mapDialogWrapper, invokeId);
 		onEvent(invokeTimeout.getEventTypeName(), mapDialogWrapper, invokeTimeout);
 	}
@@ -926,7 +945,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onErrorComponent(MAPDialog mapDialog, Long invokeId, MAPErrorMessage mapErrorMessage) {
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+		MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 		ErrorComponent errorComponent = new ErrorComponent(mapDialogWrapper, invokeId, mapErrorMessage);
 		onEvent(errorComponent.getEventTypeName(), mapDialogWrapper, errorComponent);
 	}
@@ -935,7 +954,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onRejectComponent(MAPDialog mapDialog, Long invokeId, Problem problem, boolean isLocalOriginated) {
-		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
+		MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
 		RejectComponent rejectComponent = new RejectComponent(mapDialogWrapper, invokeId, problem, isLocalOriginated);
 		onEvent(rejectComponent.getEventTypeName(), mapDialogWrapper, rejectComponent);
 	}
@@ -946,77 +965,69 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	// -- Location Management Service
 	public void onUpdateLocationRequest(UpdateLocationRequest ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		UpdateLocationRequestWrapper event = new UpdateLocationRequestWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
 	public void onUpdateLocationResponse(UpdateLocationResponse ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		UpdateLocationResponseWrapper event = new UpdateLocationResponseWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
 	@Override
 	public void onCancelLocationRequest(CancelLocationRequest ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		CancelLocationRequestWrapper event = new CancelLocationRequestWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
 	@Override
 	public void onCancelLocationResponse(CancelLocationResponse ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		CancelLocationResponseWrapper event = new CancelLocationResponseWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
 	@Override
 	public void onSendIdentificationRequest(SendIdentificationRequest ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		SendIdentificationRequestWrapper event = new SendIdentificationRequestWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
 	@Override
 	public void onSendIdentificationResponse(SendIdentificationResponse ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		SendIdentificationResponseWrapper event = new SendIdentificationResponseWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
     @Override
     public void onPurgeMSRequest(PurgeMSRequest ind) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
         PurgeMSRequestWrapper event = new PurgeMSRequestWrapper(mapDialogMobilityWrapper, ind);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
 
     @Override
     public void onPurgeMSResponse(PurgeMSResponse ind) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
         PurgeMSResponseWrapper event = new PurgeMSResponseWrapper(mapDialogMobilityWrapper, ind);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
 
 	@Override
 	public void onUpdateGprsLocationRequest(UpdateGprsLocationRequest ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		UpdateGprsLocationRequestWrapper event = new UpdateGprsLocationRequestWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
 	@Override
 	public void onUpdateGprsLocationResponse(UpdateGprsLocationResponse ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper)retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		UpdateGprsLocationResponseWrapper event = new UpdateGprsLocationResponseWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
@@ -1025,16 +1036,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	// -- Authentication management services
 	public void onSendAuthenticationInfoRequest(SendAuthenticationInfoRequest ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		SendAuthenticationInfoRequestWrapper event = new SendAuthenticationInfoRequestWrapper(mapDialogMobilityWrapper,
 				ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
 	public void onSendAuthenticationInfoResponse(SendAuthenticationInfoResponse ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		SendAuthenticationInfoResponseWrapper event = new SendAuthenticationInfoResponseWrapper(
 				mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
@@ -1042,14 +1051,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
     @Override
     public void onAuthenticationFailureReportRequest(AuthenticationFailureReportRequest ind) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
         AuthenticationFailureReportRequestWrapper event = new AuthenticationFailureReportRequestWrapper(mapDialogMobilityWrapper, ind);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
 
     @Override
     public void onAuthenticationFailureReportResponse(AuthenticationFailureReportResponse ind) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
         AuthenticationFailureReportResponseWrapper event = new AuthenticationFailureReportResponseWrapper(mapDialogMobilityWrapper, ind);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
@@ -1057,43 +1066,41 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
     // --- Mobility - Fault recovery
     @Override
     public void onResetRequest(ResetRequest ind) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
         ResetRequestWrapper event = new ResetRequestWrapper(mapDialogMobilityWrapper, ind);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
 
     @Override
     public void onForwardCheckSSIndicationRequest(ForwardCheckSSIndicationRequest ind) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
         ForwardCheckSSIndicationRequestWrapper event = new ForwardCheckSSIndicationRequestWrapper(mapDialogMobilityWrapper, ind);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
 
     @Override
     public void onRestoreDataRequest(RestoreDataRequest ind) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
         RestoreDataRequestWrapper event = new RestoreDataRequestWrapper(mapDialogMobilityWrapper, ind);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
 
     @Override
     public void onRestoreDataResponse(RestoreDataResponse ind) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
         RestoreDataResponseWrapper event = new RestoreDataResponseWrapper(mapDialogMobilityWrapper, ind);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
 
 	// --- IMEI management services
 	public void onCheckImeiRequest(CheckImeiRequest ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		CheckImeiRequestWrapper event = new CheckImeiRequestWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
 	public void onCheckImeiResponse(CheckImeiResponse ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		CheckImeiResponseWrapper event = new CheckImeiResponseWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
@@ -1101,16 +1108,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	// -- Subscriber Management services
 	@Override
 	public void onInsertSubscriberDataRequest(InsertSubscriberDataRequest ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		InsertSubscriberDataRequestWrapper event = new InsertSubscriberDataRequestWrapper(mapDialogMobilityWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
 	@Override
 	public void onInsertSubscriberDataResponse(InsertSubscriberDataResponse ind) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		InsertSubscriberDataResponseWrapper event = new InsertSubscriberDataResponseWrapper(mapDialogMobilityWrapper,
 				ind);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
@@ -1118,14 +1123,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
     @Override
     public void onDeleteSubscriberDataRequest(DeleteSubscriberDataRequest request) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         DeleteSubscriberDataRequestWrapper event = new DeleteSubscriberDataRequestWrapper(mapDialogMobilityWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
 
     @Override
     public void onDeleteSubscriberDataResponse(DeleteSubscriberDataResponse request) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         DeleteSubscriberDataResponseWrapper event = new DeleteSubscriberDataResponseWrapper(mapDialogMobilityWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
@@ -1134,16 +1139,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	// -- Subscriber Information services
 	public void onAnyTimeInterrogationRequest(AnyTimeInterrogationRequest anyTimeInterrogationRequest) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) anyTimeInterrogationRequest
-				.getMAPDialog().getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper)retrieveMapDialogWrapper(anyTimeInterrogationRequest.getMAPDialog().getLocalDialogId());
 		AnyTimeInterrogationRequestWrapper event = new AnyTimeInterrogationRequestWrapper(mapDialogMobilityWrapper,
 				anyTimeInterrogationRequest);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
 	}
 
 	public void onAnyTimeInterrogationResponse(AnyTimeInterrogationResponse anyTimeInterrogationResponse) {
-		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) anyTimeInterrogationResponse
-				.getMAPDialog().getUserObject();
+		MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(anyTimeInterrogationResponse.getMAPDialog().getLocalDialogId());
 		AnyTimeInterrogationResponseWrapper event = new AnyTimeInterrogationResponseWrapper(mapDialogMobilityWrapper,
 				anyTimeInterrogationResponse);
 		onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
@@ -1151,14 +1154,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
     @Override
     public void onProvideSubscriberInfoRequest(ProvideSubscriberInfoRequest request) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         ProvideSubscriberInfoRequestWrapper event = new ProvideSubscriberInfoRequestWrapper(mapDialogMobilityWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
 
     @Override
     public void onProvideSubscriberInfoResponse(ProvideSubscriberInfoResponse response) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) response.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         ProvideSubscriberInfoResponseWrapper event = new ProvideSubscriberInfoResponseWrapper(mapDialogMobilityWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
@@ -1168,42 +1171,42 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	// //////////////
     @Override
     public void onSendImsiRequest(SendImsiRequest request) {
-        MAPDialogOamWrapper mapDialogOamWrapper = (MAPDialogOamWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogOamWrapper mapDialogOamWrapper = (MAPDialogOamWrapper) retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         SendImsiRequestWrapper event = new SendImsiRequestWrapper(mapDialogOamWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogOamWrapper, event);
     }
 
     @Override
     public void onSendImsiResponse(SendImsiResponse request) {
-        MAPDialogOamWrapper mapDialogOamWrapper = (MAPDialogOamWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogOamWrapper mapDialogOamWrapper = (MAPDialogOamWrapper) retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         SendImsiResponseWrapper event = new SendImsiResponseWrapper(mapDialogOamWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogOamWrapper, event);
     }
 
     @Override
     public void onActivateTraceModeRequest_Oam(ActivateTraceModeRequest_Oam request) {
-        MAPDialogOamWrapper mapDialogOamWrapper = (MAPDialogOamWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogOamWrapper mapDialogOamWrapper = (MAPDialogOamWrapper) retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         ActivateTraceModeRequest_OamWrapper event = new ActivateTraceModeRequest_OamWrapper(mapDialogOamWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogOamWrapper, event);
     }
 
     @Override
     public void onActivateTraceModeResponse_Oam(ActivateTraceModeResponse_Oam response) {
-        MAPDialogOamWrapper mapDialogOamWrapper = (MAPDialogOamWrapper) response.getMAPDialog().getUserObject();
+        MAPDialogOamWrapper mapDialogOamWrapper = (MAPDialogOamWrapper) retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         ActivateTraceModeResponse_OamWrapper event = new ActivateTraceModeResponse_OamWrapper(mapDialogOamWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogOamWrapper, event);
     }
 
     @Override
     public void onActivateTraceModeRequest_Mobility(ActivateTraceModeRequest_Mobility request) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         ActivateTraceModeRequest_MobilityWrapper event = new ActivateTraceModeRequest_MobilityWrapper(mapDialogMobilityWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
 
     @Override
     public void onActivateTraceModeResponse_Mobility(ActivateTraceModeResponse_Mobility response) {
-        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) response.getMAPDialog().getUserObject();
+        MAPDialogMobilityWrapper mapDialogMobilityWrapper = (MAPDialogMobilityWrapper) retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         ActivateTraceModeResponse_MobilityWrapper event = new ActivateTraceModeResponse_MobilityWrapper(mapDialogMobilityWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogMobilityWrapper, event);
     }
@@ -1215,8 +1218,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	@Override
 	public void onSendRoutingInformationRequest(SendRoutingInformationRequest ind) {
-		MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper)retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		SendRoutingInformationRequestWrapper event = new SendRoutingInformationRequestWrapper(
 				mapDialogCallHandlingWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogCallHandlingWrapper, event);
@@ -1242,8 +1244,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	@Override
 	public void onProvideRoamingNumberResponse(ProvideRoamingNumberResponse ind) {
-		MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper) ind.getMAPDialog()
-				.getUserObject();
+		MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper)retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
 		ProvideRoamingNumberResponseWrapper event = new ProvideRoamingNumberResponseWrapper(
 				mapDialogCallHandlingWrapper, ind);
 		onEvent(event.getEventTypeName(), mapDialogCallHandlingWrapper, event);
@@ -1251,16 +1252,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
     @Override
     public void onIstCommandRequest(IstCommandRequest ind) {
-        MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper) ind.getMAPDialog()
-                .getUserObject();
+        MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper)retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
         IstCommandRequestWrapper event = new IstCommandRequestWrapper(mapDialogCallHandlingWrapper, ind);
         onEvent(event.getEventTypeName(), mapDialogCallHandlingWrapper, event);
     }
 
     @Override
     public void onIstCommandResponse(IstCommandResponse ind) {
-        MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper) ind.getMAPDialog()
-                .getUserObject();
+        MAPDialogCallHandlingWrapper mapDialogCallHandlingWrapper = (MAPDialogCallHandlingWrapper)retrieveMapDialogWrapper(ind.getMAPDialog().getLocalDialogId());
         IstCommandResponseWrapper event = new IstCommandResponseWrapper(mapDialogCallHandlingWrapper, ind);
         onEvent(event.getEventTypeName(), mapDialogCallHandlingWrapper, event);
     }
@@ -1271,98 +1270,98 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
     @Override
     public void onRegisterSSRequest(RegisterSSRequest request) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         RegisterSSRequestWrapper event = new RegisterSSRequestWrapper(mapDialogSupplementaryWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onRegisterSSResponse(RegisterSSResponse response) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) response.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         RegisterSSResponseWrapper event = new RegisterSSResponseWrapper(mapDialogSupplementaryWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onEraseSSRequest(EraseSSRequest request) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         EraseSSRequestWrapper event = new EraseSSRequestWrapper(mapDialogSupplementaryWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onEraseSSResponse(EraseSSResponse response) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) response.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         EraseSSResponseWrapper event = new EraseSSResponseWrapper(mapDialogSupplementaryWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onActivateSSRequest(ActivateSSRequest request) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         ActivateSSRequestWrapper event = new ActivateSSRequestWrapper(mapDialogSupplementaryWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onActivateSSResponse(ActivateSSResponse response) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) response.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         ActivateSSResponseWrapper event = new ActivateSSResponseWrapper(mapDialogSupplementaryWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onDeactivateSSRequest(DeactivateSSRequest request) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         DeactivateSSRequestWrapper event = new DeactivateSSRequestWrapper(mapDialogSupplementaryWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onDeactivateSSResponse(DeactivateSSResponse response) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) response.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         DeactivateSSResponseWrapper event = new DeactivateSSResponseWrapper(mapDialogSupplementaryWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onInterrogateSSRequest(InterrogateSSRequest request) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         InterrogateSSRequestWrapper event = new InterrogateSSRequestWrapper(mapDialogSupplementaryWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onInterrogateSSResponse(InterrogateSSResponse response) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) response.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         InterrogateSSResponseWrapper event = new InterrogateSSResponseWrapper(mapDialogSupplementaryWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onGetPasswordRequest(GetPasswordRequest request) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         GetPasswordRequestWrapper event = new GetPasswordRequestWrapper(mapDialogSupplementaryWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onGetPasswordResponse(GetPasswordResponse response) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) response.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         GetPasswordResponseWrapper event = new GetPasswordResponseWrapper(mapDialogSupplementaryWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onRegisterPasswordRequest(RegisterPasswordRequest request) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         RegisterPasswordRequestWrapper event = new RegisterPasswordRequestWrapper(mapDialogSupplementaryWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
 
     @Override
     public void onRegisterPasswordResponse(RegisterPasswordResponse response) {
-        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper) response.getMAPDialog().getUserObject();
+        MAPDialogSupplementaryWrapper mapDialogSupplementaryWrapper = (MAPDialogSupplementaryWrapper)retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         RegisterPasswordResponseWrapper event = new RegisterPasswordResponseWrapper(mapDialogSupplementaryWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogSupplementaryWrapper, event);
     }
@@ -1435,16 +1434,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	// ////////////////
 
 	public void onForwardShortMessageRequest(ForwardShortMessageRequest forwardShortMessageRequest) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) forwardShortMessageRequest.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(forwardShortMessageRequest.getMAPDialog().getLocalDialogId());
 		ForwardShortMessageRequestWrapper event = new ForwardShortMessageRequestWrapper(mapDialogSmsWrapper,
 				forwardShortMessageRequest);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
 	}
 
 	public void onForwardShortMessageResponse(ForwardShortMessageResponse forwardShortMessageResponse) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) forwardShortMessageResponse.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(forwardShortMessageResponse.getMAPDialog().getLocalDialogId());
 		ForwardShortMessageResponseWrapper event = new ForwardShortMessageResponseWrapper(mapDialogSmsWrapper,
 				forwardShortMessageResponse);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
@@ -1452,8 +1449,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	public void onMoForwardShortMessageRequest(MoForwardShortMessageRequest moForwardShortMessageRequest) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) moForwardShortMessageRequest.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(moForwardShortMessageRequest.getMAPDialog().getLocalDialogId());
 		MoForwardShortMessageRequestWrapper event = new MoForwardShortMessageRequestWrapper(mapDialogSmsWrapper,
 				moForwardShortMessageRequest);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
@@ -1461,48 +1457,42 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	public void onMoForwardShortMessageResponse(MoForwardShortMessageResponse moForwardShortMessageResponse) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) moForwardShortMessageResponse.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(moForwardShortMessageResponse.getMAPDialog().getLocalDialogId());
 		MoForwardShortMessageResponseWrapper event = new MoForwardShortMessageResponseWrapper(mapDialogSmsWrapper,
 				moForwardShortMessageResponse);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
 	}
 
 	public void onMtForwardShortMessageRequest(MtForwardShortMessageRequest mtForwardShortMessageRequest) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) mtForwardShortMessageRequest.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(mtForwardShortMessageRequest.getMAPDialog().getLocalDialogId());
 		MtForwardShortMessageRequestWrapper event = new MtForwardShortMessageRequestWrapper(mapDialogSmsWrapper,
 				mtForwardShortMessageRequest);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
 	}
 
 	public void onMtForwardShortMessageResponse(MtForwardShortMessageResponse mtForwardShortMessageResponse) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) mtForwardShortMessageResponse.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(mtForwardShortMessageResponse.getMAPDialog().getLocalDialogId());
 		MtForwardShortMessageResponseWrapper event = new MtForwardShortMessageResponseWrapper(mapDialogSmsWrapper,
 				mtForwardShortMessageResponse);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
 	}
 
 	public void onSendRoutingInfoForSMRequest(SendRoutingInfoForSMRequest sendRoutingInfoForSMRequest) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) sendRoutingInfoForSMRequest.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(sendRoutingInfoForSMRequest.getMAPDialog().getLocalDialogId());
 		SendRoutingInfoForSMRequestWrapper event = new SendRoutingInfoForSMRequestWrapper(mapDialogSmsWrapper,
 				sendRoutingInfoForSMRequest);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
 	}
 
 	public void onSendRoutingInfoForSMResponse(SendRoutingInfoForSMResponse sendRoutingInfoForSmResponse) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) sendRoutingInfoForSmResponse.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(sendRoutingInfoForSmResponse.getMAPDialog().getLocalDialogId());
 		SendRoutingInfoForSMResponseWrapper event = new SendRoutingInfoForSMResponseWrapper(mapDialogSmsWrapper,
 				sendRoutingInfoForSmResponse);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
 	}
 
 	public void onReportSMDeliveryStatusRequest(ReportSMDeliveryStatusRequest reportSmDeliveryStatusRequest) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) reportSmDeliveryStatusRequest.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(reportSmDeliveryStatusRequest.getMAPDialog().getLocalDialogId());
 		ReportSMDeliveryStatusRequestWrapper event = new ReportSMDeliveryStatusRequestWrapper(mapDialogSmsWrapper,
 				reportSmDeliveryStatusRequest);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
@@ -1510,8 +1500,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	public void onReportSMDeliveryStatusResponse(ReportSMDeliveryStatusResponse reportSmDeliveryStatusResponse) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) reportSmDeliveryStatusResponse.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(reportSmDeliveryStatusResponse.getMAPDialog().getLocalDialogId());
 		ReportSMDeliveryStatusResponseWrapper event = new ReportSMDeliveryStatusResponseWrapper(mapDialogSmsWrapper,
 				reportSmDeliveryStatusResponse);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
@@ -1519,24 +1508,21 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	public void onInformServiceCentreRequest(InformServiceCentreRequest informServiCecentreRequest) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) informServiCecentreRequest.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(informServiCecentreRequest.getMAPDialog().getLocalDialogId());
 		InformServiceCentreRequestWrapper event = new InformServiceCentreRequestWrapper(mapDialogSmsWrapper,
 				informServiCecentreRequest);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
 	}
 
 	public void onAlertServiceCentreRequest(AlertServiceCentreRequest alertServiCecentreRequest) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) alertServiCecentreRequest.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(alertServiCecentreRequest.getMAPDialog().getLocalDialogId());
 		AlertServiceCentreRequestWrapper event = new AlertServiceCentreRequestWrapper(mapDialogSmsWrapper,
 				alertServiCecentreRequest);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
 	}
 
 	public void onAlertServiceCentreResponse(AlertServiceCentreResponse alertServiCecentreResponse) {
-		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) alertServiCecentreResponse.getMAPDialog()
-				.getUserObject();
+		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(alertServiCecentreResponse.getMAPDialog().getLocalDialogId());
 		AlertServiceCentreResponseWrapper event = new AlertServiceCentreResponseWrapper(mapDialogSmsWrapper,
 				alertServiCecentreResponse);
 		onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
@@ -1544,21 +1530,21 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
     @Override
     public void onReadyForSMRequest(ReadyForSMRequest request) {
-        MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         ReadyForSMRequestWrapper event = new ReadyForSMRequestWrapper(mapDialogSmsWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
     }
 
     @Override
     public void onReadyForSMResponse(ReadyForSMResponse response) {
-        MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) response.getMAPDialog().getUserObject();
+        MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         ReadyForSMResponseWrapper event = new ReadyForSMResponseWrapper(mapDialogSmsWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
     }
 
     @Override
     public void onNoteSubscriberPresentRequest(NoteSubscriberPresentRequest request) {
-        MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) request.getMAPDialog().getUserObject();
+        MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper)retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         NoteSubscriberPresentRequestWrapper event = new NoteSubscriberPresentRequestWrapper(mapDialogSmsWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogSmsWrapper, event);
     }
@@ -1568,16 +1554,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	// ////////////////
     @Override
     public void onSendRoutingInfoForGprsRequest(SendRoutingInfoForGprsRequest request) {
-        MAPDialogPdpContextActivationWrapper mapDialogPdpContextActivationWrapper = (MAPDialogPdpContextActivationWrapper) request.getMAPDialog()
-                .getUserObject();
+        MAPDialogPdpContextActivationWrapper mapDialogPdpContextActivationWrapper = (MAPDialogPdpContextActivationWrapper)retrieveMapDialogWrapper(request.getMAPDialog().getLocalDialogId());
         SendRoutingInfoForGprsRequestWrapper event = new SendRoutingInfoForGprsRequestWrapper(mapDialogPdpContextActivationWrapper, request);
         onEvent(event.getEventTypeName(), mapDialogPdpContextActivationWrapper, event);
     }
 
     @Override
     public void onSendRoutingInfoForGprsResponse(SendRoutingInfoForGprsResponse response) {
-        MAPDialogPdpContextActivationWrapper mapDialogPdpContextActivationWrapper = (MAPDialogPdpContextActivationWrapper) response.getMAPDialog()
-                .getUserObject();
+        MAPDialogPdpContextActivationWrapper mapDialogPdpContextActivationWrapper = (MAPDialogPdpContextActivationWrapper)retrieveMapDialogWrapper(response.getMAPDialog().getLocalDialogId());
         SendRoutingInfoForGprsResponseWrapper event = new SendRoutingInfoForGprsResponseWrapper(mapDialogPdpContextActivationWrapper, response);
         onEvent(event.getEventTypeName(), mapDialogPdpContextActivationWrapper, event);
     }
@@ -1590,8 +1574,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onProvideSubscriberLocationRequest(ProvideSubscriberLocationRequest provideSubscriberLocationRequest) {
-		MAPDialogLsmWrapper mapDialogLsmWrapper = (MAPDialogLsmWrapper) provideSubscriberLocationRequest.getMAPDialog()
-				.getUserObject();
+		MAPDialogLsmWrapper mapDialogLsmWrapper = (MAPDialogLsmWrapper)retrieveMapDialogWrapper(provideSubscriberLocationRequest.getMAPDialog().getLocalDialogId());
 		ProvideSubscriberLocationRequestWrapper event = new ProvideSubscriberLocationRequestWrapper(
 				mapDialogLsmWrapper, provideSubscriberLocationRequest);
 		onEvent(event.getEventTypeName(), mapDialogLsmWrapper, event);
@@ -1613,8 +1596,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onSendRoutingInfoForLCSRequest(SendRoutingInfoForLCSRequest sendRoutingInfoForLCSRequest) {
-		MAPDialogLsmWrapper mapDialogLsmWrapper = (MAPDialogLsmWrapper) sendRoutingInfoForLCSRequest.getMAPDialog()
-				.getUserObject();
+		MAPDialogLsmWrapper mapDialogLsmWrapper = (MAPDialogLsmWrapper)retrieveMapDialogWrapper(sendRoutingInfoForLCSRequest.getMAPDialog().getLocalDialogId());
 		SendRoutingInfoForLCSRequestWrapper event = new SendRoutingInfoForLCSRequestWrapper(mapDialogLsmWrapper,
 				sendRoutingInfoForLCSRequest);
 		onEvent(event.getEventTypeName(), mapDialogLsmWrapper, event);
@@ -1625,8 +1607,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onSendRoutingInfoForLCSResponse(SendRoutingInfoForLCSResponse sendRoutingInfoForLCSResponse) {
-		MAPDialogLsmWrapper mapDialogLsmWrapper = (MAPDialogLsmWrapper) sendRoutingInfoForLCSResponse.getMAPDialog()
-				.getUserObject();
+		MAPDialogLsmWrapper mapDialogLsmWrapper = (MAPDialogLsmWrapper)retrieveMapDialogWrapper(sendRoutingInfoForLCSResponse.getMAPDialog().getLocalDialogId());
 		SendRoutingInfoForLCSResponseWrapper event = new SendRoutingInfoForLCSResponseWrapper(mapDialogLsmWrapper,
 				sendRoutingInfoForLCSResponse);
 		onEvent(event.getEventTypeName(), mapDialogLsmWrapper, event);
@@ -1637,8 +1618,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onSubscriberLocationReportRequest(SubscriberLocationReportRequest subscriberLocationReportRequest) {
-		MAPDialogLsmWrapper mapDialogLsmWrapper = (MAPDialogLsmWrapper) subscriberLocationReportRequest.getMAPDialog()
-				.getUserObject();
+		MAPDialogLsmWrapper mapDialogLsmWrapper = (MAPDialogLsmWrapper)retrieveMapDialogWrapper(subscriberLocationReportRequest.getMAPDialog().getLocalDialogId());
 		SubscriberLocationReportRequestWrapper event = new SubscriberLocationReportRequestWrapper(mapDialogLsmWrapper,
 				subscriberLocationReportRequest);
 		onEvent(event.getEventTypeName(), mapDialogLsmWrapper, event);
@@ -1649,8 +1629,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 * {@inheritDoc}
 	 */
 	public void onSubscriberLocationReportResponse(SubscriberLocationReportResponse subscriberLocationReportResponse) {
-		MAPDialogLsmWrapper mapDialogLsmWrapper = (MAPDialogLsmWrapper) subscriberLocationReportResponse.getMAPDialog()
-				.getUserObject();
+		MAPDialogLsmWrapper mapDialogLsmWrapper = (MAPDialogLsmWrapper)retrieveMapDialogWrapper(subscriberLocationReportResponse.getMAPDialog().getLocalDialogId());
 		SubscriberLocationReportResponseWrapper event = new SubscriberLocationReportResponseWrapper(
 				mapDialogLsmWrapper, subscriberLocationReportResponse);
 		onEvent(event.getEventTypeName(), mapDialogLsmWrapper, event);
@@ -1659,13 +1638,56 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.mobicents.protocols.ss7.map.api.MAPServiceListener#onMAPMessage(org
 	 * .mobicents.protocols.ss7.map.api.MAPMessage)
 	 */
 	public void onMAPMessage(MAPMessage arg0) {
 		// Do nothing
+	}
+
+	public void failOver(Long key) {
+		if(tracer.isTraceable(TraceLevel.INFO))
+			tracer.info("Cache reports MAPDialogWrapper failOver "+key);
+	}
+
+	public void dataRemoved(Long key) {
+		if(tracer.isTraceable(TraceLevel.FINE))
+			tracer.fine("Cache reports MAPDialogWrapper removed "+key);
+	}
+
+
+	private MAPDialogWrapper retrieveMapDialogWrapper(Long dialogId) {
+		byte b[]=replicateData.get(dialogId);
+		MAPDialogWrapper wrapper=null;
+		if(b!=null) {
+			try {
+				ObjectInputStream bis = new ObjectInputStream(new ByteArrayInputStream(b));
+				wrapper=(MAPDialogWrapper)bis.readObject();
+			} catch(Exception e) {
+				tracer.severe("Failed to deserialize dialog "+dialogId,e);
+			}
+		}
+		if(wrapper==null)
+			return null;
+		wrapper.restoreTransientData(this);
+		return wrapper;
+	}
+
+
+	public void setFaultTolerantResourceAdaptorContext(FaultTolerantResourceAdaptorContext<Long,byte[]> faultTolerantResourceAdaptorContext) {
+		this.ftResourceAdaptorContext=faultTolerantResourceAdaptorContext;
+		replicateData=this.ftResourceAdaptorContext.getReplicateData(true);
+	}
+
+	public void unsetFaultTolerantResourceAdaptorContext() {
+		this.ftResourceAdaptorContext=null;
+	}
+
+	public <T extends MAPDialog> T getWrappedDialog(Long dialogId) {
+		MAPDialog cdia=this.realProvider.getMAPDialog(dialogId);
+		return (T)cdia;
 	}
 
 }

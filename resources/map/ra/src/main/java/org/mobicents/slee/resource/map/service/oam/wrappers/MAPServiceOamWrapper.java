@@ -35,9 +35,9 @@ import org.mobicents.slee.resource.map.MAPDialogActivityHandle;
 import org.mobicents.slee.resource.map.wrappers.MAPProviderWrapper;
 
 /**
- * 
+ *
  * @author sergey vetyutnev
- * 
+ *
  */
 public class MAPServiceOamWrapper implements MAPServiceOam {
 
@@ -81,7 +81,7 @@ public class MAPServiceOamWrapper implements MAPServiceOam {
             AddressString destReference, Long localTrId) throws MAPException {
 
         MAPDialogOam mapDialog = this.wrappedOam.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
-        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
+        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapProviderWrapper.getRa(),mapDialog.getLocalDialogId());
         MAPDialogOamWrapper dw = new MAPDialogOamWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
         mapDialog.setUserObject(dw);
 

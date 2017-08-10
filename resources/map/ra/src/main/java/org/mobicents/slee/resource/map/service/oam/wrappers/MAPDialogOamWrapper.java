@@ -42,9 +42,9 @@ import org.mobicents.slee.resource.map.MAPResourceAdaptor;
 import org.mobicents.slee.resource.map.wrappers.MAPDialogWrapper;
 
 /**
- * 
+ *
  * @author sergey vetyutnev
- * 
+ *
  */
 public class MAPDialogOamWrapper extends MAPDialogWrapper<MAPDialogOam> implements MAPDialogOam {
 
@@ -54,24 +54,18 @@ public class MAPDialogOamWrapper extends MAPDialogWrapper<MAPDialogOam> implemen
 	}
 
 	@Override
-	public MAPDialogOam getWrappedDialog() {
-		return this.wrappedDialog;
-	}
-
-
-	@Override
     public Long addSendImsiRequest(ISDNAddressString msisdn) throws MAPException {
-        return this.wrappedDialog.addSendImsiRequest(msisdn);
+        return this.getWrappedDialog().addSendImsiRequest(msisdn);
     }
 
     @Override
     public Long addSendImsiRequest(int customInvokeTimeout, ISDNAddressString msisdn) throws MAPException {
-        return this.wrappedDialog.addSendImsiRequest(customInvokeTimeout, msisdn);
+        return this.getWrappedDialog().addSendImsiRequest(customInvokeTimeout, msisdn);
     }
 
     @Override
     public void addSendImsiResponse(long invokeId, IMSI imsi) throws MAPException {
-        this.wrappedDialog.addSendImsiResponse(invokeId, imsi);
+        this.getWrappedDialog().addSendImsiResponse(invokeId, imsi);
     }
 
     @Override
@@ -79,7 +73,7 @@ public class MAPDialogOamWrapper extends MAPDialogWrapper<MAPDialogOam> implemen
             MAPExtensionContainer extensionContainer, TraceReference2 traceReference2, TraceDepthList traceDepthList, TraceNETypeList traceNeTypeList,
             TraceInterfaceList traceInterfaceList, TraceEventList traceEventList, GSNAddress traceCollectionEntity, MDTConfiguration mdtConfiguration)
             throws MAPException {
-        return this.wrappedDialog.addActivateTraceModeRequest(imsi, traceReference, traceType, omcId, extensionContainer, traceReference2, traceDepthList,
+        return this.getWrappedDialog().addActivateTraceModeRequest(imsi, traceReference, traceType, omcId, extensionContainer, traceReference2, traceDepthList,
                 traceNeTypeList, traceInterfaceList, traceEventList, traceCollectionEntity, mdtConfiguration);
     }
 
@@ -88,13 +82,13 @@ public class MAPDialogOamWrapper extends MAPDialogWrapper<MAPDialogOam> implemen
             MAPExtensionContainer extensionContainer, TraceReference2 traceReference2, TraceDepthList traceDepthList, TraceNETypeList traceNeTypeList,
             TraceInterfaceList traceInterfaceList, TraceEventList traceEventList, GSNAddress traceCollectionEntity, MDTConfiguration mdtConfiguration)
             throws MAPException {
-        return this.wrappedDialog.addActivateTraceModeRequest(customInvokeTimeout, imsi, traceReference, traceType, omcId, extensionContainer, traceReference2,
+        return this.getWrappedDialog().addActivateTraceModeRequest(customInvokeTimeout, imsi, traceReference, traceType, omcId, extensionContainer, traceReference2,
                 traceDepthList, traceNeTypeList, traceInterfaceList, traceEventList, traceCollectionEntity, mdtConfiguration);
     }
 
     @Override
     public void addActivateTraceModeResponse(long invokeId, MAPExtensionContainer extensionContainer, boolean traceSupportIndicator) throws MAPException {
-        this.wrappedDialog.addActivateTraceModeResponse(invokeId, extensionContainer, traceSupportIndicator);
+        this.getWrappedDialog().addActivateTraceModeResponse(invokeId, extensionContainer, traceSupportIndicator);
     }
 
 }

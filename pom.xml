@@ -28,7 +28,7 @@
 	</modules>
 
 	<properties>
-		<ss7.version>7.4.1404</ss7.version>
+		<ss7.version>7.3.0-clustering-SNAPSHOT</ss7.version>
 
 		<asn.version>2.1.5</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
@@ -37,6 +37,9 @@
 
         <maven.du.plugin.jboss5.version>3.0.14</maven.du.plugin.jboss5.version>
         <maven.du.plugin.wildfly.version>4.0.2</maven.du.plugin.wildfly.version>
+
+		<compiler.plugin.version>2.0.2</compiler.plugin.version>
+		<compile.source>1.7</compile.source>
 	</properties>
 
 	<profiles>
@@ -57,18 +60,29 @@
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<preparationGoals>clean install</preparationGoals>
-						<autoVersionSubmodules>true</autoVersionSubmodules> 
+						<autoVersionSubmodules>true</autoVersionSubmodules>
 					</configuration>
 				</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>${compiler.plugin.version}</version>
+						<configuration>
+							<source>${compile.source}</source>
+							<target>${compile.source}</target>
+							<debug>${compile.debug}</debug>
+							<encoding>ISO-8859-1</encoding>
+						</configuration>
+					</plugin>
 			</plugins>
-		</build>		
+		</build>
 	</profile>
 
 	<!-- binary release profile, add only modules that are included in the binary -->
 	<profile>
 		<id>release-jboss5</id>
 		<modules>
-			<module>resources/map</module>				
+			<module>resources/map</module>
 			<module>resources/cap</module>
 			<module>resources/tcap</module>
 			<module>resources/isup</module>
@@ -123,7 +137,7 @@
 				</plugins>
 			</build>
 		</profile>
-	</profiles>	
+	</profiles>
 
 
 	<!-- dupe info from parent, but it's only way to retrieve the parent without checkout -->
@@ -144,7 +158,37 @@
 			</snapshots>
 		</repository>
 
+<!--
+				<repository>
+				<id>telscale-releases-repository</id>
+				<name>TelScale Releases Repository</name>
+				<url>http://telestax.artifactoryonline.com/telestax/releases</url>
+				<releases>
+					<enabled>true</enabled>
+					<updatePolicy>never</updatePolicy>
+				</releases>
+				<snapshots>
+					<enabled>false</enabled>
+					<updatePolicy>never</updatePolicy>
+				</snapshots>
+			</repository>
+			<repository>
+				<id>telscale-snapshots-repository</id>
+				<name>TelScale Snapshots Repository</name>
+				<url>http://telestax.artifactoryonline.com/telestax/snapshots</url>
+				<releases>
+					<enabled>false</enabled>
+					<updatePolicy>never</updatePolicy>
+				</releases>
+				<snapshots>
+					<enabled>true</enabled>
+					<updatePolicy>never</updatePolicy>
+				</snapshots>
+			</repository>
+-->
+
 	<!-- the place to extra repos -->
+
 		<repository>
 			<id>jboss-public-repository-group</id>
 			<name>JBoss Public Maven Repository Group</name>

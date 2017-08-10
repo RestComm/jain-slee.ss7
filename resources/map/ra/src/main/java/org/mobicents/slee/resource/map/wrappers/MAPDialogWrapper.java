@@ -31,7 +31,6 @@ import org.mobicents.protocols.ss7.map.api.dialog.MAPUserAbortChoice;
 import org.mobicents.protocols.ss7.map.api.dialog.Reason;
 import org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessage;
 import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
 import org.mobicents.protocols.ss7.tcap.api.MessageType;
@@ -43,95 +42,97 @@ import org.mobicents.slee.resource.map.MAPDialogActivityHandle;
 import org.mobicents.slee.resource.map.MAPResourceAdaptor;
 
 /**
- * 
+ *
  * @author amit bhayani
  *
  */
 public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog {
 
-	protected MAPDialogActivityHandle activityHandle;
-	protected final MAPResourceAdaptor ra;
-	protected T wrappedDialog;
+	protected transient MAPDialogActivityHandle activityHandle;
+	protected transient MAPResourceAdaptor ra;
+	private transient T wrappedDialog;
 
 	private boolean keepedTimeout;
+	protected final Long dialogId;
 
 	public MAPDialogWrapper(T wrappedDialog, MAPDialogActivityHandle activityHandle, MAPResourceAdaptor ra) {
-		this.wrappedDialog = wrappedDialog;
+		this.wrappedDialog=wrappedDialog;
 		this.activityHandle = activityHandle;
 		this.activityHandle.setActivity(this);
 		this.ra = ra;
+		this.dialogId=activityHandle.getDialogId();
 	}
 
     public SccpAddress getLocalAddress(){
-    	return this.wrappedDialog.getLocalAddress();
+    	return this.getWrappedDialog().getLocalAddress();
     }
-    
+
     public SccpAddress getRemoteAddress(){
-    	return this.wrappedDialog.getRemoteAddress();
+    	return this.getWrappedDialog().getRemoteAddress();
     }
 
 	public void abort(MAPUserAbortChoice arg0) throws MAPException {
-		this.wrappedDialog.abort(arg0);
+		this.getWrappedDialog().abort(arg0);
 	}
 
 	public void addEricssonData(AddressString arg0, AddressString arg1) {
-		this.wrappedDialog.addEricssonData(arg0, arg1);
+		this.getWrappedDialog().addEricssonData(arg0, arg1);
 	}
 
 	public boolean cancelInvocation(Long arg0) throws MAPException {
-		return this.wrappedDialog.cancelInvocation(arg0);
+		return this.getWrappedDialog().cancelInvocation(arg0);
 	}
 
 	public void close(boolean arg0) throws MAPException {
-		this.wrappedDialog.close(arg0);
+		this.getWrappedDialog().close(arg0);
 	}
 
 	public void closeDelayed(boolean prearrangedEnd) throws MAPException {
-		this.wrappedDialog.closeDelayed(prearrangedEnd);
+		this.getWrappedDialog().closeDelayed(prearrangedEnd);
 	}
 
 	@Override
 	public MessageType getTCAPMessageType() {
-		return this.wrappedDialog.getTCAPMessageType();
+		return this.getWrappedDialog().getTCAPMessageType();
 	}
 
 	@Override
 	public AddressString getReceivedOrigReference() {
-		return this.wrappedDialog.getReceivedOrigReference();
+		return this.getWrappedDialog().getReceivedOrigReference();
 	}
 
 	@Override
 	public AddressString getReceivedDestReference() {
-		return this.wrappedDialog.getReceivedDestReference();
+		return this.getWrappedDialog().getReceivedDestReference();
 	}
 
 	@Override
 	public MAPExtensionContainer getReceivedExtensionContainer() {
-		return this.wrappedDialog.getReceivedExtensionContainer();
+		return this.getWrappedDialog().getReceivedExtensionContainer();
 	}
 
 	public MAPApplicationContext getApplicationContext() {
-		return this.wrappedDialog.getApplicationContext();
+		return this.getWrappedDialog().getApplicationContext();
 	}
 
 	public Long getLocalDialogId() {
-		return this.wrappedDialog.getLocalDialogId();
+		return this.getWrappedDialog().getLocalDialogId();
 	}
-	
+
 	public Long getRemoteDialogId() {
-		return this.wrappedDialog.getRemoteDialogId();
-	}	
+		return this.getWrappedDialog().getRemoteDialogId();
+	}
 
 	public int getMaxUserDataLength() {
-		return this.wrappedDialog.getMaxUserDataLength();
+		return this.getWrappedDialog().getMaxUserDataLength();
 	}
 
 	public int getMessageUserDataLengthOnClose(boolean arg0) throws MAPException {
-		return this.wrappedDialog.getMessageUserDataLengthOnClose(arg0);
+		return this.getWrappedDialog().getMessageUserDataLengthOnClose(arg0);
 	}
 
 	public int getMessageUserDataLengthOnSend() throws MAPException {
-		return this.wrappedDialog.getMessageUserDataLengthOnSend();
+		return this.getWrappedDialog().getMessageUserDataLengthOnSend();
 	}
 
 	public MAPServiceBase getService() {
@@ -139,7 +140,7 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 	}
 
 	public MAPDialogState getState() {
-		return this.wrappedDialog.getState();
+		return this.getWrappedDialog().getState();
 	}
 
 	public Object getUserObject() {
@@ -148,12 +149,12 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 
     @Override
     public int getNetworkId() {
-        return this.wrappedDialog.getNetworkId();
+        return this.getWrappedDialog().getNetworkId();
     }
 
     @Override
     public void setNetworkId(int networkId) {
-        this.wrappedDialog.setNetworkId(networkId);
+        this.getWrappedDialog().setNetworkId(networkId);
     }
 
 	public void keepAlive() {
@@ -170,89 +171,89 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 	}
 
 	public void refuse(Reason arg0) throws MAPException {
-		this.wrappedDialog.refuse(arg0);
+		this.getWrappedDialog().refuse(arg0);
 	}
 
 	public void release() {
-		this.wrappedDialog.release();
+		this.getWrappedDialog().release();
 	}
 
 	public void resetInvokeTimer(Long arg0) throws MAPException {
-		this.wrappedDialog.resetInvokeTimer(arg0);
+		this.getWrappedDialog().resetInvokeTimer(arg0);
 	}
 
 	public void send() throws MAPException {
-		this.wrappedDialog.send();
+		this.getWrappedDialog().send();
 	}
 
 	public void sendDelayed() throws MAPException {
-		this.wrappedDialog.sendDelayed();
+		this.getWrappedDialog().sendDelayed();
 	}
 
 	public void sendErrorComponent(Long arg0, MAPErrorMessage arg1) throws MAPException {
-		this.wrappedDialog.sendErrorComponent(arg0, arg1);
+		this.getWrappedDialog().sendErrorComponent(arg0, arg1);
 	}
 
 	public void sendInvokeComponent(Invoke arg0) throws MAPException {
-		this.wrappedDialog.sendInvokeComponent(arg0);
+		this.getWrappedDialog().sendInvokeComponent(arg0);
 	}
 
 	public void sendRejectComponent(Long arg0, Problem arg1) throws MAPException {
-		this.wrappedDialog.sendRejectComponent(arg0, arg1);
+		this.getWrappedDialog().sendRejectComponent(arg0, arg1);
 	}
 
 	public void sendReturnResultComponent(ReturnResult arg0) throws MAPException {
-		this.wrappedDialog.sendReturnResultComponent(arg0);
+		this.getWrappedDialog().sendReturnResultComponent(arg0);
 	}
 
 	public void sendReturnResultLastComponent(ReturnResultLast arg0) throws MAPException {
-		this.wrappedDialog.sendReturnResultLastComponent(arg0);
+		this.getWrappedDialog().sendReturnResultLastComponent(arg0);
 	}
 
 	public void setExtentionContainer(MAPExtensionContainer arg0) {
-		this.wrappedDialog.setExtentionContainer(arg0);
+		this.getWrappedDialog().setExtentionContainer(arg0);
 	}
 
 	public void setUserObject(Object arg0) {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public void setReturnMessageOnError(boolean val){
-		this.wrappedDialog.setReturnMessageOnError(val);
+		this.getWrappedDialog().setReturnMessageOnError(val);
 	}
 
 	public boolean getReturnMessageOnError(){
-		return this.wrappedDialog.getReturnMessageOnError();
+		return this.getWrappedDialog().getReturnMessageOnError();
 	}
 
 	public void processInvokeWithoutAnswer(Long invokeId) {
-		this.wrappedDialog.processInvokeWithoutAnswer(invokeId);
+		this.getWrappedDialog().processInvokeWithoutAnswer(invokeId);
 	}
 
 	@Override
 	public void setLocalAddress(SccpAddress address) {
-		this.wrappedDialog.setLocalAddress(address);
+		this.getWrappedDialog().setLocalAddress(address);
 	}
 
 	@Override
 	public void setRemoteAddress(SccpAddress address) {
-		this.wrappedDialog.setRemoteAddress(address);
+		this.getWrappedDialog().setRemoteAddress(address);
 	}
 
 	public MAPDialogActivityHandle getActivityHandle() {
 		return activityHandle;
 	}
-	
+
 	public void clear() {
 		//TODO Any more cleaning here?
 		if (this.activityHandle != null) {
 			this.activityHandle.setActivity(null);
 			this.activityHandle = null;
 		}
-		
-		if(this.wrappedDialog != null){
-			this.wrappedDialog.setUserObject(null);
-			this.wrappedDialog = null;
+
+		if(this.getWrappedDialog() != null){
+			this.getWrappedDialog().setUserObject(null);
+			wrappedDialog=null;
 		}
 	}
 
@@ -260,7 +261,14 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 		return ra;
 	}
 
-	
-	public abstract T getWrappedDialog();
-	
+
+	public final T getWrappedDialog() {
+		if(wrappedDialog ==null)
+			wrappedDialog =ra.getWrappedDialog(dialogId);
+		return wrappedDialog;
+	}
+
+    public void restoreTransientData(MAPResourceAdaptor mapResourceAdaptor) {
+    	this.ra=mapResourceAdaptor;
+    }
 }

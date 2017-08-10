@@ -3,17 +3,17 @@
  * Copyright 2011, Red Hat, Inc. and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -37,7 +37,7 @@ import org.mobicents.slee.resource.map.wrappers.MAPProviderWrapper;
 /**
  * @author baranowb
  * @author amit bhayani
- * 
+ *
  */
 public class MAPServiceSmsWrapper implements MAPServiceSms {
 
@@ -54,7 +54,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#acivate()
 	 */
 	public void acivate() {
@@ -64,7 +64,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#deactivate()
 	 */
 	public void deactivate() {
@@ -74,7 +74,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#getMAPProvider()
 	 */
 	public MAPProvider getMAPProvider() {
@@ -83,7 +83,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#isActivated()
 	 */
 	public boolean isActivated() {
@@ -92,7 +92,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#isActivated()
 	 */
 	public ServingCheckData isServingService(MAPApplicationContext mapapplicationcontext) {
@@ -101,7 +101,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSms#
 	 * addMAPServiceListener
 	 * (org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSmsListener)
@@ -113,7 +113,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSms#createNewDialog
 	 * (org.mobicents.protocols.ss7.map.api.MAPApplicationContext,
@@ -131,7 +131,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
     public MAPDialogSms createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
             AddressString destReference, Long localTrId) throws MAPException {
         MAPDialogSms mapDialog = this.wrappedSMS.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
-        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
+        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapProviderWrapper.getRa(),mapDialog.getLocalDialogId());
 
         MAPDialogSmsWrapper dw = new MAPDialogSmsWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
         mapDialog.setUserObject(dw);
@@ -147,7 +147,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSms#
 	 * removeMAPServiceListener
 	 * (org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSmsListener)

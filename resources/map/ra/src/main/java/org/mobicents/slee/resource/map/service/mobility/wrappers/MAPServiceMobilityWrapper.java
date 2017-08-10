@@ -13,9 +13,9 @@ import org.mobicents.slee.resource.map.MAPDialogActivityHandle;
 import org.mobicents.slee.resource.map.wrappers.MAPProviderWrapper;
 
 /**
- * 
+ *
  * @author amit bhayani
- * 
+ *
  */
 public class MAPServiceMobilityWrapper implements MAPServiceMobility {
 
@@ -42,6 +42,8 @@ public class MAPServiceMobilityWrapper implements MAPServiceMobility {
 		throw new UnsupportedOperationException();
 	}
 
+
+
 	public boolean isActivated() {
 		return this.wrappedMobility.isActivated();
 	}
@@ -59,7 +61,7 @@ public class MAPServiceMobilityWrapper implements MAPServiceMobility {
             AddressString destReference, Long localTrId) throws MAPException {
 
         MAPDialogMobility mapDialog = this.wrappedMobility.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
-        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
+        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapProviderWrapper.getRa(),mapDialog.getLocalDialogId());
         MAPDialogMobilityWrapper dw = new MAPDialogMobilityWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
         mapDialog.setUserObject(dw);
 
@@ -80,5 +82,4 @@ public class MAPServiceMobilityWrapper implements MAPServiceMobility {
 	public void removeMAPServiceListener(MAPServiceMobilityListener arg0) {
 		throw new UnsupportedOperationException();
 	}
-
 }

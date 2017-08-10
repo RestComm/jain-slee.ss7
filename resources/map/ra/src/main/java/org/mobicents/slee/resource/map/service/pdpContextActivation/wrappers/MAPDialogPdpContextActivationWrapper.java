@@ -33,9 +33,9 @@ import org.mobicents.slee.resource.map.MAPResourceAdaptor;
 import org.mobicents.slee.resource.map.wrappers.MAPDialogWrapper;
 
 /**
- * 
+ *
  * @author sergey vetyutnev
- * 
+ *
  */
 public class MAPDialogPdpContextActivationWrapper extends MAPDialogWrapper<MAPDialogPdpContextActivation> implements MAPDialogPdpContextActivation {
 
@@ -44,27 +44,22 @@ public class MAPDialogPdpContextActivationWrapper extends MAPDialogWrapper<MAPDi
 		super(wrappedDialog, activityHandle, ra);
 	}
 
-	@Override
-	public MAPDialogPdpContextActivation getWrappedDialog() {
-		return this.wrappedDialog;
-	}
-
     @Override
     public Long addSendRoutingInfoForGprsRequest(IMSI imsi, GSNAddress ggsnAddress, ISDNAddressString ggsnNumber, MAPExtensionContainer extensionContainer)
             throws MAPException {
-        return this.wrappedDialog.addSendRoutingInfoForGprsRequest(imsi, ggsnAddress, ggsnNumber, extensionContainer);
+        return this.getWrappedDialog().addSendRoutingInfoForGprsRequest(imsi, ggsnAddress, ggsnNumber, extensionContainer);
     }
 
     @Override
     public Long addSendRoutingInfoForGprsRequest(int customInvokeTimeout, IMSI imsi, GSNAddress ggsnAddress, ISDNAddressString ggsnNumber,
             MAPExtensionContainer extensionContainer) throws MAPException {
-        return this.wrappedDialog.addSendRoutingInfoForGprsRequest(customInvokeTimeout, imsi, ggsnAddress, ggsnNumber, extensionContainer);
+        return this.getWrappedDialog().addSendRoutingInfoForGprsRequest(customInvokeTimeout, imsi, ggsnAddress, ggsnNumber, extensionContainer);
     }
 
     @Override
     public void addSendRoutingInfoForGprsResponse(long invokeId, GSNAddress sgsnAddress, GSNAddress ggsnAddress, Integer mobileNotReachableReason,
             MAPExtensionContainer extensionContainer) throws MAPException {
-        this.wrappedDialog.addSendRoutingInfoForGprsResponse(invokeId, sgsnAddress, ggsnAddress, mobileNotReachableReason, extensionContainer);
+        this.getWrappedDialog().addSendRoutingInfoForGprsResponse(invokeId, sgsnAddress, ggsnAddress, mobileNotReachableReason, extensionContainer);
     }
 
 }

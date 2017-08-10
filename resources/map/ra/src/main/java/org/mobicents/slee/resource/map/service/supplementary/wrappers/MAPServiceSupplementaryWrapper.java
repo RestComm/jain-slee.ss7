@@ -3,17 +3,17 @@
  * Copyright 2011, Red Hat, Inc. and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
- * 
+ *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 2.1 of
  * the License, or (at your option) any later version.
- * 
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
@@ -23,7 +23,6 @@
 package org.mobicents.slee.resource.map.service.supplementary.wrappers;
 
 import org.mobicents.protocols.ss7.map.api.MAPApplicationContext;
-import org.mobicents.protocols.ss7.map.api.MAPDialog;
 import org.mobicents.protocols.ss7.map.api.MAPException;
 import org.mobicents.protocols.ss7.map.api.MAPProvider;
 import org.mobicents.protocols.ss7.map.api.dialog.ServingCheckData;
@@ -38,7 +37,7 @@ import org.mobicents.slee.resource.map.wrappers.MAPProviderWrapper;
 /**
  * @author baranowb
  * @author amit bhayani
- * 
+ *
  */
 public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 
@@ -56,7 +55,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#acivate()
 	 */
 	public void acivate() {
@@ -66,7 +65,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#deactivate()
 	 */
 	public void deactivate() {
@@ -76,7 +75,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#getMAPProvider()
 	 */
 	public MAPProvider getMAPProvider() {
@@ -85,7 +84,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#isActivated()
 	 */
 	public boolean isActivated() {
@@ -94,7 +93,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.mobicents.protocols.ss7.map.api.MAPServiceBase#isServingService(org
 	 * .mobicents.protocols.ss7.map.api.MAPApplicationContext)
@@ -105,7 +104,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.service.supplementary.
 	 * MAPServiceSupplementary
 	 * #addMAPServiceListener(org.mobicents.protocols.ss7.
@@ -121,7 +120,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
             AddressString destReference, Long localTrId) throws MAPException {
 
         MAPDialogSupplementary mapDialog = this.wrappedUSSD.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
-        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
+        MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapProviderWrapper.getRa(),mapDialog.getLocalDialogId());
         MAPDialogSupplementaryWrapper dw = new MAPDialogSupplementaryWrapper(mapDialog, activityHandle,
                 this.mapProviderWrapper.getRa());
         mapDialog.setUserObject(dw);
@@ -137,7 +136,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.service.supplementary.
 	 * MAPServiceSupplementary
 	 * #createNewDialog(org.mobicents.protocols.ss7.map.api
@@ -154,7 +153,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.mobicents.protocols.ss7.map.api.service.supplementary.
 	 * MAPServiceSupplementary
 	 * #removeMAPServiceListener(org.mobicents.protocols.ss7
