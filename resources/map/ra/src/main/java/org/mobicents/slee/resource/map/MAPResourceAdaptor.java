@@ -273,7 +273,9 @@ import javax.slee.resource.SleeEndpoint;
 import javax.slee.resource.StartActivityException;
 import javax.slee.resource.UnrecognizedActivityHandleException;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.lang.management.ManagementFactory;
 
 /**
@@ -716,7 +718,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 			this.tracer.fine(String.format("Firing %s for DialogId=%d", eventName, dw.getWrappedDialog()
 					.getLocalDialogId()));
 		}
-
+		storeMapDialogWrapper(dw);
 		this.fireEvent(eventName, dw.getActivityHandle(), event, flags);
 		return dw.getActivityHandle();
 	}
@@ -832,9 +834,10 @@ public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 
 			DialogRequest event = new DialogRequest(mapDialogWrapper, destReference, origReference, extensionContainer,
 					eriMsisdn, eriVlrNo);
-			mapDialog.setUserObject(mapDialogWrapper);
+			storeMapDialogWrapper(mapDialogWrapper );
 			this.startActivity(mapDialogWrapper);
 			this.fireEvent(event.getEventTypeName(), mapDialogWrapper.getActivityHandle(), event, EventFlags.NO_FLAGS);
+
 
 		} catch (Exception e) {
 			this.tracer.severe(String.format(
@@ -1656,7 +1659,17 @@ public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 		if(tracer.isTraceable(TraceLevel.FINE))
 			tracer.fine("Cache reports MAPDialogWrapper removed "+key);
 	}
-
+	public void storeMapDialogWrapper(MAPDialogWrapper w) {
+		try {
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			ObjectOutputStream dos = new ObjectOutputStream(bos);
+			dos.writeObject(w);
+			replicateData.put(w.getLocalDialogId(), bos.toByteArray());
+		} catch(Exception e) {
+			tracer.severe("Failed to serialize "+w,e);
+			throw new RuntimeException("Serialization failure",e);
+		}
+	}
 
 	private MAPDialogWrapper retrieveMapDialogWrapper(Long dialogId) {
 		byte b[]=replicateData.get(dialogId);

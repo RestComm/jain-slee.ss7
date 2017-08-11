@@ -83,7 +83,7 @@ public class MAPServiceOamWrapper implements MAPServiceOam {
         MAPDialogOam mapDialog = this.wrappedOam.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
         MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapProviderWrapper.getRa(),mapDialog.getLocalDialogId());
         MAPDialogOamWrapper dw = new MAPDialogOamWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
-        mapDialog.setUserObject(dw);
+		this.mapProviderWrapper.getRa().storeMapDialogWrapper(dw);
 
         try {
             this.mapProviderWrapper.getRa().startSuspendedActivity(dw);

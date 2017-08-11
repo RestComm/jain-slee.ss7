@@ -123,7 +123,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
         MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapProviderWrapper.getRa(),mapDialog.getLocalDialogId());
         MAPDialogSupplementaryWrapper dw = new MAPDialogSupplementaryWrapper(mapDialog, activityHandle,
                 this.mapProviderWrapper.getRa());
-        mapDialog.setUserObject(dw);
+		this.mapProviderWrapper.getRa().storeMapDialogWrapper(dw);
 
         try {
             this.mapProviderWrapper.getRa().startSuspendedActivity(dw);

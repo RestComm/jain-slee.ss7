@@ -63,7 +63,7 @@ public class MAPServiceMobilityWrapper implements MAPServiceMobility {
         MAPDialogMobility mapDialog = this.wrappedMobility.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
         MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapProviderWrapper.getRa(),mapDialog.getLocalDialogId());
         MAPDialogMobilityWrapper dw = new MAPDialogMobilityWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
-        mapDialog.setUserObject(dw);
+		this.mapProviderWrapper.getRa().storeMapDialogWrapper(dw);
 
         try {
             this.mapProviderWrapper.getRa().startSuspendedActivity(dw);

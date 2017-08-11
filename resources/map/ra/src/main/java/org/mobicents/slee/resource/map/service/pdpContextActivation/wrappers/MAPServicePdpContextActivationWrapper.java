@@ -83,7 +83,7 @@ public class MAPServicePdpContextActivationWrapper implements MAPServicePdpConte
                 destReference, localTrId);
         MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapProviderWrapper.getRa(),mapDialog.getLocalDialogId());
         MAPDialogPdpContextActivationWrapper dw = new MAPDialogPdpContextActivationWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
-        mapDialog.setUserObject(dw);
+		this.mapProviderWrapper.getRa().storeMapDialogWrapper(dw);
 
         try {
             this.mapProviderWrapper.getRa().startSuspendedActivity(dw);

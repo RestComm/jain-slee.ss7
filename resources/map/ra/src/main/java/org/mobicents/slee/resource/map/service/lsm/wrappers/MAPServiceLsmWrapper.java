@@ -111,7 +111,7 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
         MAPDialogLsm mapDialogLsm = this.wrappedLSM.createNewDialog(appCntx, origAddress, origReference, destAddress, destReference, localTrId);
         MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapProviderWrapper.getRa(),mapDialogLsm.getLocalDialogId());
         MAPDialogLsmWrapper dw = new MAPDialogLsmWrapper(mapDialogLsm, activityHandle, this.mapProviderWrapper.getRa());
-        mapDialogLsm.setUserObject(dw);
+		this.mapProviderWrapper.getRa().storeMapDialogWrapper(dw);
 
         try {
             this.mapProviderWrapper.getRa().startSuspendedActivity(dw);

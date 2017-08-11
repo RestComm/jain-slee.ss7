@@ -183,6 +183,7 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 	}
 
 	public void send() throws MAPException {
+    	ra.storeMapDialogWrapper(this);
 		this.getWrappedDialog().send();
 	}
 

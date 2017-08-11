@@ -134,7 +134,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
         MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapProviderWrapper.getRa(),mapDialog.getLocalDialogId());
 
         MAPDialogSmsWrapper dw = new MAPDialogSmsWrapper(mapDialog, activityHandle, this.mapProviderWrapper.getRa());
-        mapDialog.setUserObject(dw);
+		this.mapProviderWrapper.getRa().storeMapDialogWrapper(dw);
 
         try {
             this.mapProviderWrapper.getRa().startSuspendedActivity(dw);
