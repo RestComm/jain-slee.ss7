@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="ra_graceful_stop">
+  <title>Graceful Stop</title>
+  <section id="ra_graceful_stop">
+    <title>Graceful Stop support</title>
+    <para>The RA supports Graceful container stop feature. In Graceful Stop state the RA rejects incoming initial events - it rejects new activities creation.</para>
+  </section>
+  <section id="ra_graceful_stop_response">
+    <title>Graceful Stop reject support</title>
+    <para>When the RA is in Graceful Stopping mode the <literal>TC_ABORT</literal> is send as a response for every new <literal>TC_BEGIN</literal> TCAP message.
+      <literal>Resource-Unavailable-Reason: shortTermResourceLimitation (0)</literal> is used as a u-abort-reason parameter value.
+    </para>
+  </section>
+</chapter>

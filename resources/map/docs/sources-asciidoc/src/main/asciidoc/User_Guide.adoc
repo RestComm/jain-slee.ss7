@@ -1,4 +1,4 @@
-= User Guide to {this-platform} {this-application} {this-ra} RA {project-version} 
+= User Guide to {this-platform} {this-application} {this-ra} RA {project-version}
 :doctype: book
 :sectnums:
 :toc: left
@@ -41,6 +41,12 @@ include::ra/Chapter-Resource_Adaptor.adoc[]
 :leveloffset: 1
 
 include::Chapter-Setup.adoc[]
+
+:leveloffset: 0
+
+:leveloffset: 1
+
+include::Chapter-Graceful_Stop.adoc[]
 
 :leveloffset: 0
 
