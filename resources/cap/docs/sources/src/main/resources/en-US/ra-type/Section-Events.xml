@@ -343,8 +343,17 @@
 						<entry>
 						 	This event contains the call-related information that was previously requested for this call.
 						</entry>
-					</row>	
-					
+					</row>
+
+                    <row>
+                        <entry>CALL_GAP_REQUEST</entry>
+                        <entry>CallGapRequest Request</entry>
+                        <entry>
+                            The gsmSCF uses this operation to request the gsmSSF to reduce the rate at which specific service requests are sent to the gsmSCF.
+                            This operation may be sent only within a dialogue that has been opened by the gsmSSF by an InitialDP operation.
+                        </entry>
+                    </row>
+
 					<row>
 						<entry>CALL_INFORMATION_ REQUEST_REQUEST</entry>
 						<entry>CallInformationRequest Request</entry>

@@ -24,17 +24,18 @@
 		<docs.ra.name>TCAP</docs.ra.name>
 		<docs.ra.dirname>TCAP</docs.ra.dirname>
 		<docs.bookid>TCAP</docs.bookid>
-
-		<ss7.version>8.0.49</ss7.version>
-		<asn.version>2.1.5</asn.version>
-		<stream.version>1.0.0.FINAL</stream.version>
-
-		<javolution.version>5.5.1</javolution.version>
 	</properties>
 	
 	<profiles>
 		<profile>
-			<id>release</id>
+			<id>release-jboss5</id>
+			<modules>
+				<module>docs</module>
+				<module>release</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>release-wildfly</id>
 			<modules>
 				<module>docs</module>
 				<module>release</module>

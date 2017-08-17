@@ -27,7 +27,6 @@ package org.mobicents.slee.resource.map.events;
 
 import org.mobicents.protocols.ss7.map.api.MAPDialog;
 import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 
 /**
@@ -42,20 +41,23 @@ public class DialogRequest extends MAPEvent {
 	private final AddressString destReference;
 	private final AddressString origReference;
 	private final MAPExtensionContainer extensionContainer;
-	private final IMSI eriImsi;
+	private final AddressString eriMsisdn;
 	private final AddressString eriVlrNo;
 
 	/**
 	 * @param mapDialogWrapper
 	 */
 	public DialogRequest(MAPDialog mapDialogWrapper, AddressString destReference, AddressString origReference,
-			MAPExtensionContainer extensionContainer, IMSI eriImsi, AddressString eriVlrNo) {
+			MAPExtensionContainer extensionContainer, AddressString eriMsisdn, AddressString eriVlrNo) {
 		super(mapDialogWrapper, EVENT_TYPE_NAME, null);
 		this.destReference = destReference;
 		this.origReference = origReference;
 		this.extensionContainer = extensionContainer;
-		this.eriImsi = eriImsi;
+		this.eriMsisdn = eriMsisdn;
 		this.eriVlrNo = eriVlrNo;
+
+        if (eriMsisdn != null || eriVlrNo != null)
+            this.eriStyle = true;
 	}
 
 	public AddressString getDestReference() {
@@ -74,8 +76,8 @@ public class DialogRequest extends MAPEvent {
 		return eriStyle;
 	}
 
-	public IMSI getEriImsi() {
-		return eriImsi;
+	public AddressString getEriMsisdn() {
+		return eriMsisdn;
 	}
 
 	public AddressString getEriVlrNo() {
@@ -85,7 +87,7 @@ public class DialogRequest extends MAPEvent {
 	@Override
 	public String toString() {
 		return "DialogRequest [eriStyle=" + eriStyle + ", destReference=" + destReference + ", origReference="
-				+ origReference + ", extensionContainer=" + extensionContainer + ", eriImsi=" + eriImsi + ", eriVlrNo="
+				+ origReference + ", extensionContainer=" + extensionContainer + ", eriMsisdn=" + eriMsisdn + ", eriVlrNo="
 				+ eriVlrNo + ", " + this.mapDialogWrapper + "]";
 	}
 

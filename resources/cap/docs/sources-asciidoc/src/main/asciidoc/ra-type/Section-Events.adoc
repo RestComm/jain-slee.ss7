@@ -102,37 +102,97 @@ Spaces where introduced in `Name` column values, to correctly render the table.
 Please remove them when using copy/paste. 
 ====
 
-.Mobility - Location Management Service events
+.Circuit Switched Call Service events
 [cols="1,1,1", frame="all", options="header"]
 |===
 | Name | Event Class | Comments
 | INITIAL_DP_REQUEST | InitialDPRequest | The SSF will send InitialDPRequest to SCF to start CAMEL service.
-| ACTIVITY_TEST_REQUEST | ActivityTestRequest | The activity test (AT) is used for testing the CAMEL dialogue between the gsmSCF and the gsmSSF. The SCP may send CAP AT at regular intervals to the gsmSSF, e.g. every 15 min. The only function of CAP AT is to verify the existence of the CAMEL dialogue. When the gsmSSF receives CAP AT, it returns an empty RESULT to the gsmSCF. If the gsmSCF does not receive an operation RESULT within the operation time for CAP AT, e.g. 5 s, then the gsmSCF terminates the CAMEL service. CAP AT is normally sent by the SCP platform, not by the CAMEL service. The arrival of CAP AT in the gsmSSF has no impact on any call handling process or on the BCSM. The sending of CAP AT is not dependent on the phase of the call or on the gsmSSF FSM state
-| ACTIVITY_TEST_RESPONSE | ActivityTestResponse | Response to ActivityTestRequest
-| APPLY_CHARGING_ REPORT_REQUEST | ApplyChargingReportRequest | This is the report that is sent from gsmSSF to gsmSCF at the end of a call period or when the call is released. In addition, when call set up failure occurs, such as called party busy or no answer, the gsmSSF also sends a charging report (if previously requested).
-| APPLY_CHARGING_REQUEST | ApplyChargingRequest | This is the instruction from the gsmSCF to the gsmSSF to start or continue monitoring the call duration.
 | ASSIST_REQUEST_ INSTRUCTIONS_REQUEST | AssistRequest InstructionsRequest | Used by assisting gsmSSF to start the assisting dialogue.
+| ESTABLISH_TEMPORARY_ CONNECTION_REQUEST | EstablishTemporary ConnectionRequest | This event is used to establish a temporary connection between the serving (G)MSC and an MSC with assisting gsmSSF
+| DISCONNECT_FORWARD_ CONNECTION_REQUEST | DisconnectForward ConnectionRequest | This operation is used to terminate the connection to a specialized resource or to terminate a temporary connection to an assisting gsmSSF or intelligent peripheral
+| CONNECT_TO_ RESOURCE_REQUEST | ConnectToResourceRequest | This event is used to instruct the gsmSSF or assisting gsmSSF to connect the call to a specialized resource, for user interaction
+| CONNECT_REQUEST | ConnectRequest | This event is used to instruct the gsmSSF to continue call establishment with modified information. This operation may also be used to generate a follow-on call.
+| RELEASE_CALL_REQUEST | ReleaseCallRequest | This operation is used by the gsmSCF to release a call
+| REQUEST_REPORT_BCSM_ EVENT_REQUEST | RequestReportBCSM EventRequest | This operation may be used by the gsmSCF to arm or disarm detection points in the BCSM
+| EVENT_REPORT_BCSM_REQUEST | EventReportBCSMRequest | This event is used by the gsmSSF to inform the gsmSCF about the occurrence of an event
+| COLLECT_INFORMATION_REQUEST | CollectInformationRequest | This operation is used to request the gsmSSF to perform the call processing actions to prompt a calling party for additional digits.
+| CONTINUE_REQUEST | ContinueRequest | This operation is used to instruct the gsmSSF to continue call processing at the DP where call processing was suspended
+| INITIATE_CALL_ATTEMPT_REQUEST | InitiateCallAttemptRequest | This operation is used to instruct the gsmSSF to create a new call to a call party using the address information provided by the gsmSCF.
+| INITIATE_CALL_ATTEMPT_RESPONSE | InitiateCallAttemptResponse |
+| RESET_TIMER_REQUEST | ResetTimerRequest | This operation may be used by the gsmSCF to reload and restart the Tssf timer
+| FURNISH_CHARGING_ INFORMATION_REQUEST | FurnishChargingInformationRequest | The gsmSCF may use this operation to place service-specific data in the CDR for the call
+| APPLY_CHARGING_REQUEST | ApplyChargingRequest | This is the instruction from the gsmSCF to the gsmSSF to start or continue monitoring the call duration.
+| APPLY_CHARGING_ REPORT_REQUEST | ApplyChargingReportRequest | This is the report that is sent from gsmSSF to gsmSCF at the end of a call period or when the call is released. In addition, when call set up failure occurs, such as called party busy or no answer, the gsmSSF also sends a charging report (if previously requested).
+| CALL_GAP_REQUEST | CallGapRequest | This operation is used to request the gsmSSF to reduce the rate at which specific service requests are sent to the gsmSCF.
 | CALL_INFORMATION_ REPORT_REQUEST | CallInformationReportRequest | This event contains the call-related information that was previously requested for this call.
 | CALL_INFORMATION_ REQUEST_REQUEST | CallInformationRequestRequest | This operation is used to request call-related information.
-| CANCEL_REQUEST | CancelRequest | This event has a dual purpose:
-
-* It may be used to disarm armed detection points and to cancel requests for reports. It is normally used when a CAMEL service wants to terminate the relationship
-
-* It may be used to prevent or stop the execution of a user interaction operation, which was previously sent to the gsmSRF or to the intelligent peripheral.
-
-| CONNECT_REQUEST | ConnectRequest | This event is used to instruct the gsmSSF to continue call establishment with modified information. This operation may also be used to generate a follow-on call.
-| CONNECT_TO_ RESOURCE_REQUEST | ConnectToResourceRequest | This event is used to instruct the gsmSSF or assisting gsmSSF to connect the call to a specialized resource, for user interaction
-| CONTINUE_REQUEST | ContinueRequest | This operation is used to instruct the gsmSSF to continue call processing at the DP where call processing was suspended
-| DISCONNECT_FORWARD_ CONNECTION_REQUEST | DisconnectForward ConnectionRequest | This operation is used to terminate the connection to a specialized resource or to terminate a temporary connection to an assisting gsmSSF or intelligent peripheral
-| ESTABLISH_TEMPORARY_ CONNECTION_REQUEST | EstablishTemporary ConnectionRequest | This event is used to establish a temporary connection between the serving (G)MSC and an MSC with assisting gsmSSF
-| EVENT_REPORT_BCSM_REQUEST | EventReportBCSMRequest | This event is used by the gsmSSF to inform the gsmSCF about the occurrence of an event
-| FURNISH_CHARGING_ INFORMATION_REQUEST | FurnishChargingInformationRequest | The gsmSCF may use this operation to place service-specific data in the CDR for the call
-| PLAY_ANNOUNCEMENT_REQUEST | PlayAnnouncementRequest | A CAMEL service may use this operation to instruct the gsmSRF or intelligent peripheral to play an announcement
-| RELEASE_CALL_REQUEST | ReleaseCallRequest | This operation is used by the gsmSCF to release a call
+| SEND_CHARGING_ INFORMATION_REQUEST | SendChargingInformationRequest | This operation may be used by the gsmSCF to send advice of charge information to the served subscriber
+| PLAY_ANNOUNCEMENT_ REQUEST | PlayAnnouncementRequest | A CAMEL service may use this operation to instruct the gsmSRF or intelligent peripheral to play an announcement
 | PROMPT_AND_COLLECT_ USER_INFORMATION_REQUEST | PromptAndCollectUser InformationRequest | A CAMEL service may use this operation to instruct the gsmSRF or intelligent peripheral to play an announcement and to collect digits from the user
 | PROMPT_AND_COLLECT_ USER_INFORMATION_RESPONSE | PromptAndCollectUser InformationResponse | Response to PromptAndCollectUser InformationRequest
-| REQUEST_REPORT_BCSM_ EVENT_REQUEST | RequestReportBCSM EventRequest | This operation may be used by the gsmSCF to arm or disarm detection points in the BCSM
-| RESET_TIMER_REQUEST | ResetTimerRequest | This operation may be used by the gsmSCF to reload and restart the Tssf timer
-| SEND_CHARGING_ INFORMATION_REQUEST | SendChargingInformationRequest | This operation may be used by the gsmSCF to send advice of charge information to the served subscriber
 | SPECIALIZED_RESOURCE_ REPORT_REQUEST | SpecializedResourceReportRequest | This operation is used by the gsmSRF to inform the gsmSCF that the playing of an announcement is complete
+| CANCEL_REQUEST | CancelRequest | This event has a dual purpose:
+1) It may be used to disarm armed detection points and to cancel requests for reports. It is normally used when a CAMEL service wants to terminate the relationship
+2) It may be used to prevent or stop the execution of a user interaction operation, which was previously sent to the gsmSRF or to the intelligent peripheral.
+| ACTIVITY_TEST_REQUEST | ActivityTestRequest | The activity test (AT) is used for testing the CAMEL dialogue between the gsmSCF and the gsmSSF. The SCP may send CAP AT at regular intervals to the gsmSSF, e.g. every 15 min. The only function of CAP AT is to verify the existence of the CAMEL dialogue. When the gsmSSF receives CAP AT, it returns an empty RESULT to the gsmSCF. If the gsmSCF does not receive an operation RESULT within the operation time for CAP AT, e.g. 5 s, then the gsmSCF terminates the CAMEL service. CAP AT is normally sent by the SCP platform, not by the CAMEL service. The arrival of CAP AT in the gsmSSF has no impact on any call handling process or on the BCSM. The sending of CAP AT is not dependent on the phase of the call or on the gsmSSF FSM state
+| ACTIVITY_TEST_RESPONSE | ActivityTestResponse | Response to ActivityTestRequest
+| DISCONNECT_FORWARD_ CONNECTION_WITH_ ARGUMENT_REQUEST | DisconnectForwardConnectionWithArgumentRequest | This operation is used to disconnect a forward temporary connection or a connection to a resource. Refer to clause 11 for a description of the procedures associated with this operation.
+| CONTINUE_WITH_ARGUMENT_REQUEST | ContinueWithArgumentRequest | This operation is used to request the gsmSSF to proceed with call processing at the DP at which it previously suspended call processing to await gsmSCF instructions (i.e. proceed to the next point in call in the BCSM). The gsmSSF continues call processing with the modified call setup information as received from the gsmSCF.
+| DISCONNECT_LEG_REQUEST | DisconnectLegRequest | This operation is used by the gsmSCF to release a specific leg associated with the call and retain any other legs not specified in the DisconnectLeg. Refer to clause 11 for a description of the procedures associated with this operation.
+| DISCONNECT_LEG_RESPONSE | DisconnectLegResponse | Response to DisconnectLegRequest
+| MOVE_LEG_REQUEST | MoveLegRequest | This operation is used by the gsmSCF to move a leg from one call segment to another call segment within the same call segment association.
+| MOVE_LEG_RESPONSE | MoveLegResponse | Response to MoveLegRequest
+| SPLIT_LEG_REQUEST | SplitLegRequest | This operation is used by the gsmSCF to separate a leg from its source call segment and place it in a new call segment within the same call segment association.
+| SPLIT_LEG_RESPONSE | SplitLegResponse | Response to SplitLegRequest
 |===
+
+[[_ratype_events_service_gprs]]
+== GPRS
+
+Below events are fired when dialog receives callbacks for GPRS service.
+
+.GPRS Service events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| ACTIVITY_TEST_GPRS_REQUEST | ActivityTestGPRSRequest | This operation is used to check for the continued existence of a relationship between the gsmSCF and gprsSSF. If the relationship is still in existence, then the gprsSSF will respond. If no reply is received, then the gsmSCF will assume that the gprsSSF has failed in some way and will take the appropriate action.
+| ACTIVITY_TEST_GPRS_RESPONSE | ActivityTestGPRSResponse | A reponse to ActivityTestGPRSRequest
+| APPLY_CHARGING_GPRS_REQUEST | ApplyChargingGPRSRequest | This operation is used for interacting from the gsmSCF with the gprsSSF CSE-controlled GPRS session or PDP Context charging mechanism.
+| APPLY_CHARGING_REPORT_GPRS | ApplyChargingReportGPRSRequest | The ApplyChargingReportGPRS operation provides the feedback from the gprsSCF to the gsmSCF CSE-controlled GPRS session charging mechanism.
+| APPLY_CHARGING_REPORT_GPRS_RESPONSE | ApplyChargingReportGPRSResponse | A response to ApplyChargingReportGPRSRequest
+| CANCEL_GPRS_REQUEST | CancelGPRSRequest | This generic operation cancels all previous requests, i.e. all EDPs and reports can be cancelled by the gsmSCF.
+| CONNECT_GPRS_REQUEST | ConnectGPRSRequest | This operation is used to modify the Access Point Name used when establishing a PDP Context.
+| CONTINUE_GPRS_REQUEST | ContinueGPRSRequest | This operation is used to request the gprsSSF to proceed with processing at the DP at which it previously suspended processing to await gsmSCF instructions (i.e., proceed to the next point in processing in the Attach/Detach state model or PDP Context state model) substituting new data from the gsmSCF.
+| ENTITY_RELEASED_GPRS_REQUEST | EntityReleasedGPRSRequest | This operation is used when the GPRS Session is detached or a PDP Context is diconnected and the associated event is not armed for reporting. The usage of this operation is independent of the functional entity that initiates the Detach or PDP Context Disconnection and is independent of the cause of the Detach or PDP Context Disconnect.
+| ENTITY_RELEASED_GPRS_RESPONSE | EntityReleasedGPRSResponse | A response to EntityReleasedGPRSRequest
+| ENTITY_RELEASED_GPRS_REQUEST | EntityReleasedGPRSRequest | This operation is used when the GPRS Session is detached or a PDP Context is diconnected and the associated event is not armed for reporting. The usage of this operation is independent of the functional entity that initiates the Detach or PDP Context Disconnection and is independent of the cause of the Detach or PDP Context Disconnect.
+| ENTITY_RELEASED_GPRS_RESPONSE | EntityReleasedGPRSResponse | A response to EntityReleasedGPRSRequest
+| FURNISH_CHARGING_INFORMATION_GPRS_REQUESTRequest | FurnishChargingInformationGPRS | This operation is used to request the gprsSSF to generate, register a logical record or to include some information in the default logical GPRS record. The registered logical record is intended for off line charging of the GPRS session or PDP Context.
+| INITIAL_DP_GPRS_REQUEST | InitialDPGPRSRequest | This operation is used by the gprsSSF when a trigger is detected at a DP in the GPRS state machines to request instructions from the gsmSCF
+| RELEASE_GPRS_REQUEST | ReleaseGPRSRequest | This operation is used to tear down an existing GPRS session or PDP Context at any phase.
+| EVENT_REPORT_GPRS_REQUEST | EventReportGPRSRequest | This operation is used to notify the gsmSCF of a GPRS session or PDP context related events (e.g. PDP context activation) previously requested by the gsmSCF in a RequestReportGPRSEventoperation.
+| EVENT_REPORT_GPRS_RESPONSE | EventReportGPRSResponse | A response to EventReportGPRSRequest
+| REQUEST_REPORT_GPRS_EVENT_REQUEST | RequestReportGPRSEventRequest | This operation is used to request the gprsSSF to monitor for an event (e.g., GPRS events such as attach or PDP Context activiation), then send a notification back to the gsmSCF when the event is detected.
+| RESET_TIMER_GPRS_REQUEST | ResetTimerGPRSRequest | This operation is used to request the gprsSSF to refresh an application timer in the gprsSSF.
+| SEND_CHARGING_INFORMATION_GPRS_REQUEST | sendChargingInformationGPRS | This operation is used to instruct the gprsSSF on the charging information which the gprsSSF shall send to the Mobile Station by means of GSM access signalling.
+|===
+
+[[_ratype_events_service_sms]]
+== SMS
+
+Below events are fired when dialog receives callbacks for SMS service.
+
+.SMS Service events
+[cols="1,1,1", frame="all", options="header"]
+|===
+| Name | Event Class | Comments
+| INITIAL_DP_SMS_REQUEST | InitialDPSMSRequest | This operation is used after a TDP to indicate request for service.
+| FURNISH_CHARGING_INFORMATION_SMS_REQUEST | FurnishChargingInformationSMSRequest | This operation is used to request the smsSSF to generate, register a charging record or to include some information in the default SM record. The registered charging record is intended for off line charging of the Short Message.
+| CONNECT_SMS_REQUEST | ConnectSMSRequestRequest | This operation is used to request the smsSSF to perform the SMS processing actions to route or forward a short message to a specified destination.
+| REQUEST_REPORT_SMS_EVENT_REQUEST | RequestReportSMSEventRequest | This operation is used to request the gsmSSF or gprsSSF to monitor for a Short Message related event (FSM events such as submission, delivery or failure) and to send a notification to the gsmSCF when the event is detected.
+| EVENT_REPORT_SMS_REQUEST | EventReportSMSRequest | This operation is used to notify the gsmSCF of a Short Message related event (FSM events such as submission, delivery or failure) previously requested by the gsmSCF in a RequestReportSMSEvent operation.
+| CONTINUE_SMS_REQUEST | ContinueSMSRequest | This operation is used to request the smsSSF to proceed with Short Message processing at the DP at which it previously suspended Short Message processing to await gsmSCF instructions (i.e. proceed to the next Point in Association in the SMS FSM). The smsSSF continues SMS processing without substituting new data from the gsmSCF.
+| RELEASE_SMS_REQUEST | ReleaseSMSRequest | This operation is used to prevent an attempt to submit or deliver a short message.
+| RESET_TIMER_SMS_REQUEST | ResetTimerSMSRequest | This operation is used to request the smsSSF to refresh an application timer in the smsSSF.
+|===
+
