@@ -35,9 +35,6 @@
 	<profiles>
 		<profile>
 			<id>du-jboss5</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -59,6 +56,9 @@
 		</profile>
 		<profile>
 			<id>du-wildfly</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<build>
 				<plugins>
 					<plugin>
