@@ -124,6 +124,15 @@
 			</build>
 		</profile>
 	</profiles>	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.13</version>
+			</plugin>
+		</plugins>
+	</build>		
 
 
 	<!-- dupe info from parent, but it's only way to retrieve the parent without checkout -->
