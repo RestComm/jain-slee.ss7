@@ -46,7 +46,7 @@ import org.mobicents.slee.resource.cap.CAPResourceAdaptor;
  */
 public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog {
 
-    protected CAPDialogActivityHandle activityHandle;
+    protected transient CAPDialogActivityHandle activityHandle;
     protected transient CAPResourceAdaptor ra;
     protected transient T wrappedDialog;
 
@@ -55,6 +55,7 @@ public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog
 
     public void restoreTransientData(CAPResourceAdaptor ra) {
         this.ra=ra;
+        this.activityHandle=new CAPDialogActivityHandle(ra,dialogId);
     }
 
     public CAPDialogWrapper(T wrappedDialog, CAPDialogActivityHandle activityHandle, CAPResourceAdaptor ra) {

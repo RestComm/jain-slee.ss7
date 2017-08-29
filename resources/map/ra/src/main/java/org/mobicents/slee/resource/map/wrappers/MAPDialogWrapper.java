@@ -270,6 +270,7 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 	}
 
     public void restoreTransientData(MAPResourceAdaptor mapResourceAdaptor) {
-    	this.ra=mapResourceAdaptor;
+		this.ra=mapResourceAdaptor;
+		this.activityHandle=new MAPDialogActivityHandle(ra,dialogId);
     }
 }
