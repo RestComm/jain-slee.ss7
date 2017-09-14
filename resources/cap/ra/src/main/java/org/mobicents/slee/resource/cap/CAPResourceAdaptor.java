@@ -212,6 +212,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.management.ManagementFactory;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
@@ -260,10 +261,12 @@ public class CAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
     private String capJndi = null;
     private transient static final Address address = new Address(AddressPlan.IP, "localhost");
     private ReplicatedData<Long, byte[]> replicateData;
+    private ConcurrentHashMap<Long, CAPDialogWrapper> dataMap;
 
     public CAPResourceAdaptor() {
         this.marshaler=new CapMarshaler(this);
         this.capProvider = new CAPProviderWrapper(this);
+        this.dataMap=new ConcurrentHashMap<Long, CAPDialogWrapper>();
     }
 
     // ////////////////
@@ -280,6 +283,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
         if (dw != null) {
             dw.clear();
         }
+        replicateData.remove(mdah.getDialogId());
     }
 
     public void activityUnreferenced(ActivityHandle arg0) {
