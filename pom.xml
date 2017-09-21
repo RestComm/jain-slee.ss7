@@ -28,9 +28,9 @@
 	</modules>
 
 	<properties>
-		<ss7.version>7.4.1404</ss7.version>
+		<ss7.version>7.4.0-9</ss7.version>
 
-		<asn.version>2.1.5</asn.version>
+		<asn.version>2.2.0-22</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
 		<javolution.version>5.5.1</javolution.version>
 		<restcomm.slee.ext.version>7.0.70</restcomm.slee.ext.version>
