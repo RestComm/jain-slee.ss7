@@ -308,6 +308,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	private Marshaler marshaler = new MAPRAMarshaler();
 
+	private MAPResourceAdaptorStatisticsUsageParameters defaultUsageParameters;
+	
 	/**
 	 * tells the RA if an event with a specified ID should be filtered or not
 	 */
@@ -576,6 +578,13 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		this.sleeEndpoint = raContext.getSleeEndpoint();
 
 		this.eventIdCache = new EventIDCache(this.tracer);
+		
+		try {
+			this.defaultUsageParameters =
+					(MAPResourceAdaptorStatisticsUsageParameters) raContext.getDefaultUsageParameterSet();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void unsetResourceAdaptorContext() {
@@ -1437,6 +1446,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	// ////////////////
 
 	public void onForwardShortMessageRequest(ForwardShortMessageRequest forwardShortMessageRequest) {
+		defaultUsageParameters.incrementMessages(1L);
 		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) forwardShortMessageRequest.getMAPDialog()
 				.getUserObject();
 		ForwardShortMessageRequestWrapper event = new ForwardShortMessageRequestWrapper(mapDialogSmsWrapper,
@@ -1454,6 +1464,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	public void onMoForwardShortMessageRequest(MoForwardShortMessageRequest moForwardShortMessageRequest) {
+		defaultUsageParameters.incrementMessages(1L);
 		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) moForwardShortMessageRequest.getMAPDialog()
 				.getUserObject();
 		MoForwardShortMessageRequestWrapper event = new MoForwardShortMessageRequestWrapper(mapDialogSmsWrapper,
@@ -1471,6 +1482,9 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	public void onMtForwardShortMessageRequest(MtForwardShortMessageRequest mtForwardShortMessageRequest) {
+		
+		defaultUsageParameters.incrementMessages(1L);
+		
 		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) mtForwardShortMessageRequest.getMAPDialog()
 				.getUserObject();
 		MtForwardShortMessageRequestWrapper event = new MtForwardShortMessageRequestWrapper(mapDialogSmsWrapper,
@@ -1670,4 +1684,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		// Do nothing
 	}
 
+	public MAPResourceAdaptorStatisticsUsageParameters getDefaultUsageParameters() {
+		return this.defaultUsageParameters;
+	}
 }

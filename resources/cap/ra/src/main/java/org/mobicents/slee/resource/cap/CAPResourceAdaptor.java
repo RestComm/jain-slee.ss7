@@ -202,6 +202,8 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 	private ResourceAdaptorContext resourceAdaptorContext;
 
 	private EventIDCache eventIdCache = null;
+	
+	private CAPResourceAdaptorStatisticsUsageParameters defaultUsageParameters;
 
 	/**
 	 * tells the RA if an event with a specified ID should be filtered or not
@@ -422,6 +424,13 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		this.tracer = resourceAdaptorContext.getTracer(CAPResourceAdaptor.class.getSimpleName());
 
 		this.eventIdCache = new EventIDCache(this.tracer);
+		
+		try {
+			this.defaultUsageParameters =
+					(CAPResourceAdaptorStatisticsUsageParameters) raContext.getDefaultUsageParameterSet();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void unsetResourceAdaptorContext() {
@@ -571,11 +580,13 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 			CAPDialogWrapper capDialogWrapper = null;
 
 			if (capDialog instanceof CAPDialogCircuitSwitchedCall) {
+				defaultUsageParameters.incrementCalls(1L);
 				capDialogWrapper = new CAPDialogCircuitSwitchedCallWrapper((CAPDialogCircuitSwitchedCall) capDialog,
 						activityHandle, this);
 			} else if (capDialog instanceof CAPDialogGprs) {
 				capDialogWrapper = new CAPDialogGprsWrapper((CAPDialogGprs) capDialog, activityHandle, this);
 			} else if (capDialog instanceof CAPDialogSms) {
+				defaultUsageParameters.incrementMessages(1L);
 				capDialogWrapper = new CAPDialogSmsWrapper((CAPDialogSms) capDialog, activityHandle, this);
 			} else {
 				this.tracer.severe(String.format("Received onDialogRequest id=%d for unknown CAPDialog class=%s",
@@ -1189,4 +1200,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
         onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
     }
 
+    public CAPResourceAdaptorStatisticsUsageParameters getDefaultUsageParameters() {
+    	return this.defaultUsageParameters;
+    }
 }
