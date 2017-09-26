@@ -248,6 +248,8 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 	private String capJndi = null;
 	private transient static final Address address = new Address(AddressPlan.IP, "localhost");
 
+	private CAPResourceAdaptorStatisticsUsageParameters defaultUsageParameters;
+	
 	public CAPResourceAdaptor() {
 		this.capProvider = new CAPProviderWrapper(this);
 	}
@@ -625,11 +627,13 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 			CAPDialogWrapper capDialogWrapper = null;
 
 			if (capDialog instanceof CAPDialogCircuitSwitchedCall) {
+				this.defaultUsageParameters.incrementCalls(1L);
 				capDialogWrapper = new CAPDialogCircuitSwitchedCallWrapper((CAPDialogCircuitSwitchedCall) capDialog,
 						activityHandle, this);
 			} else if (capDialog instanceof CAPDialogGprs) {
 				capDialogWrapper = new CAPDialogGprsWrapper((CAPDialogGprs) capDialog, activityHandle, this);
 			} else if (capDialog instanceof CAPDialogSms) {
+				this.defaultUsageParameters.incrementMessages(1L);
 				capDialogWrapper = new CAPDialogSmsWrapper((CAPDialogSms) capDialog, activityHandle, this);
 			} else {
 				this.tracer.severe(String.format("Received onDialogRequest id=%d for unknown CAPDialog class=%s",
@@ -1227,4 +1231,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
         onEvent(event.getEventTypeName(), capDialogSmsWrapper, event);
     }
 
+    public CAPResourceAdaptorStatisticsUsageParameters getDefaultUsageParameters() {
+    	return this.defaultUsageParameters;
+    }
 }

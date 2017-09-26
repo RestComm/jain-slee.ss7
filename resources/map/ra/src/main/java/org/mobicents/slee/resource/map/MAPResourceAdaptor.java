@@ -317,6 +317,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	private String mapJndi = null;
 	private transient static final Address address = new Address(AddressPlan.IP, "localhost");
 
+	private MAPResourceAdaptorStatisticsUsageParameters defaultUsageParameters;
+	
 	public MAPResourceAdaptor() {
 		this.mapProvider = new MAPProviderWrapper(this);
 	}
@@ -1435,6 +1437,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	// ////////////////
 
 	public void onForwardShortMessageRequest(ForwardShortMessageRequest forwardShortMessageRequest) {
+		defaultUsageParameters.incrementMessages(1L);
 		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) forwardShortMessageRequest.getMAPDialog()
 				.getUserObject();
 		ForwardShortMessageRequestWrapper event = new ForwardShortMessageRequestWrapper(mapDialogSmsWrapper,
@@ -1452,6 +1455,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	public void onMoForwardShortMessageRequest(MoForwardShortMessageRequest moForwardShortMessageRequest) {
+		defaultUsageParameters.incrementMessages(1L);
 		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) moForwardShortMessageRequest.getMAPDialog()
 				.getUserObject();
 		MoForwardShortMessageRequestWrapper event = new MoForwardShortMessageRequestWrapper(mapDialogSmsWrapper,
@@ -1469,6 +1473,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	public void onMtForwardShortMessageRequest(MtForwardShortMessageRequest mtForwardShortMessageRequest) {
+		defaultUsageParameters.incrementMessages(1L);
 		MAPDialogSmsWrapper mapDialogSmsWrapper = (MAPDialogSmsWrapper) mtForwardShortMessageRequest.getMAPDialog()
 				.getUserObject();
 		MtForwardShortMessageRequestWrapper event = new MtForwardShortMessageRequestWrapper(mapDialogSmsWrapper,
@@ -1668,4 +1673,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		// Do nothing
 	}
 
+	public MAPResourceAdaptorStatisticsUsageParameters getDefaultUsageParameters() {
+		return this.defaultUsageParameters;
+	}
 }
