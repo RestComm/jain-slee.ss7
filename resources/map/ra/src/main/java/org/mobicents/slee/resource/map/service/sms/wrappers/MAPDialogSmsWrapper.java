@@ -80,11 +80,13 @@ public class MAPDialogSmsWrapper extends MAPDialogWrapper<MAPDialogSms> implemen
 
 	public Long addForwardShortMessageRequest(SM_RP_DA arg0, SM_RP_OA arg1, SmsSignalInfo arg2, boolean arg3)
 			throws MAPException {
+		this.ra.getDefaultUsageParameters().incrementMessages(1L);
 		return this.wrappedDialog.addForwardShortMessageRequest(arg0, arg1, arg2, arg3);
 	}
 
 	public Long addForwardShortMessageRequest(int arg0, SM_RP_DA arg1, SM_RP_OA arg2, SmsSignalInfo arg3, boolean arg4)
 			throws MAPException {
+		this.ra.getDefaultUsageParameters().incrementMessages(1L);
 		return this.wrappedDialog.addForwardShortMessageRequest(arg0, arg1, arg2, arg3, arg4);
 	}
 
@@ -104,11 +106,13 @@ public class MAPDialogSmsWrapper extends MAPDialogWrapper<MAPDialogSms> implemen
 
 	public Long addMoForwardShortMessageRequest(SM_RP_DA arg0, SM_RP_OA arg1, SmsSignalInfo arg2,
 			MAPExtensionContainer arg3, IMSI arg4) throws MAPException {
+		this.ra.getDefaultUsageParameters().incrementMessages(1L);
 		return this.wrappedDialog.addMoForwardShortMessageRequest(arg0, arg1, arg2, arg3, arg4);
 	}
 
 	public Long addMoForwardShortMessageRequest(int arg0, SM_RP_DA arg1, SM_RP_OA arg2, SmsSignalInfo arg3,
 			MAPExtensionContainer arg4, IMSI arg5) throws MAPException {
+		this.ra.getDefaultUsageParameters().incrementMessages(1L);
 		return this.wrappedDialog.addMoForwardShortMessageRequest(arg0, arg1, arg2, arg3, arg4, arg5);
 	}
 
@@ -119,11 +123,13 @@ public class MAPDialogSmsWrapper extends MAPDialogWrapper<MAPDialogSms> implemen
 
 	public Long addMtForwardShortMessageRequest(SM_RP_DA arg0, SM_RP_OA arg1, SmsSignalInfo arg2, boolean arg3,
 			MAPExtensionContainer arg4) throws MAPException {
+		this.ra.getDefaultUsageParameters().incrementMessages(1L);
 		return this.wrappedDialog.addMtForwardShortMessageRequest(arg0, arg1, arg2, arg3, arg4);
 	}
 
 	public Long addMtForwardShortMessageRequest(int arg0, SM_RP_DA arg1, SM_RP_OA arg2, SmsSignalInfo arg3,
 			boolean arg4, MAPExtensionContainer arg5) throws MAPException {
+		this.ra.getDefaultUsageParameters().incrementMessages(1L);
 		return this.wrappedDialog.addMtForwardShortMessageRequest(arg0, arg1, arg2, arg3, arg4, arg5);
 	}
 

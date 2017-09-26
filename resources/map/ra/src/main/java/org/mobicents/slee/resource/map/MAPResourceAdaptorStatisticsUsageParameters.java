@@ -23,8 +23,6 @@ package org.mobicents.slee.resource.map;
 
 public interface MAPResourceAdaptorStatisticsUsageParameters {
 
-    public void incrementCalls(long value);
     public void incrementMessages(long value);
-    public void incrementSeconds(long value);
 
 }
