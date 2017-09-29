@@ -35,9 +35,9 @@ import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
 
 
 /**
- * 
+ *
  * @author sergey vetyutnev
- * 
+ *
  */
 public class CAPServiceCircuitSwitchedCallWrapper implements CAPServiceCircuitSwitchedCall {
 
@@ -77,6 +77,7 @@ public class CAPServiceCircuitSwitchedCallWrapper implements CAPServiceCircuitSw
         CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capProviderWrapper.getRa(),capDialog.getLocalDialogId());
 
         CAPDialogCircuitSwitchedCallWrapper dw = new CAPDialogCircuitSwitchedCallWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
+        capProviderWrapper.getRa().storeCapDialogWrapper(dw);
         capDialog.setUserObject(dw);
 
         try {
@@ -105,5 +106,5 @@ public class CAPServiceCircuitSwitchedCallWrapper implements CAPServiceCircuitSw
 	public void removeCAPServiceListener(CAPServiceCircuitSwitchedCallListener capServiceListener) {
 		throw new UnsupportedOperationException();
 	}
-	
+
 }

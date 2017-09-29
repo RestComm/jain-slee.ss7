@@ -52,6 +52,7 @@ public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog
 
     private boolean keepedTimeout;
     protected final Long dialogId;
+    private boolean changed=true;
 
     public void restoreTransientData(CAPResourceAdaptor ra) {
         this.ra=ra;
@@ -248,4 +249,11 @@ public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog
     }
 
 
+    public void setChanged(boolean changed) {
+        this.changed = changed;
+    }
+
+    public boolean getChanged() {
+        return changed;
+    }
 }

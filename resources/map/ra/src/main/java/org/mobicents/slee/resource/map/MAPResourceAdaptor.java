@@ -277,6 +277,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.management.ManagementFactory;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
@@ -304,7 +305,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 	private Tracer tracer;
 	private transient SleeEndpoint sleeEndpoint = null;
 
-	private ResourceAdaptorContext resourceAdaptorContext;
+	public ResourceAdaptorContext resourceAdaptorContext;
+	public FaultTolerantResourceAdaptorContext<Long,byte[]> ftResourceAdaptorContext;
 
 	private EventIDCache eventIdCache = null;
 
@@ -323,8 +325,9 @@ public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 	private String mapJndi = null;
 	private transient static final Address address = new Address(AddressPlan.IP, "localhost");
 
-	private FaultTolerantResourceAdaptorContext<Long,byte[]> ftResourceAdaptorContext;
+
 	private ReplicatedData<Long, byte[]> replicateData;
+	private final ConcurrentHashMap<Long,MAPDialogWrapper> localData=new ConcurrentHashMap<>();
 
 
 	public MAPResourceAdaptor() {
@@ -439,6 +442,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 		final MAPDialogWrapper mapDialog = handle.getActivity();
 		if (mapDialog == null || mapDialog.getWrappedDialog() == null
 				|| mapDialog.getState() == MAPDialogState.EXPUNGED) {
+			if(tracer.isFinestEnabled())
+				tracer.finest("ending activity due to queryLiveness test "+((MAPDialogActivityHandle) activityHandle).getDialogId());
 			sleeEndpoint.endActivity(handle);
 		}
 	}
@@ -710,7 +715,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 
 	private MAPDialogActivityHandle onEvent(String eventName, MAPDialogWrapper dw, MAPEvent event, int flags) {
 		if (dw == null) {
-			this.tracer.severe(String.format("Firing %s but MAPDialogWrapper userObject is null", eventName));
+			this.tracer.severe(String.format("Firing %s but MAPDialogWrapper is null", eventName));
 			return null;
 		}
 
@@ -878,14 +883,20 @@ public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 	 * {@inheritDoc}
 	 */
 	public void onDialogRelease(MAPDialog mapDialog) {
+		if(tracer.isFineEnabled())
+			tracer.fine("onDialogRelease: "+mapDialog.getLocalDialogId());
 		try {
-
-			MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(mapDialog.getLocalDialogId());
+			Long dlgId=mapDialog.getLocalDialogId();
+			MAPDialogWrapper mapDialogWrapper = retrieveMapDialogWrapper(dlgId);
 			DialogRelease dialogRelease = new DialogRelease(mapDialogWrapper);
 			MAPDialogActivityHandle handle = onEvent(dialogRelease.getEventTypeName(), mapDialogWrapper, dialogRelease);
-
 			// End Activity
+			if(handle!=null)
 			this.sleeEndpoint.endActivity(handle);
+			else
+				tracer.warning("Failed to release dialog - dialog does not exist "+mapDialog.getLocalDialogId());
+			replicateData.remove(dlgId);
+			localData.remove(dlgId);
 		} catch (Exception e) {
 			this.tracer.severe(String.format(
 					"onDialogRelease : Exception while trying to end activity for MAPDialog=%s", mapDialog), e);
@@ -1658,13 +1669,20 @@ public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 	public void dataRemoved(Long key) {
 		if(tracer.isTraceable(TraceLevel.FINE))
 			tracer.fine("Cache reports MAPDialogWrapper removed "+key);
+		MAPDialogWrapper dw=localData.remove(key);
+		if(dw!=null)
+			dw.release();
 	}
 	public void storeMapDialogWrapper(MAPDialogWrapper w) {
+		if(!w.getChanged())
+			return;
 		try {
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			ObjectOutputStream dos = new ObjectOutputStream(bos);
 			dos.writeObject(w);
+			localData.put(w.getLocalDialogId(), w);
 			replicateData.put(w.getLocalDialogId(), bos.toByteArray());
+			w.setChanged(false);
 		} catch(Exception e) {
 			tracer.severe("Failed to serialize "+w,e);
 			throw new RuntimeException("Serialization failure",e);
@@ -1672,8 +1690,10 @@ public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 	}
 
 	private MAPDialogWrapper retrieveMapDialogWrapper(Long dialogId) {
+		MAPDialogWrapper wrapper=localData.get(dialogId);
+		if(wrapper!=null)
+			return wrapper;
 		byte b[]=replicateData.get(dialogId);
-		MAPDialogWrapper wrapper=null;
 		if(b!=null) {
 			try {
 				ObjectInputStream bis = new ObjectInputStream(new ByteArrayInputStream(b));
@@ -1682,9 +1702,13 @@ public class MAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 				tracer.severe("Failed to deserialize dialog "+dialogId,e);
 			}
 		}
-		if(wrapper==null)
+		if(wrapper==null) {
+			if(tracer.isInfoEnabled())
+				tracer.info("Failed to retrieve dialog id : "+dialogId,new IllegalStateException());
 			return null;
+		}
 		wrapper.restoreTransientData(this);
+		localData.put(dialogId,wrapper);
 		return wrapper;
 	}
 

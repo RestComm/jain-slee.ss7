@@ -261,12 +261,12 @@ public class CAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
     private String capJndi = null;
     private transient static final Address address = new Address(AddressPlan.IP, "localhost");
     private ReplicatedData<Long, byte[]> replicateData;
-    private ConcurrentHashMap<Long, CAPDialogWrapper> dataMap;
+    private ConcurrentHashMap<Long, CAPDialogWrapper> localData;
 
     public CAPResourceAdaptor() {
         this.marshaler=new CapMarshaler(this);
         this.capProvider = new CAPProviderWrapper(this);
-        this.dataMap=new ConcurrentHashMap<Long, CAPDialogWrapper>();
+        this.localData=new ConcurrentHashMap<Long, CAPDialogWrapper>();
     }
 
     // ////////////////
@@ -284,6 +284,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
             dw.clear();
         }
         replicateData.remove(mdah.getDialogId());
+        localData.remove(((CAPDialogActivityHandle) activityHandle).getDialogId());
     }
 
     public void activityUnreferenced(ActivityHandle arg0) {
@@ -1229,14 +1230,22 @@ public class CAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
     public void dataRemoved(Long key) {
         if(tracer.isTraceable(TraceLevel.FINE))
             tracer.fine("Cache reports CAPDialogWrapper removed "+key);
+        CAPDialogWrapper dw=localData.remove(key);
+        if(dw!=null)
+            dw.release();
+
     }
 
-    private void storeCapDialogWrapper(CAPDialogWrapper w) {
+    public void storeCapDialogWrapper(CAPDialogWrapper w) {
+        if(!w.getChanged())
+            return;
         try {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             ObjectOutputStream dos = new ObjectOutputStream(bos);
             dos.writeObject(w);
             replicateData.put(w.getLocalDialogId(), bos.toByteArray());
+            localData.put(w.getLocalDialogId(),w);
+            w.setChanged(false);
         } catch(Exception e) {
             tracer.severe("Failed to serialize "+w,e);
             throw new RuntimeException("Serialization failure",e);
@@ -1245,8 +1254,12 @@ public class CAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
 
 
     private CAPDialogWrapper retrieveCapDialogWrapper(Long dialogId) {
+        CAPDialogWrapper wrapper=localData.get(dialogId);
+        if(wrapper!=null)
+            return wrapper;
+
         byte b[]=replicateData.get(dialogId);
-        CAPDialogWrapper wrapper=null;
+
         if(b!=null) {
             try {
                 ObjectInputStream bis = new ObjectInputStream(new ByteArrayInputStream(b));
@@ -1258,6 +1271,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, FaultTolerantResourc
         if(wrapper==null)
             return null;
         wrapper.restoreTransientData(this);
+        localData.put(dialogId,wrapper);
         return wrapper;
     }
 

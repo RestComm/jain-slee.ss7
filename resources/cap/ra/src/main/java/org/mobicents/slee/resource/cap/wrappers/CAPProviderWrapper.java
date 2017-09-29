@@ -43,9 +43,9 @@ import org.mobicents.slee.resource.cap.service.sms.wrappers.CAPServiceSmsWrapper
 
 
 /**
- * 
+ *
  * @author sergey vetyutnev
- * 
+ *
  */
 public class CAPProviderWrapper implements CAPProvider {
 
@@ -53,7 +53,7 @@ public class CAPProviderWrapper implements CAPProvider {
 	// Wrappers for CAP specifics //
 	// //////////////////////////////
 	private CAPProvider wrappedProvider;
-	
+
 	private CAPServiceCircuitSwitchedCallWrapper wrappedCAPServiceCircuitSwitchedCall;
 	private CAPServiceGprsWrapper wrappedCAPServiceGprs;
 	private CAPServiceSmsWrapper wrappedCAPServiceSms;
@@ -116,7 +116,7 @@ public class CAPProviderWrapper implements CAPProvider {
 		if (this.wrappedProvider == null) {
 			throw new IllegalStateException("RA is has not been activated.");
 		}
-		return (CAPDialogWrapper)wrappedProvider.getCAPDialog(dialogId).getUserObject();
+		return ra.getWrappedDialog(dialogId);
 	}
 
 	public CAPServiceCircuitSwitchedCall getCAPServiceCircuitSwitchedCall() {

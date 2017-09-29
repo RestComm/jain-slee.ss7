@@ -34,9 +34,9 @@ import org.mobicents.slee.resource.cap.CAPDialogActivityHandle;
 import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
 
 /**
- * 
+ *
  * @author sergey vetyutnev
- * 
+ *
  */
 public class CAPServiceSmsWrapper implements CAPServiceSms {
 
@@ -74,7 +74,7 @@ public class CAPServiceSmsWrapper implements CAPServiceSms {
         CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capProviderWrapper.getRa(),capDialog.getLocalDialogId());
 
         CAPDialogSmsWrapper dw = new CAPDialogSmsWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
-        capDialog.setUserObject(dw);
+        capProviderWrapper.getRa().storeCapDialogWrapper(dw);
 
         try {
             this.capProviderWrapper.getRa().startSuspendedActivity(dw);

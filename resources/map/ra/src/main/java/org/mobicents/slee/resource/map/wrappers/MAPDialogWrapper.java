@@ -273,4 +273,13 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
 		this.ra=mapResourceAdaptor;
 		this.activityHandle=new MAPDialogActivityHandle(ra,dialogId);
     }
+
+	private boolean dataChanged=true;
+    public boolean getChanged() {
+    	return dataChanged;
+	}
+
+	public void setChanged(boolean b) {
+    	dataChanged=b;
+	}
 }

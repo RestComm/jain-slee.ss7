@@ -35,9 +35,9 @@ import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
 
 
 /**
- * 
+ *
  * @author sergey vetyutnev
- * 
+ *
  */
 public class CAPServiceGprsWrapper implements CAPServiceGprs {
 
@@ -74,7 +74,7 @@ public class CAPServiceGprsWrapper implements CAPServiceGprs {
         CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capProviderWrapper.getRa(),capDialog.getLocalDialogId());
 
         CAPDialogGprsWrapper dw = new CAPDialogGprsWrapper(capDialog, activityHandle, this.capProviderWrapper.getRa());
-        capDialog.setUserObject(dw);
+        capProviderWrapper.getRa().storeCapDialogWrapper(dw);
 
         try {
             this.capProviderWrapper.getRa().startSuspendedActivity(dw);
