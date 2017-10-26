@@ -121,7 +121,7 @@ public abstract class Ss7TestSbb implements Sbb {
 	}
 
 	public void onProcessUnstructuredSSRequest(ProcessUnstructuredSSRequest evt, ActivityContextInterface aci) {
-        this.logger.info(String.format("Received PROCESS_UNSTRUCTURED_SS_REQUEST_INDICATION=%s", evt));
+        this.logger.info(String.format("Received PROCESS_UNSTRUCTURED_SS_REQUEST_INDICATION=%s networkID=%s", evt, evt.getMAPDialog().getNetworkId()));
 
         this.setProcessUnstructuredSSRequestInvokeId(evt.getInvokeId());
 	}
