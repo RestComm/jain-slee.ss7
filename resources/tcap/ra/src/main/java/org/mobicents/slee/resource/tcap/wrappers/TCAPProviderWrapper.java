@@ -32,6 +32,7 @@ import org.mobicents.protocols.ss7.tcap.api.TCAPException;
 import org.mobicents.protocols.ss7.tcap.api.TCAPProvider;
 import org.mobicents.protocols.ss7.tcap.api.TCListener;
 import org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog;
+import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.DraftParsedMessage;
 import org.mobicents.slee.resource.tcap.TCAPDialogActivityHandle;
 import org.mobicents.slee.resource.tcap.TCAPResourceAdaptor;
 
@@ -215,6 +216,11 @@ public class TCAPProviderWrapper implements TCAPProvider {
     @Override
     public int getCurrentDialogsCount() {
         return wrappedProvider.getCurrentDialogsCount();
+    }
+
+    @Override
+    public DraftParsedMessage parseMessageDraft(byte[] data) {
+        return wrappedProvider.parseMessageDraft(data);
     }
 
 }

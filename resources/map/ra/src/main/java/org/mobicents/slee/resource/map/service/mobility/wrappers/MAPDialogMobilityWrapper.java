@@ -167,6 +167,13 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	}
 
     @Override
+    public void addSendAuthenticationInfoResponse_NonLast(long invokeId, AuthenticationSetList authenticationSetList,
+            MAPExtensionContainer extensionContainer, EpsAuthenticationSetList epsAuthenticationSetList) throws MAPException {
+        this.wrappedDialog.addSendAuthenticationInfoResponse_NonLast(invokeId, authenticationSetList, extensionContainer,
+                epsAuthenticationSetList);
+    }
+
+    @Override
     public Long addAuthenticationFailureReportRequest(IMSI imsi, FailureCause failureCause, MAPExtensionContainer extensionContainer, Boolean reAttempt,
             AccessType accessType, byte[] rand, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber) throws MAPException {
         return this.wrappedDialog.addAuthenticationFailureReportRequest(imsi, failureCause, extensionContainer, reAttempt, accessType, rand, vlrNumber,
@@ -204,8 +211,14 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	@Override
 	public void addAnyTimeInterrogationResponse(long invokeId, SubscriberInfo subscriberInfo,
 			MAPExtensionContainer extensionContainer) throws MAPException {
-		this.addAnyTimeInterrogationResponse(invokeId, subscriberInfo, extensionContainer);
+		this.wrappedDialog.addAnyTimeInterrogationResponse(invokeId, subscriberInfo, extensionContainer);
 	}
+
+    @Override
+    public void addAnyTimeInterrogationResponse_NonLast(long invokeId, SubscriberInfo subscriberInfo,
+            MAPExtensionContainer extensionContainer) throws MAPException {
+        this.wrappedDialog.addAnyTimeInterrogationResponse_NonLast(invokeId, subscriberInfo, extensionContainer);
+    }
 
 	@Override
 	public Long addUpdateLocationRequest(IMSI imsi, ISDNAddressString mscNumber, ISDNAddressString roamingNumber,
@@ -395,6 +408,13 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
 	}
 
     @Override
+    public void addSendIdentificationResponse_NonLast(long invokeId, IMSI imsi, AuthenticationSetList authenticationSetList,
+            CurrentSecurityContext currentSecurityContext, MAPExtensionContainer extensionContainer) throws MAPException {
+        this.wrappedDialog.addSendIdentificationResponse_NonLast(invokeId, imsi, authenticationSetList, currentSecurityContext,
+                extensionContainer);
+    }
+
+    @Override
     public Long addPurgeMSRequest(int customInvokeTimeout, IMSI imsi, ISDNAddressString vlrNumber, ISDNAddressString sgsnNumber,
             MAPExtensionContainer extensionContainer) throws MAPException {
         return this.wrappedDialog.addPurgeMSRequest(customInvokeTimeout, imsi, vlrNumber, sgsnNumber, extensionContainer);
@@ -498,6 +518,12 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
     }
 
     @Override
+    public void addProvideSubscriberInfoResponse_NonLast(long invokeId, SubscriberInfo subscriberInfo,
+            MAPExtensionContainer extensionContainer) throws MAPException {
+        this.wrappedDialog.addProvideSubscriberInfoResponse_NonLast(invokeId, subscriberInfo, extensionContainer);
+    }
+
+    @Override
     public Long addDeleteSubscriberDataRequest(IMSI imsi, ArrayList<ExtBasicServiceCode> basicServiceList, ArrayList<SSCode> ssList,
             boolean roamingRestrictionDueToUnsupportedFeature, ZoneCode regionalSubscriptionIdentifier, boolean vbsGroupIndication,
             boolean vgcsGroupIndication, boolean camelSubscriptionInfoWithdraw, MAPExtensionContainer extensionContainer,
@@ -582,6 +608,20 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
             ClipData clipData, ClirData clirData, EctData ectData) throws MAPException {
         this.wrappedDialog.addAnyTimeSubscriptionInterrogationResponse(invokeId, callForwardingData, callBarringData, odbInfo,
                 camelSubscriptionInfo, supportedVlrCamelPhases, supportedSgsnCamelPhases, extensionContainer,
+                offeredCamel4CSIsInVlr, offeredCamel4CSIsInSgsn, msisdnBsList, csgSubscriptionDataList, callWaitingData,
+                callHoldData, clipData, clirData, ectData);
+    }
+
+    @Override
+    public void addAnyTimeSubscriptionInterrogationResponse_NonLast(long invokeId, CallForwardingData callForwardingData,
+            CallBarringData callBarringData, ODBInfo odbInfo, CAMELSubscriptionInfo camelSubscriptionInfo,
+            SupportedCamelPhases supportedVlrCamelPhases, SupportedCamelPhases supportedSgsnCamelPhases,
+            MAPExtensionContainer extensionContainer, OfferedCamel4CSIs offeredCamel4CSIsInVlr,
+            OfferedCamel4CSIs offeredCamel4CSIsInSgsn, ArrayList<MSISDNBS> msisdnBsList,
+            ArrayList<CSGSubscriptionData> csgSubscriptionDataList, CallWaitingData callWaitingData, CallHoldData callHoldData,
+            ClipData clipData, ClirData clirData, EctData ectData) throws MAPException {
+        this.wrappedDialog.addAnyTimeSubscriptionInterrogationResponse_NonLast(invokeId, callForwardingData, callBarringData,
+                odbInfo, camelSubscriptionInfo, supportedVlrCamelPhases, supportedSgsnCamelPhases, extensionContainer,
                 offeredCamel4CSIsInVlr, offeredCamel4CSIsInSgsn, msisdnBsList, csgSubscriptionDataList, callWaitingData,
                 callHoldData, clipData, clirData, ectData);
     }

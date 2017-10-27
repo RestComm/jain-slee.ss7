@@ -187,6 +187,23 @@ public class MAPDialogCallHandlingWrapper extends MAPDialogWrapper<MAPDialogCall
     }
 
     @Override
+    public void addSendRoutingInformationResponse_NonLast(long invokeId, IMSI imsi, ExtendedRoutingInfo extRoutingInfo,
+            CUGCheckInfo cugCheckInfo, boolean cugSubscriptionFlag, SubscriberInfo subscriberInfo, ArrayList<SSCode> ssList,
+            ExtBasicServiceCode basicService, boolean forwardingInterrogationRequired, ISDNAddressString vmscAddress,
+            MAPExtensionContainer extensionContainer, NAEAPreferredCI naeaPreferredCI, CCBSIndicators ccbsIndicators,
+            ISDNAddressString msisdn, NumberPortabilityStatus nrPortabilityStatus, Integer istAlertTimer,
+            SupportedCamelPhases supportedCamelPhases, OfferedCamel4CSIs offeredCamel4CSIs, RoutingInfo routingInfo2,
+            ArrayList<SSCode> ssList2, ExtBasicServiceCode basicService2, AllowedServices allowedServices,
+            UnavailabilityCause unavailabilityCause, boolean releaseResourcesSupported, ExternalSignalInfo gsmBearerCapability)
+            throws MAPException {
+        this.wrappedDialog.addSendRoutingInformationResponse_NonLast(invokeId, imsi, extRoutingInfo, cugCheckInfo,
+                cugSubscriptionFlag, subscriberInfo, ssList, basicService, forwardingInterrogationRequired, vmscAddress,
+                extensionContainer, naeaPreferredCI, ccbsIndicators, msisdn, nrPortabilityStatus, istAlertTimer,
+                supportedCamelPhases, offeredCamel4CSIs, routingInfo2, ssList2, basicService2, allowedServices,
+                unavailabilityCause, releaseResourcesSupported, gsmBearerCapability);
+    }
+
+    @Override
     public void addSendRoutingInformationResponse(long invokeId, IMSI imsi, CUGCheckInfo cugCheckInfo, RoutingInfo routingInfo2)
             throws MAPException {
         this.wrappedDialog.addSendRoutingInformationResponse(invokeId, imsi, cugCheckInfo, routingInfo2);

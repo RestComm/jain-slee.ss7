@@ -173,6 +173,11 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 		this.wrappedDialog.setRemoteAddress(address);
 	}
 
+    @Override
+    public int getLocalSsn() {
+        return this.wrappedDialog.getLocalSsn();
+    }
+
 	/*
 	 * (non-Javadoc)
 	 * 
