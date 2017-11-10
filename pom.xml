@@ -28,7 +28,7 @@
 	</modules>
 
 	<properties>
-		<ss7.version>7.4.0-50</ss7.version>
+		<ss7.version>7.4.0-65</ss7.version>
 
 		<asn.version>2.2.0-22</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
