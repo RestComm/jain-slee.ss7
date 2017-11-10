@@ -60,7 +60,6 @@ import org.mobicents.protocols.ss7.map.api.dialog.MAPRefuseReason;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPUserAbortChoice;
 import org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessage;
 import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
 import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.IstCommandRequest;
 import org.mobicents.protocols.ss7.map.api.service.callhandling.IstCommandResponse;
@@ -592,6 +591,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		this.sleeEndpoint = raContext.getSleeEndpoint();
 
 		this.eventIdCache = new EventIDCache(this.tracer);
+
+        try {
+            this.defaultUsageParameters = (MAPResourceAdaptorStatisticsUsageParameters) raContext.getDefaultUsageParameterSet();
+
+            tracer.info("defaultUsageParameters: " + this.defaultUsageParameters);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 
 	public void unsetResourceAdaptorContext() {
