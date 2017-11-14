@@ -53,5 +53,41 @@
 			<config-property-type>java.lang.Integer</config-property-type>
 			<config-property-value>0</config-property-value>
 		</config-property>
+		
+		<!-- <config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.POINTCODE</config-property-name>
+            <config-property-type>java.lang.Integer</config-property-type>
+            <config-property-value></config-property-value>
+        </config-property>
+        <config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.SCTP_PORT</config-property-name>
+            <config-property-type>java.lang.Integer</config-property-type>
+            <config-property-value></config-property-value>
+        </config-property>
+        <config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.SCTP_LB_PORT</config-property-name>
+            <config-property-type>java.lang.Integer</config-property-type>
+            <config-property-value></config-property-value>
+        </config-property> -->
+		<config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.LOCAL_ADDRESS</config-property-name>
+            <config-property-type>java.lang.String</config-property-type>
+            <config-property-value></config-property-value>
+        </config-property>
+        <config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.BALANCERS</config-property-name>
+            <config-property-type>java.lang.String</config-property-type>
+            <config-property-value></config-property-value>
+        </config-property>
+        <config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.LoadBalancerHeartBeatingServiceClassName</config-property-name>
+            <config-property-type>java.lang.String</config-property-type>
+            <config-property-value>org.mobicents.slee.resource.map.heartbeat.MAPLoadBalancerHeartBeatingServiceImpl</config-property-value>
+        </config-property>
+        <config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.HEARTBEAT_INTERVAL</config-property-name>
+            <config-property-type>java.lang.Integer</config-property-type>
+            <config-property-value>5000</config-property-value>
+        </config-property>
 	</resource-adaptor>
 </resource-adaptor-jar>

@@ -1,3 +1,4 @@
 <dependency xmlns="urn:jboss:dependency:1.0">
 	<item whenRequired="Real" dependentState="Installed">org.mobicents.ss7:service=MAPSS7Service</item>
+	<item whenRequired="Real" dependentState="Installed" attribute="inet-address" required="true">jboss.as:interface=public</item>
 </dependency>

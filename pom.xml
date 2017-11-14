@@ -29,12 +29,13 @@
 
 	<properties>
 		<ss7.version>7.4.0-65</ss7.version>
-
+		<sctp.version>1.8.0-11</sctp.version>
 		<asn.version>2.2.0-22</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
 		<javolution.version>5.5.1</javolution.version>
 		<restcomm.slee.ext.version>7.0.70</restcomm.slee.ext.version>
-
+		<restcomm.load.balancer.version>10.1.228</restcomm.load.balancer.version>
+		
         <maven.du.plugin.jboss5.version>3.0.14</maven.du.plugin.jboss5.version>
         <maven.du.plugin.wildfly.version>4.0.2</maven.du.plugin.wildfly.version>
 	</properties>
