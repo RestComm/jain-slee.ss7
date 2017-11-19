@@ -9,7 +9,7 @@
 
 	<groupId>org.mobicents.servers.jainslee.ss7</groupId>
 	<artifactId>restcomm-slee-ss7</artifactId>
-	<version>8.0.0-SNAPSHOT</version>
+	<version>8.1.0-64</version>
 
 	<packaging>pom</packaging>
 
@@ -27,7 +27,7 @@
 	</modules>
 
 	<properties>
-		<ss7.version>8.0.73</ss7.version>
+		<ss7.version></ss7.version>
 		<maven.du.plugin.version>4.0.2</maven.du.plugin.version>
 
 		<asn.version>2.1.5</asn.version>
