@@ -50,6 +50,12 @@
     		 <version>${sctp.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+    		<groupId>jboss</groupId>
+    		<artifactId>jboss-jmx</artifactId>
+    		<version>4.2.2.GA</version>
+    		<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 </project>
