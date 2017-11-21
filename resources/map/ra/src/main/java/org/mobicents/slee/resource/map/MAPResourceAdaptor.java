@@ -24,8 +24,11 @@ package org.mobicents.slee.resource.map;
 
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceNotFoundException;
+import javax.management.IntrospectionException;
 import javax.management.MBeanException;
+import javax.management.MBeanInfo;
 import javax.management.MBeanServer;
+import javax.management.ObjectInstance;
 import javax.management.ObjectName;
 import javax.management.ReflectionException;
 import javax.naming.InitialContext;
@@ -449,8 +452,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 		try {
 			ObjectName objectName = new ObjectName("org.mobicents.ss7:service=MAPSS7Service");
-			Object object = fetchFromMBeanServer(objectName);
-			if(object == null) {
+			Object object = fetchMBeanAttributeFromPlatformMBean(objectName, "Stack");
+			if (object == null) {
 				// trying to get via Jndi
 				InitialContext ic = new InitialContext();
 				object = ic.lookup(this.mapJndi);
@@ -672,7 +675,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		String pointCode = null;
 		try {
 			ObjectName objectName = new ObjectName("org.mobicents.ss7:layer=SCCP,type=Management,name=SccpStack");
-			Router router = (Router) fetchFromMBeanServer(objectName, "Router");
+			Router router = (Router) fetchMBeanAttribute(objectName, "Router");
 			if (router != null && router.getMtp3ServiceAccessPoints() != null) {
 				Map<Integer, Mtp3ServiceAccessPoint> mtp3ServiceAccessPoints = router.getMtp3ServiceAccessPoints();
 				if (mtp3ServiceAccessPoints != null && mtp3ServiceAccessPoints.size() == 1) {
@@ -700,7 +703,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		String sctpLbPort = null;
 		try {
 			ObjectName objectName = new ObjectName("org.mobicents.ss7:layer=SCTP,type=Management,name=SCTPManagement");
-			Map<String, Association> associations = (Map<String, Association>) fetchFromMBeanServer(objectName, "Associations");
+			Map<String, Association> associations = (Map<String, Association>) fetchMBeanAttribute(objectName, "Associations");
 			if (associations != null && associations.size() == 1) {
 				int peerPort = associations.entrySet().iterator().next().getValue().getPeerPort();
 				sctpLbPort = String.valueOf(peerPort);
@@ -725,7 +728,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		String sctpPort = null;
 		try {
 			ObjectName objectName = new ObjectName("org.mobicents.ss7:layer=SCTP,type=Management,name=SCTPManagement");
-			List<Server> servers = (List<Server>) fetchFromMBeanServer(objectName, "Servers");
+			List<Server> servers = (List<Server>) fetchMBeanAttribute(objectName, "Servers");
 			if (servers != null && servers.size() == 1) {
 				int hostPort = servers.get(0).getHostport();
 				sctpPort = String.valueOf(hostPort);
@@ -1928,39 +1931,29 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		return System.getProperty("jboss.bind.address");
 	}
 
-	private Object fetchFromMBeanServer(ObjectName objectName, String attribute) throws InstanceNotFoundException, AttributeNotFoundException, ReflectionException, MBeanException {
-		Object object = null;
-		if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
-			// trying to get via MBeanServer
-			object = ManagementFactory.getPlatformMBeanServer().getAttribute(objectName, attribute);
-			if (tracer.isInfoEnabled()) {
-				tracer.info("Trying to get via Platform MBeanServer: " + objectName + ", object: " + object);
-			}
-		} else {
-			// trying to get via locateJBoss
-			object = MBeanServerLocator.locateJBoss().getAttribute(objectName, attribute);
-			if (tracer.isInfoEnabled()) {
-				tracer.info("Trying to get via JBoss MBeanServer: " + objectName + ", object: " + object);
-			}
-		}
-		return object;
+	private Object fetchMBeanAttribute(ObjectName mBeanName, String attributeName) throws InstanceNotFoundException, AttributeNotFoundException, ReflectionException, MBeanException {
+		
+		Object attributeValue = fetchMBeanAttributeFromPlatformMBean(mBeanName, attributeName);
+		return attributeValue != null ? attributeValue : fetchMBeanAttributeFromMBeanServerLocator(mBeanName, attributeName);
 	}
 	
-	private Object fetchFromMBeanServer(ObjectName objectName) throws InstanceNotFoundException {
-		Object object = null;
-		if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
+	private Object fetchMBeanAttributeFromPlatformMBean(ObjectName mBeanName, String attributeName) throws InstanceNotFoundException, AttributeNotFoundException, ReflectionException, MBeanException {
+		Object attributeValue = null;
+		if (ManagementFactory.getPlatformMBeanServer().isRegistered(mBeanName)) {
 			// trying to get via MBeanServer
-			object = ManagementFactory.getPlatformMBeanServer().getObjectInstance(objectName);
+			attributeValue = ManagementFactory.getPlatformMBeanServer().getAttribute(mBeanName, attributeName);
 			if (tracer.isInfoEnabled()) {
-				tracer.info("Trying to get via Platform MBeanServer: " + objectName + ", object: " + object);
-			}
-		} else {
-			// trying to get via locateJBoss
-			object = MBeanServerLocator.locateJBoss().getObjectInstance(objectName);
-			if (tracer.isInfoEnabled()) {
-				tracer.info("Trying to get via JBoss MBeanServer: " + objectName + ", object: " + object);
+				tracer.info("Trying to get via Platform MBeanServer: " + mBeanName + ", object: " + attributeValue);
 			}
 		}
-		return object;
+		return attributeValue;
+	}
+	
+	private Object fetchMBeanAttributeFromMBeanServerLocator(ObjectName mBeanName, String attributeName) throws InstanceNotFoundException, AttributeNotFoundException, ReflectionException, MBeanException {
+		Object attributeValue = MBeanServerLocator.locateJBoss().getAttribute(mBeanName, attributeName);
+		if (tracer.isInfoEnabled()) {
+			tracer.info("Trying to get via JBoss MBeanServer: " + mBeanName + ", object: " + attributeValue);
+		}
+		return attributeValue;
 	}
 }
