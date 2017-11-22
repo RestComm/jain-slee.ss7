@@ -664,7 +664,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	private String preparePointcodeProperty(ConfigProperties configProperties) throws InvalidConfigurationException {
-		String propertyFromConfig = readPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE,
+		String propertyFromConfig = readIntPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE,
 				configProperties);
 		String propertyFromMBean = fetchPointcodeFromMBean();
 		return validateAndReturnPropertyValue(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE, propertyFromMBean,
@@ -691,7 +691,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	private String prepareSctpLBPortProperty(ConfigProperties configProperties) throws InvalidConfigurationException {
-		String propertyFromConfig = readPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT,
+		String propertyFromConfig = readIntPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT,
 				configProperties);
 		String propertyFromMBean = fetchSctpLBPortFromMBean();
 		return validateAndReturnPropertyValue(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT, propertyFromMBean,
@@ -716,7 +716,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	private String prepareSctpPortProperty(ConfigProperties configProperties) throws InvalidConfigurationException {
-		String propertyFromConfig = readPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT,
+		String propertyFromConfig = readIntPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT,
 				configProperties);
 		String propertyFromMBean = fetchSctpPortFromMBean();
 		return validateAndReturnPropertyValue(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT, propertyFromMBean,
@@ -754,11 +754,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		return localHttpAddress;
 	}
 
-	private String readPropertyFromConfigAsString(String propertyName, ConfigProperties configProperties) {
+	private String readIntPropertyFromConfigAsString(String propertyName, ConfigProperties configProperties) {
 		String property = null;
 		ConfigProperties.Property configProperty = configProperties.getProperty(propertyName);
 		if (configProperty != null && configProperty.getValue() != null) {
-			property = configProperty.getValue().toString();
+			Integer propertyValue = (Integer) configProperty.getValue();
+			if(propertyValue < 1) {
+				property = null;
+			}
 		}
 		return property;
 	}
