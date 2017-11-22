@@ -796,7 +796,6 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 				sctpPort = String.valueOf(hostPort);
 			}
 		} catch (Throwable e) {
-			e.printStackTrace();
 			tracer.warning(
 					"Failed to read " + MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT + " property from MBean");
 		}
