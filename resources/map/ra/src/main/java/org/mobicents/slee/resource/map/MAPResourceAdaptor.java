@@ -496,8 +496,10 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 			this.mapProvider.setWrappedProvider(this.realProvider);
 
-			this.loadBalancerHeartBeatingService = initHeartBeatingService();
-			this.loadBalancerHeartBeatingService.start();
+			if (loadBalancerHeartBeatingServiceProperties != null) {
+				this.loadBalancerHeartBeatingService = initHeartBeatingService();
+				this.loadBalancerHeartBeatingService.start();
+			}
 		} catch (Exception e) {
 			this.tracer.severe("Failed to activate MAP RA ", e);
 		}
@@ -644,31 +646,88 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	private Properties prepareHeartBeatingServiceProperties(ConfigProperties configProperties)
 			throws InvalidConfigurationException {
-		Properties properties = new Properties();
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE,
-				preparePointcodeProperty(configProperties));
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT,
-				prepareSctpLBPortProperty(configProperties));
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT,
-				prepareSctpPortProperty(configProperties));
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.LOCAL_ADDRESS,
-				prepareLocalHttpAddressProperty(configProperties));
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.BALANCERS,
-				(String) configProperties.getProperty(MAPLoadBalancerHeartBeatingServiceImpl.BALANCERS).getValue());
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL, (String) configProperties
-				.getProperty(MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL).getValue().toString());
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME,
-				(String) configProperties.getProperty(MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME)
-						.getValue());
+
+		String balancers = prepareBalancersProperty(configProperties);
+		String pointcode = preparePointcodeProperty(configProperties);
+		String sctpLbPort = prepareSctpLBPortProperty(configProperties);
+		String sctpPort = prepareSctpPortProperty(configProperties);
+		String localAddress = prepareLocalHttpAddressProperty(configProperties);
+		String heartbeatInterval = readIntPropertyFromConfigAsString(
+				MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL, configProperties);
+		String lbHeartbeatServiceClassName = readStringPropertyFromConfig(
+				MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME, configProperties);
+
+		if (balancers != null) {
+
+			if (pointcode == null || sctpLbPort == null || sctpPort == null || localAddress == null
+					|| heartbeatInterval == null || lbHeartbeatServiceClassName == null) {
+				StringBuilder sb = new StringBuilder();
+				sb.append("Invalid loadbalancer configuration. One of required properties if missing. ");
+				sb.append("Required properties:\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE).append("\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT).append("\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT).append("\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.LOCAL_ADDRESS).append("\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL).append("\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME).append("\n");
+				sb.append("Missing properties:").append("\n");
+				if (pointcode == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE).append("\n");
+				if (sctpLbPort == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT).append("\n");
+				if (sctpPort == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT).append("\n");
+				if (localAddress == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.LOCAL_ADDRESS).append("\n");
+				if (heartbeatInterval == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL).append("\n");
+				if (lbHeartbeatServiceClassName == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME).append("\n");
+
+				throw new InvalidConfigurationException(sb.toString());
+			}
+		} else {
+			balancers = "";
+		}
+
+		Properties properties = null;
+		if (pointcode != null && sctpLbPort != null && sctpPort != null && localAddress != null
+				&& heartbeatInterval != null && lbHeartbeatServiceClassName != null) {
+
+			properties = new Properties();
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.BALANCERS, balancers);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE, pointcode);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT, sctpLbPort);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT, sctpPort);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.LOCAL_ADDRESS, localAddress);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL, heartbeatInterval);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME,
+					lbHeartbeatServiceClassName);
+		}
+
 		return properties;
 	}
 
+	private String prepareBalancersProperty(ConfigProperties configProperties) {
+		String balancers = null;
+		ConfigProperties.Property balancersProperty = configProperties
+				.getProperty(MAPLoadBalancerHeartBeatingServiceImpl.BALANCERS);
+		if (balancersProperty != null && balancersProperty.getValue() != null) {
+			balancers = (String) balancersProperty.getValue();
+			if (balancers.isEmpty()) {
+				balancers = null;
+			}
+		}
+		return balancers;
+	}
+
 	private String preparePointcodeProperty(ConfigProperties configProperties) throws InvalidConfigurationException {
-		String propertyFromConfig = readIntPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE,
-				configProperties);
-		String propertyFromMBean = fetchPointcodeFromMBean();
-		return validateAndReturnPropertyValue(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE, propertyFromMBean,
-				propertyFromConfig);
+		String propertyValue = fetchPointcodeFromMBean();
+		if (propertyValue == null) {
+			propertyValue = readIntPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE,
+					configProperties);
+		}
+		return propertyValue;
 	}
 
 	private String fetchPointcodeFromMBean() {
@@ -691,11 +750,12 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	private String prepareSctpLBPortProperty(ConfigProperties configProperties) throws InvalidConfigurationException {
-		String propertyFromConfig = readIntPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT,
-				configProperties);
-		String propertyFromMBean = fetchSctpLBPortFromMBean();
-		return validateAndReturnPropertyValue(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT, propertyFromMBean,
-				propertyFromConfig);
+		String propertyValue = fetchSctpLBPortFromMBean();
+		if (propertyValue == null) {
+			propertyValue = readIntPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT,
+					configProperties);
+		}
+		return propertyValue;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -703,7 +763,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		String sctpLbPort = null;
 		try {
 			ObjectName objectName = new ObjectName("org.mobicents.ss7:layer=SCTP,type=Management,name=SCTPManagement");
-			Map<String, Association> associations = (Map<String, Association>) fetchMBeanAttribute(objectName, "Associations");
+			Map<String, Association> associations = (Map<String, Association>) fetchMBeanAttribute(objectName,
+					"Associations");
 			if (associations != null && associations.size() == 1) {
 				int peerPort = associations.entrySet().iterator().next().getValue().getPeerPort();
 				sctpLbPort = String.valueOf(peerPort);
@@ -716,11 +777,12 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	}
 
 	private String prepareSctpPortProperty(ConfigProperties configProperties) throws InvalidConfigurationException {
-		String propertyFromConfig = readIntPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT,
-				configProperties);
-		String propertyFromMBean = fetchSctpPortFromMBean();
-		return validateAndReturnPropertyValue(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT, propertyFromMBean,
-				propertyFromConfig);
+		String propertyValue = fetchSctpPortFromMBean();
+		if (propertyValue == null) {
+			propertyValue = readIntPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT,
+					configProperties);
+		}
+		return propertyValue;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -759,18 +821,22 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		ConfigProperties.Property configProperty = configProperties.getProperty(propertyName);
 		if (configProperty != null && configProperty.getValue() != null) {
 			Integer propertyValue = (Integer) configProperty.getValue();
-			if(propertyValue < 1) {
-				property = null;
+			if (propertyValue > 0) {
+				property = String.valueOf(propertyValue);
 			}
 		}
 		return property;
 	}
 
-	private String validateAndReturnPropertyValue(String propertyName, String propertyFromMBean,
-			String propertyFromConfig) throws InvalidConfigurationException {
-		if (propertyFromMBean == null && propertyFromConfig == null)
-			throw new InvalidConfigurationException("Failed to read required property: " + propertyName);
-		return propertyFromMBean != null ? propertyFromMBean : propertyFromConfig;
+	private String readStringPropertyFromConfig(String propertyName, ConfigProperties configProperties) {
+		String property = null;
+		ConfigProperties.Property configProperty = configProperties.getProperty(propertyName);
+		if (configProperty != null && configProperty.getValue() != null) {
+			property = (String) configProperty.getValue();
+			if (property.isEmpty())
+				property = null;
+		}
+		return property;
 	}
 
 	public void serviceActive(ReceivableService receivableService) {
@@ -1934,13 +2000,16 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		return System.getProperty("jboss.bind.address");
 	}
 
-	private Object fetchMBeanAttribute(ObjectName mBeanName, String attributeName) throws InstanceNotFoundException, AttributeNotFoundException, ReflectionException, MBeanException {
-		
+	private Object fetchMBeanAttribute(ObjectName mBeanName, String attributeName)
+			throws InstanceNotFoundException, AttributeNotFoundException, ReflectionException, MBeanException {
+
 		Object attributeValue = fetchMBeanAttributeFromPlatformMBean(mBeanName, attributeName);
-		return attributeValue != null ? attributeValue : fetchMBeanAttributeFromMBeanServerLocator(mBeanName, attributeName);
+		return attributeValue != null ? attributeValue
+				: fetchMBeanAttributeFromMBeanServerLocator(mBeanName, attributeName);
 	}
-	
-	private Object fetchMBeanAttributeFromPlatformMBean(ObjectName mBeanName, String attributeName) throws InstanceNotFoundException, AttributeNotFoundException, ReflectionException, MBeanException {
+
+	private Object fetchMBeanAttributeFromPlatformMBean(ObjectName mBeanName, String attributeName)
+			throws InstanceNotFoundException, AttributeNotFoundException, ReflectionException, MBeanException {
 		Object attributeValue = null;
 		if (ManagementFactory.getPlatformMBeanServer().isRegistered(mBeanName)) {
 			// trying to get via MBeanServer
@@ -1951,8 +2020,9 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		}
 		return attributeValue;
 	}
-	
-	private Object fetchMBeanAttributeFromMBeanServerLocator(ObjectName mBeanName, String attributeName) throws InstanceNotFoundException, AttributeNotFoundException, ReflectionException, MBeanException {
+
+	private Object fetchMBeanAttributeFromMBeanServerLocator(ObjectName mBeanName, String attributeName)
+			throws InstanceNotFoundException, AttributeNotFoundException, ReflectionException, MBeanException {
 		Object attributeValue = MBeanServerLocator.locateJBoss().getAttribute(mBeanName, attributeName);
 		if (tracer.isInfoEnabled()) {
 			tracer.info("Trying to get via JBoss MBeanServer: " + mBeanName + ", object: " + attributeValue);
