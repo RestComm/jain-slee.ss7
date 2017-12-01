@@ -54,21 +54,21 @@
 			<config-property-value>0</config-property-value>
 		</config-property>
 		
-		<!-- <config-property>
+		<config-property>
             <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.POINTCODE</config-property-name>
             <config-property-type>java.lang.Integer</config-property-type>
-            <config-property-value></config-property-value>
+            <config-property-value>-1</config-property-value>
         </config-property>
         <config-property>
             <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.SCTP_PORT</config-property-name>
             <config-property-type>java.lang.Integer</config-property-type>
-            <config-property-value></config-property-value>
+            <config-property-value>-1</config-property-value>
         </config-property>
         <config-property>
             <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.SCTP_LB_PORT</config-property-name>
             <config-property-type>java.lang.Integer</config-property-type>
-            <config-property-value></config-property-value>
-        </config-property> -->
+            <config-property-value>-1</config-property-value>
+        </config-property>
 		<config-property>
             <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.LOCAL_ADDRESS</config-property-name>
             <config-property-type>java.lang.String</config-property-type>

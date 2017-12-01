@@ -642,25 +642,81 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	private Properties prepareHeartBeatingServiceProperties(ConfigProperties configProperties)
 			throws InvalidConfigurationException {
-		Properties properties = new Properties();
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE,
-				preparePointcodeProperty(configProperties));
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT,
-				prepareSctpLBPortProperty(configProperties));
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT,
-				prepareSctpPortProperty(configProperties));
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.LOCAL_ADDRESS,
-				prepareLocalHttpAddressProperty(configProperties));
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.BALANCERS,
-				(String) configProperties.getProperty(MAPLoadBalancerHeartBeatingServiceImpl.BALANCERS).getValue());
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL, (String) configProperties
-				.getProperty(MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL).getValue().toString());
-		properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME,
-				(String) configProperties.getProperty(MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME)
-						.getValue());
+
+		String balancers = prepareBalancersProperty(configProperties);
+		String pointcode = preparePointcodeProperty(configProperties);
+		String sctpLbPort = prepareSctpLBPortProperty(configProperties);
+		String sctpPort = prepareSctpPortProperty(configProperties);
+		String localAddress = prepareLocalHttpAddressProperty(configProperties);
+		String heartbeatInterval = readIntPropertyFromConfigAsString(
+				MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL, configProperties);
+		String lbHeartbeatServiceClassName = readStringPropertyFromConfig(
+				MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME, configProperties);
+
+		if (balancers != null) {
+
+			if (pointcode == null || sctpLbPort == null || sctpPort == null || localAddress == null
+					|| heartbeatInterval == null || lbHeartbeatServiceClassName == null) {
+				StringBuilder sb = new StringBuilder();
+				sb.append("Invalid loadbalancer configuration. One of required properties if missing. ");
+				sb.append("Required properties:\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE).append("\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT).append("\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT).append("\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.LOCAL_ADDRESS).append("\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL).append("\n");
+				sb.append(MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME).append("\n");
+				sb.append("Missing properties:").append("\n");
+				if (pointcode == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE).append("\n");
+				if (sctpLbPort == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT).append("\n");
+				if (sctpPort == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT).append("\n");
+				if (localAddress == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.LOCAL_ADDRESS).append("\n");
+				if (heartbeatInterval == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL).append("\n");
+				if (lbHeartbeatServiceClassName == null)
+					sb.append(MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME).append("\n");
+
+				throw new InvalidConfigurationException(sb.toString());
+			}
+		} else {
+			balancers = "";
+		}
+
+		Properties properties = null;
+		if (pointcode != null && sctpLbPort != null && sctpPort != null && localAddress != null
+				&& heartbeatInterval != null && lbHeartbeatServiceClassName != null) {
+
+			properties = new Properties();
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.BALANCERS, balancers);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE, pointcode);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_LB_PORT, sctpLbPort);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.SCTP_PORT, sctpPort);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.LOCAL_ADDRESS, localAddress);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.HEARTBEAT_INTERVAL, heartbeatInterval);
+			properties.setProperty(MAPLoadBalancerHeartBeatingServiceImpl.LB_HB_SERVICE_CLASS_NAME,
+					lbHeartbeatServiceClassName);
+		}
+
 		return properties;
 	}
 
+	private String prepareBalancersProperty(ConfigProperties configProperties) {
+		String balancers = null;
+		ConfigProperties.Property balancersProperty = configProperties
+				.getProperty(MAPLoadBalancerHeartBeatingServiceImpl.BALANCERS);
+		if (balancersProperty != null && balancersProperty.getValue() != null) {
+			balancers = (String) balancersProperty.getValue();
+			if (balancers.isEmpty()) {
+				balancers = null;
+			}
+		}
+		return balancers;
+	}
+	
 	private String preparePointcodeProperty(ConfigProperties configProperties) throws InvalidConfigurationException {
 		String propertyFromConfig = readPropertyFromConfigAsString(MAPLoadBalancerHeartBeatingServiceImpl.POINTCODE,
 				configProperties);
@@ -765,6 +821,29 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		if (propertyFromMBean == null && propertyFromConfig == null)
 			throw new InvalidConfigurationException("Failed to read required property: " + propertyName);
 		return propertyFromMBean != null ? propertyFromMBean : propertyFromConfig;
+	}
+	
+	private String readIntPropertyFromConfigAsString(String propertyName, ConfigProperties configProperties) {
+		String property = null;
+		ConfigProperties.Property configProperty = configProperties.getProperty(propertyName);
+		if (configProperty != null && configProperty.getValue() != null) {
+			Integer propertyValue = (Integer) configProperty.getValue();
+			if (propertyValue > 0) {
+				property = String.valueOf(propertyValue);
+			}
+		}
+		return property;
+	}
+
+	private String readStringPropertyFromConfig(String propertyName, ConfigProperties configProperties) {
+		String property = null;
+		ConfigProperties.Property configProperty = configProperties.getProperty(propertyName);
+		if (configProperty != null && configProperty.getValue() != null) {
+			property = (String) configProperty.getValue();
+			if (property.isEmpty())
+				property = null;
+		}
+		return property;
 	}
 	
 	public void serviceActive(ReceivableService receivableService) {
