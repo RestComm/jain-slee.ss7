@@ -408,7 +408,7 @@ public class MAPLoadBalancerHeartBeatingServiceImpl
 			tracer.fine("Gathering connector information");
 		}
 
-		String pointcode = stackProperties.getProperty(POINTCODE);
+		String pointCodeString = stackProperties.getProperty(POINTCODE);
 		String sctpSrcPortString = stackProperties.getProperty(SCTP_PORT);
 		String sctpDstPortString = stackProperties.getProperty(SCTP_LB_PORT);
 		String ipAddress = stackProperties.getProperty(LOCAL_ADDRESS);
@@ -435,8 +435,9 @@ public class MAPLoadBalancerHeartBeatingServiceImpl
 				}
 			}
 
-			if (pointcode != null) {
-				node.getProperties().put("pointCode", pointcode);
+			if (pointCodeString != null) {
+				int pointCode = Integer.parseInt(pointCodeString);
+				node.getProperties().put("pointCode", pointCode);
 			}
 			
 			if (sctpSrcPortString != null) {
