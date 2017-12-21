@@ -32,6 +32,32 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>prepare-jboss-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<tasks>
+								<unzip overwrite="true" src="target/${project.build.finalName}.jar" dest="target/jboss-pack" />
+								<replace file="target/jboss-pack/META-INF/jboss-dependency.xml"
+									value=""
+									token="&lt;item whenRequired=&quot;Real&quot; dependentState=&quot;Installed&quot; attribute=&quot;inet-address&quot; required=&quot;true&quot;&gt;jboss.as:interface=public&lt;/item&gt;" />
+								<zip basedir="target/jboss-pack" destfile="target/restcomm-slee-ra-map-du-jboss-${project.version}.jar" />
+							</tasks>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 	<profiles>
 		<profile>
 			<id>du-jboss5</id>
