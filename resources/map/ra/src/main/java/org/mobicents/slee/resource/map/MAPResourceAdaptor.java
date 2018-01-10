@@ -631,7 +631,15 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 				.getProperty(MAPLoadBalancerHeartBeatingService.LB_HB_SERVICE_CLASS_NAME);
 		MAPLoadBalancerHeartBeatingService service = (MAPLoadBalancerHeartBeatingService) Class
 				.forName(httpBalancerHeartBeatServiceClassName).newInstance();
-		MBeanServer mBeanServer = MBeanServerLocator.locateJBoss();
+
+        MBeanServer mBeanServer;
+        try {
+            mBeanServer = MBeanServerLocator.locateJBoss();
+        } catch (NoClassDefFoundError e) {
+            // we have here an Exception for WildFly and get mBeanServer from by a WildFly style
+            mBeanServer = ManagementFactory.getPlatformMBeanServer();
+        }
+
 		String stackName = this.resourceAdaptorContext.getEntityName();
 		service.init(this.resourceAdaptorContext, mBeanServer, stackName, loadBalancerHeartBeatingServiceProperties);
 		return service;
