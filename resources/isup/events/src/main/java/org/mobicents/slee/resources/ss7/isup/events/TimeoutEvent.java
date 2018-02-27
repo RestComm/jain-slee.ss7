@@ -5,8 +5,8 @@ package org.mobicents.slee.resources.ss7.isup.events;
 
 import java.io.Serializable;
 
-import org.mobicents.protocols.ss7.isup.message.ISUPMessage;
-import org.mobicents.protocols.ss7.isup.ISUPTimeout;
+import org.restcomm.protocols.ss7.isup.message.ISUPMessage;
+import org.restcomm.protocols.ss7.isup.ISUPTimeout;
 /**
  * @author baranowb
  *

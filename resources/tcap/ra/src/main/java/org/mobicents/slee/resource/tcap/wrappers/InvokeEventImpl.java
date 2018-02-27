@@ -22,10 +22,10 @@
 
 package org.mobicents.slee.resource.tcap.wrappers;
 
-import org.mobicents.protocols.ss7.tcap.api.tc.component.InvokeClass;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Invoke;
-import org.mobicents.protocols.ss7.tcap.asn.comp.OperationCode;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Parameter;
+import org.restcomm.protocols.ss7.tcap.api.tc.component.InvokeClass;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Invoke;
+import org.restcomm.protocols.ss7.tcap.asn.comp.OperationCode;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Parameter;
 import org.mobicents.slee.resource.tcap.events.InvokeEvent;
 
 /**
@@ -44,7 +44,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.Invoke#getInvokeClass()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#getInvokeClass()
 	 */
 	@Override
 	public InvokeClass getInvokeClass() {
@@ -54,7 +54,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.Invoke#getLinkedId()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#getLinkedId()
 	 */
 	@Override
 	public Long getLinkedId() {
@@ -64,7 +64,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.Invoke#getOperationCode()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#getOperationCode()
 	 */
 	@Override
 	public OperationCode getOperationCode() {
@@ -74,7 +74,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.Invoke#getParameter()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#getParameter()
 	 */
 	@Override
 	public Parameter getParameter() {
@@ -84,7 +84,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.Invoke#getTimeout()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#getTimeout()
 	 */
 	@Override
 	public long getTimeout() {
@@ -95,7 +95,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.asn.comp.Invoke#setLinkedId(java.lang
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#setLinkedId(java.lang
 	 * .Long)
 	 */
 	@Override
@@ -107,7 +107,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.asn.comp.Invoke#setOperationCode(org
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#setOperationCode(org
 	 * .mobicents.protocols.ss7.tcap.asn.comp.OperationCode)
 	 */
 	@Override
@@ -119,7 +119,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.asn.comp.Invoke#setParameter(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#setParameter(org.mobicents
 	 * .protocols.ss7.tcap.asn.comp.Parameter)
 	 */
 	@Override
@@ -130,7 +130,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.Invoke#setTimeout(long)
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#setTimeout(long)
 	 */
 	@Override
 	public void setTimeout(long timeout) {

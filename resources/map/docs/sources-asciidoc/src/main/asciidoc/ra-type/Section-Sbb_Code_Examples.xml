@@ -52,7 +52,7 @@ public abstract class IdpSbb extends MissCallAlertBaseSbb implements Idp {
 	}
 
 	public void onINITIAL_DP_REQUEST(
-			org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitialDPRequest event,
+			org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.InitialDPRequest event,
 			ActivityContextInterface aci) {
 
 		if (this.logger.isFineEnabled()) {

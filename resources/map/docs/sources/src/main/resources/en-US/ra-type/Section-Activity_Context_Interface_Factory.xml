@@ -17,7 +17,7 @@
 	<programlisting language="java">
 package org.mobicents.slee.resource.map;
 
-import org.mobicents.protocols.ss7.map.api.MAPDialog;
+import org.restcomm.protocols.ss7.map.api.MAPDialog;
 
 import javax.slee.ActivityContextInterface;
 import javax.slee.FactoryException;

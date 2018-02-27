@@ -22,9 +22,9 @@
 
 package org.mobicents.slee.resource.cap.service.gprs.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.service.gprs.ConnectGPRSRequest;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.AccessPointName;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.PDPID;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.ConnectGPRSRequest;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.AccessPointName;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.PDPID;
 
 /**
  * 

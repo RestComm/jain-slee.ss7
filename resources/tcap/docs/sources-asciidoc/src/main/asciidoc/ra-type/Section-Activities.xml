@@ -22,7 +22,7 @@
 					This activity ends implicitly when CAP stack sends P-Abort or explicitly when user aborts the 
 					Dialog or end's the Dialog.
  					Class name is
-					<literal>org.mobicents.protocols.ss7.cap.api.CAPDialog</literal>
+					<literal>org.restcomm.protocols.ss7.cap.api.CAPDialog</literal>
 				</para>
 				<para>
 					New <literal>CAPDialog</literal> activity objects are created via specific CAP Service interface. 
@@ -31,7 +31,7 @@
 				<para>
 					Depending on service used, activity object provides additional set of methods. For instance 
 					<literal>Circuit Switched Call</literal> dialog: 
-					<classname>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CAPDialogCircuitSwitchedCall</classname> 
+					<classname>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.CAPDialogCircuitSwitchedCall</classname> 
 					exposes methods specific for exchange of call related messages. 
 				</para>
 			</listitem>

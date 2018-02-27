@@ -22,14 +22,14 @@
 
 package org.mobicents.slee.resource.cap.service.gprs.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.CAPApplicationContext;
-import org.mobicents.protocols.ss7.cap.api.CAPException;
-import org.mobicents.protocols.ss7.cap.api.CAPProvider;
-import org.mobicents.protocols.ss7.cap.api.dialog.ServingCheckData;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.CAPDialogGprs;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.CAPServiceGprs;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.CAPServiceGprsListener;
-import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
+import org.restcomm.protocols.ss7.cap.api.CAPApplicationContext;
+import org.restcomm.protocols.ss7.cap.api.CAPException;
+import org.restcomm.protocols.ss7.cap.api.CAPProvider;
+import org.restcomm.protocols.ss7.cap.api.dialog.ServingCheckData;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.CAPDialogGprs;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.CAPServiceGprs;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.CAPServiceGprsListener;
+import org.restcomm.protocols.ss7.sccp.parameter.SccpAddress;
 import org.mobicents.slee.resource.cap.CAPDialogActivityHandle;
 import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
 

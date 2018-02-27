@@ -16,7 +16,7 @@
 	</para>
 	
 	<programlisting language="java">
-package org.mobicents.protocols.ss7.map.api;
+package org.restcomm.protocols.ss7.map.api;
 
 
 public interface MAPProvider {

@@ -47,24 +47,24 @@ import javax.slee.resource.SleeEndpoint;
 import javax.slee.resource.StartActivityException;
 import javax.slee.resource.UnrecognizedActivityHandleException;
 
-import org.mobicents.protocols.ss7.tcap.api.TCAPProvider;
-import org.mobicents.protocols.ss7.tcap.api.TCListener;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.TRPseudoState;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCBeginIndication;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCContinueIndication;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCEndIndication;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCNoticeIndication;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCUniIndication;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication;
-import org.mobicents.protocols.ss7.tcap.asn.InvokeImpl;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Component;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Invoke;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Reject;
-import org.mobicents.protocols.ss7.tcap.asn.comp.ReturnError;
-import org.mobicents.protocols.ss7.tcap.asn.comp.ReturnResult;
-import org.mobicents.protocols.ss7.tcap.asn.comp.ReturnResultLast;
+import org.restcomm.protocols.ss7.tcap.api.TCAPProvider;
+import org.restcomm.protocols.ss7.tcap.api.TCListener;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.TRPseudoState;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCBeginIndication;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCContinueIndication;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCEndIndication;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCNoticeIndication;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCUniIndication;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication;
+import org.restcomm.protocols.ss7.tcap.asn.InvokeImpl;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Component;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Invoke;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Reject;
+import org.restcomm.protocols.ss7.tcap.asn.comp.ReturnError;
+import org.restcomm.protocols.ss7.tcap.asn.comp.ReturnResult;
+import org.restcomm.protocols.ss7.tcap.asn.comp.ReturnResultLast;
 import org.mobicents.slee.resource.tcap.events.TCAPEvent;
 import org.mobicents.slee.resource.tcap.wrappers.InvokeEventImpl;
 import org.mobicents.slee.resource.tcap.wrappers.ProviderAbortEventImpl;
@@ -427,7 +427,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCListener#onTCBegin(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCBegin(org.mobicents
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCBeginIndication)
 	 */
 	@Override
@@ -452,7 +452,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCListener#onTCContinue(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCContinue(org.mobicents
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCContinueIndication)
 	 */
 	@Override
@@ -469,7 +469,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCListener#onTCEnd(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCEnd(org.mobicents
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCEndIndication)
 	 */
 	@Override
@@ -486,7 +486,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCListener#onTCNotice(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCNotice(org.mobicents
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCNoticeIndication)
 	 */
 	@Override
@@ -501,7 +501,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCListener#onTCPAbort(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCPAbort(org.mobicents
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication)
 	 */
 	@Override
@@ -517,7 +517,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCListener#onTCUni(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCUni(org.mobicents
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCUniIndication)
 	 */
 	@Override
@@ -557,7 +557,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCListener#onTCUserAbort(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCUserAbort(org.mobicents
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication)
 	 */
 	@Override
@@ -573,7 +573,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCListener#onDialogTimeout(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onDialogTimeout(org.mobicents
 	 * .protocols.ss7.tcap.api.tc.dialog.Dialog)
 	 */
 	@Override
@@ -595,7 +595,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCListener#onDialogReleased(org.
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onDialogReleased(org.
 	 * mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog)
 	 */
 	@Override

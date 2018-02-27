@@ -22,15 +22,15 @@
 
 package org.mobicents.slee.resource.map.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.MAPApplicationContext;
-import org.mobicents.protocols.ss7.map.api.MAPException;
-import org.mobicents.protocols.ss7.map.api.MAPProvider;
-import org.mobicents.protocols.ss7.map.api.dialog.ServingCheckData;
-import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
-import org.mobicents.protocols.ss7.map.api.service.sms.MAPDialogSms;
-import org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSms;
-import org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSmsListener;
-import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
+import org.restcomm.protocols.ss7.map.api.MAPApplicationContext;
+import org.restcomm.protocols.ss7.map.api.MAPException;
+import org.restcomm.protocols.ss7.map.api.MAPProvider;
+import org.restcomm.protocols.ss7.map.api.dialog.ServingCheckData;
+import org.restcomm.protocols.ss7.map.api.primitives.AddressString;
+import org.restcomm.protocols.ss7.map.api.service.sms.MAPDialogSms;
+import org.restcomm.protocols.ss7.map.api.service.sms.MAPServiceSms;
+import org.restcomm.protocols.ss7.map.api.service.sms.MAPServiceSmsListener;
+import org.restcomm.protocols.ss7.sccp.parameter.SccpAddress;
 import org.mobicents.slee.resource.map.MAPDialogActivityHandle;
 import org.mobicents.slee.resource.map.wrappers.MAPProviderWrapper;
 
@@ -55,7 +55,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#acivate()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#acivate()
 	 */
 	public void acivate() {
 		throw new UnsupportedOperationException();
@@ -65,7 +65,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#deactivate()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#deactivate()
 	 */
 	public void deactivate() {
 		throw new UnsupportedOperationException();
@@ -75,7 +75,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#getMAPProvider()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#getMAPProvider()
 	 */
 	public MAPProvider getMAPProvider() {
 		return this.mapProviderWrapper;
@@ -84,7 +84,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#isActivated()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#isActivated()
 	 */
 	public boolean isActivated() {
 		return this.wrappedSMS.isActivated();
@@ -93,7 +93,7 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#isActivated()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#isActivated()
 	 */
 	public ServingCheckData isServingService(MAPApplicationContext mapapplicationcontext) {
 		return this.wrappedSMS.isServingService(mapapplicationcontext);
@@ -102,9 +102,9 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSms#
+	 * @see org.restcomm.protocols.ss7.map.api.service.sms.MAPServiceSms#
 	 * addMAPServiceListener
-	 * (org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSmsListener)
+	 * (org.restcomm.protocols.ss7.map.api.service.sms.MAPServiceSmsListener)
 	 */
 	public void addMAPServiceListener(MAPServiceSmsListener mapservicesmslistener) {
 		throw new UnsupportedOperationException();
@@ -115,12 +115,12 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSms#createNewDialog
-	 * (org.mobicents.protocols.ss7.map.api.MAPApplicationContext,
-	 * org.mobicents.protocols.ss7.sccp.parameter.SccpAddress,
-	 * org.mobicents.protocols.ss7.map.api.primitives.AddressString,
-	 * org.mobicents.protocols.ss7.sccp.parameter.SccpAddress,
-	 * org.mobicents.protocols.ss7.map.api.primitives.AddressString)
+	 * org.restcomm.protocols.ss7.map.api.service.sms.MAPServiceSms#createNewDialog
+	 * (org.restcomm.protocols.ss7.map.api.MAPApplicationContext,
+	 * org.restcomm.protocols.ss7.sccp.parameter.SccpAddress,
+	 * org.restcomm.protocols.ss7.map.api.primitives.AddressString,
+	 * org.restcomm.protocols.ss7.sccp.parameter.SccpAddress,
+	 * org.restcomm.protocols.ss7.map.api.primitives.AddressString)
 	 */
 	public MAPDialogSms createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
             AddressString destReference) throws MAPException {
@@ -148,9 +148,9 @@ public class MAPServiceSmsWrapper implements MAPServiceSms {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSms#
+	 * @see org.restcomm.protocols.ss7.map.api.service.sms.MAPServiceSms#
 	 * removeMAPServiceListener
-	 * (org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSmsListener)
+	 * (org.restcomm.protocols.ss7.map.api.service.sms.MAPServiceSmsListener)
 	 */
 	public void removeMAPServiceListener(MAPServiceSmsListener mapservicesmslistener) {
 		throw new UnsupportedOperationException();

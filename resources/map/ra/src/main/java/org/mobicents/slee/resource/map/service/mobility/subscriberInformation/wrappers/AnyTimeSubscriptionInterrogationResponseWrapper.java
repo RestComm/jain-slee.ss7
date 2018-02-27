@@ -24,21 +24,21 @@ package org.mobicents.slee.resource.map.service.mobility.subscriberInformation.w
 
 import java.util.ArrayList;
 
-import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeSubscriptionInterrogationResponse;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.CAMELSubscriptionInfo;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.CallBarringData;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.CallForwardingData;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.CallHoldData;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.CallWaitingData;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ClipData;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ClirData;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.EctData;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.MSISDNBS;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.ODBInfo;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.CSGSubscriptionData;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.OfferedCamel4CSIs;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.SupportedCamelPhases;
+import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeSubscriptionInterrogationResponse;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.CAMELSubscriptionInfo;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.CallBarringData;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.CallForwardingData;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.CallHoldData;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.CallWaitingData;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.ClipData;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.ClirData;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.EctData;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.MSISDNBS;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.ODBInfo;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.CSGSubscriptionData;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.OfferedCamel4CSIs;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.SupportedCamelPhases;
 import org.mobicents.slee.resource.map.service.mobility.wrappers.MAPDialogMobilityWrapper;
 import org.mobicents.slee.resource.map.service.mobility.wrappers.MobilityMessageWrapper;
 

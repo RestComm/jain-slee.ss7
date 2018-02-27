@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.cap.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.service.sms.ReleaseSMSRequest;
-import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.RPCause;
+import org.restcomm.protocols.ss7.cap.api.service.sms.ReleaseSMSRequest;
+import org.restcomm.protocols.ss7.cap.api.service.sms.primitive.RPCause;
 
 /**
  * 

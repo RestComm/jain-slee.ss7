@@ -22,16 +22,16 @@
 
 package org.mobicents.slee.resource.map.service.supplementary.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.MAPApplicationContext;
-import org.mobicents.protocols.ss7.map.api.MAPDialog;
-import org.mobicents.protocols.ss7.map.api.MAPException;
-import org.mobicents.protocols.ss7.map.api.MAPProvider;
-import org.mobicents.protocols.ss7.map.api.dialog.ServingCheckData;
-import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.MAPServiceSupplementary;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.MAPServiceSupplementaryListener;
-import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
+import org.restcomm.protocols.ss7.map.api.MAPApplicationContext;
+import org.restcomm.protocols.ss7.map.api.MAPDialog;
+import org.restcomm.protocols.ss7.map.api.MAPException;
+import org.restcomm.protocols.ss7.map.api.MAPProvider;
+import org.restcomm.protocols.ss7.map.api.dialog.ServingCheckData;
+import org.restcomm.protocols.ss7.map.api.primitives.AddressString;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.MAPServiceSupplementary;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.MAPServiceSupplementaryListener;
+import org.restcomm.protocols.ss7.sccp.parameter.SccpAddress;
 import org.mobicents.slee.resource.map.MAPDialogActivityHandle;
 import org.mobicents.slee.resource.map.wrappers.MAPProviderWrapper;
 
@@ -57,7 +57,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#acivate()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#acivate()
 	 */
 	public void acivate() {
 		throw new UnsupportedOperationException();
@@ -67,7 +67,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#deactivate()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#deactivate()
 	 */
 	public void deactivate() {
 		throw new UnsupportedOperationException();
@@ -77,7 +77,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#getMAPProvider()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#getMAPProvider()
 	 */
 	public MAPProvider getMAPProvider() {
 		return this.mapProviderWrapper;
@@ -86,7 +86,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#isActivated()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#isActivated()
 	 */
 	public boolean isActivated() {
 		return this.wrappedUSSD.isActivated();
@@ -96,7 +96,7 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.map.api.MAPServiceBase#isServingService(org
+	 * org.restcomm.protocols.ss7.map.api.MAPServiceBase#isServingService(org
 	 * .mobicents.protocols.ss7.map.api.MAPApplicationContext)
 	 */
 	public ServingCheckData isServingService(MAPApplicationContext mapapplicationcontext) {
@@ -106,9 +106,9 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.service.supplementary.
+	 * @see org.restcomm.protocols.ss7.map.api.service.supplementary.
 	 * MAPServiceSupplementary
-	 * #addMAPServiceListener(org.mobicents.protocols.ss7.
+	 * #addMAPServiceListener(org.restcomm.protocols.ss7.
 	 * map.api.service.supplementary.MAPServiceSupplementaryListener)
 	 */
 	public void addMAPServiceListener(MAPServiceSupplementaryListener mapservicesupplementarylistener) {
@@ -138,14 +138,14 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.service.supplementary.
+	 * @see org.restcomm.protocols.ss7.map.api.service.supplementary.
 	 * MAPServiceSupplementary
-	 * #createNewDialog(org.mobicents.protocols.ss7.map.api
+	 * #createNewDialog(org.restcomm.protocols.ss7.map.api
 	 * .MAPApplicationContext,
-	 * org.mobicents.protocols.ss7.sccp.parameter.SccpAddress,
-	 * org.mobicents.protocols.ss7.map.api.primitives.AddressString,
-	 * org.mobicents.protocols.ss7.sccp.parameter.SccpAddress,
-	 * org.mobicents.protocols.ss7.map.api.primitives.AddressString)
+	 * org.restcomm.protocols.ss7.sccp.parameter.SccpAddress,
+	 * org.restcomm.protocols.ss7.map.api.primitives.AddressString,
+	 * org.restcomm.protocols.ss7.sccp.parameter.SccpAddress,
+	 * org.restcomm.protocols.ss7.map.api.primitives.AddressString)
 	 */
     public MAPDialogSupplementary createNewDialog(MAPApplicationContext appCntx, SccpAddress origAddress, AddressString origReference, SccpAddress destAddress,
             AddressString destReference) throws MAPException {
@@ -155,9 +155,9 @@ public class MAPServiceSupplementaryWrapper implements MAPServiceSupplementary {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.service.supplementary.
+	 * @see org.restcomm.protocols.ss7.map.api.service.supplementary.
 	 * MAPServiceSupplementary
-	 * #removeMAPServiceListener(org.mobicents.protocols.ss7
+	 * #removeMAPServiceListener(org.restcomm.protocols.ss7
 	 * .map.api.service.supplementary.MAPServiceSupplementaryListener)
 	 */
 	public void removeMAPServiceListener(MAPServiceSupplementaryListener mapservicesupplementarylistener) {

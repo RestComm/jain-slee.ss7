@@ -1,8 +1,8 @@
 package org.mobicents.slee.resource.map.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
-import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
-import org.mobicents.protocols.ss7.map.api.service.sms.AlertServiceCentreRequest;
+import org.restcomm.protocols.ss7.map.api.primitives.AddressString;
+import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.restcomm.protocols.ss7.map.api.service.sms.AlertServiceCentreRequest;
 
 /**
  * 

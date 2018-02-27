@@ -22,11 +22,11 @@
 
 package org.mobicents.slee.resource.cap.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.primitives.CAPExtensions;
-import org.mobicents.protocols.ss7.cap.api.service.sms.EventReportSMSRequest;
-import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.EventSpecificInformationSMS;
-import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.EventTypeSMS;
-import org.mobicents.protocols.ss7.inap.api.primitives.MiscCallInfo;
+import org.restcomm.protocols.ss7.cap.api.primitives.CAPExtensions;
+import org.restcomm.protocols.ss7.cap.api.service.sms.EventReportSMSRequest;
+import org.restcomm.protocols.ss7.cap.api.service.sms.primitive.EventSpecificInformationSMS;
+import org.restcomm.protocols.ss7.cap.api.service.sms.primitive.EventTypeSMS;
+import org.restcomm.protocols.ss7.inap.api.primitives.MiscCallInfo;
 
 /**
  * 

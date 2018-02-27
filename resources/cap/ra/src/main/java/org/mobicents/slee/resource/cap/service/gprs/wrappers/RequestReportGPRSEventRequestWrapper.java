@@ -24,9 +24,9 @@ package org.mobicents.slee.resource.cap.service.gprs.wrappers;
 
 import java.util.ArrayList;
 
-import org.mobicents.protocols.ss7.cap.api.service.gprs.RequestReportGPRSEventRequest;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.GPRSEvent;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.PDPID;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.RequestReportGPRSEventRequest;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.GPRSEvent;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.PDPID;
 
 /**
  * 

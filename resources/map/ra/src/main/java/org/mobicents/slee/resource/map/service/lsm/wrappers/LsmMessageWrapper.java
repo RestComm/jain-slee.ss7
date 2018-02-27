@@ -1,7 +1,7 @@
 package org.mobicents.slee.resource.map.service.lsm.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.lsm.LsmMessage;
-import org.mobicents.protocols.ss7.map.api.service.lsm.MAPDialogLsm;
+import org.restcomm.protocols.ss7.map.api.service.lsm.LsmMessage;
+import org.restcomm.protocols.ss7.map.api.service.lsm.MAPDialogLsm;
 import org.mobicents.slee.resource.map.wrappers.MAPMessageWrapper;
 
 /**

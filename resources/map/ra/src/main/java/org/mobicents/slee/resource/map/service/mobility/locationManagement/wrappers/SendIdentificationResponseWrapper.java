@@ -22,11 +22,11 @@
 
 package org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
-import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.AuthenticationSetList;
-import org.mobicents.protocols.ss7.map.api.service.mobility.authentication.CurrentSecurityContext;
-import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.SendIdentificationResponse;
+import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
+import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.restcomm.protocols.ss7.map.api.service.mobility.authentication.AuthenticationSetList;
+import org.restcomm.protocols.ss7.map.api.service.mobility.authentication.CurrentSecurityContext;
+import org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.SendIdentificationResponse;
 import org.mobicents.slee.resource.map.service.mobility.wrappers.MAPDialogMobilityWrapper;
 import org.mobicents.slee.resource.map.service.mobility.wrappers.MobilityMessageWrapper;
 

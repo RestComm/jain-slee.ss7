@@ -24,24 +24,24 @@ package org.mobicents.slee.resource.map.service.callhandling.wrappers;
 
 import java.util.ArrayList;
 
-import org.mobicents.protocols.ss7.map.api.primitives.ExternalSignalInfo;
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
-import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
-import org.mobicents.protocols.ss7.map.api.primitives.NAEAPreferredCI;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.AllowedServices;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.CCBSIndicators;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.CUGCheckInfo;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.ExtendedRoutingInfo;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.RoutingInfo;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.SendRoutingInformationResponse;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.UnavailabilityCause;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.NumberPortabilityStatus;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.SubscriberInfo;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.ExtBasicServiceCode;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.OfferedCamel4CSIs;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.SupportedCamelPhases;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.SSCode;
+import org.restcomm.protocols.ss7.map.api.primitives.ExternalSignalInfo;
+import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
+import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.restcomm.protocols.ss7.map.api.primitives.NAEAPreferredCI;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.AllowedServices;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.CCBSIndicators;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.CUGCheckInfo;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.ExtendedRoutingInfo;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.RoutingInfo;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.SendRoutingInformationResponse;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.UnavailabilityCause;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.NumberPortabilityStatus;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.SubscriberInfo;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.ExtBasicServiceCode;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.OfferedCamel4CSIs;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.SupportedCamelPhases;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.SSCode;
 
 /**
  * 

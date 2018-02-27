@@ -21,7 +21,7 @@
  */
 package org.mobicents.slee.resource.tcap.wrappers;
 
-import org.mobicents.protocols.ss7.tcap.asn.comp.ReturnResultLast;
+import org.restcomm.protocols.ss7.tcap.asn.comp.ReturnResultLast;
 import org.mobicents.slee.resource.tcap.events.ReturnResultLastEvent;
 
 /**

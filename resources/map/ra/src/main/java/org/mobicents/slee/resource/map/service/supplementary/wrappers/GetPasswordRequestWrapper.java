@@ -22,9 +22,9 @@
 
 package org.mobicents.slee.resource.map.service.supplementary.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.supplementary.GetPasswordRequest;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.GuidanceInfo;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Invoke;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.GetPasswordRequest;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.GuidanceInfo;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Invoke;
 
 /**
  * 

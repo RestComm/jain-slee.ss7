@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.tcap.wrappers;
 
-import org.mobicents.protocols.ss7.tcap.asn.comp.Problem;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Reject;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Problem;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Reject;
 import org.mobicents.slee.resource.tcap.events.RejectEvent;
 
 /**
@@ -42,7 +42,7 @@ public class RejectEventImpl extends ComponentEventImpl<Reject> implements Rejec
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.Reject#getProblem()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.Reject#getProblem()
 	 */
 	@Override
 	public Problem getProblem() {
@@ -53,7 +53,7 @@ public class RejectEventImpl extends ComponentEventImpl<Reject> implements Rejec
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.asn.comp.Reject#setProblem(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.Reject#setProblem(org.mobicents
 	 * .protocols.ss7.tcap.asn.comp.Problem)
 	 */
 	@Override

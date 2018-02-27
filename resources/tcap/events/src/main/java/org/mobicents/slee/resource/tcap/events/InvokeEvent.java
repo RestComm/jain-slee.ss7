@@ -27,6 +27,6 @@ package org.mobicents.slee.resource.tcap.events;
  * @author amit bhayani
  * 
  */
-public interface InvokeEvent extends org.mobicents.protocols.ss7.tcap.asn.comp.Invoke, ComponentEvent {
+public interface InvokeEvent extends org.restcomm.protocols.ss7.tcap.asn.comp.Invoke, ComponentEvent {
 	
 }

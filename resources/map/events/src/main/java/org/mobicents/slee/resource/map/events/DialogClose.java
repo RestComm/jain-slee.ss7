@@ -25,7 +25,7 @@
  */
 package org.mobicents.slee.resource.map.events;
 
-import org.mobicents.protocols.ss7.map.api.MAPDialog;
+import org.restcomm.protocols.ss7.map.api.MAPDialog;
 
 /**
  * @author abhayani

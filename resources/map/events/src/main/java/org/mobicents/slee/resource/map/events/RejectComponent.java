@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.map.events;
 
-import org.mobicents.protocols.ss7.map.api.MAPDialog;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Problem;
+import org.restcomm.protocols.ss7.map.api.MAPDialog;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Problem;
 
 /**
  * @author baranowb

@@ -21,9 +21,9 @@
  */
 package org.mobicents.slee.resource.tcap.wrappers;
 
-import org.mobicents.protocols.ss7.tcap.asn.comp.OperationCode;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Parameter;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Return;
+import org.restcomm.protocols.ss7.tcap.asn.comp.OperationCode;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Parameter;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Return;
 import org.mobicents.slee.resource.tcap.events.ReturnEvent;
 
 /**
@@ -42,7 +42,7 @@ public class ReturnEventImpl<T extends Return> extends ComponentEventImpl<T> imp
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.Return#getOperationCode()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.Return#getOperationCode()
 	 */
 	@Override
 	public OperationCode getOperationCode() {
@@ -52,7 +52,7 @@ public class ReturnEventImpl<T extends Return> extends ComponentEventImpl<T> imp
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.Return#getParameter()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.Return#getParameter()
 	 */
 	@Override
 	public Parameter getParameter() {
@@ -63,7 +63,7 @@ public class ReturnEventImpl<T extends Return> extends ComponentEventImpl<T> imp
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.asn.comp.Return#setOperationCode(org
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.Return#setOperationCode(org
 	 * .mobicents.protocols.ss7.tcap.asn.comp.OperationCode)
 	 */
 	@Override
@@ -75,7 +75,7 @@ public class ReturnEventImpl<T extends Return> extends ComponentEventImpl<T> imp
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.asn.comp.Return#setParameter(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.Return#setParameter(org.mobicents
 	 * .protocols.ss7.tcap.asn.comp.Parameter)
 	 */
 	@Override

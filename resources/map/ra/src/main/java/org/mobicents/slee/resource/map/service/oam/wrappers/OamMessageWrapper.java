@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.map.service.oam.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.oam.MAPDialogOam;
-import org.mobicents.protocols.ss7.map.api.service.oam.OamMessage;
+import org.restcomm.protocols.ss7.map.api.service.oam.MAPDialogOam;
+import org.restcomm.protocols.ss7.map.api.service.oam.OamMessage;
 import org.mobicents.slee.resource.map.wrappers.MAPMessageWrapper;
 
 /**

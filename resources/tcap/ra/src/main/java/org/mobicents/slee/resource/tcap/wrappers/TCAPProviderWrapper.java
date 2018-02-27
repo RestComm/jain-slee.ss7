@@ -24,15 +24,15 @@ package org.mobicents.slee.resource.tcap.wrappers;
 
 import javolution.util.FastMap;
 
-import org.mobicents.protocols.ss7.sccp.NetworkIdState;
-import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
-import org.mobicents.protocols.ss7.tcap.api.ComponentPrimitiveFactory;
-import org.mobicents.protocols.ss7.tcap.api.DialogPrimitiveFactory;
-import org.mobicents.protocols.ss7.tcap.api.TCAPException;
-import org.mobicents.protocols.ss7.tcap.api.TCAPProvider;
-import org.mobicents.protocols.ss7.tcap.api.TCListener;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.DraftParsedMessage;
+import org.restcomm.protocols.ss7.sccp.NetworkIdState;
+import org.restcomm.protocols.ss7.sccp.parameter.SccpAddress;
+import org.restcomm.protocols.ss7.tcap.api.ComponentPrimitiveFactory;
+import org.restcomm.protocols.ss7.tcap.api.DialogPrimitiveFactory;
+import org.restcomm.protocols.ss7.tcap.api.TCAPException;
+import org.restcomm.protocols.ss7.tcap.api.TCAPProvider;
+import org.restcomm.protocols.ss7.tcap.api.TCListener;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.DraftParsedMessage;
 import org.mobicents.slee.resource.tcap.TCAPDialogActivityHandle;
 import org.mobicents.slee.resource.tcap.TCAPResourceAdaptor;
 
@@ -58,7 +58,7 @@ public class TCAPProviderWrapper implements TCAPProvider {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCAPProvider#addTCListener(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCAPProvider#addTCListener(org.mobicents
 	 * .protocols.ss7.tcap.api.TCListener)
 	 */
 	@Override
@@ -69,7 +69,7 @@ public class TCAPProviderWrapper implements TCAPProvider {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.api.TCAPProvider#
+	 * @see org.restcomm.protocols.ss7.tcap.api.TCAPProvider#
 	 * getComponentPrimitiveFactory()
 	 */
 	@Override
@@ -84,7 +84,7 @@ public class TCAPProviderWrapper implements TCAPProvider {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCAPProvider#getDialogPrimitiveFactory
+	 * org.restcomm.protocols.ss7.tcap.api.TCAPProvider#getDialogPrimitiveFactory
 	 * ()
 	 */
 	@Override
@@ -119,9 +119,9 @@ public class TCAPProviderWrapper implements TCAPProvider {
      * (non-Javadoc)
      * 
      * @see
-     * org.mobicents.protocols.ss7.tcap.api.TCAPProvider#getNewDialog(org.mobicents
+     * org.restcomm.protocols.ss7.tcap.api.TCAPProvider#getNewDialog(org.mobicents
      * .protocols.ss7.sccp.parameter.SccpAddress,
-     * org.mobicents.protocols.ss7.sccp.parameter.SccpAddress)
+     * org.restcomm.protocols.ss7.sccp.parameter.SccpAddress)
      */
     @Override
     public Dialog getNewDialog(SccpAddress localAddress, SccpAddress remoteAddress) throws TCAPException {
@@ -132,9 +132,9 @@ public class TCAPProviderWrapper implements TCAPProvider {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCAPProvider#getNewUnstructuredDialog
-	 * (org.mobicents.protocols.ss7.sccp.parameter.SccpAddress,
-	 * org.mobicents.protocols.ss7.sccp.parameter.SccpAddress)
+	 * org.restcomm.protocols.ss7.tcap.api.TCAPProvider#getNewUnstructuredDialog
+	 * (org.restcomm.protocols.ss7.sccp.parameter.SccpAddress,
+	 * org.restcomm.protocols.ss7.sccp.parameter.SccpAddress)
 	 */
 	@Override
 	public Dialog getNewUnstructuredDialog(SccpAddress localAddress, SccpAddress remoteAddress) throws TCAPException {
@@ -160,7 +160,7 @@ public class TCAPProviderWrapper implements TCAPProvider {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.api.TCAPProvider#removeTCListener(org
+	 * org.restcomm.protocols.ss7.tcap.api.TCAPProvider#removeTCListener(org
 	 * .mobicents.protocols.ss7.tcap.api.TCListener)
 	 */
 	@Override

@@ -22,10 +22,10 @@
 
 package org.mobicents.slee.resource.tcap.wrappers;
 
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.DialogIndication;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.EventType;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Component;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.DialogIndication;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.EventType;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Component;
 import org.mobicents.slee.resource.tcap.events.DialogEvent;
 
 /**

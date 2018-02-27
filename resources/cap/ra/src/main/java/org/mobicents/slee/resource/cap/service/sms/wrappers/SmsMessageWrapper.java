@@ -22,7 +22,7 @@
 
 package org.mobicents.slee.resource.cap.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.service.sms.SmsMessage;
+import org.restcomm.protocols.ss7.cap.api.service.sms.SmsMessage;
 import org.mobicents.slee.resource.cap.wrappers.CAPMessageWrapper;
 
 /**

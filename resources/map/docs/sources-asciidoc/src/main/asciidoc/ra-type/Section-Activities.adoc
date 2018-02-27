@@ -8,6 +8,6 @@ This RA Type defines only one activity object:
 MAPDialog::
   All the events related to MAP Dialog and events related to Service are fired on this activity.
   This activity ends implicitly when MAP stack sends P-Abort or explicitly when user aborts the  Dialog or end's the Dialog.
-  Class name is `org.mobicents.protocols.ss7.map.api.MAPDialog`
+  Class name is `org.restcomm.protocols.ss7.map.api.MAPDialog`
   New MAPDialog activity objects are created via specific {this-ra} Service interface. Check <<ra-type/Section-Resource_Adaptor_Interface.adoc#_ratype_ra_interface,Resource Adaptor Interface>> section for available services.				
-  Depending on service used, activity object provides additional set of methods. For instance USSD dialog: `org.mobicents.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary` exposes methods specific for exchange of USSD messages.
+  Depending on service used, activity object provides additional set of methods. For instance USSD dialog: `org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary` exposes methods specific for exchange of USSD messages.

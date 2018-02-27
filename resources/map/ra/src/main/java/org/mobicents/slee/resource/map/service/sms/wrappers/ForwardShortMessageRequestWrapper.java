@@ -1,9 +1,9 @@
 package org.mobicents.slee.resource.map.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.sms.ForwardShortMessageRequest;
-import org.mobicents.protocols.ss7.map.api.service.sms.SM_RP_DA;
-import org.mobicents.protocols.ss7.map.api.service.sms.SM_RP_OA;
-import org.mobicents.protocols.ss7.map.api.service.sms.SmsSignalInfo;
+import org.restcomm.protocols.ss7.map.api.service.sms.ForwardShortMessageRequest;
+import org.restcomm.protocols.ss7.map.api.service.sms.SM_RP_DA;
+import org.restcomm.protocols.ss7.map.api.service.sms.SM_RP_OA;
+import org.restcomm.protocols.ss7.map.api.service.sms.SmsSignalInfo;
 
 /**
  * 

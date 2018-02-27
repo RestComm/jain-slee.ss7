@@ -19,12 +19,12 @@
 
 		<dependency>
 			<artifactId>tcap-api</artifactId>
-			<groupId>org.mobicents.protocols.ss7.tcap</groupId>
+			<groupId>org.restcomm.protocols.ss7.tcap</groupId>
 			<version>${ss7.version}</version>
 		</dependency>
 		<dependency>
 			<artifactId>tcap-impl</artifactId>
-			<groupId>org.mobicents.protocols.ss7.tcap</groupId>
+			<groupId>org.restcomm.protocols.ss7.tcap</groupId>
 			<version>${ss7.version}</version>
 		</dependency>
 	</dependencies>

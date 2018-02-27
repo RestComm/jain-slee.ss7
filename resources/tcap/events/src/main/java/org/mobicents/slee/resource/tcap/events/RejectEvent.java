@@ -21,7 +21,7 @@
  */
 package org.mobicents.slee.resource.tcap.events;
 
-import org.mobicents.protocols.ss7.tcap.asn.comp.Reject;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Reject;
 
 /**
  * @author abhayani

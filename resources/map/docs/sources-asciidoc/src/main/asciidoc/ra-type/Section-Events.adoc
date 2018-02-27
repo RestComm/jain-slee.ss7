@@ -91,7 +91,7 @@ Name::
   ss7.map.service.mobility.locationManagement.
 
 Event Class::
-  org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.
+  org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.
 
 Version for all defined events is 1.0
 
@@ -125,7 +125,7 @@ Name::
   ss7.map.service.mobility.authentication.
 
 Event Class::
-  org.mobicents.protocols.ss7.map.api.service.mobility.authentication.
+  org.restcomm.protocols.ss7.map.api.service.mobility.authentication.
 
 Version for all defined events is 1.0
 
@@ -157,7 +157,7 @@ Name::
   ss7.map.service.mobility.imei.
 
 Event Class::
-  org.mobicents.protocols.ss7.map.api.service.mobility.imei.
+  org.restcomm.protocols.ss7.map.api.service.mobility.imei.
 
 Version for all defined events is 1.0
 
@@ -189,7 +189,7 @@ Name::
   ss7.map.service.mobility.subscribermanagement.
 
 Event Class::
-  org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.
+  org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.
 
 Version for all defined events is 1.0
 
@@ -221,7 +221,7 @@ Name::
   ss7.map.service.mobility.subscriberinfo.
 
 Event Class::
-  org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.
+  org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.
 
 Version for all defined events is 1.0
 
@@ -253,7 +253,7 @@ Name::
   ss7.map.service.callhandling.
 
 Event Class::
-  org.mobicents.protocols.ss7.map.api.service.callhandling.
+  org.restcomm.protocols.ss7.map.api.service.callhandling.
 
 Version for all defined events is 1.0
 
@@ -287,7 +287,7 @@ Name::
   ss7.map.service.suplementary. 
 
 Event Class::
-  org.mobicents.protocols.ss7.map.api.service.supplementary. 
+  org.restcomm.protocols.ss7.map.api.service.supplementary. 
 
 Version for all defined events is 1.0
 
@@ -323,7 +323,7 @@ Name::
   ss7.map.service.lsm. 
 
 Event Class::
-  org.mobicents.protocols.ss7.map.api.service.lsm. 
+  org.restcomm.protocols.ss7.map.api.service.lsm. 
 
 Version for all defined events is 1.0
 
@@ -359,7 +359,7 @@ Name::
   ss7.map.service.sms. 
 
 Event Class::
-  org.mobicents.protocols.ss7.map.api.service.sms. 
+  org.restcomm.protocols.ss7.map.api.service.sms. 
 
 Version for all defined events is 1.0
 

@@ -22,7 +22,7 @@
 
 package org.mobicents.slee.resource.cap.events;
 
-import org.mobicents.protocols.ss7.cap.api.CAPDialog;
+import org.restcomm.protocols.ss7.cap.api.CAPDialog;
 
 /**
  * 

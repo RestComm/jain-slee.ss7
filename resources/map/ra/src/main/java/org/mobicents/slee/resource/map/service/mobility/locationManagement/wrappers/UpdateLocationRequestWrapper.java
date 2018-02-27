@@ -22,15 +22,15 @@
 
 package org.mobicents.slee.resource.map.service.mobility.locationManagement.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.primitives.GSNAddress;
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
-import org.mobicents.protocols.ss7.map.api.primitives.LMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
-import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.ADDInfo;
-import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.PagingArea;
-import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationRequest;
-import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.VLRCapability;
+import org.restcomm.protocols.ss7.map.api.primitives.GSNAddress;
+import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
+import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.restcomm.protocols.ss7.map.api.primitives.LMSI;
+import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.ADDInfo;
+import org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.PagingArea;
+import org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationRequest;
+import org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.VLRCapability;
 import org.mobicents.slee.resource.map.service.mobility.wrappers.MAPDialogMobilityWrapper;
 import org.mobicents.slee.resource.map.service.mobility.wrappers.MobilityMessageWrapper;
 

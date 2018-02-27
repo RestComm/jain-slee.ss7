@@ -24,11 +24,11 @@ package org.mobicents.slee.resource.map.service.supplementary.wrappers;
 
 import java.util.ArrayList;
 
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.BasicServiceCode;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.ForwardingFeature;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.GenericServiceInfo;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.InterrogateSSResponse;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.SSStatus;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.BasicServiceCode;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.ForwardingFeature;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.GenericServiceInfo;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.InterrogateSSResponse;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.SSStatus;
 
 /**
  * 

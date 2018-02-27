@@ -22,9 +22,9 @@
 
 package org.mobicents.slee.resource.map.service.callhandling.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.IstCommandRequest;
+import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
+import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.IstCommandRequest;
 
 /**
  * 

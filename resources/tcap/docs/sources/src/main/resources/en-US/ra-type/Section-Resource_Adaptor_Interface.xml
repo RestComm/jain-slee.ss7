@@ -16,12 +16,12 @@
 	</para>
 	
 	<programlisting language="java">
-package org.mobicents.protocols.ss7.tcap.api;
+package org.restcomm.protocols.ss7.tcap.api;
 
 import java.io.Serializable;
 
-import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog;
+import org.restcomm.protocols.ss7.sccp.parameter.SccpAddress;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog;
 
 public interface TCAPProvider extends Serializable {
 

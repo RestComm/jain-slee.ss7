@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.map.service.oam.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
-import org.mobicents.protocols.ss7.map.api.service.oam.SendImsiRequest;
+import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.restcomm.protocols.ss7.map.api.service.oam.SendImsiRequest;
 
 /**
  * 

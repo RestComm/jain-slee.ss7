@@ -22,10 +22,10 @@
 
 package org.mobicents.slee.resource.map.service.mobility.imei.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
-import org.mobicents.protocols.ss7.map.api.service.mobility.imei.CheckImeiResponse;
-import org.mobicents.protocols.ss7.map.api.service.mobility.imei.EquipmentStatus;
-import org.mobicents.protocols.ss7.map.api.service.mobility.imei.UESBIIu;
+import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.restcomm.protocols.ss7.map.api.service.mobility.imei.CheckImeiResponse;
+import org.restcomm.protocols.ss7.map.api.service.mobility.imei.EquipmentStatus;
+import org.restcomm.protocols.ss7.map.api.service.mobility.imei.UESBIIu;
 import org.mobicents.slee.resource.map.service.mobility.wrappers.MAPDialogMobilityWrapper;
 import org.mobicents.slee.resource.map.service.mobility.wrappers.MobilityMessageWrapper;
 

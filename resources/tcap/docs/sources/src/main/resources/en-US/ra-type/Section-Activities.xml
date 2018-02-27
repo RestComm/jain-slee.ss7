@@ -22,7 +22,7 @@
 					This activity ends implicitly when TCAP stack sends P-Abort or explicitly when user aborts the 
 					Dialog or end's the Dialog.
  					Class name is
-					<literal>org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog</literal>
+					<literal>org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog</literal>
 				</para>
 				<para>
 					New <literal>Dialog</literal> activity objects is created via SBB interface exposed by Resource Adaptor

@@ -22,27 +22,27 @@
 
 package org.mobicents.slee.resource.map.service.lsm.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.primitives.CellGlobalIdOrServiceAreaIdOrLAI;
-import org.mobicents.protocols.ss7.map.api.primitives.GSNAddress;
-import org.mobicents.protocols.ss7.map.api.primitives.IMEI;
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
-import org.mobicents.protocols.ss7.map.api.service.lsm.AccuracyFulfilmentIndicator;
-import org.mobicents.protocols.ss7.map.api.service.lsm.AddGeographicalInformation;
-import org.mobicents.protocols.ss7.map.api.service.lsm.DeferredmtlrData;
-import org.mobicents.protocols.ss7.map.api.service.lsm.ExtGeographicalInformation;
-import org.mobicents.protocols.ss7.map.api.service.lsm.GeranGANSSpositioningData;
-import org.mobicents.protocols.ss7.map.api.service.lsm.LCSClientID;
-import org.mobicents.protocols.ss7.map.api.service.lsm.LCSEvent;
-import org.mobicents.protocols.ss7.map.api.service.lsm.LCSLocationInfo;
-import org.mobicents.protocols.ss7.map.api.service.lsm.PeriodicLDRInfo;
-import org.mobicents.protocols.ss7.map.api.service.lsm.PositioningDataInformation;
-import org.mobicents.protocols.ss7.map.api.service.lsm.SLRArgExtensionContainer;
-import org.mobicents.protocols.ss7.map.api.service.lsm.ServingNodeAddress;
-import org.mobicents.protocols.ss7.map.api.service.lsm.SubscriberLocationReportRequest;
-import org.mobicents.protocols.ss7.map.api.service.lsm.UtranGANSSpositioningData;
-import org.mobicents.protocols.ss7.map.api.service.lsm.UtranPositioningDataInfo;
-import org.mobicents.protocols.ss7.map.api.service.lsm.VelocityEstimate;
+import org.restcomm.protocols.ss7.map.api.primitives.CellGlobalIdOrServiceAreaIdOrLAI;
+import org.restcomm.protocols.ss7.map.api.primitives.GSNAddress;
+import org.restcomm.protocols.ss7.map.api.primitives.IMEI;
+import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
+import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.restcomm.protocols.ss7.map.api.service.lsm.AccuracyFulfilmentIndicator;
+import org.restcomm.protocols.ss7.map.api.service.lsm.AddGeographicalInformation;
+import org.restcomm.protocols.ss7.map.api.service.lsm.DeferredmtlrData;
+import org.restcomm.protocols.ss7.map.api.service.lsm.ExtGeographicalInformation;
+import org.restcomm.protocols.ss7.map.api.service.lsm.GeranGANSSpositioningData;
+import org.restcomm.protocols.ss7.map.api.service.lsm.LCSClientID;
+import org.restcomm.protocols.ss7.map.api.service.lsm.LCSEvent;
+import org.restcomm.protocols.ss7.map.api.service.lsm.LCSLocationInfo;
+import org.restcomm.protocols.ss7.map.api.service.lsm.PeriodicLDRInfo;
+import org.restcomm.protocols.ss7.map.api.service.lsm.PositioningDataInformation;
+import org.restcomm.protocols.ss7.map.api.service.lsm.SLRArgExtensionContainer;
+import org.restcomm.protocols.ss7.map.api.service.lsm.ServingNodeAddress;
+import org.restcomm.protocols.ss7.map.api.service.lsm.SubscriberLocationReportRequest;
+import org.restcomm.protocols.ss7.map.api.service.lsm.UtranGANSSpositioningData;
+import org.restcomm.protocols.ss7.map.api.service.lsm.UtranPositioningDataInfo;
+import org.restcomm.protocols.ss7.map.api.service.lsm.VelocityEstimate;
 
 /**
  * @author baranowb

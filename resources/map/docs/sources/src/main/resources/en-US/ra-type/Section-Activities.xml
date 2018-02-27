@@ -24,7 +24,7 @@
 					Dialog or end's the Dialog.
  					Class name is
 					<literal>
-						org.mobicents.protocols.ss7.map.api.MAPDialog
+						org.restcomm.protocols.ss7.map.api.MAPDialog
 					</literal>
 				</para>
 				<para>
@@ -32,7 +32,7 @@
 					<literal>MAPDialog</literal>
 					activity objects are created via specific MAP Service interface. Check <xref linkend="ratype_ra_interface"/> section for available services. 
 					</para><para>
-					Depending on service used, activity object provides additional set of methods. For instance <literal>USSD</literal> dialog: <classname>org.mobicents.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary</classname> exposes 
+					Depending on service used, activity object provides additional set of methods. For instance <literal>USSD</literal> dialog: <classname>org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary</classname> exposes 
 					methods specific for exchange of <literal>USSD</literal> messages. 
 				</para>
 			</listitem>

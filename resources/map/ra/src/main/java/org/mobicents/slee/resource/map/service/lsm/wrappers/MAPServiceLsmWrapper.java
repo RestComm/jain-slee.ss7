@@ -22,15 +22,15 @@
 
 package org.mobicents.slee.resource.map.service.lsm.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.MAPApplicationContext;
-import org.mobicents.protocols.ss7.map.api.MAPException;
-import org.mobicents.protocols.ss7.map.api.MAPProvider;
-import org.mobicents.protocols.ss7.map.api.dialog.ServingCheckData;
-import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
-import org.mobicents.protocols.ss7.map.api.service.lsm.MAPDialogLsm;
-import org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsm;
-import org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsmListener;
-import org.mobicents.protocols.ss7.sccp.parameter.SccpAddress;
+import org.restcomm.protocols.ss7.map.api.MAPApplicationContext;
+import org.restcomm.protocols.ss7.map.api.MAPException;
+import org.restcomm.protocols.ss7.map.api.MAPProvider;
+import org.restcomm.protocols.ss7.map.api.dialog.ServingCheckData;
+import org.restcomm.protocols.ss7.map.api.primitives.AddressString;
+import org.restcomm.protocols.ss7.map.api.service.lsm.MAPDialogLsm;
+import org.restcomm.protocols.ss7.map.api.service.lsm.MAPServiceLsm;
+import org.restcomm.protocols.ss7.map.api.service.lsm.MAPServiceLsmListener;
+import org.restcomm.protocols.ss7.sccp.parameter.SccpAddress;
 import org.mobicents.slee.resource.map.MAPDialogActivityHandle;
 import org.mobicents.slee.resource.map.wrappers.MAPProviderWrapper;
 
@@ -54,7 +54,7 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#acivate()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#acivate()
 	 */
 	public void acivate() {
 		throw new UnsupportedOperationException();
@@ -64,7 +64,7 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#deactivate()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#deactivate()
 	 */
 	public void deactivate() {
 		throw new UnsupportedOperationException();
@@ -74,7 +74,7 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#getMAPProvider()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#getMAPProvider()
 	 */
 	public MAPProvider getMAPProvider() {
 		return this.mapProviderWrapper;
@@ -83,7 +83,7 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#isActivated()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#isActivated()
 	 */
 	public boolean isActivated() {
 		return this.wrappedLSM.isActivated();
@@ -91,14 +91,14 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
 
 
 	/* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.map.api.MAPServiceBase#isServingService(org.mobicents.protocols.ss7.map.api.MAPApplicationContext)
+	 * @see org.restcomm.protocols.ss7.map.api.MAPServiceBase#isServingService(org.restcomm.protocols.ss7.map.api.MAPApplicationContext)
 	 */
 	public ServingCheckData isServingService(MAPApplicationContext mapapplicationcontext) {
 		return this.wrappedLSM.isServingService(mapapplicationcontext);
 	}
 
 	/* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsm#addMAPServiceListener(org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsmListener)
+	 * @see org.restcomm.protocols.ss7.map.api.service.lsm.MAPServiceLsm#addMAPServiceListener(org.restcomm.protocols.ss7.map.api.service.lsm.MAPServiceLsmListener)
 	 */
 	public void addMAPServiceListener(MAPServiceLsmListener mapservicelsmlistener) {
 		throw new UnsupportedOperationException();
@@ -128,7 +128,7 @@ public class MAPServiceLsmWrapper implements MAPServiceLsm {
     }
 
 	/* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsm#removeMAPServiceListener(org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsmListener)
+	 * @see org.restcomm.protocols.ss7.map.api.service.lsm.MAPServiceLsm#removeMAPServiceListener(org.restcomm.protocols.ss7.map.api.service.lsm.MAPServiceLsmListener)
 	 */
 	public void removeMAPServiceListener(MAPServiceLsmListener mapservicelsmlistener) {
 		throw new UnsupportedOperationException();

@@ -22,22 +22,22 @@
 
 package org.mobicents.slee.resource.map.service.callhandling.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.primitives.AlertingPattern;
-import org.mobicents.protocols.ss7.map.api.primitives.EMLPPPriority;
-import org.mobicents.protocols.ss7.map.api.primitives.ExtExternalSignalInfo;
-import org.mobicents.protocols.ss7.map.api.primitives.ExternalSignalInfo;
-import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
-import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.CUGCheckInfo;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.CallDiversionTreatmentIndicator;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.CallReferenceNumber;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.CamelInfo;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.InterrogationType;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.SendRoutingInformationRequest;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.SuppressMTSS;
-import org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.ISTSupportIndicator;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.ExtBasicServiceCode;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.ForwardingReason;
+import org.restcomm.protocols.ss7.map.api.primitives.AlertingPattern;
+import org.restcomm.protocols.ss7.map.api.primitives.EMLPPPriority;
+import org.restcomm.protocols.ss7.map.api.primitives.ExtExternalSignalInfo;
+import org.restcomm.protocols.ss7.map.api.primitives.ExternalSignalInfo;
+import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.CUGCheckInfo;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.CallDiversionTreatmentIndicator;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.CallReferenceNumber;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.CamelInfo;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.InterrogationType;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.SendRoutingInformationRequest;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.SuppressMTSS;
+import org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.ISTSupportIndicator;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.ExtBasicServiceCode;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.ForwardingReason;
 
 /**
  * 

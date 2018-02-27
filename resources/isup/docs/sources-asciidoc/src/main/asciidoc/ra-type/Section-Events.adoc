@@ -15,7 +15,7 @@ Name::
   net.java.slee.resource.isup. 
 
 Event Class::
-  org.mobicents.protocols.ss7.isup.message. 
+  org.restcomm.protocols.ss7.isup.message. 
 
 Version for all defined events is 1.0
 

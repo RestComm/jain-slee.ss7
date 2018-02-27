@@ -22,6 +22,6 @@
 
 package org.mobicents.slee.resource.tcap.events;
 
-public interface UserAbortEvent extends org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication, DialogEvent {
+public interface UserAbortEvent extends org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication, DialogEvent {
 
 }

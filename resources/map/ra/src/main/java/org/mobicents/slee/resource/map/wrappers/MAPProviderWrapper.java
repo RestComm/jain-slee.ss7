@@ -24,20 +24,20 @@ package org.mobicents.slee.resource.map.wrappers;
 
 import javolution.util.FastMap;
 
-import org.mobicents.protocols.ss7.map.api.MAPDialog;
-import org.mobicents.protocols.ss7.map.api.MAPDialogListener;
-import org.mobicents.protocols.ss7.map.api.MAPParameterFactory;
-import org.mobicents.protocols.ss7.map.api.MAPProvider;
-import org.mobicents.protocols.ss7.map.api.MAPSmsTpduParameterFactory;
-import org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessageFactory;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.MAPServiceCallHandling;
-import org.mobicents.protocols.ss7.map.api.service.lsm.MAPServiceLsm;
-import org.mobicents.protocols.ss7.map.api.service.mobility.MAPServiceMobility;
-import org.mobicents.protocols.ss7.map.api.service.oam.MAPServiceOam;
-import org.mobicents.protocols.ss7.map.api.service.pdpContextActivation.MAPServicePdpContextActivation;
-import org.mobicents.protocols.ss7.map.api.service.sms.MAPServiceSms;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.MAPServiceSupplementary;
-import org.mobicents.protocols.ss7.sccp.NetworkIdState;
+import org.restcomm.protocols.ss7.map.api.MAPDialog;
+import org.restcomm.protocols.ss7.map.api.MAPDialogListener;
+import org.restcomm.protocols.ss7.map.api.MAPParameterFactory;
+import org.restcomm.protocols.ss7.map.api.MAPProvider;
+import org.restcomm.protocols.ss7.map.api.MAPSmsTpduParameterFactory;
+import org.restcomm.protocols.ss7.map.api.errors.MAPErrorMessageFactory;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.MAPServiceCallHandling;
+import org.restcomm.protocols.ss7.map.api.service.lsm.MAPServiceLsm;
+import org.restcomm.protocols.ss7.map.api.service.mobility.MAPServiceMobility;
+import org.restcomm.protocols.ss7.map.api.service.oam.MAPServiceOam;
+import org.restcomm.protocols.ss7.map.api.service.pdpContextActivation.MAPServicePdpContextActivation;
+import org.restcomm.protocols.ss7.map.api.service.sms.MAPServiceSms;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.MAPServiceSupplementary;
+import org.restcomm.protocols.ss7.sccp.NetworkIdState;
 import org.mobicents.slee.resource.map.MAPResourceAdaptor;
 import org.mobicents.slee.resource.map.service.callhandling.wrappers.MAPServiceCallHandlingWrapper;
 import org.mobicents.slee.resource.map.service.lsm.wrappers.MAPServiceLsmWrapper;
@@ -85,8 +85,8 @@ public class MAPProviderWrapper implements MAPProvider {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.map.api.MAPProvider#addMAPDialogListener(
-	 * org.mobicents.protocols.ss7.map.api.MAPDialogListener)
+	 * org.restcomm.protocols.ss7.map.api.MAPProvider#addMAPDialogListener(
+	 * org.restcomm.protocols.ss7.map.api.MAPDialogListener)
 	 */
 	public void addMAPDialogListener(MAPDialogListener mapdialoglistener) {
 		throw new UnsupportedOperationException();
@@ -96,8 +96,8 @@ public class MAPProviderWrapper implements MAPProvider {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.map.api.MAPProvider#removeMAPDialogListener
-	 * (org.mobicents.protocols.ss7.map.api.MAPDialogListener)
+	 * org.restcomm.protocols.ss7.map.api.MAPProvider#removeMAPDialogListener
+	 * (org.restcomm.protocols.ss7.map.api.MAPDialogListener)
 	 */
 	public void removeMAPDialogListener(MAPDialogListener mapdialoglistener) {
 		throw new UnsupportedOperationException();
@@ -122,7 +122,7 @@ public class MAPProviderWrapper implements MAPProvider {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPErrorMessageFactory
+	 * org.restcomm.protocols.ss7.map.api.MAPProvider#getMAPErrorMessageFactory
 	 * ()
 	 */
 	public MAPErrorMessageFactory getMAPErrorMessageFactory() {
@@ -136,7 +136,7 @@ public class MAPProviderWrapper implements MAPProvider {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPDialog(java.lang
+	 * org.restcomm.protocols.ss7.map.api.MAPProvider#getMAPDialog(java.lang
 	 * .Long)
 	 */
 	public MAPDialog getMAPDialog(Long dialogId) {
@@ -180,7 +180,7 @@ public class MAPProviderWrapper implements MAPProvider {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPServiceSupplementary
+	 * org.restcomm.protocols.ss7.map.api.MAPProvider#getMAPServiceSupplementary
 	 * ()
 	 */
 	public MAPServiceSupplementary getMAPServiceSupplementary() {
@@ -193,7 +193,7 @@ public class MAPProviderWrapper implements MAPProvider {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPServiceSms()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPProvider#getMAPServiceSms()
 	 */
 	public MAPServiceSms getMAPServiceSms() {
 		if (this.wrappedProvider == null) {
@@ -205,7 +205,7 @@ public class MAPProviderWrapper implements MAPProvider {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.map.api.MAPProvider#getMAPServiceLsm()
+	 * @see org.restcomm.protocols.ss7.map.api.MAPProvider#getMAPServiceLsm()
 	 */
 	public MAPServiceLsm getMAPServiceLsm() {
 		if (this.wrappedProvider == null) {

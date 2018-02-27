@@ -12,11 +12,11 @@ ISUPClientTransaction::
   Answers are delivered on this activity.
   Life cycle of this activity depends on message type. Client transaction stays alive until it timeouts or answer is delivered. Exception to this rule are messages which are only indication of state - they dont require any answer. This group consists of:
   * Reset Circuit:
-  Full class name is: `org.mobicents.protocols.ss7.isup.ISUPClientTransaction`. It is created on demand with RA SBB Interface.
+  Full class name is: `org.restcomm.protocols.ss7.isup.ISUPClientTransaction`. It is created on demand with RA SBB Interface.
 
 ISUPServerTransaction::
   This activity is associated with server side events.
   All types of request are fired by on this activity.
   Answers are sent through this activity.
   Life cycle of this activity depends on message type. Server transaction stays alive until it timeouts or answer is sent back. Exception to this rule are messages which are only indication of state - they dont require any answer. See above activity.
-  Full class name is: `org.mobicents.protocols.ss7.isup.ISUPServerTransaction`. It is created by RA for each request which does not have transaction associated with it.
+  Full class name is: `org.restcomm.protocols.ss7.isup.ISUPServerTransaction`. It is created by RA for each request which does not have transaction associated with it.

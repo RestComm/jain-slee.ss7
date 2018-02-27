@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.cap.service.gprs.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.primitives.TimerID;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.ResetTimerGPRSRequest;
+import org.restcomm.protocols.ss7.cap.api.primitives.TimerID;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.ResetTimerGPRSRequest;
 
 /**
  * 

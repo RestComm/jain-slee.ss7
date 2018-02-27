@@ -12,7 +12,7 @@
 		<sbb-classes>
 			<sbb-abstract-class>
 				<sbb-abstract-class-name>
-					org.mobicents.protocols.ss7.sleetest.Ss7TestSbb
+					org.restcomm.protocols.ss7.sleetest.Ss7TestSbb
 				</sbb-abstract-class-name>
 				<cmp-field>
 					<cmp-field-name>processUnstructuredSSRequestInvokeId</cmp-field-name>

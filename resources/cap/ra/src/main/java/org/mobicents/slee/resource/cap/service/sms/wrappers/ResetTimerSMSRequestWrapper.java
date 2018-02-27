@@ -22,9 +22,9 @@
 
 package org.mobicents.slee.resource.cap.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.primitives.CAPExtensions;
-import org.mobicents.protocols.ss7.cap.api.primitives.TimerID;
-import org.mobicents.protocols.ss7.cap.api.service.sms.ResetTimerSMSRequest;
+import org.restcomm.protocols.ss7.cap.api.primitives.CAPExtensions;
+import org.restcomm.protocols.ss7.cap.api.primitives.TimerID;
+import org.restcomm.protocols.ss7.cap.api.service.sms.ResetTimerSMSRequest;
 
 /**
  * 

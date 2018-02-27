@@ -22,12 +22,12 @@
 
 package org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.gap.GapCriteria;
-import org.mobicents.protocols.ss7.cap.api.gap.GapIndicators;
-import org.mobicents.protocols.ss7.cap.api.gap.GapTreatment;
-import org.mobicents.protocols.ss7.cap.api.primitives.CAPExtensions;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallGapRequest;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.primitive.ControlType;
+import org.restcomm.protocols.ss7.cap.api.gap.GapCriteria;
+import org.restcomm.protocols.ss7.cap.api.gap.GapIndicators;
+import org.restcomm.protocols.ss7.cap.api.gap.GapTreatment;
+import org.restcomm.protocols.ss7.cap.api.primitives.CAPExtensions;
+import org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.CallGapRequest;
+import org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.primitive.ControlType;
 
 /**
  *

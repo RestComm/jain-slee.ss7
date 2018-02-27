@@ -1,7 +1,7 @@
 package org.mobicents.slee.resource.map.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.MAPMessage;
-import org.mobicents.protocols.ss7.map.api.MAPMessageType;
+import org.restcomm.protocols.ss7.map.api.MAPMessage;
+import org.restcomm.protocols.ss7.map.api.MAPMessageType;
 import org.mobicents.slee.resource.map.events.MAPEvent;
 
 /**

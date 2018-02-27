@@ -22,7 +22,7 @@
 
 package org.mobicents.slee.resource.cap.service.gprs.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSRequest;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSRequest;
 
 /**
  * 

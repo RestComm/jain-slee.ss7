@@ -22,23 +22,23 @@
 
 package org.mobicents.slee.resource.map.service.lsm.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.primitives.GSNAddress;
-import org.mobicents.protocols.ss7.map.api.primitives.IMEI;
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
-import org.mobicents.protocols.ss7.map.api.primitives.LMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
-import org.mobicents.protocols.ss7.map.api.service.lsm.AreaEventInfo;
-import org.mobicents.protocols.ss7.map.api.service.lsm.LCSClientID;
-import org.mobicents.protocols.ss7.map.api.service.lsm.LCSCodeword;
-import org.mobicents.protocols.ss7.map.api.service.lsm.LCSPriority;
-import org.mobicents.protocols.ss7.map.api.service.lsm.LCSPrivacyCheck;
-import org.mobicents.protocols.ss7.map.api.service.lsm.LCSQoS;
-import org.mobicents.protocols.ss7.map.api.service.lsm.LocationType;
-import org.mobicents.protocols.ss7.map.api.service.lsm.PeriodicLDRInfo;
-import org.mobicents.protocols.ss7.map.api.service.lsm.ProvideSubscriberLocationRequest;
-import org.mobicents.protocols.ss7.map.api.service.lsm.ReportingPLMNList;
-import org.mobicents.protocols.ss7.map.api.service.lsm.SupportedGADShapes;
+import org.restcomm.protocols.ss7.map.api.primitives.GSNAddress;
+import org.restcomm.protocols.ss7.map.api.primitives.IMEI;
+import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
+import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.restcomm.protocols.ss7.map.api.primitives.LMSI;
+import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.restcomm.protocols.ss7.map.api.service.lsm.AreaEventInfo;
+import org.restcomm.protocols.ss7.map.api.service.lsm.LCSClientID;
+import org.restcomm.protocols.ss7.map.api.service.lsm.LCSCodeword;
+import org.restcomm.protocols.ss7.map.api.service.lsm.LCSPriority;
+import org.restcomm.protocols.ss7.map.api.service.lsm.LCSPrivacyCheck;
+import org.restcomm.protocols.ss7.map.api.service.lsm.LCSQoS;
+import org.restcomm.protocols.ss7.map.api.service.lsm.LocationType;
+import org.restcomm.protocols.ss7.map.api.service.lsm.PeriodicLDRInfo;
+import org.restcomm.protocols.ss7.map.api.service.lsm.ProvideSubscriberLocationRequest;
+import org.restcomm.protocols.ss7.map.api.service.lsm.ReportingPLMNList;
+import org.restcomm.protocols.ss7.map.api.service.lsm.SupportedGADShapes;
 
 /**
  * @author baranowb

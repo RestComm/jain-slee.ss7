@@ -7,10 +7,10 @@ import javax.slee.resource.ActivityAlreadyExistsException;
 
 import javax.slee.resource.StartActivityException;
 
-import org.mobicents.protocols.ss7.isup.ISUPMessageFactory;
-import org.mobicents.protocols.ss7.isup.ISUPParameterFactory;
-import org.mobicents.protocols.ss7.isup.message.ISUPMessage;
-import org.mobicents.protocols.ss7.isup.ParameterException;
+import org.restcomm.protocols.ss7.isup.ISUPMessageFactory;
+import org.restcomm.protocols.ss7.isup.ISUPParameterFactory;
+import org.restcomm.protocols.ss7.isup.message.ISUPMessage;
+import org.restcomm.protocols.ss7.isup.ParameterException;
 
 public interface RAISUPProvider extends Serializable {
 	

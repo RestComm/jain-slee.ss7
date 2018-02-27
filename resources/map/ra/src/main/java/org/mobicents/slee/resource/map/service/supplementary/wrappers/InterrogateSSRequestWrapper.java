@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.map.service.supplementary.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.supplementary.InterrogateSSRequest;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.SSForBSCode;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.InterrogateSSRequest;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.SSForBSCode;
 
 /**
  * 

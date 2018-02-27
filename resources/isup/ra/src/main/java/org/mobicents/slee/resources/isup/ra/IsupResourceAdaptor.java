@@ -30,59 +30,59 @@ import javax.slee.resource.ResourceAdaptorContext;
 import javax.slee.resource.SleeEndpoint;
 import javax.slee.resource.StartActivityException;
 
-import org.mobicents.protocols.ss7.isup.ISUPEvent;
-import org.mobicents.protocols.ss7.isup.ISUPListener;
-import org.mobicents.protocols.ss7.isup.ISUPMessageFactory;
-import org.mobicents.protocols.ss7.isup.ISUPParameterFactory;
-import org.mobicents.protocols.ss7.isup.ISUPProvider;
-import org.mobicents.protocols.ss7.isup.ISUPTimeoutEvent;
-import org.mobicents.protocols.ss7.isup.ParameterException;
-import org.mobicents.protocols.ss7.isup.message.AddressCompleteMessage;
-import org.mobicents.protocols.ss7.isup.message.AnswerMessage;
-import org.mobicents.protocols.ss7.isup.message.ApplicationTransportMessage;
-import org.mobicents.protocols.ss7.isup.message.BlockingAckMessage;
-import org.mobicents.protocols.ss7.isup.message.BlockingMessage;
-import org.mobicents.protocols.ss7.isup.message.CallProgressMessage;
-import org.mobicents.protocols.ss7.isup.message.ChargeInformationMessage;
-import org.mobicents.protocols.ss7.isup.message.CircuitGroupBlockingAckMessage;
-import org.mobicents.protocols.ss7.isup.message.CircuitGroupBlockingMessage;
-import org.mobicents.protocols.ss7.isup.message.CircuitGroupQueryMessage;
-import org.mobicents.protocols.ss7.isup.message.CircuitGroupQueryResponseMessage;
-import org.mobicents.protocols.ss7.isup.message.CircuitGroupResetAckMessage;
-import org.mobicents.protocols.ss7.isup.message.CircuitGroupResetMessage;
-import org.mobicents.protocols.ss7.isup.message.CircuitGroupUnblockingAckMessage;
-import org.mobicents.protocols.ss7.isup.message.CircuitGroupUnblockingMessage;
-import org.mobicents.protocols.ss7.isup.message.ConfusionMessage;
-import org.mobicents.protocols.ss7.isup.message.ConnectMessage;
-import org.mobicents.protocols.ss7.isup.message.ContinuityCheckRequestMessage;
-import org.mobicents.protocols.ss7.isup.message.ContinuityMessage;
-import org.mobicents.protocols.ss7.isup.message.FacilityAcceptedMessage;
-import org.mobicents.protocols.ss7.isup.message.FacilityRejectedMessage;
-import org.mobicents.protocols.ss7.isup.message.ForwardTransferMessage;
-import org.mobicents.protocols.ss7.isup.message.ISUPMessage;
-import org.mobicents.protocols.ss7.isup.message.IdentificationRequestMessage;
-import org.mobicents.protocols.ss7.isup.message.IdentificationResponseMessage;
-import org.mobicents.protocols.ss7.isup.message.InitialAddressMessage;
-import org.mobicents.protocols.ss7.isup.message.LoopPreventionMessage;
-import org.mobicents.protocols.ss7.isup.message.LoopbackAckMessage;
-import org.mobicents.protocols.ss7.isup.message.NetworkResourceManagementMessage;
-import org.mobicents.protocols.ss7.isup.message.OverloadMessage;
-import org.mobicents.protocols.ss7.isup.message.PassAlongMessage;
-import org.mobicents.protocols.ss7.isup.message.PreReleaseInformationMessage;
-import org.mobicents.protocols.ss7.isup.message.ReleaseCompleteMessage;
-import org.mobicents.protocols.ss7.isup.message.ReleaseMessage;
-import org.mobicents.protocols.ss7.isup.message.ResetCircuitMessage;
-import org.mobicents.protocols.ss7.isup.message.ResumeMessage;
-import org.mobicents.protocols.ss7.isup.message.SubsequentAddressMessage;
-import org.mobicents.protocols.ss7.isup.message.SubsequentDirectoryNumberMessage;
-import org.mobicents.protocols.ss7.isup.message.SuspendMessage;
-import org.mobicents.protocols.ss7.isup.message.UnblockingAckMessage;
-import org.mobicents.protocols.ss7.isup.message.UnblockingMessage;
-import org.mobicents.protocols.ss7.isup.message.UnequippedCICMessage;
-import org.mobicents.protocols.ss7.isup.message.UserPartAvailableMessage;
-import org.mobicents.protocols.ss7.isup.message.UserPartTestMessage;
-import org.mobicents.protocols.ss7.isup.message.UserToUserInformationMessage;
-import org.mobicents.protocols.ss7.isup.message.parameter.CauseIndicators;
+import org.restcomm.protocols.ss7.isup.ISUPEvent;
+import org.restcomm.protocols.ss7.isup.ISUPListener;
+import org.restcomm.protocols.ss7.isup.ISUPMessageFactory;
+import org.restcomm.protocols.ss7.isup.ISUPParameterFactory;
+import org.restcomm.protocols.ss7.isup.ISUPProvider;
+import org.restcomm.protocols.ss7.isup.ISUPTimeoutEvent;
+import org.restcomm.protocols.ss7.isup.ParameterException;
+import org.restcomm.protocols.ss7.isup.message.AddressCompleteMessage;
+import org.restcomm.protocols.ss7.isup.message.AnswerMessage;
+import org.restcomm.protocols.ss7.isup.message.ApplicationTransportMessage;
+import org.restcomm.protocols.ss7.isup.message.BlockingAckMessage;
+import org.restcomm.protocols.ss7.isup.message.BlockingMessage;
+import org.restcomm.protocols.ss7.isup.message.CallProgressMessage;
+import org.restcomm.protocols.ss7.isup.message.ChargeInformationMessage;
+import org.restcomm.protocols.ss7.isup.message.CircuitGroupBlockingAckMessage;
+import org.restcomm.protocols.ss7.isup.message.CircuitGroupBlockingMessage;
+import org.restcomm.protocols.ss7.isup.message.CircuitGroupQueryMessage;
+import org.restcomm.protocols.ss7.isup.message.CircuitGroupQueryResponseMessage;
+import org.restcomm.protocols.ss7.isup.message.CircuitGroupResetAckMessage;
+import org.restcomm.protocols.ss7.isup.message.CircuitGroupResetMessage;
+import org.restcomm.protocols.ss7.isup.message.CircuitGroupUnblockingAckMessage;
+import org.restcomm.protocols.ss7.isup.message.CircuitGroupUnblockingMessage;
+import org.restcomm.protocols.ss7.isup.message.ConfusionMessage;
+import org.restcomm.protocols.ss7.isup.message.ConnectMessage;
+import org.restcomm.protocols.ss7.isup.message.ContinuityCheckRequestMessage;
+import org.restcomm.protocols.ss7.isup.message.ContinuityMessage;
+import org.restcomm.protocols.ss7.isup.message.FacilityAcceptedMessage;
+import org.restcomm.protocols.ss7.isup.message.FacilityRejectedMessage;
+import org.restcomm.protocols.ss7.isup.message.ForwardTransferMessage;
+import org.restcomm.protocols.ss7.isup.message.ISUPMessage;
+import org.restcomm.protocols.ss7.isup.message.IdentificationRequestMessage;
+import org.restcomm.protocols.ss7.isup.message.IdentificationResponseMessage;
+import org.restcomm.protocols.ss7.isup.message.InitialAddressMessage;
+import org.restcomm.protocols.ss7.isup.message.LoopPreventionMessage;
+import org.restcomm.protocols.ss7.isup.message.LoopbackAckMessage;
+import org.restcomm.protocols.ss7.isup.message.NetworkResourceManagementMessage;
+import org.restcomm.protocols.ss7.isup.message.OverloadMessage;
+import org.restcomm.protocols.ss7.isup.message.PassAlongMessage;
+import org.restcomm.protocols.ss7.isup.message.PreReleaseInformationMessage;
+import org.restcomm.protocols.ss7.isup.message.ReleaseCompleteMessage;
+import org.restcomm.protocols.ss7.isup.message.ReleaseMessage;
+import org.restcomm.protocols.ss7.isup.message.ResetCircuitMessage;
+import org.restcomm.protocols.ss7.isup.message.ResumeMessage;
+import org.restcomm.protocols.ss7.isup.message.SubsequentAddressMessage;
+import org.restcomm.protocols.ss7.isup.message.SubsequentDirectoryNumberMessage;
+import org.restcomm.protocols.ss7.isup.message.SuspendMessage;
+import org.restcomm.protocols.ss7.isup.message.UnblockingAckMessage;
+import org.restcomm.protocols.ss7.isup.message.UnblockingMessage;
+import org.restcomm.protocols.ss7.isup.message.UnequippedCICMessage;
+import org.restcomm.protocols.ss7.isup.message.UserPartAvailableMessage;
+import org.restcomm.protocols.ss7.isup.message.UserPartTestMessage;
+import org.restcomm.protocols.ss7.isup.message.UserToUserInformationMessage;
+import org.restcomm.protocols.ss7.isup.message.parameter.CauseIndicators;
 import org.mobicents.slee.resources.ss7.isup.events.BlockedEvent;
 import org.mobicents.slee.resources.ss7.isup.events.TimeoutEvent;
 import org.mobicents.slee.resources.ss7.isup.ratype.CircuitActivity;
@@ -346,7 +346,7 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
     ///////////////////////////
 
     /* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.isup.ISUPListener#onMessage(org.mobicents.protocols.ss7.isup.message.ISUPMessage)
+	 * @see org.restcomm.protocols.ss7.isup.ISUPListener#onMessage(org.restcomm.protocols.ss7.isup.message.ISUPMessage)
 	 */
 	public void onEvent(ISUPEvent event) {
 		
@@ -609,14 +609,14 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 	}	
 	
 	/* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.isup.ISUPListener#onTransportDown()
+	 * @see org.restcomm.protocols.ss7.isup.ISUPListener#onTransportDown()
 	 */
 	public void onTransportDown() {
 		this.transportUp = false;
 		
 	}
 	/* (non-Javadoc)
-	 * @see org.mobicents.protocols.ss7.isup.ISUPListener#onTransportUp()
+	 * @see org.restcomm.protocols.ss7.isup.ISUPListener#onTransportUp()
 	 */
 	public void onTransportUp() {
 		// TODO Auto-generated method stub

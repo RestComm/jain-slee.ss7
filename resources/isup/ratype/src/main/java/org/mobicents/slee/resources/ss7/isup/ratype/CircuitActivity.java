@@ -6,14 +6,14 @@ import javax.slee.SLEEException;
 import javax.slee.resource.ActivityAlreadyExistsException;
 import javax.slee.resource.StartActivityException;
 
-import org.mobicents.protocols.ss7.isup.message.BlockingMessage;
-import org.mobicents.protocols.ss7.isup.message.CircuitGroupBlockingMessage;
-import org.mobicents.protocols.ss7.isup.message.CircuitGroupResetMessage;
-import org.mobicents.protocols.ss7.isup.message.CircuitGroupUnblockingMessage;
-import org.mobicents.protocols.ss7.isup.message.ISUPMessage;
-import org.mobicents.protocols.ss7.isup.ParameterException;
-import org.mobicents.protocols.ss7.isup.message.ResetCircuitMessage;
-import org.mobicents.protocols.ss7.isup.message.UnblockingMessage;
+import org.restcomm.protocols.ss7.isup.message.BlockingMessage;
+import org.restcomm.protocols.ss7.isup.message.CircuitGroupBlockingMessage;
+import org.restcomm.protocols.ss7.isup.message.CircuitGroupResetMessage;
+import org.restcomm.protocols.ss7.isup.message.CircuitGroupUnblockingMessage;
+import org.restcomm.protocols.ss7.isup.message.ISUPMessage;
+import org.restcomm.protocols.ss7.isup.ParameterException;
+import org.restcomm.protocols.ss7.isup.message.ResetCircuitMessage;
+import org.restcomm.protocols.ss7.isup.message.UnblockingMessage;
 
 public class CircuitActivity implements Serializable {
 

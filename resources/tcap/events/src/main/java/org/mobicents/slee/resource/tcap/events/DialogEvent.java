@@ -22,7 +22,7 @@
 
 package org.mobicents.slee.resource.tcap.events;
 
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.DialogIndication;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.DialogIndication;
 
 /**
  * @author sergey vetyutnev

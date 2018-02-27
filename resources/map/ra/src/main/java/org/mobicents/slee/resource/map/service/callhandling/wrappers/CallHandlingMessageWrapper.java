@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.map.service.callhandling.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.callhandling.CallHandlingMessage;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.MAPDialogCallHandling;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.CallHandlingMessage;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.MAPDialogCallHandling;
 import org.mobicents.slee.resource.map.wrappers.MAPMessageWrapper;
 
 /**

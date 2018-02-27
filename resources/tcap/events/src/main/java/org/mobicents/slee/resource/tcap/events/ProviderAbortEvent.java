@@ -26,6 +26,6 @@ package org.mobicents.slee.resource.tcap.events;
  * @author sergey vetyutnev
  * 
  */
-public interface ProviderAbortEvent extends org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication, DialogEvent {
+public interface ProviderAbortEvent extends org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication, DialogEvent {
 
 }

@@ -1,6 +1,6 @@
 package org.mobicents.slee.resource.map.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.sms.SmsMessage;
+import org.restcomm.protocols.ss7.map.api.service.sms.SmsMessage;
 import org.mobicents.slee.resource.map.wrappers.MAPMessageWrapper;
 
 /**

@@ -22,23 +22,23 @@
 
 package org.mobicents.slee.resource.cap.service.gprs.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.primitives.CAPExtensions;
-import org.mobicents.protocols.ss7.cap.api.primitives.TimeAndTimezone;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.InitialDpGprsRequest;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.AccessPointName;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.EndUserAddress;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.GPRSEventType;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.PDPInitiationType;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.QualityOfService;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.SGSNCapabilities;
-import org.mobicents.protocols.ss7.map.api.primitives.GSNAddress;
-import org.mobicents.protocols.ss7.map.api.primitives.IMEI;
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.GPRSChargingID;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.GPRSMSClass;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.LocationInformationGPRS;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.RAIdentity;
+import org.restcomm.protocols.ss7.cap.api.primitives.CAPExtensions;
+import org.restcomm.protocols.ss7.cap.api.primitives.TimeAndTimezone;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.InitialDpGprsRequest;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.AccessPointName;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.EndUserAddress;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.GPRSEventType;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.PDPInitiationType;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.QualityOfService;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.SGSNCapabilities;
+import org.restcomm.protocols.ss7.map.api.primitives.GSNAddress;
+import org.restcomm.protocols.ss7.map.api.primitives.IMEI;
+import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
+import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.GPRSChargingID;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.GPRSMSClass;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.LocationInformationGPRS;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.RAIdentity;
 
 /**
  * 

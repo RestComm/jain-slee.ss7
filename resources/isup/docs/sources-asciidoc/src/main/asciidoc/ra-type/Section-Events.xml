@@ -244,7 +244,7 @@
 				<varlistentry>
 					<term>Event Class</term>
 					<listitem>
-						<para>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.</para>
+						<para>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.</para>
 					</listitem>
 				</varlistentry>
 			</variablelist>

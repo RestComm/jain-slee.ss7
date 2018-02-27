@@ -1,7 +1,7 @@
 package org.mobicents.slee.resource.map.service.mobility.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.mobility.MAPDialogMobility;
-import org.mobicents.protocols.ss7.map.api.service.mobility.MobilityMessage;
+import org.restcomm.protocols.ss7.map.api.service.mobility.MAPDialogMobility;
+import org.restcomm.protocols.ss7.map.api.service.mobility.MobilityMessage;
 import org.mobicents.slee.resource.map.wrappers.MAPMessageWrapper;
 
 /**

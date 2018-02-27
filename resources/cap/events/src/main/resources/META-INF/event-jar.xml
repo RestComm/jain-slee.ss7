@@ -82,252 +82,252 @@
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.INITIAL_DP_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitialDPRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.InitialDPRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.ACTIVITY_TEST_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ActivityTestRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.ActivityTestRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.ACTIVITY_TEST_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ActivityTestResponse</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.ActivityTestResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.APPLY_CHARGING_REPORT_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ApplyChargingReportRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.ApplyChargingReportRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.APPLY_CHARGING_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ApplyChargingRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.ApplyChargingRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.ASSIST_REQUEST_INSTRUCTIONS_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.AssistRequestInstructionsRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.AssistRequestInstructionsRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.CALL_INFORMATION_REPORT_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallInformationReportRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.CallInformationReportRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.CALL_INFORMATION_REQUEST_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallInformationRequestRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.CallInformationRequestRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.CANCEL_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CancelRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.CancelRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.CONNECT_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.CONNECT_TO_RESOURCE_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectToResourceRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.ConnectToResourceRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.CONTINUE_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ContinueRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.ContinueRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.DISCONNECT_FORWARD_CONNECTION_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectForwardConnectionRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectForwardConnectionRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.ESTABLISH_TEMPORARY_CONNECTION_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.EstablishTemporaryConnectionRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.EstablishTemporaryConnectionRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.EVENT_REPORT_BCSM_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.EventReportBCSMRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.EventReportBCSMRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.FURNISH_CHARGING_INFORMATION_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.FurnishChargingInformationRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.FurnishChargingInformationRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.PLAY_ANNOUNCEMENT_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PlayAnnouncementRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.PlayAnnouncementRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.RELEASE_CALL_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ReleaseCallRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.ReleaseCallRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.PROMPT_AND_COLLECT_USER_INFORMATION_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PromptAndCollectUserInformationRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.PromptAndCollectUserInformationRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.PROMPT_AND_COLLECT_USER_INFORMATION_RESPONSE</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.PromptAndCollectUserInformationResponse</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.PromptAndCollectUserInformationResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.REQUEST_REPORT_BCSM_EVENT_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.RequestReportBCSMEventRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.RequestReportBCSMEventRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.RESET_TIMER_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ResetTimerRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.ResetTimerRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.SEND_CHARGING_INFORMATION_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SendChargingInformationRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.SendChargingInformationRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.cap.service.circuitSwitchedCall.SPECIALIZED_RESOURCE_REPORT_REQUEST</event-type-name>
 		<event-type-vendor>org.mobicents</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SpecializedResourceReportRequest</event-class-name>
+		<event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.SpecializedResourceReportRequest</event-class-name>
 	</event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.CONTINUE_WITH_ARGUMENT_REQUEST</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.ContinueWithArgumentRequest</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.ContinueWithArgumentRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.DISCONNECT_FORWARD_CONNECTION_WITH_ARGUMENT_REQUEST</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectForwardConnectionWithArgumentRequest</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectForwardConnectionWithArgumentRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.DISCONNECT_LEG_REQUEST</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectLegRequest</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectLegRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.DISCONNECT_LEG_RESPONSE</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectLegResponse</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.DisconnectLegResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.INITIATE_CALL_ATTEMPT_REQUEST</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitiateCallAttemptRequest</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.InitiateCallAttemptRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.INITIATE_CALL_ATTEMPT_RESPONSE</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.InitiateCallAttemptResponse</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.InitiateCallAttemptResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.MOVE_LEG_REQUEST</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.MoveLegRequest</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.MoveLegRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.MOVE_LEG_RESPONSE</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.MoveLegResponse</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.MoveLegResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.SPLIT_LEG_REQUEST</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SplitLegRequest</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.SplitLegRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.SPLIT_LEG_RESPONSE</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.SplitLegResponse</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.SplitLegResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.COLLECT_INFORMATION_REQUEST</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CollectInformationRequest</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.CollectInformationRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.cap.service.circuitSwitchedCall.CALL_GAP_REQUEST</event-type-name>
         <event-type-vendor>org.mobicents</event-type-vendor>
         <event-type-version>1.0</event-type-version>
-        <event-class-name>org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.CallGapRequest</event-class-name>
+        <event-class-name>org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.CallGapRequest</event-class-name>
     </event-definition>
 
 	<!-- GPRS Service -->
@@ -336,126 +336,126 @@
 			<event-type-name>ss7.cap.service.gprs.ACTIVITY_TEST_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.ACTIVITY_TEST_GPRS_RESPONSE</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSResponse</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.ActivityTestGPRSResponse</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.APPLY_CHARGING_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.ApplyChargingGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.ApplyChargingGPRSRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.APPLY_CHARGING_REPORT_GPRS</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.ApplyChargingReportGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.ApplyChargingReportGPRSRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.APPLY_CHARGING_REPORT_GPRS_RESPONSE</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.ApplyChargingReportGPRSResponse</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.ApplyChargingReportGPRSResponse</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.CANCEL_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.CancelGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.CancelGPRSRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.CONNECT_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.ConnectGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.ConnectGPRSRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.CONTINUE_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.ContinueGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.ContinueGPRSRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.ENTITY_RELEASED_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.EntityReleasedGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.EntityReleasedGPRSRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.ENTITY_RELEASED_GPRS_RESPONSE</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.EntityReleasedGPRSResponse</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.EntityReleasedGPRSResponse</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.EVENT_REPORT_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.EventReportGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.EventReportGPRSRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.EVENT_REPORT_GPRS_RESPONSE</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.EventReportGPRSResponse</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.EventReportGPRSResponse</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.FURNISH_CHARGING_INFORMATION_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.FurnishChargingInformationGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.FurnishChargingInformationGPRSRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.INITIAL_DP_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.InitialDpGprsRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.InitialDpGprsRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.RELEASE_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.ReleaseGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.ReleaseGPRSRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.REQUEST_REPORT_GPRS_EVENT_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.RequestReportGPRSEventRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.RequestReportGPRSEventRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.RESET_TIMER_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.ResetTimerGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.ResetTimerGPRSRequest</event-class-name>
 		</event-definition>
 		
 		<event-definition>
 			<event-type-name>ss7.cap.service.gprs.SEND_CHARGING_INFORMATION_GPRS_REQUEST</event-type-name>
 			<event-type-vendor>org.mobicents</event-type-vendor>
 			<event-type-version>1.0</event-type-version>
-			<event-class-name>org.mobicents.protocols.ss7.cap.api.service.gprs.SendChargingInformationGPRSRequest</event-class-name>
+			<event-class-name>org.restcomm.protocols.ss7.cap.api.service.gprs.SendChargingInformationGPRSRequest</event-class-name>
 		</event-definition>
 
     <!-- SMS Service -->
@@ -464,56 +464,56 @@
             <event-type-name>ss7.cap.service.sms.CONNECT_SMS_REQUEST</event-type-name>
             <event-type-vendor>org.mobicents</event-type-vendor>
             <event-type-version>1.0</event-type-version>
-            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.ConnectSMSRequest</event-class-name>
+            <event-class-name>org.restcomm.protocols.ss7.cap.api.service.sms.ConnectSMSRequest</event-class-name>
         </event-definition>
 
         <event-definition>
             <event-type-name>ss7.cap.service.sms.CONTINUE_SMS_REQUEST</event-type-name>
             <event-type-vendor>org.mobicents</event-type-vendor>
             <event-type-version>1.0</event-type-version>
-            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.ContinueSMSRequest</event-class-name>
+            <event-class-name>org.restcomm.protocols.ss7.cap.api.service.sms.ContinueSMSRequest</event-class-name>
         </event-definition>
 
         <event-definition>
             <event-type-name>ss7.cap.service.sms.EVENT_REPORT_SMS_REQUEST</event-type-name>
             <event-type-vendor>org.mobicents</event-type-vendor>
             <event-type-version>1.0</event-type-version>
-            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.EventReportSMSRequest</event-class-name>
+            <event-class-name>org.restcomm.protocols.ss7.cap.api.service.sms.EventReportSMSRequest</event-class-name>
         </event-definition>
 
         <event-definition>
             <event-type-name>ss7.cap.service.sms.FURNISH_CHARGING_INFORMATION_SMS_REQUEST</event-type-name>
             <event-type-vendor>org.mobicents</event-type-vendor>
             <event-type-version>1.0</event-type-version>
-            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.FurnishChargingInformationSMSRequest</event-class-name>
+            <event-class-name>org.restcomm.protocols.ss7.cap.api.service.sms.FurnishChargingInformationSMSRequest</event-class-name>
         </event-definition>
 
         <event-definition>
             <event-type-name>ss7.cap.service.sms.INITIAL_DP_SMS_REQUEST</event-type-name>
             <event-type-vendor>org.mobicents</event-type-vendor>
             <event-type-version>1.0</event-type-version>
-            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.InitialDPSMSRequest</event-class-name>
+            <event-class-name>org.restcomm.protocols.ss7.cap.api.service.sms.InitialDPSMSRequest</event-class-name>
         </event-definition>
 
         <event-definition>
             <event-type-name>ss7.cap.service.sms.RELEASE_SMS_REQUEST</event-type-name>
             <event-type-vendor>org.mobicents</event-type-vendor>
             <event-type-version>1.0</event-type-version>
-            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.ReleaseSMSRequest</event-class-name>
+            <event-class-name>org.restcomm.protocols.ss7.cap.api.service.sms.ReleaseSMSRequest</event-class-name>
         </event-definition>
 
         <event-definition>
             <event-type-name>ss7.cap.service.sms.REQUEST_REPORT_SMS_EVENT_REQUEST</event-type-name>
             <event-type-vendor>org.mobicents</event-type-vendor>
             <event-type-version>1.0</event-type-version>
-            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.RequestReportSMSEventRequest</event-class-name>
+            <event-class-name>org.restcomm.protocols.ss7.cap.api.service.sms.RequestReportSMSEventRequest</event-class-name>
         </event-definition>
 
         <event-definition>
             <event-type-name>ss7.cap.service.sms.RESET_TIMER_SMS_REQUEST</event-type-name>
             <event-type-vendor>org.mobicents</event-type-vendor>
             <event-type-version>1.0</event-type-version>
-            <event-class-name>org.mobicents.protocols.ss7.cap.api.service.sms.ResetTimerSMSRequest</event-class-name>
+            <event-class-name>org.restcomm.protocols.ss7.cap.api.service.sms.ResetTimerSMSRequest</event-class-name>
         </event-definition>
 
 	<!-- Component events -->

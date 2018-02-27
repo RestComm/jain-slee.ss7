@@ -22,9 +22,9 @@
 
 package org.mobicents.slee.resource.cap.service.circuitSwitchedCall.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.primitives.CAPExtensions;
-import org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.MoveLegRequest;
-import org.mobicents.protocols.ss7.inap.api.primitives.LegID;
+import org.restcomm.protocols.ss7.cap.api.primitives.CAPExtensions;
+import org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.MoveLegRequest;
+import org.restcomm.protocols.ss7.inap.api.primitives.LegID;
 
 /**
  * 

@@ -56,7 +56,7 @@ Name::
   ss7.tcap.
 
 Event Class::
-  org.mobicents.protocols.ss7.tcap.api.tc.dialog. 
+  org.restcomm.protocols.ss7.tcap.api.tc.dialog. 
 
 Version for all defined events is 1.0
 

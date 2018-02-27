@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.cap.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.CAPMessage;
-import org.mobicents.protocols.ss7.cap.api.CAPMessageType;
+import org.restcomm.protocols.ss7.cap.api.CAPMessage;
+import org.restcomm.protocols.ss7.cap.api.CAPMessageType;
 import org.mobicents.slee.resource.cap.events.CAPEvent;
 
 

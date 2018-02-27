@@ -127,7 +127,7 @@
 					<term>Event Class</term>
 					<listitem>
 						<para>
-							org.mobicents.protocols.ss7.tcap.api.tc.dialog.
+							org.restcomm.protocols.ss7.tcap.api.tc.dialog.
 						</para>
 					</listitem>
 				</varlistentry>

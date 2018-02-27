@@ -24,11 +24,11 @@ package org.mobicents.slee.resource.tcap.wrappers;
 
 import org.mobicents.protocols.asn.AsnInputStream;
 import org.mobicents.protocols.asn.AsnOutputStream;
-import org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog;
-import org.mobicents.protocols.ss7.tcap.asn.EncodeException;
-import org.mobicents.protocols.ss7.tcap.asn.ParseException;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Component;
-import org.mobicents.protocols.ss7.tcap.asn.comp.ComponentType;
+import org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog;
+import org.restcomm.protocols.ss7.tcap.asn.EncodeException;
+import org.restcomm.protocols.ss7.tcap.asn.ParseException;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Component;
+import org.restcomm.protocols.ss7.tcap.asn.comp.ComponentType;
 import org.mobicents.slee.resource.tcap.events.ComponentEvent;
 
 /**
@@ -54,7 +54,7 @@ public class ComponentEventImpl<T extends Component> implements ComponentEvent {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.asn.Encodable#decode(org.mobicents.protocols
+	 * org.restcomm.protocols.ss7.tcap.asn.Encodable#decode(org.mobicents.protocols
 	 * .asn.AsnInputStream)
 	 */
 	@Override
@@ -67,7 +67,7 @@ public class ComponentEventImpl<T extends Component> implements ComponentEvent {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.asn.Encodable#encode(org.mobicents.protocols
+	 * org.restcomm.protocols.ss7.tcap.asn.Encodable#encode(org.mobicents.protocols
 	 * .asn.AsnOutputStream)
 	 */
 	@Override
@@ -78,7 +78,7 @@ public class ComponentEventImpl<T extends Component> implements ComponentEvent {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.Component#getInvokeId()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.Component#getInvokeId()
 	 */
 	@Override
 	public Long getInvokeId() {
@@ -88,7 +88,7 @@ public class ComponentEventImpl<T extends Component> implements ComponentEvent {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.Component#getType()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.Component#getType()
 	 */
 	@Override
 	public ComponentType getType() {
@@ -99,7 +99,7 @@ public class ComponentEventImpl<T extends Component> implements ComponentEvent {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.asn.comp.Component#setInvokeId(java.
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.Component#setInvokeId(java.
 	 * lang.Long)
 	 */
 	@Override

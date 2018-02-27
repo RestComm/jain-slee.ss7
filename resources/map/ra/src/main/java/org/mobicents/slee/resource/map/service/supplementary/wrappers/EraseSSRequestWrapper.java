@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.map.service.supplementary.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.supplementary.EraseSSRequest;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.SSForBSCode;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.EraseSSRequest;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.SSForBSCode;
 
 /**
  * 

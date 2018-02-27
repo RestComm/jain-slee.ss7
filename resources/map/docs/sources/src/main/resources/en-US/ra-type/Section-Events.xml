@@ -270,7 +270,7 @@
 				<varlistentry>
 					<term>Event Class</term>
 					<listitem>
-						<para>org.mobicents.protocols.ss7.map.api.service.mobility.locationManagement.</para>
+						<para>org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.</para>
 					</listitem>
 				</varlistentry>
 			</variablelist>
@@ -356,7 +356,7 @@
 				<varlistentry>
 					<term>Event Class</term>
 					<listitem>
-						<para>org.mobicents.protocols.ss7.map.api.service.mobility.authentication.</para>
+						<para>org.restcomm.protocols.ss7.map.api.service.mobility.authentication.</para>
 					</listitem>
 				</varlistentry>
 			</variablelist>
@@ -430,7 +430,7 @@
 				<varlistentry>
 					<term>Event Class</term>
 					<listitem>
-						<para>org.mobicents.protocols.ss7.map.api.service.mobility.imei.</para>
+						<para>org.restcomm.protocols.ss7.map.api.service.mobility.imei.</para>
 					</listitem>
 				</varlistentry>
 			</variablelist>
@@ -505,7 +505,7 @@
 				<varlistentry>
 					<term>Event Class</term>
 					<listitem>
-						<para>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberManagement.</para>
+						<para>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.</para>
 					</listitem>
 				</varlistentry>
 			</variablelist>
@@ -579,7 +579,7 @@
 				<varlistentry>
 					<term>Event Class</term>
 					<listitem>
-						<para>org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.</para>
+						<para>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.</para>
 					</listitem>
 				</varlistentry>
 			</variablelist>
@@ -656,7 +656,7 @@
 				<varlistentry>
 					<term>Event Class</term>
 					<listitem>
-						<para>org.mobicents.protocols.ss7.map.api.service.callhandling.</para>
+						<para>org.restcomm.protocols.ss7.map.api.service.callhandling.</para>
 					</listitem>
 				</varlistentry>
 			</variablelist>
@@ -747,7 +747,7 @@
 					<term>Event Class</term>
 					<listitem>
 						<para>
-							org.mobicents.protocols.ss7.map.api.service.supplementary.
+							org.restcomm.protocols.ss7.map.api.service.supplementary.
 					</para>
 					</listitem>
 				</varlistentry>
@@ -854,7 +854,7 @@
 					<term>Event Class</term>
 					<listitem>
 						<para>
-							org.mobicents.protocols.ss7.map.api.service.lsm.
+							org.restcomm.protocols.ss7.map.api.service.lsm.
 					</para>
 					</listitem>
 				</varlistentry>
@@ -956,7 +956,7 @@
 					<term>Event Class</term>
 					<listitem>
 						<para>
-							org.mobicents.protocols.ss7.map.api.service.sms.
+							org.restcomm.protocols.ss7.map.api.service.sms.
 					</para>
 					</listitem>
 				</varlistentry>

@@ -26,7 +26,7 @@
 					</listitem>
 					<!-- Add more here. -->
 				</itemizedlist>
-				<para>Full class name is :<literal>org.mobicents.protocols.ss7.isup.ISUPClientTransaction</literal>. It is created on demand with <acronym>RA</acronym> <acronym>SBB</acronym> Interface.</para>
+				<para>Full class name is :<literal>org.restcomm.protocols.ss7.isup.ISUPClientTransaction</literal>. It is created on demand with <acronym>RA</acronym> <acronym>SBB</acronym> Interface.</para>
 			</listitem>
 		</varlistentry>
 		<varlistentry>
@@ -37,7 +37,7 @@
 				<para>Life cycle of this activity depends on message type. Server transaction stays alive until it timeouts or answer is sent back.
 				Exception to this rule are messages which are only indication of state - they dont require any answer. See above activity.
 				</para>
-				<para>Full class name is :<literal>org.mobicents.protocols.ss7.isup.ISUPServerTransaction</literal>. It is created by <acronym>RA</acronym> for each request which does not have transaction associated with it.</para>
+				<para>Full class name is :<literal>org.restcomm.protocols.ss7.isup.ISUPServerTransaction</literal>. It is created by <acronym>RA</acronym> for each request which does not have transaction associated with it.</para>
 			</listitem>
 			
 		</varlistentry>

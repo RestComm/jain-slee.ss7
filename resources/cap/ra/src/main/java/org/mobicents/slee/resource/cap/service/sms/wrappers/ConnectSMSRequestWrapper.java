@@ -22,11 +22,11 @@
 
 package org.mobicents.slee.resource.cap.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.primitives.CAPExtensions;
-import org.mobicents.protocols.ss7.cap.api.primitives.CalledPartyBCDNumber;
-import org.mobicents.protocols.ss7.cap.api.service.sms.ConnectSMSRequest;
-import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.SMSAddressString;
-import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.restcomm.protocols.ss7.cap.api.primitives.CAPExtensions;
+import org.restcomm.protocols.ss7.cap.api.primitives.CalledPartyBCDNumber;
+import org.restcomm.protocols.ss7.cap.api.service.sms.ConnectSMSRequest;
+import org.restcomm.protocols.ss7.cap.api.service.sms.primitive.SMSAddressString;
+import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
 
 /**
  * 

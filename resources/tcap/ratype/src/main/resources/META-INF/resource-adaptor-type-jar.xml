@@ -24,7 +24,7 @@
 		<resource-adaptor-type-classes>
 			<activity-type>
 				<activity-type-name>
-					org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog
+					org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog
 				</activity-type-name>
 			</activity-type>
 			<activity-context-interface-factory-interface>
@@ -34,7 +34,7 @@
 			</activity-context-interface-factory-interface>
 			<resource-adaptor-interface>
 				<resource-adaptor-interface-name>
-					org.mobicents.protocols.ss7.tcap.api.TCAPProvider
+					org.restcomm.protocols.ss7.tcap.api.TCAPProvider
 				</resource-adaptor-interface-name>
 			</resource-adaptor-interface>
 		</resource-adaptor-type-classes>

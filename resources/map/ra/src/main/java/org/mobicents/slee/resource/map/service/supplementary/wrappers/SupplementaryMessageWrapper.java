@@ -1,7 +1,7 @@
 package org.mobicents.slee.resource.map.service.supplementary.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.SupplementaryMessage;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.SupplementaryMessage;
 import org.mobicents.slee.resource.map.wrappers.MAPMessageWrapper;
 
 /**

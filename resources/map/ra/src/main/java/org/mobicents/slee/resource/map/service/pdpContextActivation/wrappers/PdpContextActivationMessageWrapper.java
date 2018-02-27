@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.map.service.pdpContextActivation.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.pdpContextActivation.MAPDialogPdpContextActivation;
-import org.mobicents.protocols.ss7.map.api.service.pdpContextActivation.PdpContextActivationMessage;
+import org.restcomm.protocols.ss7.map.api.service.pdpContextActivation.MAPDialogPdpContextActivation;
+import org.restcomm.protocols.ss7.map.api.service.pdpContextActivation.PdpContextActivationMessage;
 import org.mobicents.slee.resource.map.wrappers.MAPMessageWrapper;
 
 /**

@@ -26,7 +26,7 @@
 				<term>Event Class</term>
 				<listitem>
 					<para>
-					org.mobicents.protocols.ss7.isup.message.
+					org.restcomm.protocols.ss7.isup.message.
 					</para>
 				</listitem>
 			</varlistentry>	

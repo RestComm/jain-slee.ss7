@@ -92,7 +92,7 @@ Name::
   ss7.cap.service.circuitSwitchedCall.
 
 Event Class::
-  org.mobicents.protocols.ss7.cap.api.service.circuitSwitchedCall.
+  org.restcomm.protocols.ss7.cap.api.service.circuitSwitchedCall.
 
 Version for all defined events is 1.0
 

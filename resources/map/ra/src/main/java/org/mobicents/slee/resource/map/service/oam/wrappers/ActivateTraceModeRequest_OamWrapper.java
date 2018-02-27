@@ -22,19 +22,19 @@
 
 package org.mobicents.slee.resource.map.service.oam.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
-import org.mobicents.protocols.ss7.map.api.primitives.GSNAddress;
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.MAPExtensionContainer;
-import org.mobicents.protocols.ss7.map.api.service.oam.ActivateTraceModeRequest_Oam;
-import org.mobicents.protocols.ss7.map.api.service.oam.MDTConfiguration;
-import org.mobicents.protocols.ss7.map.api.service.oam.TraceDepthList;
-import org.mobicents.protocols.ss7.map.api.service.oam.TraceEventList;
-import org.mobicents.protocols.ss7.map.api.service.oam.TraceInterfaceList;
-import org.mobicents.protocols.ss7.map.api.service.oam.TraceNETypeList;
-import org.mobicents.protocols.ss7.map.api.service.oam.TraceReference;
-import org.mobicents.protocols.ss7.map.api.service.oam.TraceReference2;
-import org.mobicents.protocols.ss7.map.api.service.oam.TraceType;
+import org.restcomm.protocols.ss7.map.api.primitives.AddressString;
+import org.restcomm.protocols.ss7.map.api.primitives.GSNAddress;
+import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
+import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
+import org.restcomm.protocols.ss7.map.api.service.oam.ActivateTraceModeRequest_Oam;
+import org.restcomm.protocols.ss7.map.api.service.oam.MDTConfiguration;
+import org.restcomm.protocols.ss7.map.api.service.oam.TraceDepthList;
+import org.restcomm.protocols.ss7.map.api.service.oam.TraceEventList;
+import org.restcomm.protocols.ss7.map.api.service.oam.TraceInterfaceList;
+import org.restcomm.protocols.ss7.map.api.service.oam.TraceNETypeList;
+import org.restcomm.protocols.ss7.map.api.service.oam.TraceReference;
+import org.restcomm.protocols.ss7.map.api.service.oam.TraceReference2;
+import org.restcomm.protocols.ss7.map.api.service.oam.TraceType;
 
 /**
  * 

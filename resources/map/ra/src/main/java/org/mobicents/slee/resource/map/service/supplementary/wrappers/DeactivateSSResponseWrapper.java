@@ -22,8 +22,8 @@
 
 package org.mobicents.slee.resource.map.service.supplementary.wrappers;
 
-import org.mobicents.protocols.ss7.map.api.service.supplementary.DeactivateSSResponse;
-import org.mobicents.protocols.ss7.map.api.service.supplementary.SSInfo;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.DeactivateSSResponse;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.SSInfo;
 
 /**
  * 

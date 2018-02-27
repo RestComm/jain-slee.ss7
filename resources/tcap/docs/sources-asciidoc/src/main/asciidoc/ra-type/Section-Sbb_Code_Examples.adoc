@@ -15,52 +15,52 @@ import org.mobicents.slee.*;
 public abstract class TCAPExampleSbb implements Sbb, TCAPExample {
 
 	public void onDIALOG_UNI(
-		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event, 
+		org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog event, 
 		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
 	public void onDIALOG_BEGIN(
-		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog event,
 		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
 	public void onDIALOG_CONTINUE(
-		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog event,
 		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
 	public void onDIALOG_END(
-		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog event,
 		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
 	public void onDIALOG_USERABORT(
-		org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication event,
+		org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication event,
 		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
 	public void onDIALOG_PROVIDERABORT(
-		org.mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication event,
+		org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication event,
 		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
 	public void onDIALOG_NOTICE(
-		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog event,
 		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
 	public void onDIALOG_RELEASED(
-		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog event,
 		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
 	public void onDIALOG_TIMEOUT(
-		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog event,
 		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 
 	public void onDIALOG_DELIMITER(
-		org.mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog event,
+		org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog event,
 		ActivityContextInterface aci/*, EventContext eventContext*/) {
 	}
 

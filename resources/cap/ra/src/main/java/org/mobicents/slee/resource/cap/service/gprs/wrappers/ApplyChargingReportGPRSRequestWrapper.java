@@ -22,11 +22,11 @@
 
 package org.mobicents.slee.resource.cap.service.gprs.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.service.gprs.ApplyChargingReportGPRSRequest;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.ChargingResult;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.ChargingRollOver;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.PDPID;
-import org.mobicents.protocols.ss7.cap.api.service.gprs.primitive.QualityOfService;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.ApplyChargingReportGPRSRequest;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.ChargingResult;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.ChargingRollOver;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.PDPID;
+import org.restcomm.protocols.ss7.cap.api.service.gprs.primitive.QualityOfService;
 
 /**
  * 

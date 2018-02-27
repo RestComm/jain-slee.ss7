@@ -22,24 +22,24 @@
 
 package org.mobicents.slee.resource.cap.service.sms.wrappers;
 
-import org.mobicents.protocols.ss7.cap.api.primitives.CAPExtensions;
-import org.mobicents.protocols.ss7.cap.api.primitives.CalledPartyBCDNumber;
-import org.mobicents.protocols.ss7.cap.api.primitives.TimeAndTimezone;
-import org.mobicents.protocols.ss7.cap.api.service.sms.InitialDPSMSRequest;
-import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.EventTypeSMS;
-import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.SMSAddressString;
-import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.TPDataCodingScheme;
-import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.TPProtocolIdentifier;
-import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.TPShortMessageSpecificInfo;
-import org.mobicents.protocols.ss7.cap.api.service.sms.primitive.TPValidityPeriod;
-import org.mobicents.protocols.ss7.map.api.primitives.IMEI;
-import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
-import org.mobicents.protocols.ss7.map.api.primitives.ISDNAddressString;
-import org.mobicents.protocols.ss7.map.api.service.callhandling.CallReferenceNumber;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.GPRSMSClass;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.LocationInformation;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.LocationInformationGPRS;
-import org.mobicents.protocols.ss7.map.api.service.mobility.subscriberInformation.MSClassmark2;
+import org.restcomm.protocols.ss7.cap.api.primitives.CAPExtensions;
+import org.restcomm.protocols.ss7.cap.api.primitives.CalledPartyBCDNumber;
+import org.restcomm.protocols.ss7.cap.api.primitives.TimeAndTimezone;
+import org.restcomm.protocols.ss7.cap.api.service.sms.InitialDPSMSRequest;
+import org.restcomm.protocols.ss7.cap.api.service.sms.primitive.EventTypeSMS;
+import org.restcomm.protocols.ss7.cap.api.service.sms.primitive.SMSAddressString;
+import org.restcomm.protocols.ss7.cap.api.service.sms.primitive.TPDataCodingScheme;
+import org.restcomm.protocols.ss7.cap.api.service.sms.primitive.TPProtocolIdentifier;
+import org.restcomm.protocols.ss7.cap.api.service.sms.primitive.TPShortMessageSpecificInfo;
+import org.restcomm.protocols.ss7.cap.api.service.sms.primitive.TPValidityPeriod;
+import org.restcomm.protocols.ss7.map.api.primitives.IMEI;
+import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
+import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.restcomm.protocols.ss7.map.api.service.callhandling.CallReferenceNumber;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.GPRSMSClass;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.LocationInformation;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.LocationInformationGPRS;
+import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.MSClassmark2;
 
 /**
  * 

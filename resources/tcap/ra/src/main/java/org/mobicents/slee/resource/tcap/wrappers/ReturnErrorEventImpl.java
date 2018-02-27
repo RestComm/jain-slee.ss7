@@ -21,9 +21,9 @@
  */
 package org.mobicents.slee.resource.tcap.wrappers;
 
-import org.mobicents.protocols.ss7.tcap.asn.comp.ErrorCode;
-import org.mobicents.protocols.ss7.tcap.asn.comp.Parameter;
-import org.mobicents.protocols.ss7.tcap.asn.comp.ReturnError;
+import org.restcomm.protocols.ss7.tcap.asn.comp.ErrorCode;
+import org.restcomm.protocols.ss7.tcap.asn.comp.Parameter;
+import org.restcomm.protocols.ss7.tcap.asn.comp.ReturnError;
 import org.mobicents.slee.resource.tcap.events.ReturnErrorEvent;
 
 /**
@@ -42,7 +42,7 @@ public class ReturnErrorEventImpl extends ComponentEventImpl<ReturnError> implem
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.ReturnError#getErrorCode()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.ReturnError#getErrorCode()
 	 */
 	@Override
 	public ErrorCode getErrorCode() {
@@ -52,7 +52,7 @@ public class ReturnErrorEventImpl extends ComponentEventImpl<ReturnError> implem
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.protocols.ss7.tcap.asn.comp.ReturnError#getParameter()
+	 * @see org.restcomm.protocols.ss7.tcap.asn.comp.ReturnError#getParameter()
 	 */
 	@Override
 	public Parameter getParameter() {
@@ -63,7 +63,7 @@ public class ReturnErrorEventImpl extends ComponentEventImpl<ReturnError> implem
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.asn.comp.ReturnError#setErrorCode(org
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.ReturnError#setErrorCode(org
 	 * .mobicents.protocols.ss7.tcap.asn.comp.ErrorCode)
 	 */
 	@Override
@@ -75,7 +75,7 @@ public class ReturnErrorEventImpl extends ComponentEventImpl<ReturnError> implem
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.mobicents.protocols.ss7.tcap.asn.comp.ReturnError#setParameter(org
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.ReturnError#setParameter(org
 	 * .mobicents.protocols.ss7.tcap.asn.comp.Parameter)
 	 */
 	@Override
