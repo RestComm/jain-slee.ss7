@@ -28,7 +28,7 @@
 	</modules>
 
 	<properties>
-		<ss7.version>8.0.0-49</ss7.version> <!-- 8.0.0-SNAPSHOT -->
+		<ss7.version>8.0.0-136</ss7.version> <!-- 8.0.0-SNAPSHOT -->
 		<maven.du.plugin.version>4.0.2</maven.du.plugin.version>
 
 		<asn.version>2.2.0-22</asn.version>

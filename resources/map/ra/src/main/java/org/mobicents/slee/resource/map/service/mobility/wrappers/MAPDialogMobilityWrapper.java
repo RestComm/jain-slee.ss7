@@ -626,4 +626,14 @@ public class MAPDialogMobilityWrapper extends MAPDialogWrapper<MAPDialogMobility
                 callHoldData, clipData, clirData, ectData);
     }
 
+    @Override
+    public Boolean isDoNotSendProtcolVersion() {
+        return this.wrappedDialog.isDoNotSendProtcolVersion();
+    }
+
+    @Override
+    public void setDoNotSendProtocolVersion(Boolean isSendProtocolVersion) {
+        this.wrappedDialog.setDoNotSendProtocolVersion(isSendProtocolVersion);
+    }
+
 }

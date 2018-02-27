@@ -97,4 +97,14 @@ public class MAPDialogOamWrapper extends MAPDialogWrapper<MAPDialogOam> implemen
         this.wrappedDialog.addActivateTraceModeResponse(invokeId, extensionContainer, traceSupportIndicator);
     }
 
+    @Override
+    public Boolean isDoNotSendProtcolVersion() {
+        return this.wrappedDialog.isDoNotSendProtcolVersion();
+    }
+
+    @Override
+    public void setDoNotSendProtocolVersion(Boolean isSendProtocolVersion) {
+        this.wrappedDialog.setDoNotSendProtocolVersion(isSendProtocolVersion);
+    }
+
 }

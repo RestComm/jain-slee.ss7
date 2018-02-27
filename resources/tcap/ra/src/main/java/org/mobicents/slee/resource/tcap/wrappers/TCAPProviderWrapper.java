@@ -30,6 +30,7 @@ import org.restcomm.protocols.ss7.tcap.api.ComponentPrimitiveFactory;
 import org.restcomm.protocols.ss7.tcap.api.DialogPrimitiveFactory;
 import org.restcomm.protocols.ss7.tcap.api.TCAPException;
 import org.restcomm.protocols.ss7.tcap.api.TCAPProvider;
+import org.restcomm.protocols.ss7.tcap.api.TCAPStack;
 import org.restcomm.protocols.ss7.tcap.api.TCListener;
 import org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog;
 import org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.DraftParsedMessage;
@@ -221,6 +222,11 @@ public class TCAPProviderWrapper implements TCAPProvider {
     @Override
     public DraftParsedMessage parseMessageDraft(byte[] data) {
         return wrappedProvider.parseMessageDraft(data);
+    }
+
+    @Override
+    public TCAPStack getStack() {
+        return wrappedProvider.getStack();
     }
 
 }

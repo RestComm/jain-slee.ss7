@@ -234,4 +234,14 @@ public class MAPDialogSupplementaryWrapper extends MAPDialogWrapper<MAPDialogSup
         this.wrappedDialog.addRegisterPasswordResponse(invokeId, password);
     }
 
+    @Override
+    public Boolean isDoNotSendProtcolVersion() {
+        return this.wrappedDialog.isDoNotSendProtcolVersion();
+    }
+
+    @Override
+    public void setDoNotSendProtocolVersion(Boolean isSendProtocolVersion) {
+        this.wrappedDialog.setDoNotSendProtocolVersion(isSendProtocolVersion);
+    }
+
 }
