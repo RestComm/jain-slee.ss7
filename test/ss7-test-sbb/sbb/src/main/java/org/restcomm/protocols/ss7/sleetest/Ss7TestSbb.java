@@ -20,7 +20,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.mobicents.protocols.ss7.sleetest;
+package org.restcomm.protocols.ss7.sleetest;
 
 import javax.slee.ActivityContextInterface;
 import javax.slee.CreateException;
