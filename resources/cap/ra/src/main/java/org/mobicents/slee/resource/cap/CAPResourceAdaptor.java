@@ -327,7 +327,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 			//this.realProvider = (CAPProvider) ic.lookup(this.capJndi);
 			//tracer.info("Successfully connected to CAP service[" + this.capJndi + "]");
 
-            ObjectName objectName = new ObjectName("org.mobicents.ss7:service=CAPSS7Service");
+            ObjectName objectName = new ObjectName("org.restcomm.ss7:service=CAPSS7Service");
             Object object = null;
             if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
                 // trying to get via MBeanServer
@@ -352,7 +352,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 				}
             } else {
 				if (tracer.isSevereEnabled()) {
-					tracer.severe("Failed of connecting to CAP service[org.mobicents.ss7:service=CAPSS7Service]");
+					tracer.severe("Failed of connecting to CAP service[org.restcomm.ss7:service=CAPSS7Service]");
 				}
 			}
 

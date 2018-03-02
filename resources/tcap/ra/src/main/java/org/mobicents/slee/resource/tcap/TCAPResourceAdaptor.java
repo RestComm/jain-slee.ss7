@@ -230,7 +230,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 			//	tracer.info("Successfully connected to TCAP service[" + this.tcapJndi + "]");
 			//}
 
-            ObjectName objectName = new ObjectName("org.mobicents.ss7:service=TCAPSS7Service");
+            ObjectName objectName = new ObjectName("org.restcomm.ss7:service=TCAPSS7Service");
             Object object = null;
             if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
                 // trying to get via MBeanServer
@@ -254,7 +254,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 				}
             } else {
 				if (tracer.isSevereEnabled()) {
-					tracer.severe("Failed of connecting to TCAP service[org.mobicents.ss7:service=TCAPSS7Service]");
+					tracer.severe("Failed of connecting to TCAP service[org.restcomm.ss7:service=TCAPSS7Service]");
 				}
 			}
 

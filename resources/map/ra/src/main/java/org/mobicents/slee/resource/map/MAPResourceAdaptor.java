@@ -430,7 +430,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	public void raActive() {
 
 		try {
-            ObjectName objectName = new ObjectName("org.mobicents.ss7:service=MAPSS7Service");
+            ObjectName objectName = new ObjectName("org.restcomm.ss7:service=MAPSS7Service");
             Object object = null;
             if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
                 // trying to get via MBeanServer
@@ -455,7 +455,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 				}
             } else {
 				if (tracer.isSevereEnabled()) {
-					tracer.severe("Failed of connecting to MAP service[org.mobicents.ss7:service=MAPSS7Service]");
+					tracer.severe("Failed of connecting to MAP service[org.restcomm.ss7:service=MAPSS7Service]");
 				}
             }
 

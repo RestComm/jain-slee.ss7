@@ -183,7 +183,7 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
             // this.isupProvider = (ISUPProvider) ic.lookup(this.isupJndi);
             // tracer.info("Sucssefully connected to ISUP service[" + this.isupJndi + "]");
 
-            ObjectName objectName = new ObjectName("org.mobicents.ss7:service=ISUPSS7Service");
+            ObjectName objectName = new ObjectName("org.restcomm.ss7:service=ISUPSS7Service");
             Object object = null;
             if (ManagementFactory.getPlatformMBeanServer().isRegistered(objectName)) {
                 // trying to get via MBeanServer
@@ -207,7 +207,7 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 				}
             } else {
 				if (tracer.isSevereEnabled()) {
-					tracer.severe("Failed of connecting to ISUP service[org.mobicents.ss7:service=ISUPSS7Service]");
+					tracer.severe("Failed of connecting to ISUP service[org.restcomm.ss7:service=ISUPSS7Service]");
 				}
             }
 
