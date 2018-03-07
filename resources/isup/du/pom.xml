@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>restcomm-slee-ra-isup</artifactId>
 		<groupId>org.mobicents.resources</groupId>
-		<version>7.4.0-SNAPSHOT</version>
+		<version>7.4.0-193</version>
 	</parent>
 	
 	<artifactId>restcomm-slee-ra-isup-du</artifactId>
