@@ -21,18 +21,6 @@
 			<version>${javolution.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.mobicents.tools</groupId>
-			<artifactId>sip-balancer-jar</artifactId>
-			<version>${restcomm.load.balancer.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mobicents.tools</groupId>
-			<artifactId>heartbeat-api</artifactId>
-			<version>${restcomm.load.balancer.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<artifactId>map-api</artifactId>
 			<groupId>org.mobicents.protocols.ss7.map</groupId>
 			<version>${ss7.version}</version>
