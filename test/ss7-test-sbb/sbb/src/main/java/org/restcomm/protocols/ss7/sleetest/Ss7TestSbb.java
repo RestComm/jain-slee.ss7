@@ -37,9 +37,9 @@ import org.restcomm.protocols.ss7.map.api.primitives.USSDString;
 import org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary;
 import org.restcomm.protocols.ss7.map.api.service.supplementary.ProcessUnstructuredSSRequest;
 import org.restcomm.protocols.ss7.map.datacoding.CBSDataCodingSchemeImpl;
+import org.restcomm.slee.resource.map.MAPContextInterfaceFactory;
+import org.restcomm.slee.resource.map.events.DialogDelimiter;
 import org.mobicents.slee.SbbContextExt;
-import org.mobicents.slee.resource.map.MAPContextInterfaceFactory;
-import org.mobicents.slee.resource.map.events.DialogDelimiter;
 
 /**
  *
@@ -116,7 +116,7 @@ public abstract class Ss7TestSbb implements Sbb {
     }
 
 
-	public void onDialogRequest(org.mobicents.slee.resource.map.events.DialogRequest evt, ActivityContextInterface aci) {
+	public void onDialogRequest(org.restcomm.slee.resource.map.events.DialogRequest evt, ActivityContextInterface aci) {
         this.logger.info("New MAP Dialog. Received event MAPOpenInfo " + evt);
 	}
 

@@ -8,7 +8,7 @@
 		<resource-adaptor-name>
 			TCAPResourceAdaptor
 		</resource-adaptor-name>
-		<resource-adaptor-vendor>org.mobicents</resource-adaptor-vendor>
+		<resource-adaptor-vendor>org.restcomm</resource-adaptor-vendor>
 		<resource-adaptor-version>2.0</resource-adaptor-version>
 
 		<resource-adaptor-type-ref>
@@ -16,7 +16,7 @@
 				TCAPResourceAdaptorType
 			</resource-adaptor-type-name>
 			<resource-adaptor-type-vendor>
-				org.mobicents
+				org.restcomm
 			</resource-adaptor-type-vendor>
 			<resource-adaptor-type-version>
 				2.0
@@ -26,7 +26,7 @@
 		<resource-adaptor-classes>
 			<resource-adaptor-class>
 				<resource-adaptor-class-name>
-					org.mobicents.slee.resource.tcap.TCAPResourceAdaptor
+					org.restcomm.slee.resource.tcap.TCAPResourceAdaptor
 				</resource-adaptor-class-name>
 			</resource-adaptor-class>
 		</resource-adaptor-classes>

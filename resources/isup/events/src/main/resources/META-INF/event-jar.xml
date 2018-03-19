@@ -6,7 +6,7 @@
 	<description>Event definitions USSD RA events</description>
 	<library-ref>
 		<library-name>isup</library-name>
-		<library-vendor>mobicents.org</library-vendor>
+		<library-vendor>restcomm.org</library-vendor>
 		<library-version>1.0</library-version>
 	</library-ref>
 	<!-- transaction events -->
@@ -338,7 +338,7 @@
 		<event-type-name>net.java.slee.resource.isup.TRANSACTION_TIMEOUT</event-type-name>
 		<event-type-vendor>net.java</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resources.ss7.isup.events.TimeoutEvent</event-class-name>
+		<event-class-name>org.restcomm.slee.resources.ss7.isup.events.TimeoutEvent</event-class-name>
 	</event-definition>
 	
 	<!-- BLOCKED EVENT -->
@@ -346,7 +346,7 @@
 		<event-type-name>net.java.slee.resource.isup.BLOCKED</event-type-name>
 		<event-type-vendor>net.java</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resources.ss7.isup.events.BlockedEvent</event-class-name>
+		<event-class-name>org.restcomm.slee.resources.ss7.isup.events.BlockedEvent</event-class-name>
 	</event-definition>
 	
 	<!-- RESET EVENT -->
@@ -354,6 +354,6 @@
 		<event-type-name>net.java.slee.resource.isup.RESET</event-type-name>
 		<event-type-vendor>net.java</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resources.ss7.isup.events.ResetEvent</event-class-name>
+		<event-class-name>org.restcomm.slee.resources.ss7.isup.events.ResetEvent</event-class-name>
 	</event-definition>
 </event-jar>

@@ -3,7 +3,7 @@
 	
 	<parent>
 		<artifactId>restcomm-slee-ra-tcap-docs</artifactId>
-		<groupId>org.mobicents.resources</groupId>
+		<groupId>org.restcomm.resources</groupId>
 		<version>2.8.0-SNAPSHOT</version>
 	</parent>
 	

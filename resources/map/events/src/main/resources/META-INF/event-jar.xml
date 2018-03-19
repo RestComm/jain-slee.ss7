@@ -14,73 +14,73 @@
 	<!-- Dialog Events -->
 	<event-definition>
 		<event-type-name>ss7.map.DIALOG_DELIMITER</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.DialogDelimiter</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.DialogDelimiter</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.DIALOG_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.DialogRequest</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.DialogRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.DIALOG_ACCEPT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.DialogAccept</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.DialogAccept</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.DIALOG_REJECT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.DialogReject</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.DialogReject</event-class-name>
 	</event-definition>
 
 
 	<event-definition>
 		<event-type-name>ss7.map.DIALOG_USERABORT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.DialogUserAbort</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.DialogUserAbort</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.DIALOG_PROVIDERABORT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.DialogProviderAbort</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.DialogProviderAbort</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.DIALOG_CLOSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.DialogClose</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.DialogClose</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.DIALOG_NOTICE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.DialogNotice</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.DialogNotice</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.DIALOG_TIMEOUT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.DialogTimeout</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.DialogTimeout</event-class-name>
 	</event-definition>
 	
 	<event-definition>
 		<event-type-name>ss7.map.DIALOG_RELEASE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.DialogRelease</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.DialogRelease</event-class-name>
 	</event-definition>	
 
 	<!-- Service Specific -->
@@ -88,70 +88,70 @@
 	<!-- Mobility - Location Management Service -->
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_LOCATION_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_LOCATION_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.UpdateLocationResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.locationManagement.CANCEL_LOCATION_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.locationManagement.CANCEL_LOCATION_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.CancelLocationResponse</event-class-name>
 	</event-definition>
 	
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_GPRS_LOCATION_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.UpdateGprsLocationRequest</event-class-name>
 	</event-definition>	
 	
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.locationManagement.UPDATE_GPRS_LOCATION_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.UpdateGprsLocationResponse</event-class-name>
 	</event-definition>	
 
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.locationManagement.SEND_IDENTIFICATION_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.SendIdentificationRequest</event-class-name>
 	</event-definition>		
 
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.locationManagement.SEND_IDENTIFICATION_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.SendIdentificationResponse</event-class-name>
 	</event-definition>			
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.locationManagement.PURGE_MS_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.PurgeMSRequest</event-class-name>
     </event-definition>     
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.locationManagement.PURGE_MS_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.locationManagement.PurgeMSResponse</event-class-name>
     </event-definition>         
@@ -161,28 +161,28 @@
 	<!-- Mobility - Authentication management -->
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.authentication.SEND_AUTHENTICATION_INFO_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.authentication.SendAuthenticationInfoRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.authentication.SEND_AUTHENTICATION_INFO_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.authentication.SendAuthenticationInfoResponse</event-class-name>
 	</event-definition>	
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.authentication.AUTHENTICATION_FAILURE_REPORT_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.authentication.AuthenticationFailureReportRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.authentication.AUTHENTICATION_FAILURE_REPORT_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.authentication.AuthenticationFailureReportResponse</event-class-name>
     </event-definition> 
@@ -191,28 +191,28 @@
     <!-- Mobility - Fault recovery -->
     <event-definition>
         <event-type-name>ss7.map.service.mobility.faultRecovery.RESET_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.faultRecovery.ResetRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.faultRecovery.FORWARD_CHECK_SS_INDICATION_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.faultRecovery.ForwardCheckSSIndicationRequest</event-class-name>
     </event-definition> 
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.faultRecovery.RESTORE_DATA_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.faultRecovery.RestoreDataRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.faultRecovery.RESTORE_DATA_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.faultRecovery.RestoreDataResponse</event-class-name>
     </event-definition> 
@@ -221,14 +221,14 @@
 	<!-- Mobility - IMEI management -->
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.imei.CHECK_IMEI_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.imei.CheckImeiRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.mobility.imei.CHECK_IMEI_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.imei.CheckImeiResponse</event-class-name>
 	</event-definition>
@@ -236,28 +236,28 @@
 	<!-- Mobility - Subscriber management -->
     <event-definition>
         <event-type-name>ss7.map.service.mobility.subscribermanagement.INSERT_SUBSCRIBER_DATA_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.subscribermanagement.INSERT_SUBSCRIBER_DATA_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.InsertSubscriberDataResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.subscribermanagement.DELETE_SUBSCRIBER_DATA_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.DeleteSubscriberDataRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.subscribermanagement.DELETE_SUBSCRIBER_DATA_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.DeleteSubscriberDataResponse</event-class-name>
     </event-definition>
@@ -265,42 +265,42 @@
 	<!-- Mobility - Subscriber Information services -->
     <event-definition>
         <event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_INTERROGATION_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationRequest</event-class-name>
     </event-definition>
     
     <event-definition>
         <event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_INTERROGATION_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeInterrogationResponse</event-class-name>
     </event-definition>     
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_SUBSCRIPTION_INTERROGATION_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeSubscriptionInterrogationRequest</event-class-name>
     </event-definition>     
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.subscriberinfo.ANY_TIME_SUBSCRIPTION_INTERROGATION_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.AnyTimeSubscriptionInterrogationResponse</event-class-name>
     </event-definition>     
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.subscriberinfo.PROVIDE_SUBSCRIBER_INFO_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.ProvideSubscriberInfoRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.mobility.subscriberinfo.PROVIDE_SUBSCRIBER_INFO_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.subscriberInformation.ProvideSubscriberInfoResponse</event-class-name>
     </event-definition>     
@@ -309,42 +309,42 @@
 	<!-- OAM -->
     <event-definition>
         <event-type-name>ss7.map.service.oam.SEND_IMSI_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.oam.SendImsiRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.oam.SEND_IMSI_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.oam.SendImsiResponse</event-class-name>
     </event-definition>     
 
     <event-definition>
         <event-type-name>ss7.map.service.oam.ACTIVATE_TRACE_MODE_REQUEST_OAM</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.oam.ActivateTraceModeRequest_Oam</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.oam.ACTIVATE_TRACE_MODE_RESPONSE_OAM</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.oam.ActivateTraceModeResponse_Oam</event-class-name>
     </event-definition>     
 
     <event-definition>
         <event-type-name>ss7.map.service.oam.ACTIVATE_TRACE_MODE_REQUEST_MOBILITY</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.oam.ActivateTraceModeRequest_Mobility</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.oam.ACTIVATE_TRACE_MODE_RESPONSE_MOBILITY</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.mobility.oam.ActivateTraceModeResponse_Mobility</event-class-name>
     </event-definition>     
@@ -353,42 +353,42 @@
 	<!-- Call Handling -->
 	<event-definition>
 		<event-type-name>ss7.map.service.callhandling.SEND_ROUTING_INFORMATION_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.callhandling.SendRoutingInformationRequest</event-class-name>
 	</event-definition>
 									
 	<event-definition>
 		<event-type-name>ss7.map.service.callhandling.SEND_ROUTING_INFORMATION_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.callhandling.SendRoutingInformationResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.callhandling.PROVIDE_ROAMING_NUMBER_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.callhandling.ProvideRoamingNumberRequest</event-class-name>
 	</event-definition>
 									
 	<event-definition>
 		<event-type-name>ss7.map.service.callhandling.PROVIDE_ROAMING_NUMBER_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.callhandling.ProvideRoamingNumberResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.callhandling.IST_COMMAND_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.callhandling.IstCommandRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.callhandling.IST_COMMAND_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.callhandling.IstCommandResponse</event-class-name>
 	</event-definition>
@@ -396,140 +396,140 @@
 	<!-- Suplementary -->
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.REGISTER_SS_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.RegisterSSRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.REGISTER_SS_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.RegisterSSResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.ERASE_SS_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.EraseSSRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.ERASE_SS_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.EraseSSResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.ACTIVATE_SS_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.ActivateSSRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.ACTIVATE_SS_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.ActivateSSResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.DEACTIVATE_SS_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.DeactivateSSRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.DEACTIVATE_SS_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.DeactivateSSResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.INTERROGATE_SS_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.InterrogateSSRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.INTERROGATE_SS_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.InterrogateSSResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.GET_PASSWORD_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.GetPasswordRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.GET_PASSWORD_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.GetPasswordResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.REGISTER_PASSWORD_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.RegisterPasswordRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.suplementary.REGISTER_PASSWORD_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.RegisterPasswordResponse</event-class-name>
     </event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.UNSTRUCTURED_SS_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.UnstructuredSSRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.UNSTRUCTURED_SS_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.UnstructuredSSResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.PROCESS_UNSTRUCTURED_SS_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.ProcessUnstructuredSSRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.PROCESS_UNSTRUCTURED_SS_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.ProcessUnstructuredSSResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.UNSTRUCTURED_SS_NOTIFY_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.UnstructuredSSNotifyRequest</event-class-name>
 	</event-definition>
 	
 	<event-definition>
 		<event-type-name>ss7.map.service.suplementary.UNSTRUCTURED_SS_NOTIFY_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.supplementary.UnstructuredSSNotifyResponse</event-class-name>
 	</event-definition>	
@@ -537,112 +537,112 @@
 	<!-- SMS -->
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.FORWARD_SHORT_MESSAGE_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.ForwardShortMessageRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.FORWARD_SHORT_MESSAGE_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.ForwardShortMessageResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.MO_FORWARD_SHORT_MESSAGE_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.MoForwardShortMessageRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.MO_FORWARD_SHORT_MESSAGE_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.MoForwardShortMessageResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.MT_FORWARD_SHORT_MESSAGE_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.MtForwardShortMessageRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.MT_FORWARD_SHORT_MESSAGE_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.MtForwardShortMessageResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.SEND_ROUTING_INFO_FOR_SM_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.SendRoutingInfoForSMRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.SEND_ROUTING_INFO_FOR_SM_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.SendRoutingInfoForSMResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.REPORT_SM_DELIVERY_STATUS_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.ReportSMDeliveryStatusRequest</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.REPORT_SM_DELIVERY_STATUS_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.ReportSMDeliveryStatusResponse</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.service.sms.INFORM_SERVICE_CENTER_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.InformServiceCentreRequest</event-class-name>
 	</event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.sms.ALERT_SERVICE_CENTER_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.AlertServiceCentreRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.sms.ALERT_SERVICE_CENTER_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.AlertServiceCentreResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.sms.READY_FOR_SM_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.ReadyForSMRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.sms.READY_FOR_SM_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.ReadyForSMResponse</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.sms.NOTE_SUBSCRIBER_PRESENT_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.sms.NoteSubscriberPresentRequest</event-class-name>
     </event-definition>
@@ -651,14 +651,14 @@
 	<!-- Network-Requested PDP Context Activation services -->
     <event-definition>
         <event-type-name>ss7.map.service.pdpContextActivation.SEND_ROUTING_INFO_FOR_GPRS_REQUEST</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.pdpContextActivation.SendRoutingInfoForGprsRequest</event-class-name>
     </event-definition>
 
     <event-definition>
         <event-type-name>ss7.map.service.pdpContextActivation.SEND_ROUTING_INFO_FOR_GPRS_RESPONSE</event-type-name>
-        <event-type-vendor>org.mobicents</event-type-vendor>
+        <event-type-vendor>org.restcomm</event-type-vendor>
         <event-type-version>1.0</event-type-version>
         <event-class-name>org.restcomm.protocols.ss7.map.api.service.pdpContextActivation.SendRoutingInfoForGprsResponse</event-class-name>
     </event-definition>
@@ -667,37 +667,37 @@
 	<!-- LSM -->
 	<event-definition>
 		<event-type-name>ss7.map.service.lsm.PROVIDE_SUBSCRIBER_LOCATION_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.lsm.ProvideSubscriberLocationRequest</event-class-name>
 	</event-definition>
 	<event-definition>
 		<event-type-name>ss7.map.service.lsm.PROVIDE_SUBSCRIBER_LOCATION_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.lsm.ProvideSubscriberLocationResponse</event-class-name>
 	</event-definition>
 	<event-definition>
 		<event-type-name>ss7.map.service.lsm.SEND_ROUTING_INFO_FOR_LCS_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.lsm.SendRoutingInfoForLCSRequest</event-class-name>
 	</event-definition>
 	<event-definition>
 		<event-type-name>ss7.map.service.lsm.SEND_ROUTING_INFO_FOR_LCS_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.lsm.SendRoutingInfoForLCSResponse</event-class-name>
 	</event-definition>
 	<event-definition>
 		<event-type-name>ss7.map.service.lsm.SUBSCRIBER_LOCATION_REPORT_REQUEST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.lsm.SubscriberLocationReportRequest</event-class-name>
 	</event-definition>
 	<event-definition>
 		<event-type-name>ss7.map.service.lsm.SUBSCRIBER_LOCATION_REPORT_RESPONSE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.map.api.service.lsm.SubscriberLocationReportResponse</event-class-name>
 	</event-definition>
@@ -705,23 +705,23 @@
 	<!-- Component events -->
 	<event-definition>
 		<event-type-name>ss7.map.INVOKE_TIMEOUT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.InvokeTimeout</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.InvokeTimeout</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.ERROR_COMPONENT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.ErrorComponent</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.ErrorComponent</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.map.REJECT_COMPONENT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.map.events.RejectComponent</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.map.events.RejectComponent</event-class-name>
 	</event-definition>
 </event-jar>
 

@@ -7,7 +7,7 @@
 		<version>7.0.11</version>
 	</parent>
 
-	<groupId>org.mobicents.servers.jainslee.ss7</groupId>
+	<groupId>org.restcomm.servers.jainslee.ss7</groupId>
 	<artifactId>restcomm-slee-ss7</artifactId>
 	<version>8.0.0-SNAPSHOT</version>
 
@@ -28,7 +28,7 @@
 	</modules>
 
 	<properties>
-		<ss7.version>8.0.0-140</ss7.version> <!-- 8.0.0-SNAPSHOT -->
+		<ss7.version>8.0.0-145</ss7.version> <!-- 8.0.0-SNAPSHOT -->
 		<maven.du.plugin.version>4.0.2</maven.du.plugin.version>
 
 		<asn.version>2.2.0-22</asn.version>
@@ -49,6 +49,7 @@
 				<module>resources/cap</module>
 				<module>resources/tcap</module>
 				<module>resources/isup</module>
+				<module>test/ss7-test-sbb</module>
 			</modules>
 			<build>
 				<plugins>

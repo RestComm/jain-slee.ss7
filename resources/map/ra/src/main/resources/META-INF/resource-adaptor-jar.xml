@@ -8,7 +8,7 @@
 		<resource-adaptor-name>
 			MAPResourceAdaptor
 		</resource-adaptor-name>
-		<resource-adaptor-vendor>org.mobicents</resource-adaptor-vendor>
+		<resource-adaptor-vendor>org.restcomm</resource-adaptor-vendor>
 		<resource-adaptor-version>2.0</resource-adaptor-version>
 
 		<resource-adaptor-type-ref>
@@ -16,7 +16,7 @@
 				MAPResourceAdaptorType
 			</resource-adaptor-type-name>
 			<resource-adaptor-type-vendor>
-				org.mobicents
+				org.restcomm
 			</resource-adaptor-type-vendor>
 			<resource-adaptor-type-version>
 				2.0
@@ -26,7 +26,7 @@
 		<resource-adaptor-classes>
 			<resource-adaptor-class>
 				<resource-adaptor-class-name>
-					org.mobicents.slee.resource.map.MAPResourceAdaptor
+					org.restcomm.slee.resource.map.MAPResourceAdaptor
 				</resource-adaptor-class-name>
 			</resource-adaptor-class>
 
@@ -35,7 +35,7 @@
 					RestComm Statistics
 				</description>
 				<resource-adaptor-usage-parameters-interface-name>
-					org.mobicents.slee.resource.map.MAPResourceAdaptorStatisticsUsageParameters
+					org.restcomm.slee.resource.map.MAPResourceAdaptorStatisticsUsageParameters
 				</resource-adaptor-usage-parameters-interface-name>
 				<usage-parameter name="messages" notifications-enabled="False"/>
 			</resource-adaptor-usage-parameters-interface>

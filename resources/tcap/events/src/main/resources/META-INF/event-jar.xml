@@ -14,70 +14,70 @@
 	<!-- Dialog Events -->
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_UNI</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_BEGIN</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_CONTINUE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_END</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_USERABORT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_PROVIDERABORT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_NOTICE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_RELEASED</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_TIMEOUT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
 	</event-definition>
 
 	<event-definition>
 		<event-type-name>ss7.tcap.DIALOG_DELIMITER</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
 		<event-class-name>org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog</event-class-name>
 	</event-definition>
@@ -85,44 +85,44 @@
 	<!-- Component Events -->
 	<event-definition>
 		<event-type-name>ss7.tcap.COMPONENT_INVOKE</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.tcap.events.InvokeEvent</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.tcap.events.InvokeEvent</event-class-name>
 	</event-definition>
 	
 	<event-definition>
 		<event-type-name>ss7.tcap.COMPONENT_INVOKE_TIMEOUT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.tcap.events.InvokeEvent</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.tcap.events.InvokeEvent</event-class-name>
 	</event-definition>	
 
 	<event-definition>
 		<event-type-name>ss7.tcap.COMPONENT_REJECT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.tcap.events.RejectEvent</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.tcap.events.RejectEvent</event-class-name>
 	</event-definition>
 	
 	<event-definition>
 		<event-type-name>ss7.tcap.COMPONENT_RETURNRESULT</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.tcap.events.ReturnResultEvent</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.tcap.events.ReturnResultEvent</event-class-name>
 	</event-definition>
 	
 	<event-definition>
 		<event-type-name>ss7.tcap.COMPONENT_RETURNRESULT_LAST</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.tcap.events.ReturnResultLastEvent</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.tcap.events.ReturnResultLastEvent</event-class-name>
 	</event-definition>
 	
 	<event-definition>
 		<event-type-name>ss7.tcap.COMPONENT_RETURNERROR</event-type-name>
-		<event-type-vendor>org.mobicents</event-type-vendor>
+		<event-type-vendor>org.restcomm</event-type-vendor>
 		<event-type-version>1.0</event-type-version>
-		<event-class-name>org.mobicents.slee.resource.tcap.events.ReturnErrorEvent</event-class-name>
+		<event-class-name>org.restcomm.slee.resource.tcap.events.ReturnErrorEvent</event-class-name>
 	</event-definition>				
 	
 		
