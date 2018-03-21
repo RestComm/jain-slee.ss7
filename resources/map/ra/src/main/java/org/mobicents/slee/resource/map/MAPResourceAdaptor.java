@@ -1,5 +1,5 @@
 /*
- * TeleStax, Open Source Cloud Communications  
+ * TeleStax, Open Source Cloud Communications
  * Copyright 2012, Telestax Inc and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
@@ -56,8 +56,11 @@ import org.mobicents.protocols.ss7.map.api.dialog.MAPAbortProviderReason;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPAbortSource;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPDialogState;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPNoticeProblemDiagnostic;
+import org.mobicents.protocols.ss7.map.api.dialog.MAPProviderAbortReason;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPRefuseReason;
 import org.mobicents.protocols.ss7.map.api.dialog.MAPUserAbortChoice;
+import org.mobicents.protocols.ss7.map.api.dialog.ProcedureCancellationReason;
+import org.mobicents.protocols.ss7.map.api.dialog.ResourceUnavailableReason;
 import org.mobicents.protocols.ss7.map.api.errors.MAPErrorMessage;
 import org.mobicents.protocols.ss7.map.api.primitives.AddressString;
 import org.mobicents.protocols.ss7.map.api.primitives.IMSI;
@@ -162,8 +165,10 @@ import org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSN
 import org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSNotifyResponse;
 import org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSRequest;
 import org.mobicents.protocols.ss7.map.api.service.supplementary.UnstructuredSSResponse;
+import org.mobicents.protocols.ss7.map.dialog.MAPUserAbortChoiceImpl;
 import org.mobicents.protocols.ss7.tcap.asn.ApplicationContextName;
 import org.mobicents.protocols.ss7.tcap.asn.comp.Problem;
+import org.mobicents.slee.container.resource.GracefullyStopableResourceAdaptor;
 import org.mobicents.slee.resource.map.events.DialogAccept;
 import org.mobicents.slee.resource.map.events.DialogClose;
 import org.mobicents.slee.resource.map.events.DialogDelimiter;
@@ -277,15 +282,15 @@ import org.mobicents.slee.resource.map.wrappers.MAPProviderWrapper;
 import java.lang.management.ManagementFactory;
 
 /**
- * 
+ *
  * @author amit bhayani
  * @author baranowb
  * @author sergey vetyutnev
- * 
+ *
  */
 public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, MAPServiceMobilityListener,
 		MAPServiceCallHandlingListener, MAPServiceOamListener, MAPServicePdpContextActivationListener,
-		MAPServiceSupplementaryListener, MAPServiceSmsListener, MAPServiceLsmListener {
+		MAPServiceSupplementaryListener, MAPServiceSmsListener, MAPServiceLsmListener, GracefullyStopableResourceAdaptor {
 	/**
 	 * for all events we are interested in knowing when the event failed to be
 	 * processed
@@ -321,6 +326,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	private String mapJndi = null;
 	private transient static final Address address = new Address(AddressPlan.IP, "localhost");
+
+	private boolean raIsStopping = false;
 
 	public MAPResourceAdaptor() {
 		this.mapProvider = new MAPProviderWrapper(this);
@@ -483,6 +490,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		} catch (Exception e) {
 			this.tracer.severe("Failed to activate MAP RA ", e);
 		}
+		raIsStopping = false;
 	}
 
 	public void raConfigurationUpdate(ConfigProperties properties) {
@@ -528,6 +536,14 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		if (tracer.isInfoEnabled()) {
 			tracer.info("MAP Resource Adaptor entity inactive.");
 		}
+	}
+
+	public void gracefulRaStopping() {
+		if (tracer.isFineEnabled()) {
+			tracer.fine("Graceful stop requested for " + this.resourceAdaptorContext.getEntityName());
+		}
+		raIsStopping = true;
+		raStopping();
 	}
 
 	public void raStopping() {
@@ -655,7 +671,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	/**
 	 * Filters the even and returns true if the event was fired
-	 * 
+	 *
 	 * @param eventName
 	 * @param handle
 	 * @param event
@@ -799,6 +815,23 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 				this.tracer.fine(String.format("Received onDialogRequest id=%d ", mapDialog.getLocalDialogId()));
 			}
 
+			if (raIsStopping) {
+				this.tracer.warning(String.format(this.resourceAdaptorContext.getEntityName() +" RA is in graceful shutdown mode, dropping new dialog request (otid=%d, dtid=%d)",
+						mapDialog.getRemoteDialogId(),
+						mapDialog.getLocalDialogId()));
+				try {
+					MAPUserAbortChoice ach = this.realProvider.getMAPParameterFactory().createMAPUserAbortChoice();
+					ach.setUserSpecificReason();
+					ach.setUserResourceLimitation();
+					ach.setResourceUnavailableReason(ResourceUnavailableReason.shortTermResourceLimitation);
+					mapDialog.abort(ach);
+				}
+				catch (Exception ex) {
+					this.tracer.warning("Error while aborting dialog due to raStopping: " + ex.getMessage(), ex);
+				}
+				return;
+			}
+
 			MAPDialogActivityHandle activityHandle = new MAPDialogActivityHandle(mapDialog.getLocalDialogId());
 			MAPDialogWrapper mapDialogWrapper = null;
 
@@ -877,7 +910,9 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 			MAPDialogActivityHandle handle = onEvent(dialogRelease.getEventTypeName(), mapDialogWrapper, dialogRelease);
 
 			// End Activity
-			this.sleeEndpoint.endActivity(handle);
+			if (handle!=null) {
+				this.sleeEndpoint.endActivity(handle);
+			}
 		} catch (Exception e) {
 			this.tracer.severe(String.format(
 					"onDialogRelease : Exception while trying to end activity for MAPDialog=%s", mapDialog), e);
@@ -900,16 +935,16 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 		MAPDialogWrapper mapDialogWrapper = (MAPDialogWrapper) mapDialog.getUserObject();
 		DialogTimeout dt = new DialogTimeout(mapDialogWrapper);
-		
+
 		if (mapDialogWrapper == null) {
 			this.tracer
 					.severe(String.format("Firing %s but MAPDialogWrapper userObject is null", dt.getEventTypeName()));
 			mapDialog.release();
 			return;
 		}
-		
+
 		mapDialogWrapper.startDialogTimeoutProc();
-		
+
 		if (this.tracer.isFineEnabled()) {
 			this.tracer.fine(String.format("Firing %s for DialogId=%d", dt.getEventTypeName(), mapDialogWrapper
 					.getWrappedDialog().getLocalDialogId()));
@@ -1692,7 +1727,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * org.mobicents.protocols.ss7.map.api.MAPServiceListener#onMAPMessage(org
 	 * .mobicents.protocols.ss7.map.api.MAPMessage)

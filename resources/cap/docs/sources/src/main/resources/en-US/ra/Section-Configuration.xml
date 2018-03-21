@@ -10,7 +10,7 @@
 	<title>Configuration</title>
 
 	<para>The Resource Adaptor supports configuration only at Resource Adaptor Entity creation time. It supports following properties:</para>
-	
+
 	<table frame="all" pgwide="1">
 		<title>Resource Adaptor's Configuration Properties - cap-default-ra.properties</title>
 		<tgroup colsep="1" cols="4">
@@ -33,20 +33,33 @@
 			   	    <entry>java.lang.String</entry>
 			   	    <entry>java:/mobicents/ss7/cap</entry>
 			    </row>
+				<row>
+					<entry>defaultActiveSessionsThreshold</entry>
+					<entry>This property defines container default Active Sessions Threshold (AST) value in graceful shutdown resource adaptor mode.</entry>
+					<entry>java.lang.Integer</entry>
+					<entry>30</entry>
+				</row>
+				<row>
+					<entry>defaultGracefulShutdownWaitTime</entry>
+					<entry>This property defines the maximum time period when the container is waiting for finishing existing sessions/activities in
+						graceful shutdown resource adaptor mode.</entry>
+					<entry>java.lang.Long</entry>
+					<entry>300</entry>
+				</row>
 			</tbody>
 	 	</tgroup>
-	</table>		
+	</table>
 
 
-	
+
 
 
 	<important>
 		<para>
-			JAIN SLEE 1.1 Specification requires values set for properties without a default value, 
-			which means the configuration for those properties are mandatory, 
+			JAIN SLEE 1.1 Specification requires values set for properties without a default value,
+			which means the configuration for those properties are mandatory,
 			otherwise the Resource Adaptor Entity creation will fail!
 		</para>
 	</important>
-		
+
 </section>

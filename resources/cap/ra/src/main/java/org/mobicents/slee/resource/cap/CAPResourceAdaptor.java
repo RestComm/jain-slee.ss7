@@ -22,6 +22,7 @@
 
 package org.mobicents.slee.resource.cap;
 
+import org.apache.log4j.Logger;
 import javax.management.ObjectName;
 import javax.naming.InitialContext;
 import javax.slee.Address;
@@ -46,7 +47,7 @@ import javax.slee.resource.ResourceAdaptorContext;
 import javax.slee.resource.SleeEndpoint;
 import javax.slee.resource.StartActivityException;
 import javax.slee.resource.UnrecognizedActivityHandleException;
-
+import java.lang.management.ManagementFactory;
 import org.mobicents.protocols.ss7.cap.api.CAPDialog;
 import org.mobicents.protocols.ss7.cap.api.CAPDialogListener;
 import org.mobicents.protocols.ss7.cap.api.CAPMessage;
@@ -90,6 +91,7 @@ import org.mobicents.protocols.ss7.cap.api.service.sms.RequestReportSMSEventRequ
 import org.mobicents.protocols.ss7.cap.api.service.sms.ResetTimerSMSRequest;
 import org.mobicents.protocols.ss7.tcap.asn.comp.PAbortCauseType;
 import org.mobicents.protocols.ss7.tcap.asn.comp.Problem;
+import org.mobicents.slee.container.resource.GracefullyStopableResourceAdaptor;
 import org.mobicents.slee.resource.cap.events.CAPEvent;
 import org.mobicents.slee.resource.cap.events.DialogAccept;
 import org.mobicents.slee.resource.cap.events.DialogClose;
@@ -171,17 +173,16 @@ import org.mobicents.slee.resource.cap.service.sms.wrappers.ResetTimerSMSRequest
 import org.mobicents.slee.resource.cap.wrappers.CAPDialogWrapper;
 import org.mobicents.slee.resource.cap.wrappers.CAPProviderWrapper;
 
-import java.lang.management.ManagementFactory;
-
 /**
  * 
  * @author amit bhayani
  * @author baranowb
  * @author sergey vetyutnev
+ * @author <a href="mailto:info@pro-ids.com">ProIDS sp. z o.o.</a>
  * 
  */
 public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, CAPServiceCircuitSwitchedCallListener,
-		CAPServiceGprsListener, CAPServiceSmsListener {
+		CAPServiceGprsListener, CAPServiceSmsListener, GracefullyStopableResourceAdaptor {
 	/**
 	 * for all events we are interested in knowing when the event failed to be
 	 * processed
@@ -215,6 +216,8 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 
 	private String capJndi = null;
 	private transient static final Address address = new Address(AddressPlan.IP, "localhost");
+
+	boolean raIsStopping = false;
 
 	public CAPResourceAdaptor() {
 		this.capProvider = new CAPProviderWrapper(this);
@@ -372,6 +375,7 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		} catch (Exception e) {
 			this.tracer.severe("Failed to activate CAP RA ", e);
 		}
+		raIsStopping = false;
 	}
 
 	public void raConfigurationUpdate(ConfigProperties properties) {
@@ -401,9 +405,22 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 		this.realProvider.removeCAPDialogListener(this);
 	}
 
-	public void raStopping() {
-		// TODO Auto-generated method stub
+	/*
+	 * (non-Javadoc)
+	 * @see org.mobicents.slee.container.resource.GracefullyStopableResourceAdaptor#gracefulRaStopping()
+	 */
+	public void gracefulRaStopping() {
+		if (tracer.isFineEnabled()) {
+			tracer.fine("Graceful stop requested for " + this.resourceAdaptorContext.getEntityName());
+		}
+		raIsStopping = true;
+		raStopping();
+	}
 
+	public void raStopping() {
+		if (tracer.isInfoEnabled()) {
+			tracer.info("raStopping request received for " + this.resourceAdaptorContext.getEntityName());
+		}
 	}
 
 	public void raUnconfigure() {
@@ -527,7 +544,11 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 
 	private CAPDialogActivityHandle onEvent(String eventName, CAPDialogWrapper dw, CAPEvent event, int flags) {
 		if (dw == null) {
-			this.tracer.severe(String.format("Firing %s but CAPDialogWrapper userObject is null", eventName));
+			if(!raIsStopping) {
+				this.tracer.severe(String.format("Skip firing %s as CAPDialogWrapper userObject is null", eventName));
+			} else {
+				this.tracer.fine(String.format("Skip firing %s as CAPDialogWrapper userObject is null, but RA is stopping", eventName));
+			}
 			return null;
 		}
 
@@ -598,6 +619,19 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 				this.tracer.fine(String.format("Received onDialogRequest id=%d ", capDialog.getLocalDialogId()));
 			}
 
+			if (raIsStopping) {
+				this.tracer.warning(String.format(this.resourceAdaptorContext.getEntityName() +" RA is in graceful shutdown mode, dropping new dialog request (otid=%d, dtid=%d)",
+						capDialog.getRemoteDialogId(),
+						capDialog.getLocalDialogId()));
+				try {
+					capDialog.abort(CAPUserAbortReason.no_reason_given);
+				}
+				catch (Exception ex) {
+					this.tracer.warning("Error while aborting dialog due to raStopping: " + ex.getMessage(), ex);
+				}
+				return;
+			}
+
 			CAPDialogActivityHandle activityHandle = new CAPDialogActivityHandle(capDialog.getLocalDialogId());
 			CAPDialogWrapper capDialogWrapper = null;
 
@@ -639,7 +673,9 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 			CAPDialogActivityHandle handle = onEvent(dialogRelease.getEventTypeName(), capDialogWrapper, dialogRelease);
 
 			// End Activity
-			this.sleeEndpoint.endActivity(handle);
+			if (handle!=null) {
+				this.sleeEndpoint.endActivity(handle);
+			}
 		} catch (Exception e) {
 			this.tracer.severe(String.format(
 					"onDialogRelease : Exception while trying to end activity for CAPDialog=%s", capDialog), e);
@@ -715,6 +751,9 @@ public class CAPResourceAdaptor implements ResourceAdaptor, CAPDialogListener, C
 
 	@Override
 	public void onInitialDPRequest(InitialDPRequest ind) {
+		if (this.tracer.isFineEnabled()) {
+			this.tracer.fine(String.format("Received onInitialDPRequest id=%d ", ind.getCAPDialog().getLocalDialogId()));
+		}
 		CAPDialogCircuitSwitchedCallWrapper capDialogCircuitSwitchedCallWrapper = (CAPDialogCircuitSwitchedCallWrapper) ind
 				.getCAPDialog().getUserObject();
 		InitialDPRequestWrapper event = new InitialDPRequestWrapper(capDialogCircuitSwitchedCallWrapper, ind);

@@ -4,6 +4,12 @@
 [appendix]
 = Revision History
 
-	
+.Revision History
+[cols="1,1,1,1", frame="all", options="header"]
+|===
+| Revision number | Date | Author | Description
+| 1.0 | 2012-01-21 | Amit Bhayani | Creation of the {this-platform} JAIN SLEE CAP RA User Guide..
+| 1.1 | 2016-09-29 | Grzegorz Figiel | Graceful Stop feature chapter added.
+|===
 
 :sectnums:

@@ -45,7 +45,8 @@ public class CAPServiceCircuitSwitchedCallWrapper implements CAPServiceCircuitSw
 	protected CAPProviderWrapper capProviderWrapper;
 
 	/**
-	 * @param CAPServiceCircuitSwitchedCall
+	 * @param capProviderWrapper
+	 * @param capServiceCircuitSwitchedCall
 	 */
 	public CAPServiceCircuitSwitchedCallWrapper(CAPProviderWrapper capProviderWrapper, CAPServiceCircuitSwitchedCall capServiceCircuitSwitchedCall) {
 		this.wrappedCircuitSwitchedCall = capServiceCircuitSwitchedCall;

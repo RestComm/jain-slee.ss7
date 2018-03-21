@@ -1,0 +1,6 @@
+[[_author_group]]
+= Authors
+
+	Amit Bhayani  {author-email-amit}
+
+	Grzegorz Figiel ProIDS www.pro-ids.com grzegorz.figiel (at) pro-ids.com

@@ -1,5 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<parent>
 		<artifactId>restcomm-slee-ra-cap</artifactId>
@@ -8,6 +20,11 @@
 	</parent>
 
 	<artifactId>restcomm-slee-ra-cap-ra</artifactId>
+
+    <!-- TODO: update to version implementing GracefullyStopableRa interface -->
+	<properties>
+		<restcomm.jain.slee.version>proids-2.8.0</restcomm.jain.slee.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -19,6 +36,11 @@
 			<groupId>javolution</groupId>
 			<artifactId>javolution</artifactId>
 			<version>${javolution.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mobicents.servers.jainslee.core</groupId>
+			<artifactId>spi</artifactId>
+			<version>${restcomm.jain.slee.version}</version>
 		</dependency>
 	</dependencies>
 

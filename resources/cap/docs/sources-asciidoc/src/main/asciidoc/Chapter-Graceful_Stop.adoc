@@ -1,0 +1,13 @@
+[[_ra_graceful_stop]]
+= Graceful Stop
+
+[[_ra_graceful_stop_support]]
+== Graceful Stop support
+
+The RA supports Graceful container stop feature. In Graceful Stop state the RA rejects incoming initial events - it rejects new activities creation.
+
+[[_ra_graceful_stop_response]]
+== Graceful Stop reject support
+
+When the RA is in Graceful Stopping mode the `TC_ABORT` is send as a response for every new `TC_BEGIN` TCAP message.
+`CAP-U-ABORT-REASON: no-reason-given (1)` is used as a u-abort-reason parameter value.

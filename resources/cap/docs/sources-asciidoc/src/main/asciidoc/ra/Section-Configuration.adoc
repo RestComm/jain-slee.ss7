@@ -10,6 +10,11 @@ It supports following properties:
 |===
 | Property Name | Description | Property Type | Default Value
 | mapJndi | JNDI name of CAP stack | java.lang.String | java:/mobicents/ss7/cap
+| defaultActiveSessionsThreshold | This property defines container default Active Sessions Threshold (AST) value in graceful shutdown resource adaptor mode.
+| java.lang.Integer | 30
+| defaultGracefulShutdownWaitTime | This property defines the maximum time period when the container is waiting for finishing existing sessions/activities in
+graceful shutdown resource adaptor mode.
+| java.lang.Long | 300 |
 |===
 
-IMPORTANT: JAIN SLEE 1.1 Specification requires values set for properties without a default value,  which means the configuration for those properties are mandatory,  otherwise the Resource Adaptor Entity creation will fail! 
+IMPORTANT: JAIN SLEE 1.1 Specification requires values set for properties without a default value,  which means the configuration for those properties are mandatory,  otherwise the Resource Adaptor Entity creation will fail!

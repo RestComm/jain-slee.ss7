@@ -35,3 +35,4 @@ resources/tcap/docs/sources-restcomm/src/
 
 # temp files
 *~
+*.iml
