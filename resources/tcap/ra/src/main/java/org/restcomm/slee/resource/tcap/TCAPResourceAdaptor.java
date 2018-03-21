@@ -427,7 +427,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCBegin(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCBegin(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCBeginIndication)
 	 */
 	@Override
@@ -452,7 +452,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCContinue(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCContinue(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCContinueIndication)
 	 */
 	@Override
@@ -469,7 +469,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCEnd(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCEnd(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCEndIndication)
 	 */
 	@Override
@@ -486,7 +486,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCNotice(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCNotice(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCNoticeIndication)
 	 */
 	@Override
@@ -501,7 +501,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCPAbort(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCPAbort(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCPAbortIndication)
 	 */
 	@Override
@@ -517,7 +517,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCUni(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCUni(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCUniIndication)
 	 */
 	@Override
@@ -557,7 +557,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCUserAbort(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onTCUserAbort(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortIndication)
 	 */
 	@Override
@@ -573,7 +573,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onDialogTimeout(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onDialogTimeout(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.Dialog)
 	 */
 	@Override
@@ -596,7 +596,7 @@ public class TCAPResourceAdaptor implements ResourceAdaptor, TCListener {
 	 * 
 	 * @see
 	 * org.restcomm.protocols.ss7.tcap.api.TCListener#onDialogReleased(org.
-	 * mobicents.protocols.ss7.tcap.api.tc.dialog.Dialog)
+	 * restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog)
 	 */
 	@Override
 	public void onDialogReleased(Dialog dialog) {

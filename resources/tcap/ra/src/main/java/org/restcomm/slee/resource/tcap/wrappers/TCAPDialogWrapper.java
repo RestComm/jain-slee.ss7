@@ -95,7 +95,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * 
 	 * @see
 	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#getDataLength(org
-	 * .mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCBeginRequest)
+	 * .restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCBeginRequest)
 	 */
 	@Override
 	public int getDataLength(TCBeginRequest event) throws TCAPSendException {
@@ -107,7 +107,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * 
 	 * @see
 	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#getDataLength(org
-	 * .mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCContinueRequest)
+	 * .restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCContinueRequest)
 	 */
 	@Override
 	public int getDataLength(TCContinueRequest event) throws TCAPSendException {
@@ -119,7 +119,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * 
 	 * @see
 	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#getDataLength(org
-	 * .mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCEndRequest)
+	 * .restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCEndRequest)
 	 */
 	@Override
 	public int getDataLength(TCEndRequest event) throws TCAPSendException {
@@ -131,7 +131,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * 
 	 * @see
 	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#getDataLength(org
-	 * .mobicents.protocols.ss7.tcap.api.tc.dialog.events.TCUniRequest)
+	 * .restcomm.protocols.ss7.tcap.api.tc.dialog.events.TCUniRequest)
 	 */
 	@Override
 	public int getDataLength(TCUniRequest event) throws TCAPSendException {
@@ -346,7 +346,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#send(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#send(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCBeginRequest)
 	 */
 	@Override
@@ -358,7 +358,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#send(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#send(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCContinueRequest)
 	 */
 	@Override
@@ -370,7 +370,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#send(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#send(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCEndRequest)
 	 */
 	@Override
@@ -382,7 +382,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#send(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#send(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCUserAbortRequest)
 	 */
 	@Override
@@ -394,7 +394,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#send(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#send(org.restcomm
 	 * .protocols.ss7.tcap.api.tc.dialog.events.TCUniRequest)
 	 */
 	@Override
@@ -407,7 +407,7 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
 	 * 
 	 * @see
 	 * org.restcomm.protocols.ss7.tcap.api.tc.dialog.Dialog#sendComponent(org
-	 * .mobicents.protocols.ss7.tcap.asn.comp.Component)
+	 * .restcomm.protocols.ss7.tcap.asn.comp.Component)
 	 */
 	@Override
 	public void sendComponent(Component componentRequest) throws TCAPSendException {

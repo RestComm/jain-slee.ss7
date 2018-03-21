@@ -30,6 +30,11 @@
 			<artifactId>restcomm-slee-ra-map-ra</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.restcomm.resources</groupId>
+			<artifactId>restcomm-slee-ra-lb-lib</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 
 	<profiles>

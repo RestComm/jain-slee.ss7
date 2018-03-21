@@ -64,7 +64,7 @@ public class ReturnEventImpl<T extends Return> extends ComponentEventImpl<T> imp
 	 * 
 	 * @see
 	 * org.restcomm.protocols.ss7.tcap.asn.comp.Return#setOperationCode(org
-	 * .mobicents.protocols.ss7.tcap.asn.comp.OperationCode)
+	 * .restcomm.protocols.ss7.tcap.asn.comp.OperationCode)
 	 */
 	@Override
 	public void setOperationCode(OperationCode opCode) {
@@ -75,7 +75,7 @@ public class ReturnEventImpl<T extends Return> extends ComponentEventImpl<T> imp
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.asn.comp.Return#setParameter(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.Return#setParameter(org.restcomm
 	 * .protocols.ss7.tcap.asn.comp.Parameter)
 	 */
 	@Override

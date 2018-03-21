@@ -64,7 +64,7 @@ public class ReturnErrorEventImpl extends ComponentEventImpl<ReturnError> implem
 	 * 
 	 * @see
 	 * org.restcomm.protocols.ss7.tcap.asn.comp.ReturnError#setErrorCode(org
-	 * .mobicents.protocols.ss7.tcap.asn.comp.ErrorCode)
+	 * .restcomm.protocols.ss7.tcap.asn.comp.ErrorCode)
 	 */
 	@Override
 	public void setErrorCode(ErrorCode errorCode) {
@@ -76,7 +76,7 @@ public class ReturnErrorEventImpl extends ComponentEventImpl<ReturnError> implem
 	 * 
 	 * @see
 	 * org.restcomm.protocols.ss7.tcap.asn.comp.ReturnError#setParameter(org
-	 * .mobicents.protocols.ss7.tcap.asn.comp.Parameter)
+	 * .restcomm.protocols.ss7.tcap.asn.comp.Parameter)
 	 */
 	@Override
 	public void setParameter(Parameter parameter) {

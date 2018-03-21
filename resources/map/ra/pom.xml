@@ -20,6 +20,11 @@
 			<artifactId>javolution</artifactId>
 			<version>${javolution.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.restcomm.resources</groupId>
+			<artifactId>restcomm-slee-ra-lb-lib</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
 
 </project>

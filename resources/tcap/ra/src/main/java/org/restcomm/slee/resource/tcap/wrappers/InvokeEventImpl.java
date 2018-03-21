@@ -108,7 +108,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	 * 
 	 * @see
 	 * org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#setOperationCode(org
-	 * .mobicents.protocols.ss7.tcap.asn.comp.OperationCode)
+	 * .restcomm.protocols.ss7.tcap.asn.comp.OperationCode)
 	 */
 	@Override
 	public void setOperationCode(OperationCode operationCode) {
@@ -119,7 +119,7 @@ public class InvokeEventImpl extends ComponentEventImpl<Invoke> implements Invok
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#setParameter(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.Invoke#setParameter(org.restcomm
 	 * .protocols.ss7.tcap.asn.comp.Parameter)
 	 */
 	@Override

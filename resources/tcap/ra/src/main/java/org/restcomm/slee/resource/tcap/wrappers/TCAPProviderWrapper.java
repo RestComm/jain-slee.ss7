@@ -59,7 +59,7 @@ public class TCAPProviderWrapper implements TCAPProvider {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.api.TCAPProvider#addTCListener(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.api.TCAPProvider#addTCListener(org.restcomm
 	 * .protocols.ss7.tcap.api.TCListener)
 	 */
 	@Override
@@ -120,7 +120,7 @@ public class TCAPProviderWrapper implements TCAPProvider {
      * (non-Javadoc)
      * 
      * @see
-     * org.restcomm.protocols.ss7.tcap.api.TCAPProvider#getNewDialog(org.mobicents
+     * org.restcomm.protocols.ss7.tcap.api.TCAPProvider#getNewDialog(org.restcomm
      * .protocols.ss7.sccp.parameter.SccpAddress,
      * org.restcomm.protocols.ss7.sccp.parameter.SccpAddress)
      */
@@ -162,7 +162,7 @@ public class TCAPProviderWrapper implements TCAPProvider {
 	 * 
 	 * @see
 	 * org.restcomm.protocols.ss7.tcap.api.TCAPProvider#removeTCListener(org
-	 * .mobicents.protocols.ss7.tcap.api.TCListener)
+	 * .restcomm.protocols.ss7.tcap.api.TCListener)
 	 */
 	@Override
 	public void removeTCListener(TCListener arg0) {

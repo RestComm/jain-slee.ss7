@@ -53,7 +53,7 @@ public abstract class Ss7TestSbb implements Sbb {
     protected Tracer logger;
 
     protected static final ResourceAdaptorTypeID mapRATypeID = new ResourceAdaptorTypeID("MAPResourceAdaptorType",
-            "org.mobicents", "2.0");
+            "org.restcomm", "2.0");
     protected static final String mapRaLink = "MAPRA";
     protected MAPContextInterfaceFactory mapAcif;
     protected MAPProvider mapProvider;

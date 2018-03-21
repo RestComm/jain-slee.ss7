@@ -54,7 +54,7 @@ public class ComponentEventImpl<T extends Component> implements ComponentEvent {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.asn.Encodable#decode(org.mobicents.protocols
+	 * org.restcomm.protocols.ss7.tcap.asn.Encodable#decode(org.restcomm.protocols
 	 * .asn.AsnInputStream)
 	 */
 	@Override
@@ -67,7 +67,7 @@ public class ComponentEventImpl<T extends Component> implements ComponentEvent {
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.asn.Encodable#encode(org.mobicents.protocols
+	 * org.restcomm.protocols.ss7.tcap.asn.Encodable#encode(org.restcomm.protocols
 	 * .asn.AsnOutputStream)
 	 */
 	@Override
@@ -110,7 +110,7 @@ public class ComponentEventImpl<T extends Component> implements ComponentEvent {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.slee.resource.tcap.events.ComponentEvent#getDialog()
+	 * @see org.restcomm.slee.resource.tcap.events.ComponentEvent#getDialog()
 	 */
 	@Override
 	public Dialog getDialog() {

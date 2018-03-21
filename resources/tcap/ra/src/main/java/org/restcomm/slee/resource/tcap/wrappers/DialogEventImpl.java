@@ -50,7 +50,7 @@ public class DialogEventImpl<T extends DialogIndication> implements DialogEvent 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.mobicents.slee.resource.tcap.events.ComponentEvent#getDialog()
+	 * @see org.restcomm.slee.resource.tcap.events.ComponentEvent#getDialog()
 	 */
 	@Override
 	public Dialog getDialog() {

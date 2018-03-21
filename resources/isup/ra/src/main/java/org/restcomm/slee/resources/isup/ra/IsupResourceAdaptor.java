@@ -709,7 +709,7 @@ public class IsupResourceAdaptor implements ResourceAdaptor, ISUPListener {
 		}
 		
 		/* (non-Javadoc)
-		 * @see org.mobicents.slee.resources.ss7.isup.ratype.RAISUPProvider#isTransportUp()
+		 * @see org.restcomm.slee.resources.ss7.isup.ratype.RAISUPProvider#isTransportUp()
 		 */
 		public boolean isTransportUp() {
 			return transportUp;

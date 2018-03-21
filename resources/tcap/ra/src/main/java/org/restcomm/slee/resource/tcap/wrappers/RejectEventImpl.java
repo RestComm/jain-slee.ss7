@@ -53,7 +53,7 @@ public class RejectEventImpl extends ComponentEventImpl<Reject> implements Rejec
 	 * (non-Javadoc)
 	 * 
 	 * @see
-	 * org.restcomm.protocols.ss7.tcap.asn.comp.Reject#setProblem(org.mobicents
+	 * org.restcomm.protocols.ss7.tcap.asn.comp.Reject#setProblem(org.restcomm
 	 * .protocols.ss7.tcap.asn.comp.Problem)
 	 */
 	@Override

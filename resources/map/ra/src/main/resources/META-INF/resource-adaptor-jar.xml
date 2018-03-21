@@ -23,6 +23,12 @@
 			</resource-adaptor-type-version>
 		</resource-adaptor-type-ref>
 
+		<library-ref>
+			<library-name>lb-lib</library-name>
+			<library-vendor>lb-lib</library-vendor>
+			<library-version>2.0</library-version>
+		</library-ref>
+
 		<resource-adaptor-classes>
 			<resource-adaptor-class>
 				<resource-adaptor-class-name>
@@ -53,5 +59,42 @@
 			<config-property-type>java.lang.Integer</config-property-type>
 			<config-property-value>0</config-property-value>
 		</config-property>
+
+		<config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.POINTCODE</config-property-name>
+            <config-property-type>java.lang.Integer</config-property-type>
+            <config-property-value>1001</config-property-value>
+        </config-property>
+        <config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.SCTP_PORT</config-property-name>
+            <config-property-type>java.lang.Integer</config-property-type>
+            <config-property-value>2001</config-property-value>
+        </config-property>
+        <config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.SCTP_LB_PORT</config-property-name>
+            <config-property-type>java.lang.Integer</config-property-type>
+            <config-property-value>2002</config-property-value>
+        </config-property>
+		<config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.LOCAL_ADDRESS</config-property-name>
+            <config-property-type>java.lang.String</config-property-type>
+            <config-property-value>127.0.0.1</config-property-value>
+        </config-property>
+        <config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.BALANCERS</config-property-name>
+            <config-property-type>java.lang.String</config-property-type>
+            <config-property-value>127.0.0.1:3001</config-property-value>
+        </config-property>
+        <config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.LoadBalancerHeartBeatingServiceClassName</config-property-name>
+            <config-property-type>java.lang.String</config-property-type>
+            <config-property-value>org.restcomm.slee.resource.ss7.heartbeat.SS7LoadBalancerHeartBeatingServiceImpl</config-property-value>
+        </config-property>
+        <config-property>
+            <config-property-name>org.mobicents.resources.restcomm-slee-ra-map-ra.HEARTBEAT_INTERVAL</config-property-name>
+            <config-property-type>java.lang.Integer</config-property-type>
+            <config-property-value>5000</config-property-value>
+        </config-property>
+
 	</resource-adaptor>
 </resource-adaptor-jar>

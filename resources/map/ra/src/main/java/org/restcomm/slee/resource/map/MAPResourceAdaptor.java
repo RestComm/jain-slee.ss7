@@ -60,7 +60,6 @@ import org.restcomm.protocols.ss7.map.api.dialog.MAPRefuseReason;
 import org.restcomm.protocols.ss7.map.api.dialog.MAPUserAbortChoice;
 import org.restcomm.protocols.ss7.map.api.errors.MAPErrorMessage;
 import org.restcomm.protocols.ss7.map.api.primitives.AddressString;
-import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
 import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.restcomm.protocols.ss7.map.api.service.callhandling.IstCommandRequest;
 import org.restcomm.protocols.ss7.map.api.service.callhandling.IstCommandResponse;
@@ -273,15 +272,17 @@ import org.restcomm.slee.resource.map.service.supplementary.wrappers.Unstructure
 import org.restcomm.slee.resource.map.service.supplementary.wrappers.UnstructuredSSResponseWrapper;
 import org.restcomm.slee.resource.map.wrappers.MAPDialogWrapper;
 import org.restcomm.slee.resource.map.wrappers.MAPProviderWrapper;
+import org.restcomm.slee.resource.ss7.ext.SS7RAExtImpl;
+import org.restcomm.slee.resource.ss7.ext.SS7RAExtInterface;
 
 import java.lang.management.ManagementFactory;
 
 /**
- * 
+ *
  * @author amit bhayani
  * @author baranowb
  * @author sergey vetyutnev
- * 
+ *
  */
 public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, MAPServiceMobilityListener,
 		MAPServiceCallHandlingListener, MAPServiceOamListener, MAPServicePdpContextActivationListener,
@@ -299,10 +300,10 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 	 */
 	protected MAPProviderWrapper mapProvider = null;
 	protected MAPProvider realProvider = null; // so we dont have to "get"
-	private Tracer tracer;
+	protected Tracer tracer;
 	private transient SleeEndpoint sleeEndpoint = null;
 
-	private ResourceAdaptorContext resourceAdaptorContext;
+	protected ResourceAdaptorContext resourceAdaptorContext;
 	private MAPResourceAdaptorStatisticsUsageParameters defaultUsageParameters;
 
 	private EventIDCache eventIdCache = null;
@@ -321,6 +322,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 
 	private String mapJndi = null;
 	private transient static final Address address = new Address(AddressPlan.IP, "localhost");
+
+    private SS7RAExtInterface ss7RAExtInterface = new SS7RAExtImpl();
 
 	public MAPResourceAdaptor() {
 		this.mapProvider = new MAPProviderWrapper(this);
@@ -483,6 +486,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		} catch (Exception e) {
 			this.tracer.severe("Failed to activate MAP RA ", e);
 		}
+
+        ss7RAExtInterface.onRaActive(resourceAdaptorContext);
 	}
 
 	public void raConfigurationUpdate(ConfigProperties properties) {
@@ -498,6 +503,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		} catch (Exception e) {
 			tracer.severe("Configuring of MAP RA failed ", e);
 		}
+
+        ss7RAExtInterface.onRaConfigure(properties);
 	}
 
 	public void raInactive() {
@@ -549,6 +556,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		if (tracer.isFineEnabled())
 			tracer.fine("raUnconfigure");
 
+		ss7RAExtInterface.onRaUnconfigure();
+
 		this.mapJndi = null;
 
 		if (tracer.isFineEnabled()) {
@@ -568,6 +577,7 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 				throw new InvalidConfigurationException("MAP JNDI lookup name cannot be null");
 			}
 
+            ss7RAExtInterface.onRaVerifyConfiguration(properties);
 		} catch (Exception e) {
 			throw new InvalidConfigurationException("Failed to test configuration options!", e);
 		}
@@ -604,6 +614,8 @@ public class MAPResourceAdaptor implements ResourceAdaptor, MAPDialogListener, M
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+        ss7RAExtInterface.onSetResourceAdaptorContext(tracer);
 	}
 
 	public void unsetResourceAdaptorContext() {
