@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents.resources</groupId>
 		<artifactId>ss7-test-sbb</artifactId>
-		<version>7.4.0-SNAPSHOT</version>
+		<version>7.4.0-198</version>
 	</parent>
 
 	<artifactId>services-DU</artifactId>
