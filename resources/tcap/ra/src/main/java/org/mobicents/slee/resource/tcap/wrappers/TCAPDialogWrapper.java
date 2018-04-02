@@ -456,4 +456,8 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
         return this.wrappedDialog.toString();
     }
 
+	public long getStartTimeDialog() {
+		return this.wrappedDialog.getStartTimeDialog();
+	}
+
 }

@@ -208,4 +208,9 @@ public class MAPDialogCallHandlingWrapper extends MAPDialogWrapper<MAPDialogCall
         this.wrappedDialog.addIstCommandResponse(invokeId, extensionContainer);
     }
 
+	@Override
+	public long getStartTimeDialog() {
+		return this.wrappedDialog.getStartTimeDialog();
+	}
+
 }

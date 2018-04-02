@@ -234,4 +234,9 @@ public class MAPDialogSupplementaryWrapper extends MAPDialogWrapper<MAPDialogSup
         this.wrappedDialog.addRegisterPasswordResponse(invokeId, password);
     }
 
+	@Override
+	public long getStartTimeDialog() {
+		return this.wrappedDialog.getStartTimeDialog();
+	}
+
 }

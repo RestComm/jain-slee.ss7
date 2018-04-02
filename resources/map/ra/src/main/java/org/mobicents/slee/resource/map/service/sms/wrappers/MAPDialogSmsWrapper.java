@@ -202,4 +202,8 @@ public class MAPDialogSmsWrapper extends MAPDialogWrapper<MAPDialogSms> implemen
         return this.wrappedDialog.addNoteSubscriberPresentRequest(customInvokeTimeout, imsi);
     }
 
+	@Override
+	public long getStartTimeDialog() {
+		return this.wrappedDialog.getStartTimeDialog();
+	}
 }

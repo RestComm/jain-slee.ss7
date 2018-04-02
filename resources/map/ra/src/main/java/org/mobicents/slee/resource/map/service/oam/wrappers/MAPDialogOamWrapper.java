@@ -97,4 +97,9 @@ public class MAPDialogOamWrapper extends MAPDialogWrapper<MAPDialogOam> implemen
         this.wrappedDialog.addActivateTraceModeResponse(invokeId, extensionContainer, traceSupportIndicator);
     }
 
+	@Override
+	public long getStartTimeDialog() {
+		return this.wrappedDialog.getStartTimeDialog();
+	}
+
 }

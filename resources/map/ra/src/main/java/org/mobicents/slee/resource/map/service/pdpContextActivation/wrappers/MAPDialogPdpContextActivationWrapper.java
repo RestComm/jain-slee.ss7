@@ -67,4 +67,9 @@ public class MAPDialogPdpContextActivationWrapper extends MAPDialogWrapper<MAPDi
         this.wrappedDialog.addSendRoutingInfoForGprsResponse(invokeId, sgsnAddress, ggsnAddress, mobileNotReachableReason, extensionContainer);
     }
 
+	@Override
+	public long getStartTimeDialog() {
+		return this.wrappedDialog.getStartTimeDialog();
+	}
+
 }

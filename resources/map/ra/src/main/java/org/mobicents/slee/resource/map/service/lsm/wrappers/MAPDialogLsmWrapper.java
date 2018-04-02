@@ -122,4 +122,9 @@ public class MAPDialogLsmWrapper extends MAPDialogWrapper<MAPDialogLsm> implemen
 		return "MAPDialogLsmWrapper [wrappedDialog=" + wrappedDialog + "]";
 	}
 
+	@Override
+	public long getStartTimeDialog() {
+		return this.wrappedDialog.getStartTimeDialog();
+	}
+
 }
