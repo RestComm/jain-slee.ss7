@@ -466,4 +466,9 @@ public class TCAPDialogWrapper implements Dialog, TCAPEvent {
         this.wrappedDialog.setDoNotSendProtocolVersion(isSendProtocolVersion);
     }
 
+    @Override
+    public long getStartTimeDialog() {
+        return this.wrappedDialog.getStartTimeDialog();
+    }
+
 }

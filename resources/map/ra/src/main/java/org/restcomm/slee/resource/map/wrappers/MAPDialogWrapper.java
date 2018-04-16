@@ -31,7 +31,6 @@ import org.restcomm.protocols.ss7.map.api.dialog.MAPUserAbortChoice;
 import org.restcomm.protocols.ss7.map.api.dialog.Reason;
 import org.restcomm.protocols.ss7.map.api.errors.MAPErrorMessage;
 import org.restcomm.protocols.ss7.map.api.primitives.AddressString;
-import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
 import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.restcomm.protocols.ss7.sccp.parameter.SccpAddress;
 import org.restcomm.protocols.ss7.tcap.api.MessageType;
@@ -247,6 +246,11 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
     @Override
     public void setIdleTaskTimeout(long idleTaskTimeoutMs) {
         this.wrappedDialog.setIdleTaskTimeout(idleTaskTimeoutMs);
+    }
+
+    @Override
+    public long getStartTimeDialog() {
+        return this.wrappedDialog.getStartTimeDialog();
     }
 
 	public MAPDialogActivityHandle getActivityHandle() {
