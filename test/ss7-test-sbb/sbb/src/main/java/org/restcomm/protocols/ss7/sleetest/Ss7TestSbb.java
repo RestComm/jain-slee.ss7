@@ -118,6 +118,8 @@ public abstract class Ss7TestSbb implements Sbb {
 
 	public void onDialogRequest(org.restcomm.slee.resource.map.events.DialogRequest evt, ActivityContextInterface aci) {
         this.logger.info("New MAP Dialog. Received event MAPOpenInfo " + evt);
+        this.logger.info("New MAP Dialog. Received MAPDialog=" + evt.getMAPDialog() + " LocalAddress=["
+                + evt.getMAPDialog().getLocalAddress() + "] RemoteAddress=[" + evt.getMAPDialog().getRemoteAddress() + "]");
 	}
 
 	public void onProcessUnstructuredSSRequest(ProcessUnstructuredSSRequest evt, ActivityContextInterface aci) {
