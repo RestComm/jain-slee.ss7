@@ -27,6 +27,7 @@ import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
 import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
 import org.restcomm.protocols.ss7.map.api.primitives.MAPExtensionContainer;
 import org.restcomm.protocols.ss7.map.api.service.mobility.subscriberManagement.TeleserviceCode;
+import org.restcomm.protocols.ss7.map.api.service.sms.CorrelationID;
 import org.restcomm.protocols.ss7.map.api.service.sms.SMDeliveryNotIntended;
 import org.restcomm.protocols.ss7.map.api.service.sms.SM_RP_MTI;
 import org.restcomm.protocols.ss7.map.api.service.sms.SM_RP_SMEA;
@@ -101,6 +102,11 @@ public class SendRoutingInfoForSMRequestWrapper extends SmsMessageWrapper<SendRo
     @Override
     public boolean getSingleAttemptDelivery() {
         return this.wrappedEvent.getSingleAttemptDelivery();
+    }
+
+    @Override
+    public CorrelationID getCorrelationID() {
+        return this.wrappedEvent.getCorrelationID();
     }
 
 	/*
