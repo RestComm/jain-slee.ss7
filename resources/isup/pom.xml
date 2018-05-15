@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.restcomm.servers.jainslee.ss7</groupId>
 		<artifactId>restcomm-slee-ss7</artifactId>
-		<version>8.0.0-SNAPSHOT</version>
+		<version>8.0.0-133</version>
 		<relativePath>../..</relativePath>
 	</parent>
 
