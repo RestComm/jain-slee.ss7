@@ -328,6 +328,29 @@ public class CAPDialogGprsWrapper extends CAPDialogWrapper<CAPDialogGprs> implem
 		this.wrappedDialog.addActivityTestGPRSResponse(invokeId);
 	}
 
+    @Override
+	public int getTimerCircuitSwitchedCallControlLong() {
+		return this.wrappedDialog.getTimerCircuitSwitchedCallControlLong();
+	}
 
+    @Override
+	public int getTimerCircuitSwitchedCallControlMedium() {
+		return this.wrappedDialog.getTimerCircuitSwitchedCallControlMedium();
+	}
+
+    @Override
+	public int getTimerCircuitSwitchedCallControlShort() {
+		return this.wrappedDialog.getTimerCircuitSwitchedCallControlShort();
+	}
+
+    @Override
+	public int getTimerGprsShort() {
+		return this.wrappedDialog.getTimerGprsShort();
+	}
+
+    @Override
+	public int getTimerSmsShort() {
+		return this.wrappedDialog.getTimerSmsShort();
+	}
 
 }

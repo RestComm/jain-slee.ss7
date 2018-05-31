@@ -27,6 +27,7 @@ import org.restcomm.protocols.ss7.map.api.primitives.GSNAddress;
 import org.restcomm.protocols.ss7.map.api.primitives.IMEI;
 import org.restcomm.protocols.ss7.map.api.primitives.IMSI;
 import org.restcomm.protocols.ss7.map.api.primitives.ISDNAddressString;
+import org.restcomm.protocols.ss7.map.api.primitives.LMSI;
 import org.restcomm.protocols.ss7.map.api.service.lsm.AccuracyFulfilmentIndicator;
 import org.restcomm.protocols.ss7.map.api.service.lsm.AddGeographicalInformation;
 import org.restcomm.protocols.ss7.map.api.service.lsm.DeferredmtlrData;
@@ -37,6 +38,7 @@ import org.restcomm.protocols.ss7.map.api.service.lsm.LCSEvent;
 import org.restcomm.protocols.ss7.map.api.service.lsm.LCSLocationInfo;
 import org.restcomm.protocols.ss7.map.api.service.lsm.PeriodicLDRInfo;
 import org.restcomm.protocols.ss7.map.api.service.lsm.PositioningDataInformation;
+import org.restcomm.protocols.ss7.map.api.service.lsm.ReportingPLMNList;
 import org.restcomm.protocols.ss7.map.api.service.lsm.SLRArgExtensionContainer;
 import org.restcomm.protocols.ss7.map.api.service.lsm.ServingNodeAddress;
 import org.restcomm.protocols.ss7.map.api.service.lsm.SubscriberLocationReportRequest;
@@ -190,6 +192,16 @@ public class SubscriberLocationReportRequestWrapper extends LsmMessageWrapper<Su
 	@Override
 	public String toString() {
 		return "SubscriberLocationReportRequestWrapper [wrapped=" + this.wrappedEvent + "]";
+	}
+
+	@Override
+	public LMSI getLMSI() {
+		return this.wrappedEvent.getLMSI();
+	}
+
+	@Override
+	public ReportingPLMNList getReportingPLMNList() {
+		return this.wrappedEvent.getReportingPLMNList();
 	}
 
 }

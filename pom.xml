@@ -29,10 +29,10 @@
 	</modules>
 
 	<properties>
-		<ss7.version>8.0.0-153</ss7.version> <!-- 8.0.0-SNAPSHOT 8.0.0-145 -->
+		<ss7.version>8.0.0-168</ss7.version> <!-- 8.0.0-SNAPSHOT 8.0.0-145 -->
 		<maven.du.plugin.version>4.0.2</maven.du.plugin.version>
 
-		<sctp.version>2.0.0-128</sctp.version>
+		<sctp.version>2.0.0-164</sctp.version>
 		<asn.version>2.2.0-22</asn.version>
 		<stream.version>1.0.0.FINAL</stream.version>
 		<javolution.version>5.5.1</javolution.version>
