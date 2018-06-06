@@ -228,6 +228,31 @@ public abstract class CAPDialogWrapper<T extends CAPDialog> implements CAPDialog
         this.wrappedDialog.setIdleTaskTimeout(idleTaskTimeoutMs);
     }
 
+    @Override
+    public int getTimerCircuitSwitchedCallControlLong() {
+        return this.wrappedDialog.getTimerCircuitSwitchedCallControlLong();
+    }
+
+    @Override
+    public int getTimerCircuitSwitchedCallControlMedium() {
+        return this.wrappedDialog.getTimerCircuitSwitchedCallControlMedium();
+    }
+
+    @Override
+    public int getTimerCircuitSwitchedCallControlShort() {
+        return this.wrappedDialog.getTimerCircuitSwitchedCallControlShort();
+    }
+
+    @Override
+    public int getTimerGprsShort() {
+        return this.wrappedDialog.getTimerGprsShort();
+    }
+
+    @Override
+    public int getTimerSmsShort() {
+        return this.wrappedDialog.getTimerSmsShort();
+    }
+
 	public CAPDialogActivityHandle getActivityHandle() {
 		return activityHandle;
 	}

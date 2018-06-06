@@ -107,19 +107,4 @@ public class MAPDialogOamWrapper extends MAPDialogWrapper<MAPDialogOam> implemen
         this.wrappedDialog.setDoNotSendProtocolVersion(isSendProtocolVersion);
     }
 
-    @Override
-	public int getLongTimer() {
-		return wrappedDialog.getLongTimer();
-	}
-
-	@Override
-	public int getMediumTimer() {
-		return wrappedDialog.getMediumTimer();
-	}
-
-	@Override
-	public int getShortTimer() {
-		return wrappedDialog.getShortTimer();
-	}
-
 }

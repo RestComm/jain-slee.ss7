@@ -253,6 +253,21 @@ public abstract class MAPDialogWrapper<T extends MAPDialog> implements MAPDialog
         return this.wrappedDialog.getStartTimeDialog();
     }
 
+    @Override
+    public int getLongTimer() {
+        return wrappedDialog.getLongTimer();
+    }
+
+    @Override
+    public int getMediumTimer() {
+        return wrappedDialog.getMediumTimer();
+    }
+
+    @Override
+    public int getShortTimer() {
+        return wrappedDialog.getShortTimer();
+    }
+
 	public MAPDialogActivityHandle getActivityHandle() {
 		return activityHandle;
 	}

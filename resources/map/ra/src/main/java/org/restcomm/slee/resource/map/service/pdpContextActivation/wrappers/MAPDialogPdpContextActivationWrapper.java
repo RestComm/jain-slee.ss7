@@ -76,20 +76,5 @@ public class MAPDialogPdpContextActivationWrapper extends MAPDialogWrapper<MAPDi
     public void setDoNotSendProtocolVersion(Boolean isSendProtocolVersion) {
         this.wrappedDialog.setDoNotSendProtocolVersion(isSendProtocolVersion);
     }
-    
-    @Override
-	public int getLongTimer() {
-		return wrappedDialog.getLongTimer();
-	}
-
-	@Override
-	public int getMediumTimer() {
-		return wrappedDialog.getMediumTimer();
-	}
-
-	@Override
-	public int getShortTimer() {
-		return wrappedDialog.getShortTimer();
-	}
 
 }
