@@ -29,7 +29,7 @@
 	</modules>
 
 	<properties>
-		<ss7.version>8.1.0-1</ss7.version> <!-- 8.0.0-SNAPSHOT 8.0.0-145 -->
+		<ss7.version>8.1.1-11</ss7.version> <!-- 8.0.0-SNAPSHOT 8.0.0-145 -->
 		<maven.du.plugin.version>4.0.2</maven.du.plugin.version>
 
 		<sctp.version>2.0.0-166</sctp.version>
@@ -87,6 +87,15 @@
 			<module>resources/tcap</module>
 			<module>resources/isup</module>
 		</modules>
+	</profile>
+	<profile>
+		<id>disable-java8-doclint</id>
+		<activation>
+			<jdk>[1.8,)</jdk>
+		</activation>
+		<properties>
+			<additionalparam>-Xdoclint:none</additionalparam>
+		</properties>
 	</profile>
 	<profile>
 		<id>release-sign-artifacts</id>
